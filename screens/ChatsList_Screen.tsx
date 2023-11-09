@@ -1,20 +1,21 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import React from 'react';
-import { g_styles } from '../global.styles';
+import { g_styles } from '../components/global.styles';
 
-const HomePageScreen = () => {
+const ChatsList_Screen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#343740'}/>
       <ScrollView>
-        
+        <View>
+          <Text style={styles.text}>Chats</Text>
+        </View>
       </ScrollView>
-      <Text style={styles.text}>Hello World</Text>
     </SafeAreaView>
   )
 }
 
-export default HomePageScreen;
+export default ChatsList_Screen;
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +26,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: g_styles.contrast_bg,
-    fontSize: 30,
+    fontSize: 50,
   }
 });
