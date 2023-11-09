@@ -1,18 +1,14 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, StatusBar} from 'react-native';
+import Chats_Screen from './components/screens/Chats_Screen';
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={styles.app}>
-      <Text>Hello Messenger app World</Text>
-    </SafeAreaView>
-  );
-};
+    <Chats_Screen/>
+  )
+}
 
 const styles = StyleSheet.create({
-  app: {
-    backgroundColor: 'white',
-  },
 });
 
 export default App;
