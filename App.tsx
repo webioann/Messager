@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import ChatsList_Screen from './screens/ChatsList_Screen';
 import Wellcome_Screen from './screens/Wellcome_Screen';
 import Settings_Screen from './screens/Settings_Screen';
@@ -18,15 +19,15 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Wellcome'>
-        <Stack.Screen 
-          name="Wellcome" 
-          component={Wellcome_Screen} 
-          options={ screenOptions }
-        />
+      <Stack.Navigator initialRouteName='Chats'>
         <Stack.Screen 
           name="Chats" 
           component={ChatsList_Screen}
+          options={ screenOptions }
+        />
+        <Stack.Screen 
+          name="Wellcome" 
+          component={Wellcome_Screen} 
           options={ screenOptions }
         />
         <Stack.Screen 

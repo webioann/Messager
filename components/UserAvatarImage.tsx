@@ -1,53 +1,36 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { dark_bg } from '../constants/global.styles';
 
-const UserAvatarImage = () => {
+type avatarProps = {
+    pathToImage: string;
+    size: number;
+}
+
+const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
+    const defaultPath = 'https://picsum.photos/100'
     return (
-        <View style={styles.wrapper}>
-            <View style={styles.avatar}>
-                <Image 
-                    source={{uri: 'https://picsum.photos/80'}}
-                    style={[styles.logo,]}
-                    alt='user avatar'
-                    resizeMode='contain'
-                />
-            </View>
+        <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, borderWidth: size / 12, }]}>
+            <Image 
+                source={{uri: pathToImage ? pathToImage : defaultPath}}
+                style={[styles.logo, { borderRadius: size / 2 }]}
+                alt='user avatar'
+                resizeMode='contain'
+            />
         </View>
     )
 }
-
-export default UserAvatarImage
+export default UserAvatarImage;
 
 const styles = StyleSheet.create({
     avatar: {
-        // flex:1,
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        borderColor: '#252934',
-        borderWidth: 6,
+        borderColor: dark_bg,
         borderStyle: 'solid',
-        shadowColor: '#ffffff',
-        shadowOffset: { width: 6, height: -6 },
-        shadowOpacity: 1,
-        shadowRadius: 1,
-        elevation: 6
+        overflow: 'hidden'
     },
     logo: {
         width: '100%',
         height: '100%',
-        borderRadius: 35,
         overflow: 'hidden'
     },
-    wrapper: {
-        width: 86,
-        height: 86,
-        borderRadius: 43,
-        borderColor: 'transparent',
-        borderWidth: 1,
-        borderStyle: "solid",
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
-})
+});
