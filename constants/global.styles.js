@@ -12,7 +12,7 @@ export const dark_bg = '#22272d';
 export const main_color = '#ffffff';
 
 // bigest circles size
-export const large = 50;
+export const large = 60;
 
 // medium circles size
 export const medium = 40;

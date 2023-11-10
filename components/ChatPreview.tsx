@@ -11,10 +11,10 @@ const ChatPreview: React.FC<ChatData_Type> = ({...data}) => {
 
             {/* user contact-name and short message */}
             <View style={styles.userData}>
-                <Text style={{ color: main_color, fontSize: 20, fontWeight: '600' }}>
+                <Text style={{ color: main_color, fontSize: 15, fontWeight: '600' }}>
                     { data.contactName }
                 </Text>
-                <Text style={{ color: main_color, fontSize: 15 }}>
+                <Text style={{ color: main_color, fontSize: 12 }}>
                     { data.shortMessage }
                 </Text>
             </View>
@@ -32,15 +32,24 @@ export default ChatPreview;
 
 const styles = StyleSheet.create({
     previewContainer: {
-        flex:1,
+        // flex:1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 10,
     },
     userData: {
         flex: 1,
-        paddingVertical: 10,
+        height: '100%',
+        paddingHorizontal: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: 'grey'
+
     },
-    timeStamp: {},
+    timeStamp: {
+        height: '100%',
+        borderBottomWidth: 1,
+        borderBottomColor: 'grey'
+
+    },
 })
-// pathToImage, contactName, shortMessage, timeStamp, messageCount

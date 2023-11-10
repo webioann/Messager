@@ -27,7 +27,7 @@ const ChatsList_Screen = () => {
           data={DUMMY_CHATS}
           renderItem={({item}) => <ChatPreview {...item}/>}
           keyExtractor={item => item.chatId}
-          />
+        />
       </ScrollView>
     </SafeAreaView>
   )
@@ -66,11 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#272b34',
     height: 40,
     borderRadius: 20,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
+    marginVertical: 8
   }
 });
-// pathToImage={item.pathToImage}
-// contactName={item.contactName}
-// shortMessage={item.shortMessage}
-// timeStamp={item.timeStamp}
-// messageCount={item.messageCount}
