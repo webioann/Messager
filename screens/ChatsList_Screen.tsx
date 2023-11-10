@@ -15,7 +15,7 @@ const ChatsList_Screen = () => {
         <View style={styles.headerContainer}>
           <UserAvatarImage pathToImage='' size={medium}/>
           <Text style={styles.headerTitle}>Chats</Text>
-          <Image style={styles.headerAddButton} source={{uri: 'https://picsum.photos/100'}}/>
+          <Image style={styles.headerAddButton} source={{uri: 'https://picsum.photos/105'}}/>
         </View>
         <TextInput 
           onChangeText={setValue}
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     paddingHorizontal: 20,
-    marginVertical: 8
+    marginVertical: 8,
   }
 });

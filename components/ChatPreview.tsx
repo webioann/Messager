@@ -32,7 +32,6 @@ export default ChatPreview;
 
 const styles = StyleSheet.create({
     previewContainer: {
-        // flex:1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -41,15 +40,13 @@ const styles = StyleSheet.create({
     userData: {
         flex: 1,
         height: '100%',
-        paddingHorizontal: 16,
+        marginLeft: 16,
         borderBottomWidth: 1,
-        borderBottomColor: 'grey'
-
+        borderBottomColor: '#333333',
     },
     timeStamp: {
         height: '100%',
         borderBottomWidth: 1,
-        borderBottomColor: 'grey'
-
+        borderBottomColor: '#333333',
     },
 })
