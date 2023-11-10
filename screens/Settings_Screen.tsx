@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import React from 'react';
-import { g_styles } from '../components/global.styles';
+import { main_bg, contrast_bg } from '../constants/global.styles';
 
 const ChatsList_Screen = () => {
     return (
@@ -20,12 +20,12 @@ export default ChatsList_Screen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: g_styles.app_bg,
+        backgroundColor: main_bg,
         justifyContent: 'center',
         alignItems: 'center'
     },
     text: {
-        color: g_styles.contrast_bg,
+        color: contrast_bg,
         fontSize: 50,
     }
 });
