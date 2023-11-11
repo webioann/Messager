@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: sizes.GAP,
     position: 'relative',
-    paddingBottom: sizes.SAFE
+    paddingBottom: sizes.SAFE,
   },
   headerContainer: {
     flexDirection: 'row',

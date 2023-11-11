@@ -8,20 +8,21 @@ const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
 
     return (
-    <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor={colors.BG}/>
-        <ScrollView>
-            <View>
-                <Text style={styles.text}>Settings</Text>
-            </View>
-            <Button
-                    title='Go to the Chats'
-                    onPress={() => navigation.navigate("Chats")}
-                />
-
-        </ScrollView>
-    </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor={colors.BG}/>
+            <ScrollView>
+                <View>
+                    <Text style={styles.text}>Settings</Text>
+                </View>
+                <Button
+                        title='Go to the Chats'
+                        onPress={() => navigation.navigate("Chats")}
+                    />
+    
+            </ScrollView>
+        </SafeAreaView>
     )
+    
 }
 export default Settings_Screen;
 
