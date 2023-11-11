@@ -15,7 +15,7 @@ const App: React.FC = () => {
     headerStyle: {backgroundColor: main_bg},
     headerTintColor: main_color,
     headerShadowVisible: false,
-    // headerShown: false
+    headerShown: false
   }
 
   return (
