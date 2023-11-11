@@ -9,7 +9,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '2',
@@ -17,7 +17,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '3',
@@ -25,7 +25,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 10
     },
     {
         chatId: '4',
@@ -33,7 +33,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 5
     },
     {
         chatId: '5',
@@ -41,7 +41,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 1
     },
     {
         chatId: '6',
@@ -49,7 +49,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '7',
@@ -57,7 +57,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '8',
@@ -65,7 +65,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '9',
@@ -73,7 +73,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '10',
@@ -81,7 +81,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
     {
         chatId: '11',
@@ -97,7 +97,7 @@ export const DUMMY_CHATS: ChatsData = [
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
-        messageCount: 100
+        messageCount: 0
     },
 
 ];
