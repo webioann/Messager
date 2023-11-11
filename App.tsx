@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
+// import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import ChatsList_Screen from './screens/ChatsList_Screen';
 import SingleChat_Screen from './screens/SingleChat_Screen';
 import Settings_Screen from './screens/Settings_Screen';
@@ -40,5 +40,4 @@ const App: React.FC = () => {
     </NavigationContainer>
   )
 }
-
 export default App;

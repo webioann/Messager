@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, ScrollView, Image, FlatList } from 'react-native';
+import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } from 'react-native';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
@@ -38,7 +38,6 @@ const ChatsList_Screen = () => {
     </SafeAreaView>
   )
 }
-
 export default ChatsList_Screen;
 
 const styles = StyleSheet.create({

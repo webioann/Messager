@@ -1,11 +1,10 @@
-import { StyleSheet, Pressable, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { main_bg, contrast_bg, large, kingsize, fav_gap, main_color } from '../constants/global.styles';
+import { contrast_bg, kingsize, main_color } from '../constants/global.styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
-
 
 const ChatsBottomMenu = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -24,17 +23,14 @@ const ChatsBottomMenu = () => {
             <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Settings")}>
                 <Icon2 name='cog-outline' size={24} color={main_color}/>
             </TouchableOpacity>
-
         </View>
     )
 };
-
 export default ChatsBottomMenu;
 //  icon variant 
 {/* <View style={styles.link}>
 <Icon2 name='message-outline' size={24} color={main_color}/>
 </View> */}
-
 
 const styles = StyleSheet.create({
     menu:{

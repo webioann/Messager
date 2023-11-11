@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { dark_bg } from '../constants/global.styles';
 
 type avatarProps = {
@@ -9,6 +9,7 @@ type avatarProps = {
 
 const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
     const defaultPath = 'https://picsum.photos/100'
+    
     return (
         <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, borderWidth: size / 12, }]}>
             <Image 

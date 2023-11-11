@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, Button, Pressable } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, Button } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
@@ -12,7 +12,7 @@ const ChatsList_Screen = () => {
         <StatusBar backgroundColor={'#343740'}/>
         <ScrollView>
             <View>
-                <Text style={styles.text}>SingleChat_Screen</Text>
+                <Text style={styles.text}>Single Chat_Screen</Text>
                 <Button
                     title='Go to the Chats'
                     onPress={() => navigation.navigate("Chats")}
@@ -22,7 +22,6 @@ const ChatsList_Screen = () => {
     </SafeAreaView>
     )
 }
-
 export default ChatsList_Screen;
 
 const styles = StyleSheet.create({
