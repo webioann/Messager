@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, ScrollView, Image, FlatList } from 'react-native';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
+import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import { main_bg, contrast_bg, large, medium, fav_gap, main_color } from '../constants/global.styles';
 import { DUMMY_CHATS } from '../constants/dummyData';
 
@@ -27,6 +28,7 @@ const ChatsList_Screen = () => {
         renderItem={({item}) => <ChatPreview {...item}/>}
         keyExtractor={item => item.chatId}
       />
+      <BottomSectionWrapper/>
     </SafeAreaView>
   )
 }
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: main_bg,
     flex: 1,
     paddingHorizontal: fav_gap,
-
+    position: 'relative'
   },
   // page: {
   //   borderColor: 'red',
