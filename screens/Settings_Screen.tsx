@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'rea
 import React from 'react';
 import { main_bg, contrast_bg } from '../constants/global.styles';
 
-const ChatsList_Screen = () => {
+const Settings_Screen = () => {
     return (
     <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={'#343740'}/>
@@ -15,7 +15,7 @@ const ChatsList_Screen = () => {
     )
 }
 
-export default ChatsList_Screen;
+export default Settings_Screen;
 
 const styles = StyleSheet.create({
     container: {

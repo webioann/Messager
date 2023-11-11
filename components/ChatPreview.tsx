@@ -1,14 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import UserAvatarImage from '../components/UserAvatarImage';
 import { ChatData_Type } from '../Types/chats_types';
 import { main_bg, contrast_bg, large, medium, fav_gap, main_color } from '../constants/global.styles';
+import { useNavigation } from '@react-navigation/native';
+import { UseNavigation_Type } from '../Types/navigation_types';
 
 const ChatPreview: React.FC<ChatData_Type> = ({...data}) => {
-    return (
-        <View style={styles.previewContainer}>
-            <UserAvatarImage pathToImage={data.pathToImage} size={large}/>
+    const navigation = useNavigation<UseNavigation_Type>();
 
+    return (
+        <TouchableOpacity 
+            style={styles.previewContainer} 
+            onPress={() => navigation.navigate("SingleChat")}
+            >
+            <UserAvatarImage pathToImage={data.pathToImage} size={large}/>
             {/* user contact-name and short message */}
             <View style={styles.userData}>
                 <Text style={{ color: main_color, fontSize: 15, fontWeight: '600' }}>
@@ -24,7 +30,7 @@ const ChatPreview: React.FC<ChatData_Type> = ({...data}) => {
                 <Text>{data.timeStamp}</Text>
                 <Text>{data.messageCount}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

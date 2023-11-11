@@ -12,7 +12,7 @@ const ChatsList_Screen = () => {
         <StatusBar backgroundColor={'#343740'}/>
         <ScrollView>
             <View>
-                <Text style={styles.text}>Wellcome</Text>
+                <Text style={styles.text}>SingleChat_Screen</Text>
                 <Button
                     title='Go to the Chats'
                     onPress={() => navigation.navigate("Chats")}

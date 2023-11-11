@@ -17,6 +17,9 @@ export const kingsize = 70;
 // big circles size
 export const large = 60;
 
+// big circles size
+export const middle = 50;
+
 // medium circles size
 export const medium = 40;
 

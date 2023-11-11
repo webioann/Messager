@@ -1,28 +1,40 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Pressable, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { main_bg, contrast_bg, large, kingsize, fav_gap, main_color } from '../constants/global.styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+import { UseNavigation_Type } from '../Types/navigation_types';
+
 
 const ChatsBottomMenu = () => {
+    const navigation = useNavigation<UseNavigation_Type>();
+
     return (
         <View style={styles.menu}>
+            <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("SingleChat")}>
+                <Icon2 name='message' size={24} color={contrast_bg}/>
+            </TouchableOpacity>
             <View style={styles.link}>
-                <Text style={{color: main_color, fontSize: 30}}>O</Text>
+                <Icon2 name='camera-outline' size={24} color={main_color}/>
             </View>
             <View style={styles.link}>
-                <Text style={{color: main_color, fontSize: 30}}>O</Text>
+                <Icon name='qr-code-scanner' size={24} color={main_color}/>
             </View>
-            <View style={styles.link}>
-                <Text style={{color: main_color, fontSize: 30}}>O</Text>
-            </View>
-            <View style={styles.link}>
-                <Text style={{color: main_color, fontSize: 30}}>O</Text>
-            </View>
+            <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Settings")}>
+                <Icon2 name='cog-outline' size={24} color={main_color}/>
+            </TouchableOpacity>
 
         </View>
     )
 };
 
 export default ChatsBottomMenu;
+//  icon variant 
+{/* <View style={styles.link}>
+<Icon2 name='message-outline' size={24} color={main_color}/>
+</View> */}
+
 
 const styles = StyleSheet.create({
     menu:{
