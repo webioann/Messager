@@ -37,7 +37,39 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '5',
-        pathToImage: 'https://picsum.photos/100',
+        pathToImage: 'https://picsum.photos/103',
+        contactName: 'Sara Sanders',
+        shortMessage: 'Can you buy me dinner?',
+        timeStamp: '12:35',
+        messageCount: 100
+    },
+    {
+        chatId: '6',
+        pathToImage: 'https://picsum.photos/102',
+        contactName: 'Sara Sanders',
+        shortMessage: 'Can you buy me dinner?',
+        timeStamp: '12:35',
+        messageCount: 100
+    },
+    {
+        chatId: '7',
+        pathToImage: 'https://picsum.photos/107',
+        contactName: 'Sara Sanders',
+        shortMessage: 'Can you buy me dinner?',
+        timeStamp: '12:35',
+        messageCount: 100
+    },
+    {
+        chatId: '8',
+        pathToImage: 'https://picsum.photos/108',
+        contactName: 'Sara Sanders',
+        shortMessage: 'Can you buy me dinner?',
+        timeStamp: '12:35',
+        messageCount: 100
+    },
+    {
+        chatId: '9',
+        pathToImage: 'https://picsum.photos/109',
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
