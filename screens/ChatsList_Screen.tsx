@@ -6,6 +6,7 @@ import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import ChatsBottomMenu from '../components/ChatsBottomMenu';
 import { main_bg, contrast_bg, medium, fav_gap, main_color, safePadding } from '../constants/global.styles';
 import { DUMMY_CHATS } from '../constants/dummyData';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ChatsList_Screen = () => {
   const [value, setValue] = useState('')
@@ -16,7 +17,8 @@ const ChatsList_Screen = () => {
       <View style={styles.headerContainer}>
         <UserAvatarImage pathToImage='' size={medium}/>
         <Text style={styles.headerTitle}>Chats</Text>
-        <Image style={styles.headerAddButton} source={{uri: 'https://picsum.photos/105'}}/>
+        {/* <Image style={styles.headerAddButton} source={{uri: 'https://picsum.photos/105'}}/> */}
+        <Icon name='add' size={30} color={main_color}/>
       </View>
       <TextInput 
         onChangeText={setValue}
