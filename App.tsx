@@ -24,7 +24,7 @@ const App: React.FC = () => {
         <Stack.Screen 
           name="Chats" 
           component={ChatsList_Screen}
-          options={ screenOptions }
+          options={ screenOptions}
         />
         <Stack.Screen 
           name="Wellcome" 

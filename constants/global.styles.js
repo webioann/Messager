@@ -11,7 +11,10 @@ export const dark_bg = '#22272d';
 // main color fot Text components
 export const main_color = '#ffffff';
 
-// bigest circles size
+// bigg est size for some elements
+export const kingsize = 70;
+
+// big circles size
 export const large = 60;
 
 // medium circles size
@@ -22,4 +25,8 @@ export const small = 30;
 
 // favorit size for padding , margin and gap
 export const fav_gap = 16;
+
+// safe bottom padding for last item visibility
+export const safePadding = kingsize + 10;
+
 

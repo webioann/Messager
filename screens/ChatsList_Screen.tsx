@@ -3,12 +3,13 @@ import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, ScrollView,
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
-import { main_bg, contrast_bg, large, medium, fav_gap, main_color } from '../constants/global.styles';
+import ChatsBottomMenu from '../components/ChatsBottomMenu';
+import { main_bg, contrast_bg, medium, fav_gap, main_color, safePadding } from '../constants/global.styles';
 import { DUMMY_CHATS } from '../constants/dummyData';
 
 const ChatsList_Screen = () => {
   const [value, setValue] = useState('')
-  
+
   return (
     <SafeAreaView style={styles.area}>
       <StatusBar backgroundColor={main_bg}/>
@@ -28,7 +29,9 @@ const ChatsList_Screen = () => {
         renderItem={({item}) => <ChatPreview {...item}/>}
         keyExtractor={item => item.chatId}
       />
-      <BottomSectionWrapper/>
+      <BottomSectionWrapper>
+        <ChatsBottomMenu/>
+      </BottomSectionWrapper>
     </SafeAreaView>
   )
 }
@@ -40,12 +43,9 @@ const styles = StyleSheet.create({
     backgroundColor: main_bg,
     flex: 1,
     paddingHorizontal: fav_gap,
-    position: 'relative'
+    position: 'relative',
+    paddingBottom: safePadding
   },
-  // page: {
-  //   borderColor: 'red',
-  //   borderWidth: 1,
-  // },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
