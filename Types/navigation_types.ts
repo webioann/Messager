@@ -13,4 +13,5 @@ export type ScreenOptions_Type = {
   headerStyle: {backgroundColor: string}
   headerTintColor: string
   headerShadowVisible: boolean
+  headerShown?: boolean
 }

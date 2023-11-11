@@ -14,7 +14,8 @@ const App: React.FC = () => {
   const screenOptions: ScreenOptions_Type = {
     headerStyle: {backgroundColor: main_bg},
     headerTintColor: main_color,
-    headerShadowVisible: false
+    headerShadowVisible: false,
+    // headerShown: false
   }
 
   return (

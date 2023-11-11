@@ -9,26 +9,24 @@ const ChatsList_Screen = () => {
   const [value, setValue] = useState('')
   
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.area}>
       <StatusBar backgroundColor={main_bg}/>
-      <ScrollView>
-        <View style={styles.headerContainer}>
-          <UserAvatarImage pathToImage='' size={medium}/>
-          <Text style={styles.headerTitle}>Chats</Text>
-          <Image style={styles.headerAddButton} source={{uri: 'https://picsum.photos/105'}}/>
-        </View>
-        <TextInput 
-          onChangeText={setValue}
-          style={styles.searchInput}
-          placeholder='Search'
-          placeholderTextColor={main_color}
-          value={value}/>
-        <FlatList 
-          data={DUMMY_CHATS}
-          renderItem={({item}) => <ChatPreview {...item}/>}
-          keyExtractor={item => item.chatId}
-        />
-      </ScrollView>
+      <View style={styles.headerContainer}>
+        <UserAvatarImage pathToImage='' size={medium}/>
+        <Text style={styles.headerTitle}>Chats</Text>
+        <Image style={styles.headerAddButton} source={{uri: 'https://picsum.photos/105'}}/>
+      </View>
+      <TextInput 
+        onChangeText={setValue}
+        style={styles.searchInput}
+        placeholder='Search'
+        placeholderTextColor={main_color}
+        value={value}/>
+      <FlatList 
+        data={DUMMY_CHATS}
+        renderItem={({item}) => <ChatPreview {...item}/>}
+        keyExtractor={item => item.chatId}
+      />
     </SafeAreaView>
   )
 }
@@ -36,14 +34,18 @@ const ChatsList_Screen = () => {
 export default ChatsList_Screen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  area: {
     backgroundColor: main_bg,
+    flex: 1,
     paddingHorizontal: fav_gap,
+
   },
+  // page: {
+  //   borderColor: 'red',
+  //   borderWidth: 1,
+  // },
   headerContainer: {
     flexDirection: 'row',
-    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
