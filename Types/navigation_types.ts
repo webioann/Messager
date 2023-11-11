@@ -2,9 +2,9 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 
 export type RootStackParams = {
-  SingleChat;
-  Chats;
-  Settings;
+  SingleChat: undefined
+  Chats: undefined
+  Settings: undefined
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>

@@ -1,31 +1,30 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Button } from 'react-native';
 import React from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
-import { main_bg, contrast_bg, medium, small, main_color } from '../constants/global.styles';
+import { colors, sizes } from '../constants/sizes';
 
 const SingleChat_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
 
     return (
     <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor={'#343740'}/>
+        <StatusBar backgroundColor={colors.BG}/>
         <View style={styles.chatHeader}>
-            <View style={styles.goBackArrow}>
-                <Icon2 name='arrow-left' size={22} color={contrast_bg}/>
-            </View>
-            <UserAvatarImage pathToImage='https://picsum.photos/90' size={medium}/>
-            <View style={{flex: 1, paddingHorizontal: 16}}>
-                <Text style={{color: main_color, fontSize: 15, fontWeight: '600'}}>Gomes Sara</Text>
-                <Text style={{color: main_color, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
+            <TouchableOpacity style={styles.goBackArrow} onPress={() => navigation.navigate("Chats")}>
+                <Icon2 name='arrow-left' size={22} color={colors.ACCENT}/>
+            </TouchableOpacity>
+            <UserAvatarImage pathToImage='https://picsum.photos/90' size={sizes.MEDIUM}/>
+            <View style={{flex: 1, paddingHorizontal: sizes.GAP}}>
+                <Text style={{color: colors.LIGHT, fontSize: 15, fontWeight: '600'}}>Gomes Sara</Text>
+                <Text style={{color: colors.LIGHT, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
             </View>
             <View style={styles.call}>
-                <Icon2 name='phone' size={24} color={contrast_bg}/>
+                <Icon2 name='phone' size={24} color={colors.ACCENT}/>
             </View>
         </View>
 
@@ -35,11 +34,6 @@ const SingleChat_Screen = () => {
         </View>
         {/* bottom input and links  */}
         <BottomSectionWrapper>
-            <Button
-                title='Go to the Chats'
-                onPress={() => navigation.navigate("Chats")}
-            />
-
         </BottomSectionWrapper>
     </SafeAreaView>
     )
@@ -49,8 +43,8 @@ export default SingleChat_Screen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: main_bg,
-        paddingHorizontal: 16,
+        backgroundColor: colors.BG,
+        paddingHorizontal: sizes.GAP,
         paddingTop:10
     },
     // header field ===
@@ -61,21 +55,21 @@ const styles = StyleSheet.create({
 
     },
     goBackArrow: {
-        width: small,
-        height: small,
-        borderRadius: small / 2,
+        width: sizes.SMALL,
+        height: sizes.SMALL,
+        borderRadius: sizes.SMALL / 2,
         backgroundColor: '#272b34',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 16
+        marginRight: sizes.GAP
     },
     contactName: {
 
     },
     call: {
-        width: medium,
-        height: medium,
-        borderRadius: medium / 2,
+        width: sizes.MEDIUM,
+        height: sizes.MEDIUM,
+        borderRadius: sizes.MEDIUM / 2,
         backgroundColor: '#272b34',
         justifyContent: 'center',
         alignItems: 'center',
@@ -95,7 +89,7 @@ const styles = StyleSheet.create({
 
 
     text: {
-        color: contrast_bg,
+        color: colors.ACCENT,
         fontSize: 50,
     }
 });

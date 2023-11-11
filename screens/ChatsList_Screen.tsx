@@ -4,28 +4,28 @@ import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import ChatsBottomMenu from '../components/ChatsBottomMenu';
-import { main_bg, contrast_bg, medium, fav_gap, main_color, safePadding, small } from '../constants/global.styles';
 import { DUMMY_CHATS } from '../constants/dummyData';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { colors, sizes } from '../constants/sizes';
 
 const ChatsList_Screen = () => {
   const [value, setValue] = useState('')
 
   return (
     <SafeAreaView style={styles.area}>
-      <StatusBar backgroundColor={main_bg}/>
+      <StatusBar backgroundColor={colors.BG}/>
       <View style={styles.headerContainer}>
-        <UserAvatarImage pathToImage='' size={medium}/>
+        <UserAvatarImage pathToImage='' size={sizes.MEDIUM}/>
         <Text style={styles.headerTitle}>Chats</Text>
         <View style={styles.headerAddButton}>
-          <MaterialIcons name='add' size={24} color={main_color}/>
+          <MaterialIcons name='add' size={24} color={colors.LIGHT}/>
         </View>
       </View>
       <TextInput 
         onChangeText={setValue}
         style={styles.searchInput}
         placeholder='Search'
-        placeholderTextColor={main_color}
+        placeholderTextColor={colors.LIGHT}
         value={value}/>
       <FlatList 
         data={DUMMY_CHATS}
@@ -42,11 +42,11 @@ export default ChatsList_Screen;
 
 const styles = StyleSheet.create({
   area: {
-    backgroundColor: main_bg,
+    backgroundColor: colors.BG,
     flex: 1,
-    paddingHorizontal: fav_gap,
+    paddingHorizontal: sizes.GAP,
     position: 'relative',
-    paddingBottom: safePadding
+    paddingBottom: sizes.SAFE
   },
   headerContainer: {
     flexDirection: 'row',
@@ -57,15 +57,15 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 1,
     paddingHorizontal: 16,
-    color: main_color,
+    color: colors.LIGHT,
     fontSize: 26,
     fontWeight: '600'
   },
   headerAddButton: {
-    width: small,
-    height: small,
-    borderRadius: small / 2,
-    backgroundColor: contrast_bg,
+    width: sizes.SMALL,
+    height: sizes.SMALL,
+    borderRadius: sizes.SMALL / 2,
+    backgroundColor: colors.ACCENT,
     justifyContent: 'center',
     alignItems: 'center'
   },

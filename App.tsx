@@ -6,14 +6,14 @@ import Settings_Screen from './screens/Settings_Screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
-import { main_bg, main_color } from './constants/global.styles';
+import { colors, sizes } from './constants/sizes';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
 
   const screenOptions: ScreenOptions_Type = {
-    headerStyle: {backgroundColor: main_bg},
-    headerTintColor: main_color,
+    headerStyle: {backgroundColor: colors.BG},
+    headerTintColor: colors.LIGHT,
     headerShadowVisible: false,
     headerShown: false
   }
