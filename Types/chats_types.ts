@@ -1,8 +1,11 @@
 // one message object type
 export type Message_Type = {
-    body: string
-    sendingTime: number
-    watched: boolean
+    text: string
+    sender: string
+    sender_id: string
+    avatar_url: string
+    time_stamp: number
+    reviewed: boolean
 }
 
 // chats list data type

@@ -2,10 +2,17 @@ import { ChatData_Type } from "../Types/chats_types";
 
 type ChatsData = Array<ChatData_Type>
 
+const user1= 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
+const user2= 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=100'
+const user3= 'https://images.unsplash.com/profile-1530556550255-d9a7e792ce37?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128'
+const user4= 'https://media.istockphoto.com/id/939108006/photo/portrait-of-cute-girl.jpg?s=170x170&k=20&c=ZcdTyDp6Jz2a25WsWbF573RspFYeKpNIvDewTdfGodY='
+const user5= 'https://www.gravatar.com/avatar/4b0d41741f2ffec347794d31f02daa56?d=mp&s=100'
+
+
 export const DUMMY_CHATS: ChatsData = [
     {
         chatId: '1',
-        pathToImage: 'https://picsum.photos/110',
+        pathToImage: user1,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -13,7 +20,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '2',
-        pathToImage: 'https://picsum.photos/120',
+        pathToImage: user2,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -21,7 +28,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '3',
-        pathToImage: 'https://picsum.photos/115',
+        pathToImage: user3,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -29,7 +36,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '4',
-        pathToImage: 'https://picsum.photos/125',
+        pathToImage: user4,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -37,7 +44,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '5',
-        pathToImage: 'https://picsum.photos/103',
+        pathToImage: user2,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -45,7 +52,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '6',
-        pathToImage: 'https://picsum.photos/102',
+        pathToImage: user5,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -53,7 +60,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '7',
-        pathToImage: 'https://picsum.photos/107',
+        pathToImage: user3,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -61,7 +68,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '8',
-        pathToImage: 'https://picsum.photos/108',
+        pathToImage: user1,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -69,7 +76,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '9',
-        pathToImage: 'https://picsum.photos/109',
+        pathToImage: user2,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -77,7 +84,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '10',
-        pathToImage: 'https://picsum.photos/107',
+        pathToImage: user5,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -85,7 +92,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '11',
-        pathToImage: 'https://picsum.photos/108',
+        pathToImage: user4,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
@@ -93,7 +100,7 @@ export const DUMMY_CHATS: ChatsData = [
     },
     {
         chatId: '12',
-        pathToImage: 'https://picsum.photos/109',
+        pathToImage: user3,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
         timeStamp: '12:35',
