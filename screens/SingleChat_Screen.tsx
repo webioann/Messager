@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Butt
 import React from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
+import MessageCreateTools from '../components/MessageCreateTools';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -34,6 +35,7 @@ const SingleChat_Screen = () => {
         </View>
         {/* bottom input and links  */}
         <BottomSectionWrapper>
+            <MessageCreateTools/>
         </BottomSectionWrapper>
     </SafeAreaView>
     )

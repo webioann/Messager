@@ -14,6 +14,7 @@ export const colors = {
     ACCENT: '#ef4c4c',
     DARK: '#22272d',
     LIGHT: '#ffffff',
+    GREY: 'grey'
 };
 
 {/* <LinearGradient 
