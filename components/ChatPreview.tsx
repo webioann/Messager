@@ -12,7 +12,12 @@ const ChatPreview: React.FC<ChatData_Type> = ({...data}) => {
     return (
         <TouchableOpacity 
             style={styles.previewContainer} 
-            onPress={() => navigation.navigate("SingleChat")}>
+            onPress={() => {
+                navigation.navigate(
+                    "SingleChat", 
+                    {sender: data.contactName, avatar_url: data.pathToImage }
+                )}
+            }>
             <UserAvatarImage pathToImage={data.pathToImage} size={sizes.LARGE}/>
             {/* user contact-name and short message */}
             <View style={styles.userData}>

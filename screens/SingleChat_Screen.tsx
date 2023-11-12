@@ -3,15 +3,18 @@ import React from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageCreateTools';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { UseNavigation_Type } from '../Types/navigation_types';
+import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
 import { colors, sizes } from '../constants/sizes';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const SingleChat_Screen = () => {
+type StackProps = NativeStackScreenProps<RootStackParams, 'SingleChat'>
+
+const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
-
+    const {sender, avatar_url} = route.params;
+    
     return (
     <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.BG}/>
@@ -19,9 +22,11 @@ const SingleChat_Screen = () => {
             <TouchableOpacity style={styles.goBackArrow} onPress={() => navigation.navigate("Chats")}>
                 <Icon2 name='arrow-left' size={22} color={colors.ACCENT}/>
             </TouchableOpacity>
-            <UserAvatarImage pathToImage='https://picsum.photos/90' size={sizes.MEDIUM}/>
+            <UserAvatarImage pathToImage={avatar_url} size={sizes.MEDIUM}/>
             <View style={{flex: 1, paddingHorizontal: sizes.GAP}}>
-                <Text style={{color: colors.LIGHT, fontSize: 15, fontWeight: '600'}}>Gomes Sara</Text>
+                <Text style={{color: colors.LIGHT, fontSize: 15, fontWeight: '600'}}>
+                    { sender }
+                </Text>
                 <Text style={{color: colors.LIGHT, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
             </View>
             <View style={styles.call}>

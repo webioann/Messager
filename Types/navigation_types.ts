@@ -1,8 +1,21 @@
 // ===================================
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 
+type ScrenParams = {
+  name: string
+  params: {
+    sender: string
+    avatar_url: string
+  }
+  key: string
+  path?: string
+}
+
 export type RootStackParams = {
-  SingleChat: undefined
+  SingleChat: {
+    sender: string
+    avatar_url: string
+  }
   Chats: undefined
   Settings: undefined
 };
