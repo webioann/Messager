@@ -17,8 +17,8 @@ export type DummyChatsList = {
     timeStamp: string
     messageCount: number
 };
-
-interface IMessage {
+// === one message type structure ===
+export interface IMessage {
     text: string
     room: string
     author: string
@@ -28,3 +28,4 @@ interface IMessage {
     reviewed: boolean
     file: string | null
 }
+

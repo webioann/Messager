@@ -12,7 +12,7 @@ const user6= 'https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV
 
 export const DUMMY_CHATS: ChatsData = [
     {
-        room: 'room_1',
+        room: 'room_2',
         pathToImage: user6,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
@@ -28,7 +28,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        room: 'room_3',
+        room: 'room_2',
         pathToImage: user3,
         contactName: 'Lusy Lee',
         shortMessage: 'Can you buy me dinner?',
@@ -36,7 +36,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 10
     },
     {
-        room: 'room_4',
+        room: 'room_2',
         pathToImage: user4,
         contactName: 'Rabeca Smith',
         shortMessage: 'Can you buy me dinner?',
@@ -44,7 +44,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 5
     },
     {
-        room: 'room_5',
+        room: 'room_2',
         pathToImage: user2,
         contactName: 'Dru Berrymore',
         shortMessage: 'Can you buy me dinner?',

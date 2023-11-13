@@ -6,28 +6,18 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 import useAuthentification from '../hooks/useAuthentification';
 
-interface IMessage {
-    text: string
-    room: string
-    author: string
-    sender_id: string
-    avatar_url: string | null
-    time_stamp: number
-    reviewed: boolean
-    file: string | null
-}
 type RoomProp = { room: string }
 
 const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
     const [message, setMessage] = useState('')
     const user = useAuthentification()
 
-    const createUser = () => {
-        auth().createUserWithEmailAndPassword('newuseragantttt@gmail.com', '123topic')
-        .then(() => console.log(auth().currentUser))
-        .then(() => Alert.alert('User is created'))
-        .catch(error => console.log(error))
-    }
+    // const createUser = () => {
+    //     auth().createUserWithEmailAndPassword('newuseragantttt@gmail.com', '123topic')
+    //     .then(() => console.log(auth().currentUser))
+    //     .then(() => Alert.alert('User is created'))
+    //     .catch(error => console.log(error))
+    // }
 
     const addDataInFirestore = async () => {
         await firestore().collection(room).add({
