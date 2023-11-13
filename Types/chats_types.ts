@@ -24,7 +24,7 @@ export interface IMessage {
     author: string
     sender_id: string
     avatar_url: string | null
-    time_stamp: number
+    time_stamp: Date
     reviewed: boolean
     file: string | null
 }

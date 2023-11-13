@@ -20,9 +20,18 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const [ messages, setMessages ] = useState<IMessage[]>([] as IMessage[])
 
     const fetchMessages = async() => {
-        const data = await firestore().collection('room_2').get();
-        let raw = data.docs.map((doc) => ({...doc.data()}))
-        setMessages(raw as IMessage [])
+        if(room === 'room_2') {
+            const data = await firestore().collection('room_2').get();
+            let raw = data.docs.map((doc) => ({...doc.data()}))
+            // order in data by time stamp
+            const raw1 = raw.sort((a, b) => {
+                if(a.time_stamp > b.time_stamp) {return 1}
+                if(a.time_stamp < b.time_stamp) {return -1}
+                return 0
+            })
+            setMessages(raw1 as IMessage [])
+        }
+        else return 
     }
 
     useEffect(() => {

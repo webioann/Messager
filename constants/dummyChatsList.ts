@@ -20,7 +20,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        room: 'room_2',
+        room: 'room_1',
         pathToImage: user2,
         contactName: 'John Doe',
         shortMessage: 'Can you buy me dinner?',
@@ -36,7 +36,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 10
     },
     {
-        room: 'room_2',
+        room: 'room_1',
         pathToImage: user4,
         contactName: 'Rabeca Smith',
         shortMessage: 'Can you buy me dinner?',
@@ -52,7 +52,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 1
     },
     {
-        room: 'room_6',
+        room: 'room_1',
         pathToImage: user5,
         contactName: 'Tom Crueze',
         shortMessage: 'Can you buy me dinner?',
@@ -60,7 +60,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        room: 'room_7',
+        room: 'room_2',
         pathToImage: user3,
         contactName: 'Genjy Root',
         shortMessage: 'Can you buy me dinner?',
@@ -68,7 +68,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        room: 'room_8',
+        room: 'room_1',
         pathToImage: user1,
         contactName: 'Camy Dupont',
         shortMessage: 'Can you buy me dinner?',
