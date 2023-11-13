@@ -9,14 +9,14 @@ import SignupPage_Screen from './screens/SignupPage_Screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
-import { colors, sizes } from './constants/sizes';
+import { COLORS, SIZES } from './constants/SIZES';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
 
   const screenOptions: ScreenOptions_Type = {
-    headerStyle: {backgroundColor: colors.BG},
-    headerTintColor: colors.LIGHT,
+    headerStyle: {backgroundColor: COLORS.BG},
+    headerTintColor: COLORS.LIGHT,
     headerShadowVisible: false,
     headerShown: false,
     title: ''

@@ -7,7 +7,7 @@ import Message from '../components/Message';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
-import { colors, sizes } from '../constants/sizes';
+import { COLORS, SIZES } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import firestore from '@react-native-firebase/firestore';
 import { IMessage } from '../Types/chats_types';
@@ -40,20 +40,20 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
 
     return (
     <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor={colors.BG}/>
+        <StatusBar backgroundColor={COLORS.BG}/>
         <View style={styles.chatHeader}>
             <TouchableOpacity style={styles.goBackArrow} onPress={() => navigation.navigate("Chats")}>
-                <Icon2 name='arrow-left' size={22} color={colors.ACCENT}/>
+                <Icon2 name='arrow-left' size={22} color={COLORS.ACCENT}/>
             </TouchableOpacity>
-            <UserAvatarImage pathToImage={avatar_url} size={sizes.MEDIUM}/>
-            <View style={{flex: 1, paddingHorizontal: sizes.GAP}}>
-                <Text style={{color: colors.LIGHT, fontSize: 15, fontWeight: '600'}}>
+            <UserAvatarImage pathToImage={avatar_url} size={SIZES.MEDIUM}/>
+            <View style={{flex: 1, paddingHorizontal: SIZES.GAP}}>
+                <Text style={{color: COLORS.LIGHT, fontSize: 15, fontWeight: '600'}}>
                     { sender }
                 </Text>
-                <Text style={{color: colors.LIGHT, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
+                <Text style={{color: COLORS.LIGHT, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
             </View>
             <View style={styles.call}>
-                <Icon2 name='phone' size={24} color={colors.ACCENT}/>
+                <Icon2 name='phone' size={24} color={COLORS.ACCENT}/>
             </View>
         </View>
         {/* === list of messages === */}
@@ -75,8 +75,8 @@ export default SingleChat_Screen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.BG,
-        paddingHorizontal: sizes.GAP,
+        backgroundColor: COLORS.BG,
+        paddingHorizontal: SIZES.GAP,
         paddingTop:10
     },
     // header field ===
@@ -87,21 +87,21 @@ const styles = StyleSheet.create({
 
     },
     goBackArrow: {
-        width: sizes.SMALL,
-        height: sizes.SMALL,
-        borderRadius: sizes.SMALL / 2,
+        width: SIZES.SMALL,
+        height: SIZES.SMALL,
+        borderRadius: SIZES.SMALL / 2,
         backgroundColor: '#272b34',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: sizes.GAP
+        marginRight: SIZES.GAP
     },
     contactName: {
 
     },
     call: {
-        width: sizes.MEDIUM,
-        height: sizes.MEDIUM,
-        borderRadius: sizes.MEDIUM / 2,
+        width: SIZES.MEDIUM,
+        height: SIZES.MEDIUM,
+        borderRadius: SIZES.MEDIUM / 2,
         backgroundColor: '#272b34',
         justifyContent: 'center',
         alignItems: 'center',

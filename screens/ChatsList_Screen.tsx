@@ -6,26 +6,26 @@ import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import ChatsBottomMenu from '../components/ChatsBottomMenu';
 import { DUMMY_CHATS } from '../constants/dummyChatsList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { colors, sizes } from '../constants/sizes';
+import { COLORS, SIZES } from '../constants/SIZES';
 
 const ChatsList_Screen = () => {
   const [value, setValue] = useState('')
 
   return (
     <SafeAreaView style={styles.area}>
-      <StatusBar backgroundColor={colors.BG}/>
+      <StatusBar backgroundColor={COLORS.BG}/>
       <View style={styles.headerContainer}>
-        <UserAvatarImage pathToImage='' size={sizes.MEDIUM}/>
+        <UserAvatarImage pathToImage='' size={SIZES.MEDIUM}/>
         <Text style={styles.headerTitle}>Chats</Text>
         <View style={styles.headerAddButton}>
-          <MaterialIcons name='add' size={24} color={colors.LIGHT}/>
+          <MaterialIcons name='add' size={24} color={COLORS.LIGHT}/>
         </View>
       </View>
       <TextInput 
         onChangeText={setValue}
         style={styles.searchInput}
         placeholder='Search'
-        placeholderTextColor={colors.LIGHT}
+        placeholderTextColor={COLORS.LIGHT}
         value={value}/>
       <FlatList 
         data={DUMMY_CHATS}
@@ -42,11 +42,11 @@ export default ChatsList_Screen;
 
 const styles = StyleSheet.create({
   area: {
-    backgroundColor: colors.BG,
+    backgroundColor: COLORS.BG,
     flex: 1,
-    paddingHorizontal: sizes.GAP,
+    paddingHorizontal: SIZES.GAP,
     position: 'relative',
-    paddingBottom: sizes.SAFE,
+    paddingBottom: SIZES.SAFE,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -57,15 +57,15 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 1,
     paddingHorizontal: 16,
-    color: colors.LIGHT,
+    color: COLORS.LIGHT,
     fontSize: 26,
     fontWeight: '600'
   },
   headerAddButton: {
-    width: sizes.SMALL,
-    height: sizes.SMALL,
-    borderRadius: sizes.SMALL / 2,
-    backgroundColor: colors.ACCENT,
+    width: SIZES.SMALL,
+    height: SIZES.SMALL,
+    borderRadius: SIZES.SMALL / 2,
+    backgroundColor: COLORS.ACCENT,
     justifyContent: 'center',
     alignItems: 'center'
   },

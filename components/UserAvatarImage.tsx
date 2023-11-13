@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { colors } from '../constants/sizes';
+import { COLORS } from '../constants/SIZES';
 
 type avatarProps = {
     pathToImage: string;
@@ -25,7 +25,7 @@ export default UserAvatarImage;
 
 const styles = StyleSheet.create({
     avatar: {
-        borderColor: colors.DARK,
+        borderColor: COLORS.DARK,
         borderStyle: 'solid',
         overflow: 'hidden'
     },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Button } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { colors, sizes } from '../constants/sizes';
+import { COLORS, SIZES } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 import useAuthentification from '../hooks/useAuthentication';
@@ -38,27 +38,27 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
             <View style={styles.tools}>
                 <TouchableOpacity 
                     onPress={() => Alert.alert('click on microphone')}>
-                    <Icon name='emoticon-outline' color={colors.ACCENT} size={24}/>    
+                    <Icon name='emoticon-outline' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
 
                 <TextInput 
                     value={message}
                     onChangeText={setMessage}
                     placeholder='Type a message'
-                    placeholderTextColor={colors.GREY}
-                    cursorColor={colors.LIGHT}
+                    placeholderTextColor={COLORS.GREY}
+                    cursorColor={COLORS.LIGHT}
                     multiline={true}
-                    style={{flex: 1, color: colors.LIGHT, fontSize: 18}}/>
+                    style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}/>
 
                 <TouchableOpacity 
                     style={styles.paperclip}
                     onPress={() => Alert.alert('click on paperclip')}>
-                    <Icon name='paperclip' color={colors.ACCENT} size={24}/>    
+                    <Icon name='paperclip' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                     onPress={() => Alert.alert('click on camera')}>
-                    <Icon name='camera-outline' color={colors.ACCENT} size={24}/>    
+                    <Icon name='camera-outline' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
 
             </View>
@@ -67,7 +67,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
                 style={styles.microphone} 
                 // onPress={() => Alert.alert('click on microphone')}>
                 onPress={addDataInFirestore}>
-                <Icon name='microphone' color={colors.LIGHT} size={24}/>    
+                <Icon name='microphone' color={COLORS.LIGHT} size={24}/>    
             </TouchableOpacity>
         </View>
     )
@@ -83,14 +83,14 @@ const styles = StyleSheet.create({
     },
     tools: {
         flex: 1,
-        borderRadius: sizes.BIG / 2,
+        borderRadius: SIZES.BIG / 2,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginRight: 10,
         gap: 10,
         paddingHorizontal: 14,
-        borderColor: colors.GREY,
+        borderColor: COLORS.GREY,
         borderStyle: 'solid',
         borderWidth: 0.5,
     },
@@ -98,10 +98,10 @@ const styles = StyleSheet.create({
         transform: [{rotate: '315deg'}]
     },
     microphone: {
-        width: sizes.BIG,
-        height: sizes.BIG,
-        borderRadius: sizes.BIG / 2,
-        backgroundColor: colors.ACCENT,
+        width: SIZES.BIG,
+        height: SIZES.BIG,
+        borderRadius: SIZES.BIG / 2,
+        backgroundColor: COLORS.ACCENT,
         justifyContent: 'center',
         alignItems: 'center'
     },

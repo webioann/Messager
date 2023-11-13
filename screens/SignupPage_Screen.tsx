@@ -4,7 +4,7 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
-import { colors, sizes, G } from '../constants/sizes';
+import { COLORS, SIZES, G } from '../constants/SIZES';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -14,7 +14,7 @@ const SignupPage_Screen = () => {
             source={require('../assets/BG-2.jpg')} 
             resizeMode='cover'
             style={G.auth_container} >
-            <StatusBar backgroundColor={colors.BG}/>
+            <StatusBar backgroundColor={COLORS.BG}/>
             {/* go back button */}
             <View style={{flex: 1}}>
                 <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
@@ -28,19 +28,19 @@ const SignupPage_Screen = () => {
             <TouchableOpacity 
                 onPress={() => navigation.navigate("LoginPage")} 
                 style={G.auth_buttons}>
-                <Text style={G.auth_btn_text}>Log in</Text>
+                <Text style={G.auth_btn_text}>Sign up</Text>
             </TouchableOpacity>
             {/* ------- or ------ */}
             <View style={G.row}>
-                <View style={{flex: 1, height: 1, backgroundColor: colors.LIGHT}}></View>
-                <Text style={{color: colors.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
-                <View style={{flex: 1, height: 1, backgroundColor: colors.LIGHT}}></View>
+                <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
+                <Text style={{color: COLORS.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
+                <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
             </View>
 
             <TouchableOpacity 
                 onPress={() => navigation.navigate("LoginPage")} 
                 style={G.auth_buttons}>
-                <Text style={G.auth_btn_text}>Sign up</Text>
+                <Text style={G.auth_btn_text}>Log in</Text>
             </TouchableOpacity>
         </ImageBackground>
     )
@@ -49,12 +49,12 @@ export default SignupPage_Screen;
 
 const styles = StyleSheet.create({
     page_title: {
-        color: colors.ACCENT,
+        color: COLORS.ACCENT,
         fontSize: 36,
         marginBottom: 50,
     },
     alert: {
-        color: colors.LIGHT,
+        color: COLORS.LIGHT,
         lineHeight: 30,
         marginBottom: 16
     },

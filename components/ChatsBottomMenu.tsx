@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
-import { colors, sizes } from '../constants/sizes';
+import { COLORS, SIZES } from '../constants/SIZES';
 
 const ChatsBottomMenu = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -14,16 +14,16 @@ const ChatsBottomMenu = () => {
             <TouchableOpacity 
                 style={styles.link} 
                 onPress={() => navigation.navigate("Wellcome")}>
-                <Icon2 name='message' size={24} color={colors.ACCENT}/>
+                <Icon2 name='message' size={24} color={COLORS.ACCENT}/>
             </TouchableOpacity>
             <View style={styles.link}>
-                <Icon2 name='camera-outline' size={24} color={colors.LIGHT}/>
+                <Icon2 name='camera-outline' size={24} color={COLORS.LIGHT}/>
             </View>
             <View style={styles.link}>
-                <Icon name='qr-code-scanner' size={24} color={colors.LIGHT}/>
+                <Icon name='qr-code-scanner' size={24} color={COLORS.LIGHT}/>
             </View>
             <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Settings")}>
-                <Icon2 name='cog-outline' size={24} color={colors.LIGHT}/>
+                <Icon2 name='cog-outline' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
         </View>
     )
@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: sizes.BIGGEST,
+        height: SIZES.BIGGEST,
         backgroundColor: 'grey',
-        borderRadius: sizes.BIGGEST / 2,
+        borderRadius: SIZES.BIGGEST / 2,
         overflow: 'hidden',
         marginHorizontal: 10,
     },
     link: {
-        width: sizes.BIG,
-        height: sizes.BIG,
-        borderRadius: sizes.BIG / 2,
+        width: SIZES.BIG,
+        height: SIZES.BIG,
+        borderRadius: SIZES.BIG / 2,
         borderColor: '#000000',
         borderWidth: 1,
         justifyContent: 'center',

@@ -3,7 +3,7 @@ import React from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { colors, sizes, G } from '../constants/sizes';
+import { COLORS, SIZES, G } from '../constants/SIZES';
 
 const Wellcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -13,7 +13,7 @@ const Wellcome_Screen = () => {
             source={require('../assets/BG-2.jpg')} 
             resizeMode='cover'
             style={G.auth_container} >
-            <StatusBar backgroundColor={colors.BG}/>
+            <StatusBar backgroundColor={COLORS.BG}/>
             <View style={{flex: 1}}>
                 <TouchableOpacity onPress={() => navigation.navigate("Chats")}>
                     <Icon name='chevron-left' color={'#ffffff'} size={44}/>
@@ -40,12 +40,12 @@ export default Wellcome_Screen;
 
 const styles = StyleSheet.create({
     page_title: {
-        color: colors.ACCENT,
+        color: COLORS.ACCENT,
         fontSize: 36,
         marginBottom: 50,
     },
     alert: {
-        color: colors.LIGHT,
+        color: COLORS.LIGHT,
         lineHeight: 30,
         marginBottom: 16
     },

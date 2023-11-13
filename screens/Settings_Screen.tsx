@@ -2,14 +2,14 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar, Alert, Button, ImageBa
 import React from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { colors, sizes } from '../constants/sizes';
+import { COLORS, SIZES } from '../constants/SIZES';
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.BG}/>
+            <StatusBar backgroundColor={COLORS.BG}/>
             <View>
             <Text style={styles.text}>Settings</Text>
                 <Button title='Go to the Chats' onPress={() => navigation.navigate("Chats")}/>
@@ -23,12 +23,12 @@ export default Settings_Screen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.BG,
+        backgroundColor: COLORS.BG,
         justifyContent: 'center',
         alignItems: 'center'
     },
     text: {
-        color: colors.ACCENT,
+        color: COLORS.ACCENT,
         fontSize: 50,
         marginBottom: 50,
     },

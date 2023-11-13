@@ -4,7 +4,7 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import InputForms from '../components/InputForms';
-import { colors, sizes, G } from '../constants/sizes';
+import { COLORS, SIZES, G } from '../constants/SIZES';
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -14,7 +14,7 @@ const LoginPage_Screen = () => {
             source={require('../assets/BG-2.jpg')} 
             resizeMode='cover'
             style={G.auth_container} >
-            <StatusBar backgroundColor={colors.BG}/>
+            <StatusBar backgroundColor={COLORS.BG}/>
             <View style={{flex: 1}}>
                 <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
                     <Icon name='chevron-left' color={'#ffffff'} size={44}/>
@@ -30,9 +30,9 @@ const LoginPage_Screen = () => {
             </TouchableOpacity>
             {/* ------- or ------ */}
             <View style={[G.row, { paddingVertical: 10 }]}>
-                <View style={{flex: 1, height: 1, backgroundColor: colors.LIGHT}}></View>
-                <Text style={{color: colors.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
-                <View style={{flex: 1, height: 1, backgroundColor: colors.LIGHT}}></View>
+                <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
+                <Text style={{color: COLORS.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
+                <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
             </View>
 
             <TouchableOpacity 
@@ -47,11 +47,11 @@ export default LoginPage_Screen;
 
 const styles = StyleSheet.create({
     page_title: {
-        color: colors.ACCENT,
+        color: COLORS.ACCENT,
         fontSize: 36,
     },
     alert: {
-        color: colors.LIGHT,
+        color: COLORS.LIGHT,
         lineHeight: 30,
         marginBottom: 16
     },

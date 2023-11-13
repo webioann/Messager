@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import useAuthentication from '../hooks/useAuthentication';
 import useTimeTransformer from '../hooks/useTimeTransformer';
-import { colors, sizes } from '../constants/sizes';
+import { COLORS, SIZES } from '../constants/SIZES';
 import { IMessage } from '../Types/chats_types';
 
 type OneMessageProps = {
@@ -19,7 +19,7 @@ const Message: React.FC<OneMessageProps> = ({ data }) => {
             <View style={[
                 styles.message, 
                 { 
-                    backgroundColor: user ? colors.ACCENT : colors.DARK,
+                    backgroundColor: user ? COLORS.ACCENT : COLORS.DARK,
                     borderBottomLeftRadius: user ? 8 : 0,
                     borderBottomRightRadius: user ? 0 : 8,
                 }]}>
@@ -37,7 +37,7 @@ export default Message
 const styles = StyleSheet.create({
     cell: {
         flexDirection: 'row',
-        marginTop: sizes.GAP
+        marginTop: SIZES.GAP
     },
     message: {
         padding: 8 ,
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     },
     messageText: {
         maxWidth: '80%',
-        color: colors.LIGHT,
+        color: COLORS.LIGHT,
 
     },
     timeStamp: {
-        color: colors.LIGHT,
+        color: COLORS.LIGHT,
         minWidth: 40
     },
 })
