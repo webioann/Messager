@@ -1,12 +1,21 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, Modal } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, SetStateAction } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
-const CreateAccountForm = () => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+type signupFormProps = {
+    name: string
+    setName: React.Dispatch<SetStateAction<string>>
+    email: string
+    setEmail: React.Dispatch<SetStateAction<string>>
+    password: string
+    setPassword: React.Dispatch<SetStateAction<string>>
+}
+
+const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, setEmail, password, setPassword}) => {
+    // const [name, setName] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
 
     return (
         <View style={styles.form}>

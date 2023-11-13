@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, Modal } from 'react-native'
-import React, { useState } from 'react'
+import React, { SetStateAction } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
-const InputForms = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+type loginFormProps = {
+    email: string
+    setEmail: React.Dispatch<SetStateAction<string>>
+    password: string
+    setPassword: React.Dispatch<SetStateAction<string>>
+}
+
+const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
 
     return (
         <View style={styles.form}>
@@ -44,7 +49,7 @@ const InputForms = () => {
     )
 }
 
-export default InputForms
+export default UserLoginForms;
 
 const styles = StyleSheet.create({
     form: {

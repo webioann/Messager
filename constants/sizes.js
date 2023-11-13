@@ -1,4 +1,3 @@
-// constant list of app SIZES
 export const SIZES = {
     GAP: 16,
     BIGGEST: 70,
@@ -8,7 +7,6 @@ export const SIZES = {
     SMALL: 30,
     SAFE: 80,
 };
-// COLORS list
 export const COLORS = {
     BG: '#1b1e25',
     ACCENT: '#ef4c4c',
@@ -20,6 +18,13 @@ export const COLORS = {
 import { StyleSheet } from 'react-native';
 
 export const G = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: COLORS.BG,
+        paddingHorizontal: SIZES.GAP,
+        paddingTop:10
+    },
+
     auth_buttons: {
         backgroundColor: COLORS.DARK,
         borderRadius: 8,

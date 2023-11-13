@@ -1,13 +1,25 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, ImageBackground } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, Alert, StatusBar, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
 import { COLORS, SIZES, G } from '../constants/SIZES';
+import auth from '@react-native-firebase/auth'
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const createNewUserAccount = () => {
+        auth().createUserWithEmailAndPassword(email, password)
+        .then(() => console.log(name))
+        .then(() => console.log(auth().currentUser))
+        .then(() => Alert.alert('User is created'))
+        .catch(error => console.log(error))
+    }
 
     return (
         <ImageBackground 
@@ -23,10 +35,14 @@ const SignupPage_Screen = () => {
                 <Text style={styles.page_title}>Create Account</Text>
             </View>
             {/* form for creating new users ----> */}
-            <CreateAccountForm/>
+            <CreateAccountForm 
+                name={name} setName={setName} 
+                email={email} setEmail={setEmail}
+                password={password} setPassword={setPassword}
+            />
             {/* auth buttons box */}
             <TouchableOpacity 
-                onPress={() => navigation.navigate("LoginPage")} 
+                onPress={createNewUserAccount} 
                 style={G.auth_buttons}>
                 <Text style={G.auth_btn_text}>Sign up</Text>
             </TouchableOpacity>

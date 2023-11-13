@@ -1,13 +1,23 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Alert, TouchableOpacity, ImageBackground } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import InputForms from '../components/InputForms';
+import UserLoginForms from '../components/UserLoginForms';
 import { COLORS, SIZES, G } from '../constants/SIZES';
+import auth from '@react-native-firebase/auth'
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const loginCurrentUser = () => {
+        auth().signInWithEmailAndPassword(email, password)
+        .then(() => console.log(auth().currentUser))
+        .then(() => Alert.alert('User is created'))
+        .catch(error => console.log(error))
+    }
 
     return (
         <ImageBackground 
@@ -21,7 +31,10 @@ const LoginPage_Screen = () => {
                 </TouchableOpacity>
                 <Text style={styles.page_title}>Wellcome Back</Text>
             </View>
-            <InputForms/>
+            <UserLoginForms 
+                email={email} setEmail={setEmail} 
+                password={password} setPassword={setPassword}
+            />
             {/* auth buttons box */}
             <TouchableOpacity 
                 onPress={() => navigation.navigate("LoginPage")} 

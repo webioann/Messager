@@ -7,7 +7,7 @@ import Message from '../components/Message';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
-import { COLORS, SIZES } from '../constants/SIZES';
+import { COLORS, SIZES, G } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import firestore from '@react-native-firebase/firestore';
 import { IMessage } from '../Types/chats_types';
@@ -41,7 +41,7 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     return (
     <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={COLORS.BG}/>
-        <View style={styles.chatHeader}>
+        <View style={G.row}>
             <TouchableOpacity style={styles.goBackArrow} onPress={() => navigation.navigate("Chats")}>
                 <Icon2 name='arrow-left' size={22} color={COLORS.ACCENT}/>
             </TouchableOpacity>
@@ -80,12 +80,6 @@ const styles = StyleSheet.create({
         paddingTop:10
     },
     // header field ===
-    chatHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-
-    },
     goBackArrow: {
         width: SIZES.SMALL,
         height: SIZES.SMALL,
@@ -94,9 +88,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: SIZES.GAP
-    },
-    contactName: {
-
     },
     call: {
         width: SIZES.MEDIUM,
@@ -107,16 +98,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
-
-
-    // list of messages ===
-    messageList: {
-
-    },
-    // bottom tools container ===
-    bottomTools: {
-
-    },
-
 
 });
