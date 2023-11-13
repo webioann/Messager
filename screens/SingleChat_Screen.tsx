@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageCreateTools';
+import Message from '../components/Message';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
@@ -49,11 +50,8 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
         {/* === list of messages === */}
         <FlatList
             data={messages}
-            renderItem={(message) => (
-                <View style={{height: 50}}>
-                    <Text style={{color: colors.LIGHT}}>{message.item.text}</Text>
-                </View>
-            )}
+            renderItem={(message) => <Message data={message.item}/>}
+            keyExtractor={item => item.time_stamp.toString()}
         />
 
         {/* bottom input and links  */}
