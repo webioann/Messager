@@ -19,6 +19,9 @@ export type RootStackParams = {
   }
   Chats: undefined
   Settings: undefined
+  Wellcome: undefined
+  LoginPage: undefined
+  SignupPage: undefined
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>
@@ -28,4 +31,5 @@ export type ScreenOptions_Type = {
   headerTintColor: string
   headerShadowVisible: boolean
   headerShown?: boolean
+  title: string
 }

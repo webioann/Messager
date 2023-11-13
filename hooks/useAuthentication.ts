@@ -10,7 +10,7 @@ interface IUser {
     photoURL: string | null
 }
 
-const useAuthentification = () => {
+const useAuthentication = () => {
     const [user, setUser] = useState<IUser | null>(null);
 
     const onAuthStateChanged = () => {
@@ -32,5 +32,5 @@ const useAuthentification = () => {
 
     return user
 }
-export default useAuthentification;
+export default useAuthentication;
 

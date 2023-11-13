@@ -14,8 +14,36 @@ export const colors = {
     ACCENT: '#ef4c4c',
     DARK: '#22272d',
     LIGHT: '#ffffff',
-    GREY: 'grey'
+    GREY: 'grey',
+    BLUE: '#1a73e8'
 };
+import { StyleSheet } from 'react-native';
+
+export const G = StyleSheet.create({
+    auth_buttons: {
+        backgroundColor: colors.DARK,
+        borderRadius: 8,
+    },
+    auth_btn_text: {
+        color: colors.LIGHT,
+        fontSize: 24,
+        textAlign: 'center',
+        padding: 10,
+    },
+    auth_container: {
+        flex: 1,
+        backgroundColor: colors.BG,
+        padding: sizes.GAP,
+        paddingBottom: sizes.GAP * 2,
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
+
+})
+
 
 {/* <LinearGradient 
     start={{x: 0, y: 0}} 

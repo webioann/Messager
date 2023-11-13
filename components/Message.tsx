@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import useAuthentification from '../hooks/useAuthentification';
+import useAuthentication from '../hooks/useAuthentication';
 import useTimeTransformer from '../hooks/useTimeTransformer';
 import { colors, sizes } from '../constants/sizes';
 import { IMessage } from '../Types/chats_types';
@@ -10,7 +10,7 @@ type OneMessageProps = {
 }
 
 const Message: React.FC<OneMessageProps> = ({ data }) => {
-    const user = useAuthentification()
+    const user = useAuthentication()
     const newTime = useTimeTransformer(data.time_stamp)
 
     console.log(new Date(data.time_stamp).getHours())

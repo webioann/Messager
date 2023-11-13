@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, sizes } from '../constants/sizes';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
-import useAuthentification from '../hooks/useAuthentification';
+import useAuthentification from '../hooks/useAuthentication';
 
 type RoomProp = { room: string }
 
@@ -47,6 +47,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
                     placeholder='Type a message'
                     placeholderTextColor={colors.GREY}
                     cursorColor={colors.LIGHT}
+                    multiline={true}
                     style={{flex: 1, color: colors.LIGHT, fontSize: 18}}/>
 
                 <TouchableOpacity 

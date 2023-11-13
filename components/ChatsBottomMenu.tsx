@@ -13,7 +13,7 @@ const ChatsBottomMenu = () => {
         <View style={styles.menu}>
             <TouchableOpacity 
                 style={styles.link} 
-                onPress={() => navigation.navigate("SingleChat", {sender: '', avatar_url: ''})}>
+                onPress={() => navigation.navigate("Wellcome")}>
                 <Icon2 name='message' size={24} color={colors.ACCENT}/>
             </TouchableOpacity>
             <View style={styles.link}>

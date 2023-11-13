@@ -3,6 +3,9 @@ import React from 'react';
 import ChatsList_Screen from './screens/ChatsList_Screen';
 import SingleChat_Screen from './screens/SingleChat_Screen';
 import Settings_Screen from './screens/Settings_Screen';
+import Wellcome_Screen from './screens/Wellcome_Screen';
+import LoginPage_Screen from './screens/LoginPage_Screen';
+import SignupPage_Screen from './screens/SignupPage_Screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
@@ -15,7 +18,8 @@ const App: React.FC = () => {
     headerStyle: {backgroundColor: colors.BG},
     headerTintColor: colors.LIGHT,
     headerShadowVisible: false,
-    headerShown: false
+    headerShown: false,
+    title: ''
   }
 
   return (
@@ -36,6 +40,23 @@ const App: React.FC = () => {
           component={Settings_Screen}
           options={ screenOptions } 
         />
+        <Stack.Screen 
+          name="Wellcome" 
+          component={Wellcome_Screen}
+          options={ screenOptions } 
+        />
+        <Stack.Screen 
+          name="LoginPage" 
+          component={LoginPage_Screen}
+          options={ screenOptions } 
+        />
+        <Stack.Screen 
+          name="SignupPage" 
+          component={SignupPage_Screen}
+          options={ screenOptions } 
+        />
+
+
       </Stack.Navigator>  
     </NavigationContainer>
   )
