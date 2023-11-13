@@ -1,6 +1,6 @@
-import { ChatData_Type } from "../Types/chats_types";
+import { DummyChatsList } from "../Types/chats_types";
 
-type ChatsData = Array<ChatData_Type>
+type ChatsData = Array<DummyChatsList>
 
 const user1= 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
 const user2= 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=100'
@@ -12,7 +12,7 @@ const user6= 'https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV
 
 export const DUMMY_CHATS: ChatsData = [
     {
-        chatId: '1',
+        room: 'room_1',
         pathToImage: user6,
         contactName: 'Sara Sanders',
         shortMessage: 'Can you buy me dinner?',
@@ -20,7 +20,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '2',
+        room: 'room_2',
         pathToImage: user2,
         contactName: 'John Doe',
         shortMessage: 'Can you buy me dinner?',
@@ -28,7 +28,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '3',
+        room: 'room_3',
         pathToImage: user3,
         contactName: 'Lusy Lee',
         shortMessage: 'Can you buy me dinner?',
@@ -36,7 +36,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 10
     },
     {
-        chatId: '4',
+        room: 'room_4',
         pathToImage: user4,
         contactName: 'Rabeca Smith',
         shortMessage: 'Can you buy me dinner?',
@@ -44,7 +44,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 5
     },
     {
-        chatId: '5',
+        room: 'room_5',
         pathToImage: user2,
         contactName: 'Dru Berrymore',
         shortMessage: 'Can you buy me dinner?',
@@ -52,7 +52,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 1
     },
     {
-        chatId: '6',
+        room: 'room_6',
         pathToImage: user5,
         contactName: 'Tom Crueze',
         shortMessage: 'Can you buy me dinner?',
@@ -60,7 +60,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '7',
+        room: 'room_7',
         pathToImage: user3,
         contactName: 'Genjy Root',
         shortMessage: 'Can you buy me dinner?',
@@ -68,7 +68,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '8',
+        room: 'room_8',
         pathToImage: user1,
         contactName: 'Camy Dupont',
         shortMessage: 'Can you buy me dinner?',
@@ -76,7 +76,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '9',
+        room: 'room_9',
         pathToImage: user2,
         contactName: 'Greg Loop',
         shortMessage: 'Can you buy me dinner?',
@@ -84,7 +84,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '10',
+        room: 'room_10',
         pathToImage: user5,
         contactName: 'Kira Nightly',
         shortMessage: 'Can you buy me dinner?',
@@ -92,7 +92,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 0
     },
     {
-        chatId: '11',
+        room: 'room_11',
         pathToImage: user4,
         contactName: 'Tobi McGwire',
         shortMessage: 'Can you buy me dinner?',
@@ -100,7 +100,7 @@ export const DUMMY_CHATS: ChatsData = [
         messageCount: 100
     },
     {
-        chatId: '12',
+        room: 'room_12',
         pathToImage: user3,
         contactName: 'Sara J Parker',
         shortMessage: 'Can you buy me dinner?',

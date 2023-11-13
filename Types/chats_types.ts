@@ -9,8 +9,8 @@ export type Message_Type = {
 }
 
 // chats list data type
-export type ChatData_Type = {
-    chatId: string
+export type DummyChatsList = {
+    room: string
     pathToImage: string
     contactName: string
     shortMessage: string
@@ -18,3 +18,13 @@ export type ChatData_Type = {
     messageCount: number
 };
 
+interface IMessage {
+    text: string
+    room: string
+    author: string
+    sender_id: string
+    avatar_url: string | null
+    time_stamp: number
+    reviewed: boolean
+    file: string | null
+}

@@ -1,11 +1,41 @@
 import React, { useState } from 'react'
-
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, sizes } from '../constants/sizes';
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
 
-const MessageCreateTools = () => {
+interface IMessage {
+    text: string
+    room: string
+    author: string
+    sender_id: string
+    avatar_url: string | null
+    time_stamp: number
+    reviewed: boolean
+    file: string | null
+}
+type RoomProp = { room: string }
+
+const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
     const [message, setMessage] = useState('')
+
+    const createUser = () => {
+        auth().createUserWithEmailAndPassword('newuseragan@gmail.com', '12345topic')
+        .then(() => console.log(auth().currentUser?.uid))
+        .then(() => Alert.alert('User is created'))
+        .catch(error => console.log(error))
+    }
+
+    const addDataInFirestore = async () => {
+        await firestore().collection('newUser').add({
+            name: 'Alex',
+            age: 28,
+            car: 'AUDI',
+            time: Date.now()
+        })
+    }
+
     return (
         <View style={styles.wrapper}>
             <View style={styles.tools}>

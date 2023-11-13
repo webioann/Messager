@@ -15,6 +15,7 @@ export type RootStackParams = {
   SingleChat: {
     sender: string
     avatar_url: string
+    room: string
   }
   Chats: undefined
   Settings: undefined

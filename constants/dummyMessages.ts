@@ -131,4 +131,18 @@ export const dummyMessages: DummyMessage_Type = [
         ]
     },
 
+    
+
 ]
+// ===
+interface IMessage {
+    text: string
+    room: string
+    author: string
+    sender_id: string
+    avatar_url: string | null
+    time_stamp: number
+    reviewed: boolean
+    file: string | null
+}
+

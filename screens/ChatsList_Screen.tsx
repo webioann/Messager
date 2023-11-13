@@ -4,7 +4,7 @@ import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import ChatsBottomMenu from '../components/ChatsBottomMenu';
-import { DUMMY_CHATS } from '../constants/dummyData';
+import { DUMMY_CHATS } from '../constants/dummyChatsList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { colors, sizes } from '../constants/sizes';
 
@@ -30,7 +30,7 @@ const ChatsList_Screen = () => {
       <FlatList 
         data={DUMMY_CHATS}
         renderItem={({item}) => <ChatPreview {...item}/>}
-        keyExtractor={item => item.chatId}
+        keyExtractor={item => item.room}
       />
       <BottomSectionWrapper>
         <ChatsBottomMenu/>

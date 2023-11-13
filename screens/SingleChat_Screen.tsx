@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
@@ -13,8 +13,8 @@ type StackProps = NativeStackScreenProps<RootStackParams, 'SingleChat'>
 
 const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const {sender, avatar_url} = route.params;
-    
+    const {sender, avatar_url, room} = route.params;
+
     return (
     <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.BG}/>
@@ -33,14 +33,12 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
                 <Icon2 name='phone' size={24} color={colors.ACCENT}/>
             </View>
         </View>
-
-
         <View>
             <Text style={styles.text}>Single Chat_Screen</Text>
         </View>
         {/* bottom input and links  */}
         <BottomSectionWrapper>
-            <MessageCreateTools/>
+            <MessageCreateTools room={room}/>
         </BottomSectionWrapper>
     </SafeAreaView>
     )
