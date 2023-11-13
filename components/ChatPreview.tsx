@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import UserAvatarImage from '../components/UserAvatarImage';
+import UserAvatarImage from './UserAvatarImage';
 import { DummyChatsList } from '../Types/chats_types';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';

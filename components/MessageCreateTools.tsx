@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Button } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, sizes } from '../constants/sizes';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
+import useAuthentification from '../hooks/useAuthentification';
 
 interface IMessage {
     text: string
@@ -19,21 +20,27 @@ type RoomProp = { room: string }
 
 const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
     const [message, setMessage] = useState('')
+    const user = useAuthentification()
 
     const createUser = () => {
-        auth().createUserWithEmailAndPassword('newuseragan@gmail.com', '12345topic')
-        .then(() => console.log(auth().currentUser?.uid))
+        auth().createUserWithEmailAndPassword('newuseragantttt@gmail.com', '123topic')
+        .then(() => console.log(auth().currentUser))
         .then(() => Alert.alert('User is created'))
         .catch(error => console.log(error))
     }
 
     const addDataInFirestore = async () => {
-        await firestore().collection('newUser').add({
-            name: 'Alex',
-            age: 28,
-            car: 'AUDI',
-            time: Date.now()
+        await firestore().collection(room).add({
+            text: message,
+            room: room,
+            author: user?.name,
+            sender_id: user?.user_id,
+            avatar_url: user?.photoURL,
+            time_stamp: Date.now(),
+            reviewed: false,
+            file: null
         })
+        .then(() => setMessage(''))
     }
 
     return (
@@ -67,7 +74,8 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
             {/* === microphone === */}
             <TouchableOpacity 
                 style={styles.microphone} 
-                onPress={() => Alert.alert('click on microphone')}>
+                // onPress={() => Alert.alert('click on microphone')}>
+                onPress={addDataInFirestore}>
                 <Icon name='microphone' color={colors.LIGHT} size={24}/>    
             </TouchableOpacity>
         </View>
