@@ -13,9 +13,6 @@ type signupFormProps = {
 }
 
 const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, setEmail, password, setPassword}) => {
-    // const [name, setName] = useState('')
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
 
     return (
         <View style={styles.form}>

@@ -10,7 +10,7 @@ const Settings_Screen = () => {
 
     const signoutCurrentUser = () => {
         auth().signOut()
-        .then(() => console.log(auth().currentUser))
+        // .then(() => console.log(auth().currentUser))
         .then(() => Alert.alert('User log out App'))
         .catch(error => console.log(error))
     }

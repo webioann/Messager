@@ -13,7 +13,6 @@ const Message: React.FC<OneMessageProps> = ({ data }) => {
     const user = useAuthentication()
     const newTime = useTimeTransformer(data.time_stamp)
 
-    console.log(new Date(data.time_stamp).getHours())
     return (
         <View style={[styles.cell, {justifyContent: user ? 'flex-end' : 'flex-start'}]}>
             <View style={[

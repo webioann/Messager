@@ -4,6 +4,8 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
+import Button_Signout from '../components/Button_Signout';
+
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 
@@ -15,8 +17,7 @@ const SignupPage_Screen = () => {
 
     const createNewUserAccount = () => {
         auth().createUserWithEmailAndPassword(email, password)
-        .then(() => console.log(name))
-        .then(() => console.log(auth().currentUser))
+        // .then(() => console.log(auth().currentUser))
         .then(() => Alert.alert('User is created'))
         .catch(error => console.log(error))
     }
@@ -29,9 +30,12 @@ const SignupPage_Screen = () => {
             <StatusBar backgroundColor={COLORS.BG}/>
             {/* go back button */}
             <View style={{flex: 1}}>
-                <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
-                    <Icon name='chevron-left' color={'#ffffff'} size={44}/>
-                </TouchableOpacity>
+                <View style={G.row}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
+                        <Icon name='chevron-left' color={'#ffffff'} size={44}/>
+                    </TouchableOpacity>
+                    <Button_Signout/>
+                </View>
                 <Text style={styles.page_title}>Create Account</Text>
             </View>
             {/* form for creating new users ----> */}

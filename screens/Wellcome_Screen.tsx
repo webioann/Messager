@@ -3,6 +3,7 @@ import React from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Button_Signout from '../components/Button_Signout';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
 const Wellcome_Screen = () => {
@@ -15,9 +16,12 @@ const Wellcome_Screen = () => {
             style={G.auth_container} >
             <StatusBar backgroundColor={COLORS.BG}/>
             <View style={{flex: 1}}>
-                <TouchableOpacity onPress={() => navigation.navigate("Chats")}>
-                    <Icon name='chevron-left' color={'#ffffff'} size={44}/>
-                </TouchableOpacity>
+                <View style={G.row}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Chats")}>
+                        <Icon name='chevron-left' color={'#ffffff'} size={44}/>
+                    </TouchableOpacity>
+                    <Button_Signout/>
+                </View>
             </View>
             <Text style={styles.page_title}>Wellcome</Text>
 
