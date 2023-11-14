@@ -1,4 +1,13 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, Alert, TouchableOpacity, ImageBackground } from 'react-native';
+import { 
+    StyleSheet,
+    Text, 
+    View, 
+    TouchableWithoutFeedback,
+    Keyboard, 
+    StatusBar, 
+    Alert, 
+    TouchableOpacity, 
+    ImageBackground } from 'react-native';
 import React, { useState } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
@@ -15,6 +24,12 @@ const LoginPage_Screen = () => {
 
     console.log(auth().currentUser?.email)
 
+    const getCleanUpScreen = () => {
+        Keyboard.dismiss()
+        setEmail('')
+        setPassword('')
+    }
+
     const loginCurrentUser = async() => {
         const _USER_ = auth().currentUser
         if(email.length > 4 || password.length > 4){
@@ -24,6 +39,7 @@ const LoginPage_Screen = () => {
             if(_USER_ == null) {
                 await auth().signInWithEmailAndPassword(email, password)
                 .then(() => Alert.alert('You are LOGGED IN '))
+                .then(() => getCleanUpScreen())
                 .catch(error => {
                     console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
                     Alert.alert('ERROR')
@@ -32,46 +48,49 @@ const LoginPage_Screen = () => {
         } else return null
     }
 
+
     return (
-        <ImageBackground 
-            source={require('../assets/BG-2.jpg')} 
-            resizeMode='cover'
-            style={G.auth_container} >
-            <StatusBar backgroundColor={COLORS.BG}/>
-            <View style={{flex: 1}}>
-                <View style={G.row}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
-                        <Icon name='chevron-left' color={'#ffffff'} size={44}/>
-                    </TouchableOpacity>
-                    <Button_Signout/>
+        <TouchableWithoutFeedback onPress={getCleanUpScreen}>
+            <ImageBackground 
+                source={require('../assets/BG-2.jpg')} 
+                resizeMode='cover'
+                style={G.auth_container} >
+                <StatusBar backgroundColor={COLORS.BG}/>
+                <View style={{flex: 1}}>
+                    <View style={G.row}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
+                            <Icon name='chevron-left' color={'#ffffff'} size={44}/>
+                        </TouchableOpacity>
+                        <Button_Signout/>
+                    </View>
+                    <Text style={styles.page_title}>Wellcome Back</Text>
                 </View>
-                <Text style={styles.page_title}>Wellcome Back</Text>
-            </View>
 
-            <UserLoginForms 
-                email={email} setEmail={setEmail} 
-                password={password} setPassword={setPassword}
-            />
-            {/* auth buttons box */}
-            <TouchableOpacity 
-                // onPress={() => navigation.navigate("LoginPage")} 
-                onPress={loginCurrentUser} 
-                style={G.auth_buttons}>
-                <Text style={G.auth_btn_text}>Log in</Text>
-            </TouchableOpacity>
-            {/* ------- or ------ */}
-            <View style={[G.row, { paddingVertical: 10 }]}>
-                <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
-                <Text style={{color: COLORS.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
-                <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
-            </View>
+                <UserLoginForms 
+                    email={email} setEmail={setEmail} 
+                    password={password} setPassword={setPassword}
+                />
+                {/* auth buttons box */}
+                <TouchableOpacity 
+                    // onPress={() => navigation.navigate("LoginPage")} 
+                    onPress={loginCurrentUser} 
+                    style={G.auth_buttons}>
+                    <Text style={G.auth_btn_text}>Log in</Text>
+                </TouchableOpacity>
+                {/* ------- or ------ */}
+                <View style={[G.row, { paddingVertical: 10 }]}>
+                    <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
+                    <Text style={{color: COLORS.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
+                    <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
+                </View>
 
-            <TouchableOpacity 
-                onPress={() => navigation.navigate("SignupPage")} 
-                style={G.auth_buttons}>
-                <Text style={G.auth_btn_text}>Sign up</Text>
-            </TouchableOpacity>
-        </ImageBackground>
+                <TouchableOpacity 
+                    onPress={() => navigation.navigate("SignupPage")} 
+                    style={G.auth_buttons}>
+                    <Text style={G.auth_btn_text}>Sign up</Text>
+                </TouchableOpacity>
+            </ImageBackground>
+        </TouchableWithoutFeedback>
     )
 }
 export default LoginPage_Screen;
