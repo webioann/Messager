@@ -7,10 +7,14 @@ import { COLORS, G } from '../constants/SIZES';
 const Button_Signout = () => {
 
     const signoutCurrentUser = () => {
-        auth().signOut()
-        .then(() => console.log(`You are logged out and _USER_ --> ${auth().currentUser}`))
-        .then(() => Alert.alert('You are logged out'))
-        .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
+        const _USER_ = auth().currentUser
+        if(_USER_) {
+            auth().signOut()
+            .then(() => console.log(`You are logged out and _USER_ --> ${auth().currentUser}`))
+            .then(() => Alert.alert('You are logged out'))
+            .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
+        }
+        else return
     }
     return (
         <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
