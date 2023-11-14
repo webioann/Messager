@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Modal } from 'react-native'
-import React, { SetStateAction } from 'react'
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native'
+import React, { SetStateAction, useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
@@ -11,7 +11,8 @@ type loginFormProps = {
 }
 
 const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
-
+    // const [passwordVisibility, setPasswordVisibility] = useState(false)
+    // console.log(passwordVisibility)
     return (
         <View style={styles.form}>
             {/* email input */}

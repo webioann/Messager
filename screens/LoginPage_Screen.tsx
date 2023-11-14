@@ -13,11 +13,23 @@ const LoginPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const loginCurrentUser = () => {
-        auth().signInWithEmailAndPassword(email, password)
-        // .then(() => console.log(auth().currentUser))
-        .then(() => Alert.alert('User is created'))
-        .catch(error => console.log(error))
+    console.log(auth().currentUser?.email)
+
+    const loginCurrentUser = async() => {
+        const _USER_ = auth().currentUser
+        if(email.length > 4 || password.length > 4){
+            if(_USER_) {
+                Alert.alert('You must Log Out before new Login')
+            }
+            if(_USER_ == null) {
+                await auth().signInWithEmailAndPassword(email, password)
+                .then(() => Alert.alert('You are LOGGED IN '))
+                .catch(error => {
+                    console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
+                    Alert.alert('ERROR')
+                })
+            }
+        } else return null
     }
 
     return (
@@ -42,7 +54,8 @@ const LoginPage_Screen = () => {
             />
             {/* auth buttons box */}
             <TouchableOpacity 
-                onPress={() => navigation.navigate("LoginPage")} 
+                // onPress={() => navigation.navigate("LoginPage")} 
+                onPress={loginCurrentUser} 
                 style={G.auth_buttons}>
                 <Text style={G.auth_btn_text}>Log in</Text>
             </TouchableOpacity>

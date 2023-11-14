@@ -15,11 +15,21 @@ const SignupPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const createNewUserAccount = () => {
-        auth().createUserWithEmailAndPassword(email, password)
-        // .then(() => console.log(auth().currentUser))
-        .then(() => Alert.alert('User is created'))
-        .catch(error => console.log(error))
+    const createNewUserAccount = async() => {
+        const _USER_ = auth().currentUser
+        if(email.length > 4 || password.length > 4){
+            if(_USER_) {
+                Alert.alert('You must Log Out before Sign Up')
+            }
+            if(_USER_ == null) {
+                await auth().createUserWithEmailAndPassword(email, password)
+                .then(() => Alert.alert('You are registered'))
+                .catch(error => {
+                    console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
+                    Alert.alert('ERROR')
+                })
+            }
+        } else return null
     }
 
     return (
