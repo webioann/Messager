@@ -19,7 +19,7 @@ const Button_Signout = () => {
     return (
         <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
             <Icon name='logout' size={24} color={COLORS.LIGHT}/>
-            <Text style={{color: COLORS.LIGHT}}>Signout</Text>
+            <Text style={{color: COLORS.LIGHT}}>Logout</Text>
         </Pressable>
     )
 }
@@ -29,7 +29,7 @@ export default Button_Signout;
 const styles = StyleSheet.create({
     logout: {
         ...G.row,
-        width: 100,
+        width: 90,
         borderColor: 'red',
         borderWidth: 1,
         padding: 8,

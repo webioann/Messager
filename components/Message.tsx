@@ -36,7 +36,7 @@ export default Message
 const styles = StyleSheet.create({
     cell: {
         flexDirection: 'row',
-        marginTop: SIZES.GAP
+        marginTop: SIZES.GAP,
     },
     message: {
         padding: 8 ,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     messageText: {
         maxWidth: '80%',
         color: COLORS.LIGHT,
-
+        lineHeight: 19
     },
     timeStamp: {
         color: COLORS.LIGHT,

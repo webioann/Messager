@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Button } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';

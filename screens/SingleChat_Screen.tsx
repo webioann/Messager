@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Alert, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Pressable, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
@@ -18,6 +18,7 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {sender, avatar_url, room} = route.params;
     const [ messages, setMessages ] = useState<IMessage[]>([] as IMessage[])
+    const [ timeCleanKeyboard, setTimeCleanKeyboard] = useState(false)
 
     const fetchMessages = async() => {
         if(room === 'room_2') {
