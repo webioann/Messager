@@ -1,6 +1,8 @@
 // dummy messages data for render in single chat
 import { Message_Type } from "../Types/chats_types"
 
+export const defaultAvatar= 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
+
 type oneDummy = {
     period: string
     messages: Message_Type[]

@@ -22,6 +22,7 @@ export type RootStackParams = {
   Wellcome: undefined
   LoginPage: undefined
   SignupPage: undefined
+  Contacts: undefined
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>

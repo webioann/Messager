@@ -19,9 +19,9 @@ const ChatsBottomMenu = () => {
             <View style={styles.link}>
                 <Icon2 name='camera-outline' size={24} color={COLORS.LIGHT}/>
             </View>
-            <View style={styles.link}>
+            <TouchableOpacity style={styles.link}  onPress={() => navigation.navigate("Contacts")}>
                 <Icon name='qr-code-scanner' size={24} color={COLORS.LIGHT}/>
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Settings")}>
                 <Icon2 name='cog-outline' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
