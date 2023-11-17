@@ -12,29 +12,30 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
     const user = useAuthentification()
 
     const addDataInFirestore = async () => {
-        Alert.alert(room, message)
-        await firestore().collection(room).add({
-            text: message,
-            room: room,
-            author: user?.name,
-            sender_id: user?.user_id,
-            avatar_url: user?.photoURL,
-            time_stamp: Date.now(),
-            reviewed: false,
-            file: null
-        })
-        .then(() => {
-            setMessage('')
-            Keyboard.dismiss()
-            Alert.alert('Click ----> ')
-        })
+        if(message.length > 0) {
+            await firestore().collection(room).add({
+                text: message,
+                room: room,
+                author: user?.name,
+                sender_id: user?.user_id,
+                avatar_url: user?.photoURL,
+                time_stamp: Date.now(),
+                reviewed: false,
+                file: null
+            })
+            .then(() => {
+                setMessage('')
+                Keyboard.dismiss()
+                console.log('Message is sended')
+            })
+        } else return
     }
 
     return (
         <View style={styles.wrapper}>
             <View style={styles.tools}>
                 <TouchableOpacity 
-                    onPress={() => Alert.alert('click on microphone')}>
+                    onPress={() => console.log('click on emojy icon')}>
                     <Icon name='emoticon-outline' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
                 <TextInput 
@@ -46,21 +47,23 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
                     multiline={true}
                     style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}/>
                 <TouchableOpacity 
-                    style={styles.paperclip}
-                    onPress={() => Alert.alert('click on paperclip')}>
+                    style={{transform: [{rotate: '330deg'}]}} 
+                    onPress={addDataInFirestore}> 
+                    <Icon name='send' color={COLORS.BLUE} size={24}/>    
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    style={{transform: [{rotate: '315deg'}]}}
+                    onPress={() => console.log('click on paperclip icon')}>
                     <Icon name='paperclip' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    onPress={() => Alert.alert('click on camera')}>
+                    onPress={() => console.log('click on camera icon')}>
                     <Icon name='camera-outline' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
+
             </View>
             {/* === microphone === */}
-            <TouchableOpacity 
-                style={styles.microphone} 
-                onPress={addDataInFirestore}> 
-                <Icon name='microphone' color={COLORS.LIGHT} size={24}/>    
-            </TouchableOpacity>
         </View>
     )
 }
@@ -83,9 +86,6 @@ const styles = StyleSheet.create({
         borderColor: COLORS.GREY,
         borderStyle: 'solid',
         borderWidth: 0.5,
-    },
-    paperclip: {
-        transform: [{rotate: '315deg'}]
     },
     microphone: {
         width: SIZES.BIG,
