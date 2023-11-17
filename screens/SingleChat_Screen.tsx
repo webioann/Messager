@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageCreateTools';
-import Message from '../components/Message';
+import MessageBubble from '../components/MessageBubble';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
@@ -18,7 +18,7 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {sender, avatar_url, room} = route.params;
     const [ messages, setMessages ] = useState<IMessage[]>([] as IMessage[])
-    const [ timeCleanKeyboard, setTimeCleanKeyboard] = useState(false)
+    // const [ timeCleanKeyboard, setTimeCleanKeyboard] = useState(false)
 
     const fetchMessages = async() => {
         if(room === 'room_2') {
@@ -60,7 +60,7 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
         {/* === list of messages === */}
         <FlatList
             data={messages}
-            renderItem={(message) => <Message data={message.item}/>}
+            renderItem={(message) => <MessageBubble data={message.item}/>}
             keyExtractor={item => item.time_stamp.toString()}
         />
 

@@ -9,7 +9,7 @@ type OneMessageProps = {
     data: IMessage
 }
 
-const Message: React.FC<OneMessageProps> = ({ data }) => {
+const MessageBubble: React.FC<OneMessageProps> = ({ data }) => {
     const user = useAuthentication()
     const newTime = useTimeTransformer(data.time_stamp)
 
@@ -31,7 +31,7 @@ const Message: React.FC<OneMessageProps> = ({ data }) => {
     )
 }
 
-export default Message
+export default MessageBubble;
 
 const styles = StyleSheet.create({
     cell: {

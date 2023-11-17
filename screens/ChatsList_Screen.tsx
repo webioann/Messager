@@ -30,7 +30,7 @@ const ChatsList_Screen = () => {
       <FlatList 
         data={DUMMY_CHATS}
         renderItem={({item}) => <ChatPreview {...item}/>}
-        keyExtractor={item => item.room}
+        keyExtractor={item => item.timeStamp}
       />
       <BottomSectionWrapper>
         <ChatsBottomMenu/>

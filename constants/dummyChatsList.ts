@@ -24,7 +24,7 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user2,
         contactName: 'John Doe',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:36',
         messageCount: 0
     },
     {
@@ -32,7 +32,7 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user3,
         contactName: 'Lusy Lee',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:37',
         messageCount: 10
     },
     {
@@ -40,7 +40,7 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user4,
         contactName: 'Rabeca Smith',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:38',
         messageCount: 5
     },
     {
@@ -48,7 +48,7 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user2,
         contactName: 'Dru Berrymore',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:39',
         messageCount: 1
     },
     {
@@ -56,7 +56,7 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user5,
         contactName: 'Tom Crueze',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:40',
         messageCount: 0
     },
     {
@@ -64,7 +64,7 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user3,
         contactName: 'Genjy Root',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:41',
         messageCount: 0
     },
     {
@@ -72,39 +72,39 @@ export const DUMMY_CHATS: ChatsData = [
         pathToImage: user1,
         contactName: 'Camy Dupont',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:42',
         messageCount: 0
     },
     {
-        room: 'room_9',
+        room: 'room_2',
         pathToImage: user2,
         contactName: 'Greg Loop',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:43',
         messageCount: 0
     },
     {
-        room: 'room_10',
+        room: 'room_1',
         pathToImage: user5,
         contactName: 'Kira Nightly',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:44',
         messageCount: 0
     },
     {
-        room: 'room_11',
+        room: 'room_2',
         pathToImage: user4,
         contactName: 'Tobi McGwire',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:45',
         messageCount: 100
     },
     {
-        room: 'room_12',
+        room: 'room_1',
         pathToImage: user3,
         contactName: 'Sara J Parker',
         shortMessage: 'Can you buy me dinner?',
-        timeStamp: '12:35',
+        timeStamp: '12:46',
         messageCount: 0
     },
 

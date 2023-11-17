@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
@@ -12,6 +12,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
     const user = useAuthentification()
 
     const addDataInFirestore = async () => {
+        Alert.alert(room, message)
         await firestore().collection(room).add({
             text: message,
             room: room,
@@ -22,7 +23,11 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
             reviewed: false,
             file: null
         })
-        .then(() => setMessage(''))
+        .then(() => {
+            setMessage('')
+            Keyboard.dismiss()
+            Alert.alert('Click ----> ')
+        })
     }
 
     return (
@@ -53,8 +58,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
             {/* === microphone === */}
             <TouchableOpacity 
                 style={styles.microphone} 
-                // onPress={() => Alert.alert('click on microphone')}>
-                onPress={addDataInFirestore}>
+                onPress={addDataInFirestore}> 
                 <Icon name='microphone' color={COLORS.LIGHT} size={24}/>    
             </TouchableOpacity>
         </View>
