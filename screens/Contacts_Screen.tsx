@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import React, { useState } from 'react'
-import UserAvatarImage from '../components/UserAvatarImage';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { defaultAvatar } from '../constants/dummyMessages';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { FakeContactData } from '../constants/fakeContacts';
+import UserAvatarImage from '../components/UserAvatarImage';
+import ContactInfo from '../components/ContactInfo';
 
 const Contacts_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -25,7 +27,10 @@ const Contacts_Screen = () => {
                     cursorColor={COLORS.LIGHT}
                     style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}/>
             </View>
-            <ScrollView style={{paddingVertical: 20}}>
+            <FlatList 
+                data={FakeContactData} 
+                renderItem={({item}) => <ContactInfo {...item}/>} 
+                style={{paddingVertical: 20}}>
                 <View style={styles.contact_item}>
                     <UserAvatarImage pathToImage={defaultAvatar} size={50}/>
                     <View>
@@ -41,7 +46,7 @@ const Contacts_Screen = () => {
                     </View>
                 </View>
 
-            </ScrollView>
+            </FlatList>
             <TouchableOpacity 
                 onPress={() => navigation.navigate("Chats")} 
                 style={{flexDirection: 'row', alignItems: 'center'}}>

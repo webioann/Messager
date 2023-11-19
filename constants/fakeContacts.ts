@@ -1,4 +1,5 @@
 // fake data for Contacts screen
+import { IContact } from "../Types/main_types"
 
 const DonnaAvatar= 'https://media.istockphoto.com/id/939108006/photo/portrait-of-cute-girl.jpg?s=170x170&k=20&c=ZcdTyDp6Jz2a25WsWbF573RspFYeKpNIvDewTdfGodY='
 const PedroAvatar= 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
@@ -12,13 +13,6 @@ const PedroEmail = 'pedro@gmail.com'
 const DonnaPhone = '+38 (096) 345-45-45'
 const PedroPhone = '+38 (066) 105-66-14'
 
-interface IContact {
-    contact_name: string
-    contact_email: string
-    phone_number: string
-    contact_UID: string
-    photo_URL: string
-}
 
 export const FakeContactData: IContact[] = [
     {
