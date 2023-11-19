@@ -6,7 +6,7 @@ import { CurrentUser_Type } from '../Types/currentUser_types'
 interface IUser {
     name: string | null
     email: string | null
-    user_id: string | null
+    user_id: string 
     photoURL: string | null
 }
 
