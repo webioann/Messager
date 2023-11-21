@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Alert, Button } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants/SIZES';
@@ -7,7 +7,7 @@ import auth from '@react-native-firebase/auth'
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-
+    
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={COLORS.BG}/>

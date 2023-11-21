@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import useAuthentication from '../hooks/useAuthentication';
+import React, { useEffect, useState, useContext } from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
+import { UserContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/SIZES';
 import { IMessage } from '../Types/chats_types';
 
@@ -10,7 +10,7 @@ type OneMessageProps = {
 }
 
 const MessageBubble: React.FC<OneMessageProps> = ({ data }) => {
-    const user = useAuthentication()
+    const user = useContext(UserContext)
     const newTime = useTimeTransformer(data.time_stamp)
 
     return (
