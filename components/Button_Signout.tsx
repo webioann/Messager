@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, G } from '../constants/SIZES';
 
 const Button_Signout = () => {
-
+    
     const signoutCurrentUser = () => {
         const _USER_ = auth().currentUser
         if(_USER_) {
@@ -16,6 +16,7 @@ const Button_Signout = () => {
         }
         else return
     }
+    
     return (
         <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
             <Icon name='logout' size={24} color={COLORS.LIGHT}/>
