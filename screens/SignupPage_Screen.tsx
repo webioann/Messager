@@ -14,17 +14,21 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
 import Button_Signout from '../components/Button_Signout';
+import UserAvatarWithEdit from '../components/UserAvatarWithEdit';
+
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
+import storage from '@react-native-firebase/storage';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const USER = useContext(UserContext);
+    const USER = useContext(UserContext)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [pathToAvatar, setPathToAvatar] = useState<string | null>(null)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -32,30 +36,25 @@ const SignupPage_Screen = () => {
         setEmail('')
         setPassword('')
     }
-
+    // on press Sign Up button will be created new User Account on Firebase
     const createNewUserAccount = async() => {
-        if(email.length > 4 || password.length > 4){
-            if(USER) {
-                Alert.alert('You must Log Out before Sign Up')
-            }
-            if(USER == null) {
-                await auth().createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => userCredential.user.updateProfile({
-                    displayName: name,
-                    photoURL: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
-                }))
-                // .then (() => auth().currentUser?.updateProfile({
-                //     displayName: name,
-                //     photoURL: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
-                // }))
-                .then(() => getCleanUpScreen())
-                .catch(error => {
-                    console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
-                    Alert.alert('ERROR')
-                })
-            }
-        } else return null
+        await auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => userCredential.user.updateProfile({
+            displayName: name,
+            photoURL: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
+        }))
+        .then(() => getCleanUpScreen())
+        .catch(error => {
+            console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
+            Alert.alert('ERROR')
+        })
     }
+
+    const setNewAvatar = async() => {
+        let imageURL = await storage().ref(`Pedro_avatar`).getDownloadURL()
+        setPathToAvatar(imageURL)
+    }
+
 
     return (
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
@@ -74,6 +73,8 @@ const SignupPage_Screen = () => {
                     </View>
                     <Text style={styles.page_title}>Create Account</Text>
                 </View>
+                <UserAvatarWithEdit size={200}/>
+
                 {/* form for creating new users ----> */}
                 <CreateAccountForm 
                     name={name} setName={setName} 

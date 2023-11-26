@@ -56,6 +56,8 @@ const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, set
                 />
                 <Icon name='visibility-off' color={COLORS.GREY} size={24}/>
             </View>
+            {/* uploading User avatar image */}
+            
         </View>
     )
 }
