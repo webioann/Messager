@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } from 'react-native'
-import { UserContext } from '../context/AuthContext';
+import { UserContext } from '../context/UserContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';

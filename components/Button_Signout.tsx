@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Alert, Pressable } from 'react-native'
 import React, { useContext } from 'react'
 import auth from '@react-native-firebase/auth'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { UserContext } from '../context/AuthContext';
+import { UserContext } from '../context/UserContext';
 import { COLORS, G } from '../constants/SIZES';
 
 const Button_Signout = () => {

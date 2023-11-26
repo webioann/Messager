@@ -11,7 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS, SIZES } from './constants/SIZES';
-import { USER_CONTEXT_PROVIDER } from './context/AuthContext';
+import { USER_CONTEXT_PROVIDER } from './context/UserContext';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();

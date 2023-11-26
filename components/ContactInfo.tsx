@@ -4,7 +4,7 @@ import UserAvatarImage from '../components/UserAvatarImage';
 import { defaultAvatar } from '../constants/dummyMessages';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import { UserContext } from '../context/AuthContext';
+import { UserContext } from '../context/UserContext';
 
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import { Contact_Type } from '../Types/main_types';

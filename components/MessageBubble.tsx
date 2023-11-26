@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState, useContext } from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
-import { UserContext } from '../context/AuthContext';
+import { UserContext } from '../context/UserContext';
 import { COLORS, SIZES } from '../constants/SIZES';
 import { IMessage } from '../Types/chats_types';
 
