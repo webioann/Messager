@@ -8,7 +8,7 @@ import {
     Alert, 
     TouchableOpacity, 
     ImageBackground } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -16,13 +16,15 @@ import UserLoginForms from '../components/UserLoginForms';
 import Button_Signout from '../components/Button_Signout';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
+import { UserContext } from '../context/AuthContext';
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    console.log(auth().currentUser?.email)
+    const USER = useContext(UserContext)
+    // TODO: remove console
+    console.log(USER)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -31,12 +33,11 @@ const LoginPage_Screen = () => {
     }
 
     const loginCurrentUser = async() => {
-        const _USER_ = auth().currentUser
         if(email.length > 4 || password.length > 4){
-            if(_USER_) {
+            if(USER) {
                 Alert.alert('You must Log Out before new Login')
             }
-            if(_USER_ == null) {
+            if(USER == null) {
                 await auth().signInWithEmailAndPassword(email, password)
                 .then(() => Alert.alert('You are LOGGED IN '))
                 .then(() => getCleanUpScreen())

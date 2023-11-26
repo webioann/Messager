@@ -18,7 +18,6 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {sender, avatar_url, room} = route.params;
     const [ messages, setMessages ] = useState<IMessage[]>([] as IMessage[])
-    // const [ timeCleanKeyboard, setTimeCleanKeyboard] = useState(false)
 
     const fetchMessages = async() => {
         if(room === 'room_2') {

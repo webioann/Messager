@@ -11,6 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS, SIZES } from './constants/SIZES';
+import { USER_CONTEXT_PROVIDER } from './context/AuthContext';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
@@ -24,47 +25,47 @@ const App: React.FC = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Chats'>
-        <Stack.Screen 
-          name="Chats" 
-          component={ChatsList_Screen}
-          options={ screenOptions}
-        />
-        <Stack.Screen 
-          name="SingleChat" 
-          component={SingleChat_Screen} 
-          options={ screenOptions }
-        />
-        <Stack.Screen 
-          name="Settings" 
-          component={Settings_Screen}
-          options={ screenOptions } 
-        />
-        <Stack.Screen 
-          name="Wellcome" 
-          component={Wellcome_Screen}
-          options={ screenOptions } 
-        />
-        <Stack.Screen 
-          name="LoginPage" 
-          component={LoginPage_Screen}
-          options={ screenOptions } 
-        />
-        <Stack.Screen 
-          name="SignupPage" 
-          component={SignupPage_Screen}
-          options={ screenOptions } 
-        />
-        <Stack.Screen 
-          name="Contacts" 
-          component={Contacts_Screen}
-          options={ screenOptions } 
-        />
-
-
-      </Stack.Navigator>  
-    </NavigationContainer>
+    <USER_CONTEXT_PROVIDER>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Chats'>
+            <Stack.Screen 
+              name="Chats" 
+              component={ChatsList_Screen}
+              options={ screenOptions}
+            />
+            <Stack.Screen 
+              name="SingleChat" 
+              component={SingleChat_Screen} 
+              options={ screenOptions }
+            />
+            <Stack.Screen 
+              name="Settings" 
+              component={Settings_Screen}
+              options={ screenOptions } 
+            />
+            <Stack.Screen 
+              name="Wellcome" 
+              component={Wellcome_Screen}
+              options={ screenOptions } 
+            />
+            <Stack.Screen 
+              name="LoginPage" 
+              component={LoginPage_Screen}
+              options={ screenOptions } 
+            />
+            <Stack.Screen 
+              name="SignupPage" 
+              component={SignupPage_Screen}
+              options={ screenOptions } 
+            />
+            <Stack.Screen 
+              name="Contacts" 
+              component={Contacts_Screen}
+              options={ screenOptions } 
+            />
+        </Stack.Navigator>  
+      </NavigationContainer>
+    </USER_CONTEXT_PROVIDER>
   )
 }
 export default App;

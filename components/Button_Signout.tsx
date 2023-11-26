@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View, Alert, Pressable } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import auth from '@react-native-firebase/auth'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { UserContext } from '../context/AuthContext';
 import { COLORS, G } from '../constants/SIZES';
 
 const Button_Signout = () => {
-    
+    const USER = useContext(UserContext)
+
     const signoutCurrentUser = () => {
-        const _USER_ = auth().currentUser
-        if(_USER_) {
+        if(USER) {
             auth().signOut()
             .then(() => console.log(`You are logged out and _USER_ --> ${auth().currentUser}`))
             .then(() => Alert.alert('You are logged out'))

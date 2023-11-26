@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } from 'react-native'
+import { UserContext } from '../context/AuthContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
-import useAuthentification from '../hooks/useAuthentication';
 
 type RoomProp = { room: string }
 
 const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
     const [message, setMessage] = useState('')
-    const user = useAuthentification()
+    const user = useContext(UserContext)
 
     const addDataInFirestore = async () => {
         if(message.length > 0) {
@@ -17,7 +17,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
                 text: message,
                 room: room,
                 author: user?.name,
-                sender_id: user?.user_id,
+                sender_id: user?.uid,
                 avatar_url: user?.photoURL,
                 time_stamp: Date.now(),
                 reviewed: false,
