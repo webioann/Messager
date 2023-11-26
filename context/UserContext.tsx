@@ -20,7 +20,7 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
         const user = auth().currentUser
         if(user) {
             setUser({
-                name: user.displayName ? user.displayName : user.email,
+                name: user.displayName,
                 email: user.email,
                 uid: user.uid,
                 photoURL: user.photoURL
