@@ -17,12 +17,14 @@ import Button_Signout from '../components/Button_Signout';
 import UserAvatarWithEdit from '../components/UserAvatarWithEdit';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
+import storage from '@react-native-firebase/storage';
 import { UserContext } from '../context/UserContext';
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [pathToAvatar, setPathToAvatar] = useState<string | null>(null)
     const USER = useContext(UserContext)
     // TODO: remove 
     const defaultPath = 'https://images.unsplash.com/profile-1530556550255-d9a7e792ce37?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128'
@@ -49,6 +51,10 @@ const LoginPage_Screen = () => {
                 })
             }
         } else return null
+    }
+    const setNewAvatar = async() => {
+        let imageURL = await storage().ref(`Pedro_avatar`).getDownloadURL()
+        setPathToAvatar(imageURL)
     }
 
 

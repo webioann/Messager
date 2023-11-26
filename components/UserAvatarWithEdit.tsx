@@ -1,30 +1,50 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import React from 'react'
+import { StyleSheet, Platform, View, Image, Pressable } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import DefaultUserIcon from './DefaultUserIcon';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-crop-picker';
 import { COLORS } from '../constants/SIZES';
+
+import storage from '@react-native-firebase/storage';
 
 type avatarProps = {
     pathToImage?: string;
     size: number;
 }
 
-const openGallery = async() => {
-    await ImagePicker.openPicker({
-        width: 300,
-        height: 400,
-        cropping: true
-    })
-    .then(image => { console.log(image.path) });
-}
 
 const UserAvatarWithEdit: React.FC<avatarProps> = ({ pathToImage, size }) => {
+
+    const [filePath, setFilePath] = useState<string | undefined>(undefined)
+    const [url, setURL] = useState('')
+    const [ava, setAva] = useState<string | null>(null)
+
+    const openGalleryAndChoosePhoto = () => {
+        ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true
+        })
+        .then((file) => { setFilePath(Platform.OS === 'ios' ? file.sourceURL : file.path) });
+    }
+
+    const changeAvatar = async() => {
+        if(filePath) {
+            try{
+                await storage().ref(`Pedro_avatar`).putFile(filePath)
+                let imageURL = await storage().ref(`Pedro_avatar`).getDownloadURL()
+                setFilePath(undefined)
+                setURL(imageURL)
+            }
+            catch(error) { console.log(error) }
+        }
+        else return
+    }
 
     return (
         <View style={styles.avatarContainer}>
             <View style={[styles.avatarContainer, { width: size, height: size, borderRadius: size / 2 }]}>
-                { pathToImage 
+                { pathToImage
                     ? <Image 
                         source={{uri: pathToImage}}
                         style={[styles.logo, { borderRadius: size / 2 }]}
@@ -35,12 +55,14 @@ const UserAvatarWithEdit: React.FC<avatarProps> = ({ pathToImage, size }) => {
                 }
                 <Pressable 
                     style={styles.editButton} 
-                    onPress={openGallery}
+                    onPress={openGalleryAndChoosePhoto}
                     >
                     <Icon name='edit' color={'#ffffff'} size={24}/>
                 </Pressable>
             </View>
-
+            <Pressable onPress={changeAvatar}>
+                <Icon name='star' color={'#ffffff'} size={24}/>    
+            </Pressable>
         </View>
     )
 }
