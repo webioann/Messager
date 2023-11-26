@@ -2,11 +2,21 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import DefaultUserIcon from './DefaultUserIcon';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import ImagePicker from 'react-native-image-crop-picker';
 import { COLORS } from '../constants/SIZES';
 
 type avatarProps = {
     pathToImage?: string;
     size: number;
+}
+
+const openGallery = async() => {
+    await ImagePicker.openPicker({
+        width: 300,
+        height: 400,
+        cropping: true
+    })
+    .then(image => { console.log(image.path) });
 }
 
 const UserAvatarWithEdit: React.FC<avatarProps> = ({ pathToImage, size }) => {
@@ -25,7 +35,7 @@ const UserAvatarWithEdit: React.FC<avatarProps> = ({ pathToImage, size }) => {
                 }
                 <Pressable 
                     style={styles.editButton} 
-                    onPress={() => console.log('START EDIT')}
+                    onPress={openGallery}
                     >
                     <Icon name='edit' color={'#ffffff'} size={24}/>
                 </Pressable>
