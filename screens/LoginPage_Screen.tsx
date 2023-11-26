@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserLoginForms from '../components/UserLoginForms';
 import Button_Signout from '../components/Button_Signout';
+import UserAvatarWithEdit from '../components/UserAvatarWithEdit';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
@@ -23,6 +24,9 @@ const LoginPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const USER = useContext(UserContext)
+    // TODO: remove 
+    const defaultPath = 'https://images.unsplash.com/profile-1530556550255-d9a7e792ce37?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128'
+
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -64,7 +68,7 @@ const LoginPage_Screen = () => {
                     </View>
                     <Text style={styles.page_title}>Wellcome Back</Text>
                 </View>
-
+                <UserAvatarWithEdit size={200}/>
                 <UserLoginForms 
                     email={email} setEmail={setEmail} 
                     password={password} setPassword={setPassword}

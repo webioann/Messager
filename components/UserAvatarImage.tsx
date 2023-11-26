@@ -3,7 +3,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import { COLORS } from '../constants/SIZES';
 
 type avatarProps = {
-    pathToImage: string;
+    pathToImage?: string;
     size: number;
 }
 

@@ -9,3 +9,8 @@ export type Contact_Type = {
     contact_UID: string
     photo_URL: string
 }
+// type of props icon components
+export type IconPropsType = {
+    size: number
+    color: string
+}
