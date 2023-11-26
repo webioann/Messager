@@ -15,6 +15,7 @@ const Settings_Screen = () => {
             <Text style={styles.text}>Settings</Text>
                 <Button title='Go to the Chats' onPress={() => navigation.navigate("Chats")}/>
             </View>
+            {/* <input type='file' onChange={() => console.log('CHANGES IN INPUT')}/> */}
 
         </SafeAreaView>
     )

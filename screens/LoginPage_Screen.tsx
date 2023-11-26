@@ -23,8 +23,6 @@ const LoginPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const USER = useContext(UserContext)
-    // TODO: remove console
-    console.log(USER)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
