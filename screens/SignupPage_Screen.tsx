@@ -14,8 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
 import Button_Signout from '../components/Button_Signout';
-import UserAvatarWithEdit from '../components/UserAvatarWithEdit';
-
+import ImageUploader from '../components/ImageUploader';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
@@ -28,33 +27,36 @@ const SignupPage_Screen = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [pathToAvatar, setPathToAvatar] = useState<string | null>(null)
+    // works with image
+    // const [pathToAvatar, setPathToAvatar] = useState<string | null>(null)
+    const [filePath, setFilePath] = useState<string | undefined>(undefined)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
         setName('')
         setEmail('')
         setPassword('')
+        setFilePath(undefined)
     }
     // on press Sign Up button will be created new User Account on Firebase
     const createNewUserAccount = async() => {
-        await auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => userCredential.user.updateProfile({
+        // created new User Account
+        const newUser = await auth().createUserWithEmailAndPassword(email, password)
+        // create unique image name for save on Storage
+        let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`
+        // 
+        filePath && await storage().ref(uniqueAvatarName).putFile(filePath)
+        let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
+        await newUser.user.updateProfile({
             displayName: name,
-            photoURL: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
-        }))
+            photoURL: imageURL
+        })
         .then(() => getCleanUpScreen())
         .catch(error => {
             console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
             Alert.alert('ERROR')
         })
     }
-
-    const setNewAvatar = async() => {
-        let imageURL = await storage().ref(`Pedro_avatar`).getDownloadURL()
-        setPathToAvatar(imageURL)
-    }
-
 
     return (
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
@@ -73,7 +75,6 @@ const SignupPage_Screen = () => {
                     </View>
                     <Text style={styles.page_title}>Create Account</Text>
                 </View>
-                <UserAvatarWithEdit size={200}/>
 
                 {/* form for creating new users ----> */}
                 <CreateAccountForm 
@@ -81,6 +82,10 @@ const SignupPage_Screen = () => {
                     email={email} setEmail={setEmail}
                     password={password} setPassword={setPassword}
                 />
+
+                {/* image picker for uploading images on Firebase Storage */}
+                <ImageUploader setFilePath={setFilePath}/>
+                
                 {/* auth buttons box */}
                 <TouchableOpacity 
                     onPress={createNewUserAccount} 

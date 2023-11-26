@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } from 'react-native';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
@@ -7,15 +7,17 @@ import ChatsBottomMenu from '../components/ChatsBottomMenu';
 import { DUMMY_CHATS } from '../constants/dummyChatsList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, SIZES } from '../constants/SIZES';
+import { UserContext } from '../context/UserContext';
 
 const ChatsList_Screen = () => {
   const [value, setValue] = useState('')
+  const USER = useContext(UserContext)
 
   return (
     <SafeAreaView style={styles.area}>
       <StatusBar backgroundColor={COLORS.BG}/>
       <View style={styles.headerContainer}>
-        <UserAvatarImage pathToImage='' size={SIZES.MEDIUM}/>
+        <UserAvatarImage pathToImage={USER?.photoURL ? USER.photoURL : ''} size={SIZES.MEDIUM}/>
         <Text style={styles.headerTitle}>Chats</Text>
         <View style={styles.headerAddButton}>
           <MaterialIcons name='add' size={24} color={COLORS.LIGHT}/>

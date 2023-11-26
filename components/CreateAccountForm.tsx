@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Modal } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Platform } from 'react-native'
 import React, { useState, SetStateAction } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
 type signupFormProps = {
@@ -56,8 +57,6 @@ const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, set
                 />
                 <Icon name='visibility-off' color={COLORS.GREY} size={24}/>
             </View>
-            {/* uploading User avatar image */}
-            
         </View>
     )
 }
