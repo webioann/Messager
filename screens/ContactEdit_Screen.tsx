@@ -1,14 +1,20 @@
 import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native'
 import React, { useContext } from 'react'
-import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { UserContext } from '../context/UserContext';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
 
-const ContactEdit_Screen = () => {
+type StackProps = NativeStackScreenProps<RootStackParams, 'ContactEdit'>
+
+
+const ContactEdit_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const USER = useContext(UserContext)
+    const {displayName, email, photoURL, phoneNumber} = route.params;
+
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.BG}}>
@@ -19,13 +25,13 @@ const ContactEdit_Screen = () => {
                 </TouchableOpacity>
                 <View style={{alignItems: 'center', paddingVertical: SIZES.GAP}}>
                     <Image 
-                        source={{uri: USER?.photoURL ? USER.photoURL : ''}}
+                        source={{uri: photoURL}}
                         style={styles.contactAvatar}
                         alt='contact avatar'
                         resizeMode='contain'
                     />
-                    <Text style={styles.name}>{ USER?.displayName }</Text>
-                    <Text style={styles.email}>{ USER?.email }</Text>
+                    <Text style={styles.name}>{ displayName }</Text>
+                    <Text style={styles.email}>{ email }</Text>
                 </View>
             </View>
         </SafeAreaView>

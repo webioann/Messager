@@ -8,7 +8,6 @@ import { UserContext } from '../context/UserContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES, G } from '../constants/SIZES';
-import { Contact_Type } from '../Types/main_types';
 
 interface IUser {
     displayName: string 
@@ -18,11 +17,9 @@ interface IUser {
     phoneNumber: string 
 }
 
-
 const ContactInfo: React.FC<IUser> = (data) => {
     const user = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
-
 
     const startChatting = () => {
         if(user?.uid) {
@@ -30,8 +27,10 @@ const ContactInfo: React.FC<IUser> = (data) => {
             let userShortUID = user.uid.slice(0,10)
             let roomID = userShortUID?.concat('_@_', contactShortUID)
             Alert.alert(roomID) 
-        } else { Alert.alert('You must register for chatting') }
+        } 
+        else { Alert.alert('You must register for chatting') }
     }
+
     return (
         <View style={styles.contact_item}>
             <UserAvatarImage pathToImage={data.photoURL} size={50}/>
@@ -52,10 +51,17 @@ const ContactInfo: React.FC<IUser> = (data) => {
                 <Icon2 name='phone' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
-                onPress={() => navigation.navigate("ContactEdit")}>
+                onPress={() => {navigation.navigate("ContactEdit",
+                    {
+                        displayName: data.displayName,
+                        email: data.email, 
+                        photoURL: data.photoURL, 
+                        phoneNumber: data.phoneNumber, 
+                        uid: data.uid 
+                    })}
+                }>
                 <Icon name='edit' size={20} color={COLORS.LIGHT}/>
             </TouchableOpacity>
-
         </View>
     )
 }

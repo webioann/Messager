@@ -23,7 +23,13 @@ export type RootStackParams = {
   LoginPage: undefined
   SignupPage: undefined
   Contacts: undefined
-  ContactEdit: undefined
+  ContactEdit: {
+    displayName: string 
+    email: string 
+    uid: string 
+    photoURL: string 
+    phoneNumber: string 
+  }
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>
@@ -34,4 +40,11 @@ export type ScreenOptions_Type = {
   headerShadowVisible: boolean
   headerShown?: boolean
   title: string
+}
+export interface IUser {
+  displayName: string | null
+  email: string | null
+  uid: string | null
+  photoURL: string | null
+  phoneNumber: string | null
 }
