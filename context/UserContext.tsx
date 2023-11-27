@@ -5,36 +5,38 @@ type childrenType = {
     children: ReactNode[] | ReactNode 
 }
 interface IUser {
-    name: string | null
+    displayName: string | null
     email: string | null
     uid: string | null
     photoURL: string | null
+    phoneNumber: string | null
 }
 
 export const UserContext = createContext<IUser | null>(null);
 
 export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
-    const [user, setUser] = useState<IUser | null>(null);
+    const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
     const onAuthStateChanged = () => {
         const user = auth().currentUser
         if(user) {
-            setUser({
-                name: user.displayName,
+            setCurrentUser({
+                displayName: user.displayName,
                 email: user.email,
                 uid: user.uid,
-                photoURL: user.photoURL
+                photoURL: user.photoURL,
+                phoneNumber: null
             })
         }
-        else { setUser(null) }
+        else { setCurrentUser(null) }
     }
 
     useEffect(() => {
         auth().onAuthStateChanged(onAuthStateChanged)
-    }, [])
+    }, [auth])
 
     return (
-        <UserContext.Provider value={user}>
+        <UserContext.Provider value={currentUser}>
             {children}
         </UserContext.Provider>
     );

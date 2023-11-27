@@ -25,6 +25,9 @@ const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const USER = useContext(UserContext)
 
+    // TODO: remove this console later
+    // console.log(USER)
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -52,11 +55,11 @@ const SignupPage_Screen = () => {
         })
         // save User on Storage DB
         await firestore().collection('USERS_DB').doc(newUser.user.uid).set({
-            name,
+            displayName: name,
             email,
             photoURL: imageURL,
             uid: newUser.user.uid,
-            phone: null
+            phoneNumber: null
         })
         .then(() => getCleanUpScreen())
         .then(() => navigation.navigate("Chats"))
