@@ -9,17 +9,13 @@ const Button_Signout = () => {
     const USER = useContext(UserContext)
 
     const signoutCurrentUser = () => {
-        if(USER) {
-            auth().signOut()
-            .then(() => console.log(`You are logged out and _USER_ --> ${auth().currentUser}`))
-            .then(() => Alert.alert('You are logged out'))
-            .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
-        }
-        else return
+        auth().signOut()
+        .then(() => Alert.alert('You are logged out'))
+        .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
     }
     
     return (
-        <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
+        USER && <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
             <Icon name='logout' size={24} color={COLORS.LIGHT}/>
             <Text style={{color: COLORS.LIGHT}}>Logout</Text>
         </Pressable>
