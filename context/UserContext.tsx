@@ -1,15 +1,8 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 import auth from '@react-native-firebase/auth'
-
+import { IUser } from "../Types/currentUser_types";
 type childrenType = {
     children: ReactNode[] | ReactNode 
-}
-interface IUser {
-    displayName: string | null
-    email: string | null
-    uid: string | null
-    photoURL: string | null
-    phoneNumber: string | null
 }
 
 export const UserContext = createContext<IUser | null>(null);

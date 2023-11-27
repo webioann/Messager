@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, FlatList, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { defaultAvatar } from '../constants/dummyMessages';
@@ -8,10 +8,31 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FakeContactData } from '../constants/fakeContacts';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ContactInfo from '../components/ContactInfo';
+import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+// import { IUser } from "../Types/currentUser_types";
+
+interface IUser {
+    displayName: string 
+    email: string 
+    uid: string 
+    photoURL: string 
+    phoneNumber: string 
+}
 
 const Contacts_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const [searchValue, setSearchValue] = useState('')
+    const [contactsList, setContactsList] = useState<IUser[]>([])
+
+    const fetchAllContacts = async() => {
+        const contacts = await firestore().collection('USERS_DB').get();
+        let raw = contacts.docs.map((doc) => ({...doc.data()}))
+        setContactsList(raw as IUser[])
+    }
+
+    useEffect(() => {
+        fetchAllContacts()
+    }, [])
 
     return (
         <SafeAreaView style={G.container}>
@@ -28,8 +49,9 @@ const Contacts_Screen = () => {
                     style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}/>
             </View>
             <FlatList 
-                data={FakeContactData} 
+                data={contactsList} 
                 renderItem={({item}) => <ContactInfo {...item}/>} 
+                keyExtractor={item => item.uid}
                 style={{paddingVertical: 20}}>
                 <View style={styles.contact_item}>
                     <UserAvatarImage pathToImage={defaultAvatar} size={50}/>
