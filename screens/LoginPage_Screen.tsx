@@ -39,6 +39,7 @@ const LoginPage_Screen = () => {
                 await auth().signInWithEmailAndPassword(email, password)
                 .then(() => Alert.alert('You are LOGGED IN '))
                 .then(() => getCleanUpScreen())
+                .then(() => navigation.navigate("Chats"))
                 .catch(error => {
                     console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
                     Alert.alert('ERROR')

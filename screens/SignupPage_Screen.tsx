@@ -52,6 +52,7 @@ const SignupPage_Screen = () => {
             photoURL: imageURL
         })
         .then(() => getCleanUpScreen())
+        .then(() => navigation.navigate("Chats"))
         .catch(error => {
             console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
             Alert.alert('ERROR')
