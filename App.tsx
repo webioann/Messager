@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import ChatsList_Screen from './screens/ChatsList_Screen';
 import SingleChat_Screen from './screens/SingleChat_Screen';
@@ -13,12 +13,8 @@ import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS, SIZES } from './constants/SIZES';
 import { USER_CONTEXT_PROVIDER } from './context/UserContext';
 
-import { utils } from '@react-native-firebase/app';
-
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
-
-  console.log(utils.FilePath.PICTURES_DIRECTORY);
 
   const screenOptions: ScreenOptions_Type = {
     headerStyle: {backgroundColor: COLORS.BG},
