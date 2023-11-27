@@ -19,6 +19,7 @@ import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
 import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -42,12 +43,20 @@ const SignupPage_Screen = () => {
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
         // create unique image name for save on Storage
         let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`
-        // 
+        // put image in Storage and download image URL
         filePath && await storage().ref(uniqueAvatarName).putFile(filePath)
         let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
-        await newUser.user.updateProfile({
+        await newUser.user.updateProfile({ // <--- update user profile with adding name and photo
             displayName: name,
             photoURL: imageURL
+        })
+        // save User on Storage DB
+        await firestore().collection('USERS_DB').doc(newUser.user.uid).set({
+            name,
+            email,
+            photoURL: imageURL,
+            uid: newUser.user.uid,
+            phone: null
         })
         .then(() => getCleanUpScreen())
         .then(() => navigation.navigate("Chats"))
