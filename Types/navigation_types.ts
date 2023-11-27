@@ -1,15 +1,15 @@
 // ===================================
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 
-type ScrenParams = {
-  name: string
-  params: {
-    sender: string
-    avatar_url: string
-  }
-  key: string
-  path?: string
-}
+// type ScrenParams = {
+//   name: string
+//   params: {
+//     sender: string
+//     avatar_url: string
+//   }
+//   key: string
+//   path?: string
+// }
 
 export type RootStackParams = {
   SingleChat: {
@@ -23,13 +23,7 @@ export type RootStackParams = {
   LoginPage: undefined
   SignupPage: undefined
   Contacts: undefined
-  EditContactProfile: {
-    displayName: string 
-    email: string 
-    uid: string 
-    photoURL: string 
-    phoneNumber: string 
-  }
+  EditContactProfile: { contact: Contact_Type }
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>
@@ -47,4 +41,12 @@ export interface IUser {
   uid: string | null
   photoURL: string | null
   phoneNumber: string | null
+}
+
+export type Contact_Type = {
+  displayName: string 
+  email: string 
+  uid: string 
+  photoURL: string 
+  phoneNumber: string 
 }

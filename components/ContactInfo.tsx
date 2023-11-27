@@ -57,15 +57,7 @@ const ContactInfo: React.FC<IUser> = (data) => {
                 <Icon2 name='phone' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
-                onPress={() => {navigation.navigate("EditContactProfile",
-                    {
-                        displayName: data.displayName,
-                        email: data.email, 
-                        photoURL: data.photoURL, 
-                        phoneNumber: data.phoneNumber, 
-                        uid: data.uid 
-                    })}
-                }>
+                onPress={() => {navigation.navigate("EditContactProfile", {contact: data})}}>
                 <Icon name='edit' size={20} color={COLORS.LIGHT}/>
             </TouchableOpacity>
         </View>
@@ -83,3 +75,9 @@ const styles = StyleSheet.create({
     },
 
 })
+
+// displayName: data.displayName,
+// email: data.email, 
+// photoURL: data.photoURL, 
+// phoneNumber: data.phoneNumber, 
+// uid: data.uid 

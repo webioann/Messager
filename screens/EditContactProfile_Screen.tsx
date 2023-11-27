@@ -14,13 +14,13 @@ type StackProps = NativeStackScreenProps<RootStackParams, 'EditContactProfile'>
 const EditContactProfile_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     // const USER = useContext(UserContext)
-    const {displayName, email, photoURL, phoneNumber, uid} = route.params;
+    const {contact} = route.params;
     const [newNumber, setNewNumber] = useState('')
 
     const updatePhoneNumber = async() => {
         firestore()
         .collection('USERS_DB')
-        .doc(uid)
+        .doc(contact.uid)
         .update({
             phoneNumber: newNumber
         })
@@ -39,15 +39,15 @@ const EditContactProfile_Screen: React.FC<StackProps> = ({ route }) => {
                 </TouchableOpacity>
                 <View style={{alignItems: 'center', paddingVertical: SIZES.GAP}}>
                     <Image 
-                        source={{uri: photoURL}}
+                        source={{uri: contact.photoURL}}
                         style={styles.contactAvatar}
                         alt='contact avatar'
                         resizeMode='contain'
                     />
-                    <Text style={styles.name}>{ displayName }</Text>
-                    <Text style={styles.email}>{ email }</Text>
-                    { phoneNumber
-                        ? <Text style={styles.phone}>Phone: { phoneNumber }</Text> 
+                    <Text style={styles.name}>{ contact.displayName }</Text>
+                    <Text style={styles.email}>{ contact.email }</Text>
+                    { contact.phoneNumber
+                        ? <Text style={styles.phone}>Phone: {contact.phoneNumber }</Text> 
                         : <Text style={styles.phone}>Phone not correct</Text> 
                     }
                     <TextInput 

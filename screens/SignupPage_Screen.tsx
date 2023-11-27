@@ -23,10 +23,6 @@ import firestore from '@react-native-firebase/firestore';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const USER = useContext(UserContext)
-
-    // TODO: remove this console later
-    // console.log(USER)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
