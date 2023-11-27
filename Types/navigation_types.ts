@@ -23,7 +23,7 @@ export type RootStackParams = {
   LoginPage: undefined
   SignupPage: undefined
   Contacts: undefined
-  ContactEdit: {
+  EditContactProfile: {
     displayName: string 
     email: string 
     uid: string 

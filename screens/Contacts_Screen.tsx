@@ -5,11 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 import { defaultAvatar } from '../constants/dummyMessages';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { FakeContactData } from '../constants/fakeContacts';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ContactInfo from '../components/ContactInfo';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-// import { IUser } from "../Types/currentUser_types";
 
 interface IUser {
     displayName: string 

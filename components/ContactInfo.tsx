@@ -23,9 +23,15 @@ const ContactInfo: React.FC<IUser> = (data) => {
 
     const startChatting = () => {
         if(user?.uid) {
+            let roomID = ''
             let contactShortUID = data.uid.slice(0,10)
             let userShortUID = user.uid.slice(0,10)
-            let roomID = userShortUID?.concat('_@_', contactShortUID)
+            if( contactShortUID > userShortUID ) {
+                roomID = contactShortUID?.concat('_@_', userShortUID)
+            }
+            if( userShortUID > contactShortUID ) {
+                roomID = userShortUID?.concat('_@_', contactShortUID)
+            }
             Alert.alert(roomID) 
         } 
         else { Alert.alert('You must register for chatting') }
@@ -51,7 +57,7 @@ const ContactInfo: React.FC<IUser> = (data) => {
                 <Icon2 name='phone' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
-                onPress={() => {navigation.navigate("ContactEdit",
+                onPress={() => {navigation.navigate("EditContactProfile",
                     {
                         displayName: data.displayName,
                         email: data.email, 

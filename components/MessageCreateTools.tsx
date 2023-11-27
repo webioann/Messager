@@ -16,7 +16,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
             await firestore().collection(room).add({
                 text: message,
                 room: room,
-                author: user?.name,
+                author: user?.displayName,
                 sender_id: user?.uid,
                 avatar_url: user?.photoURL,
                 time_stamp: Date.now(),
