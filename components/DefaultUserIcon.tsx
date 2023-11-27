@@ -6,23 +6,17 @@ const DefaultUserIcon: React.FC<IconPropsType> = ({size, color}) => {
     return (
         <Image 
             source={require('../assets/defaultUserIcon.png')}
-            style={[styles.userIcon, { 
+            style={{ 
                 width: size, 
                 height: size, 
                 borderRadius: size / 2,
                 tintColor: color,
-                borderColor: color
-            }]}
-            alt='user avatar'
+            }}
+            alt='default user icon'
             resizeMode='contain'
         />
     )
 }
 
-export default DefaultUserIcon
+export default DefaultUserIcon;
 
-const styles = StyleSheet.create({
-    userIcon: {
-        borderWidth: 2,
-    }
-})

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { COLORS } from '../constants/SIZES';
+import DefaultUserIcon from './DefaultUserIcon';
 
 type avatarProps = {
     pathToImage?: string | undefined;
@@ -8,16 +9,18 @@ type avatarProps = {
 }
 
 const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
-    const defaultPath = 'https://picsum.photos/100'
     
     return (
         <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, borderWidth: size / 12, }]}>
-            <Image 
-                source={{uri: pathToImage ? pathToImage : defaultPath}}
-                style={[styles.logo, { borderRadius: size / 2 }]}
-                alt='user avatar'
-                resizeMode='contain'
-            />
+            { pathToImage 
+                ? <Image 
+                        source={{uri: pathToImage}}
+                        style={[styles.logo, { borderRadius: size / 2 }]}
+                        alt='user avatar'
+                        resizeMode='contain'
+                    />
+                : <DefaultUserIcon size={size} color={COLORS.GREY}/>
+            }
         </View>
     )
 }
@@ -27,7 +30,9 @@ const styles = StyleSheet.create({
     avatar: {
         borderColor: COLORS.DARK,
         borderStyle: 'solid',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     logo: {
         width: '100%',
