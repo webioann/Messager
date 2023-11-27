@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native
 import React, { useState, SetStateAction } from 'react'
 import ImagePicker from 'react-native-image-crop-picker';
 import { COLORS, SIZES, G } from '../constants/SIZES';
-import storage from '@react-native-firebase/storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type ImageUploaderProps = {

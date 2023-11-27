@@ -27,8 +27,6 @@ const SignupPage_Screen = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    // works with image
-    // const [pathToAvatar, setPathToAvatar] = useState<string | null>(null)
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
 
     const getCleanUpScreen = () => {

@@ -31,8 +31,6 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
 
     useEffect(() => {
         auth().onAuthStateChanged(onAuthStateChanged)
-        // TODO: remove by end
-        console.log(user)
     }, [])
 
     return (

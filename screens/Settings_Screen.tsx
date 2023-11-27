@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants/SIZES';
-import auth from '@react-native-firebase/auth'
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -15,8 +14,6 @@ const Settings_Screen = () => {
             <Text style={styles.text}>Settings</Text>
                 <Button title='Go to the Chats' onPress={() => navigation.navigate("Chats")}/>
             </View>
-            {/* <input type='file' onChange={() => console.log('CHANGES IN INPUT')}/> */}
-
         </SafeAreaView>
     )
     
