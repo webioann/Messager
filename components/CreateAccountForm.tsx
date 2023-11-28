@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Platform } from 'react-native'
+import { StyleSheet, View, TextInput } from 'react-native'
 import React, { SetStateAction } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import { COLORS,  G } from '../constants/SIZES';
 
 type signupFormProps = {
     name: string

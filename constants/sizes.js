@@ -48,7 +48,18 @@ export const G = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-    }
+    },
+    fixedOnBottom: {
+        position: 'absolute',
+        bottom: 5,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 10,
+    },
+
 
 })
 

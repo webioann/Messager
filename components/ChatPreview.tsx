@@ -1,10 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import UserAvatarImage from './UserAvatarImage';
-import { DummyChatsList } from '../Types/chats_types';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { COLORS, SIZES } from '../constants/SIZES';
+
+type DummyChatsList = {
+    room: string
+    pathToImage: string
+    contactName: string
+    shortMessage: string
+    timeStamp: string
+    messageCount: number
+}
 
 const ChatPreview: React.FC<DummyChatsList> = ({...data}) => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -14,9 +22,10 @@ const ChatPreview: React.FC<DummyChatsList> = ({...data}) => {
             style={styles.previewContainer} 
             onPress={() => {
                 navigation.navigate(
-                    "SingleChat", 
+                    "Chat", 
                     {
-                        sender: data.contactName,
+                        contact: data.contactName,
+                        contactId: data.contactName,
                         avatar_url: data.pathToImage,
                         room: data.room
                     }

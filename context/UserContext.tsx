@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 import auth from '@react-native-firebase/auth'
-import { IUser } from "../Types/currentUser_types";
+import { IUser } from "../Types/users_types";
 type childrenType = {
     children: ReactNode[] | ReactNode 
 }

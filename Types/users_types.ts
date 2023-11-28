@@ -19,7 +19,7 @@ export type CurrentUser_Type = {
     uid: string
 };
 
-export interface IUser {
+export type UserType = {
     displayName: string 
     email: string 
     uid: string 

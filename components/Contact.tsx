@@ -1,35 +1,29 @@
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import UserAvatarImage from '../components/UserAvatarImage';
+import UserAvatarImage from './UserAvatarImage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { UserContext } from '../context/UserContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import { COLORS } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
-import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
-interface IUser {
-    displayName: string 
-    email: string 
-    uid: string 
-    photoURL: string 
-    phoneNumber: string 
-}
+import { metadataType, messageType } from '../Types/chats_types';
+import { UserType } from '../Types/users_types';
 
-const ContactInfo: React.FC<IUser> = (contact) => {
+const Contact: React.FC<UserType> = (contact) => {
     const currentUser = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
-    const [ROOM_ID, setROOM_ID] = useState('')
+    const [chatID, setChatID] = useState('')
 
     // create ROOM_ID on start
-    const createChatRoomID = async() => {
+    const createChatRoomID = () => {
         if(currentUser?.uid) {
             if( contact.uid > currentUser.uid ) {
-                setROOM_ID(contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8)))
+                setChatID(contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8)))
             }
             if( currentUser.uid > contact.uid ) {
-                setROOM_ID(currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8)))
+                setChatID(currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8)))
             }
         } 
     }
@@ -40,33 +34,33 @@ const ContactInfo: React.FC<IUser> = (contact) => {
     
     const onStartChatting = async() => {
         let roomWasCreated = false
-        await firestore().collection('CHAT_ROOM_DB').doc(ROOM_ID).get()
+        await firestore().collection('CHAT_ROOM_DB').doc(chatID).get()
         .then((response) => {
             response.data() ? roomWasCreated = true : roomWasCreated = false
         })
         if( !roomWasCreated && currentUser) {
-            let rawMetadata: chatRoomMetadataType = {
+            let rawMetadata: metadataType = {
                 startAt: Date.now(),
                 users: [currentUser?.uid, contact.uid]
             }
             let rawMessages: messageType[] = []
-            await firestore().collection('CHAT_ROOM_DB').doc(ROOM_ID).set({ 
+            await firestore().collection('CHAT_ROOM_DB').doc(chatID).set({ 
                 metadata: rawMetadata, 
                 messages: rawMessages 
             })
             .then(() => { console.log('Chat room created!!!')})
-            .then(() => navigation.navigate('SingleChat', {
+            .then(() => navigation.navigate('Chat', {
                 contact: contact.displayName,
                 avatar_url: contact.photoURL,
-                room: ROOM_ID,
+                room: chatID,
                 contactId: contact.uid
             }))
         }
         if( roomWasCreated ) {
-            navigation.navigate('SingleChat', {
+            navigation.navigate('Chat', {
                 contact: contact.displayName,
                 avatar_url: contact.photoURL,
-                room: ROOM_ID,
+                room: chatID,
                 contactId: contact.uid
             })
         }
@@ -92,14 +86,14 @@ const ContactInfo: React.FC<IUser> = (contact) => {
                 <Icon2 name='phone' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
-                onPress={() => {navigation.navigate("EditContactProfile", {contact: contact})}}>
+                onPress={() => {navigation.navigate("EditContact", {contact: contact})}}>
                 <Icon name='edit' size={20} color={COLORS.LIGHT}/>
             </TouchableOpacity>
         </View>
     )
 }
 
-export default ContactInfo
+export default Contact;
 
 const styles = StyleSheet.create({
     contact_item: {
@@ -110,9 +104,3 @@ const styles = StyleSheet.create({
     },
 
 })
-
-// displayName: data.displayName,
-// email: data.email, 
-// photoURL: data.photoURL, 
-// phoneNumber: data.phoneNumber, 
-// uid: data.uid 

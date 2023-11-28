@@ -1,6 +1,10 @@
 import { StyleSheet, Image, View } from 'react-native'
 import React from 'react'
-import { IconPropsType } from '../Types/main_types'
+
+type IconPropsType = {
+    size: number
+    color: string
+}
 
 const DefaultUserIcon: React.FC<IconPropsType> = ({size, color}) => {
     return (
@@ -17,6 +21,5 @@ const DefaultUserIcon: React.FC<IconPropsType> = ({size, color}) => {
         />
     )
 }
-
 export default DefaultUserIcon;
 

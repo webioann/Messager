@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useTimeTransformer = ( time: Date ) => {
+const useTimeTransformer = ( time: number ) => {
     const [newTime, setNewTime] = useState('')
     const dateObject = new Date(time)
 

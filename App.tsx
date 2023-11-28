@@ -1,12 +1,12 @@
 import React from 'react';
-import ChatsList_Screen from './screens/ChatsList_Screen';
-import SingleChat_Screen from './screens/SingleChat_Screen';
+import Chats_Screen from './screens/Chats_Screen';
+import Chat_Screen from './screens/Chat_Screen';
 import Settings_Screen from './screens/Settings_Screen';
 import Wellcome_Screen from './screens/Wellcome_Screen';
 import LoginPage_Screen from './screens/LoginPage_Screen';
 import SignupPage_Screen from './screens/SignupPage_Screen';
 import Contacts_Screen from './screens/Contacts_Screen';
-import EditContactProfile_Screen from './screens/EditContactProfile_Screen';
+import EditContact_Screen from './screens/EditContact_Screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
@@ -30,12 +30,12 @@ const App: React.FC = () => {
         <Stack.Navigator initialRouteName='Chats'>
             <Stack.Screen 
               name="Chats" 
-              component={ChatsList_Screen}
+              component={Chats_Screen}
               options={ screenOptions}
             />
             <Stack.Screen 
-              name="SingleChat" 
-              component={SingleChat_Screen} 
+              name="Chat" 
+              component={Chat_Screen} 
               options={ screenOptions }
             />
             <Stack.Screen 
@@ -64,8 +64,8 @@ const App: React.FC = () => {
               options={ screenOptions } 
             />
             <Stack.Screen 
-              name="EditContactProfile" 
-              component={EditContactProfile_Screen}
+              name="EditContact" 
+              component={EditContact_Screen}
               options={ screenOptions } 
             />
 

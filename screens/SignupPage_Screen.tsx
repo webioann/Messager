@@ -17,7 +17,6 @@ import Button_Signout from '../components/Button_Signout';
 import ImageUploader from '../components/ImageUploader';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
-import { UserContext } from '../context/UserContext';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 

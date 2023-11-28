@@ -2,35 +2,28 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, FlatList, 
 import React, { useState, useEffect, useContext } from 'react'
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { defaultAvatar } from '../constants/dummyMessages';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvatarImage from '../components/UserAvatarImage';
-import ContactInfo from '../components/ContactInfo';
+import ContactInfo from '../components/Contact';
 import { UserContext } from '../context/UserContext';
-
+import { UserType } from '../Types/users_types';
 import firestore from '@react-native-firebase/firestore';
-
-interface IUser {
-    displayName: string 
-    email: string 
-    uid: string 
-    photoURL: string 
-    phoneNumber: string 
-}
 
 const Contacts_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const currentUser = useContext(UserContext)
+    // TODO:
+    const defaultAvatar= 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'
 
     const [searchValue, setSearchValue] = useState('')
-    const [contactsList, setContactsList] = useState<IUser[]>([])
+    const [contactsList, setContactsList] = useState<UserType[]>([])
 
     const fetchAllContacts = async() => {
         const contacts = await firestore().collection('USERS_DB').get();
         let raw = contacts.docs.map((doc) => ({...doc.data()}))
         let temp = raw.filter(item => item.uid !== currentUser?.uid)
-        setContactsList(temp as IUser[])
+        setContactsList(temp as UserType[])
     }
 
     useEffect(() => {

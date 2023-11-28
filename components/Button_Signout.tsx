@@ -6,7 +6,7 @@ import { UserContext } from '../context/UserContext';
 import { COLORS, G } from '../constants/SIZES';
 
 const Button_Signout = () => {
-    const USER = useContext(UserContext)
+    const currentUser = useContext(UserContext)
 
     const signoutCurrentUser = () => {
         auth().signOut()
@@ -15,7 +15,7 @@ const Button_Signout = () => {
     }
     
     return (
-        USER && <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
+        currentUser && <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
             <Icon name='logout' size={24} color={COLORS.LIGHT}/>
             <Text style={{color: COLORS.LIGHT}}>Logout</Text>
         </Pressable>

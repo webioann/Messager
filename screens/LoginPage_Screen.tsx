@@ -22,7 +22,7 @@ const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const USER = useContext(UserContext)
+    const currentUser = useContext(UserContext)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -32,10 +32,10 @@ const LoginPage_Screen = () => {
 
     const loginCurrentUser = async() => {
         if(email.length > 4 || password.length > 4){
-            if(USER) {
+            if(currentUser) {
                 Alert.alert('You must Log Out before new Login')
             }
-            if(USER == null) {
+            if(currentUser == null) {
                 await auth().signInWithEmailAndPassword(email, password)
                 .then(() => Alert.alert('You are LOGGED IN '))
                 .then(() => getCleanUpScreen())

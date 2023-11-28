@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
 import { UserContext } from '../context/UserContext';
 import { COLORS, SIZES } from '../constants/SIZES';
-import { IMessage } from '../Types/chats_types';
-import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
+import { messageType } from '../Types/chats_types';
 
 type OneMessageProps = {
     message: messageType

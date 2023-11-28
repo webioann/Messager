@@ -1,5 +1,11 @@
-import { DummyChatsList } from "../Types/chats_types";
-
+type DummyChatsList = {
+    room: string
+    pathToImage: string
+    contactName: string
+    shortMessage: string
+    timeStamp: string
+    messageCount: number
+}
 type ChatsData = Array<DummyChatsList>
 
 const user1= 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=100'

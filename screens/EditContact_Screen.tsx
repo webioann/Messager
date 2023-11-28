@@ -1,19 +1,17 @@
 import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar, TouchableOpacity, TextInput } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-// import { UserContext } from '../context/UserContext';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
 import firestore from '@react-native-firebase/firestore';
 
-type StackProps = NativeStackScreenProps<RootStackParams, 'EditContactProfile'>
+type StackProps = NativeStackScreenProps<RootStackParams, 'EditContact'>
 
 
-const EditContactProfile_Screen: React.FC<StackProps> = ({ route }) => {
+const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
-    // const USER = useContext(UserContext)
     const {contact} = route.params;
     const [newNumber, setNewNumber] = useState('')
 
@@ -28,7 +26,6 @@ const EditContactProfile_Screen: React.FC<StackProps> = ({ route }) => {
             console.log('Number updated!');
         });
     }
-
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.BG}}>
@@ -61,7 +58,6 @@ const EditContactProfile_Screen: React.FC<StackProps> = ({ route }) => {
                     />
                     <TouchableOpacity onPress={updatePhoneNumber}>
                         <Icon name='beenhere' color={COLORS.LIGHT} size={34}/>
-
                     </TouchableOpacity>
                 </View>
             </View>
@@ -69,7 +65,7 @@ const EditContactProfile_Screen: React.FC<StackProps> = ({ route }) => {
     )
 }
 
-export default EditContactProfile_Screen;
+export default EditContact_Screen;
 
 const styles = StyleSheet.create({
     container: {

@@ -2,7 +2,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 
 export type RootStackParams = {
-  SingleChat: {
+  Chat: {
     contact: string
     contactId: string
     avatar_url: string
@@ -14,7 +14,7 @@ export type RootStackParams = {
   LoginPage: undefined
   SignupPage: undefined
   Contacts: undefined
-  EditContactProfile: { contact: Contact_Type }
+  EditContact: { contact: Contact_Type }
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>

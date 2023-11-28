@@ -4,14 +4,14 @@ import { UserContext } from '../context/UserContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
-import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
+import {  messageType } from '../Types/chats_types';
 
 type RoomProp = { 
     room: string
     senderID: string
 }
 
-const MessageCreateTools: React.FC<RoomProp> = ({ room, senderID }) => {
+const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
     const [message, setMessage] = useState('')
     const user = useContext(UserContext)
 
@@ -71,7 +71,7 @@ const MessageCreateTools: React.FC<RoomProp> = ({ room, senderID }) => {
         </View>
     )
 }
-export default MessageCreateTools;
+export default MessageInput;
 
 const styles = StyleSheet.create({
     wrapper: {

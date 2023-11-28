@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Pressable, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import BottomSectionWrapper from '../components/BottomSectionWrapper';
 import UserAvatarImage from '../components/UserAvatarImage';
-import MessageCreateTools from '../components/MessageCreateTools';
+import MessageCreateTools from '../components/MessageInput';
 import MessageBubble from '../components/MessageBubble';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -10,12 +9,11 @@ import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import firestore from '@react-native-firebase/firestore';
-import { IMessage } from '../Types/chats_types';
-import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
+import { messageType, ChatRoomType } from '../Types/chats_types';
 
-type StackProps = NativeStackScreenProps<RootStackParams, 'SingleChat'>
+type StackProps = NativeStackScreenProps<RootStackParams, 'Chat'>
 
-const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
+const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {contact, avatar_url, room, contactId} = route.params;
     const [ messages, setMessages ] = useState<messageType[]>([] as messageType[])
@@ -58,13 +56,13 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
         />
 
         {/* bottom input and links  */}
-        <BottomSectionWrapper>
+        <View style={styles.bottomSection}>
             <MessageCreateTools room={room} senderID={contactId}/>
-        </BottomSectionWrapper>
+        </View>
     </SafeAreaView>
     )
 }
-export default SingleChat_Screen;
+export default Chat_Screen;
 
 const styles = StyleSheet.create({
     container: {
@@ -90,7 +88,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#272b34',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
-
+    bottomSection: {
+        ...G.fixedOnBottom
+    }
 });

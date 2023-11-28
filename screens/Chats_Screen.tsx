@@ -2,50 +2,46 @@ import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } from 'react-native';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
-import BottomSectionWrapper from '../components/BottomSectionWrapper';
-import ChatsBottomMenu from '../components/ChatsBottomMenu';
+import Menu from '../components/Menu';
 import { DUMMY_CHATS } from '../constants/dummyChatsList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { COLORS, SIZES } from '../constants/SIZES';
+import { COLORS, SIZES, G } from '../constants/SIZES';
 import { UserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
+import { UserType } from '../Types/users_types';
 
-interface IUser {
-  displayName: string 
-  email: string 
-  uid: string 
-  photoURL: string 
-  phoneNumber: string 
-}
-
-const ChatsList_Screen = () => {
+const Chats_Screen = () => {
   const [value, setValue] = useState('')
-  const [contactsList, setContactsList] = useState<IUser[]>([])
+  const [contactsList, setContactsList] = useState<UserType[]>([])
 
   const currentUser = useContext(UserContext)
 
-const fetchAllChattingUsers = async() => {
-  const data = await firestore().collection('USERS_DB').get();
-  let allRegsterUsers = data.docs.map((doc) => ({...doc.data()}))
-  let temp = allRegsterUsers.filter((item) => {
-    let roomId = ''
-    if(currentUser?.uid) {
-      // set CHAT ROOM unique ID
-      if( item.uid > currentUser.uid ) {
-        roomId = item.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
-      }
-      if( currentUser.uid > item.uid ) {
-        roomId = currentUser.uid.slice(0,8).concat('_@_', item.uid.slice(0,8))
-      }
-    } 
-    item.uid !== currentUser?.uid
-  })
-  // setContactsList(temp as IUser[])
-}
+// const fetchAllChattingUsers = async() => {
+//   const chats = await firestore().collection('CHAT_ROOM_DB').get();
+//   let IDS = chats.docs.map((doc) => doc.id)
+//   const data = await firestore().collection('USERS_DB').get();
+//   let allRegsterUsers = data.docs.map((doc) => ({...doc.data()}))
+//   let temp = allRegsterUsers.filter((item) => {
+//     let roomId = ''
+//     if(currentUser?.uid) {
+//       // set CHAT ROOM unique ID
+//       if( item.uid > currentUser.uid ) {
+//         roomId = item.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
+//       }
+//       if( currentUser.uid > item.uid ) {
+//         roomId = currentUser.uid.slice(0,8).concat('_@_', item.uid.slice(0,8))
+//       }
+//     }
+//     let ss = IDS.filter(i => i === roomId)
+//     return ss
+//   })
+//   console.log(temp)
+//   // setContactsList(temp as IUser[])
+// }
 
-useEffect(() => {
-  fetchAllChattingUsers()
-}, [])
+// useEffect(() => {
+//   fetchAllChattingUsers()
+// }, [currentUser])
 
 
   return (
@@ -69,13 +65,11 @@ useEffect(() => {
         renderItem={({item}) => <ChatPreview {...item}/>}
         keyExtractor={item => item.timeStamp}
       />
-      <BottomSectionWrapper>
-        <ChatsBottomMenu/>
-      </BottomSectionWrapper>
+      <Menu/>
     </SafeAreaView>
   )
 }
-export default ChatsList_Screen;
+export default Chats_Screen;
 
 const styles = StyleSheet.create({
   area: {
@@ -112,5 +106,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     marginVertical: 8,
-  }
+  },
 });
