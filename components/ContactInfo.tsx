@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import UserAvatarImage from '../components/UserAvatarImage';
-import { defaultAvatar } from '../constants/dummyMessages';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { UserContext } from '../context/UserContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES, G } from '../constants/SIZES';
+import firestore from '@react-native-firebase/firestore';
 
 interface IUser {
     displayName: string 
@@ -20,21 +20,29 @@ interface IUser {
 const ContactInfo: React.FC<IUser> = (contact) => {
     const currentUser = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
+    const [roomWasCreated, setRoomWasCreated] = useState(false)
+    const [ROOM_ID, setROOM_ID] = useState<string  | undefined>(undefined)
 
-    const startChatting = () => {
-        if(currentUser?.uid) {
-            let roomID = ''
-            if( contact.uid > currentUser.uid ) {
-                roomID = contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
-            }
-            if( currentUser.uid > contact.uid ) {
-                roomID = currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8))
-            }
-            Alert.alert(roomID) 
-
-        } 
-        else { Alert.alert('You must register for chatting') }
-    }
+    // check Chat Room was created or not and create ROOM_ID
+    useEffect(() => {
+        const beforeStartChatting = async() => {
+            if(currentUser?.uid) {
+                // set CHAT ROOM unique ID
+                if( contact.uid > currentUser.uid ) {
+                    setROOM_ID(contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8)))
+                }
+                if( currentUser.uid > contact.uid ) {
+                    setROOM_ID(currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8)))
+                }
+                await firestore().collection('CHAT_ROOM_DB').doc(ROOM_ID).get()
+                .then((room) => {
+                    room.data() ? setRoomWasCreated(true) : setRoomWasCreated(false)
+                })
+            } 
+            else { Alert.alert('You must register for chatting') }
+        }
+        beforeStartChatting();
+    }, [])    
 
     return (
         <View style={styles.contact_item}>
@@ -48,7 +56,7 @@ const ContactInfo: React.FC<IUser> = (contact) => {
                 </Text>
             </View>
             <TouchableOpacity 
-                onPress={startChatting}>
+                onPress={() => console.log(roomWasCreated, ROOM_ID)}>
                 <Icon2 name='message-outline' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
