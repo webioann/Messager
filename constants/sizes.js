@@ -13,7 +13,10 @@ export const COLORS = {
     DARK: '#22272d',
     LIGHT: '#ffffff',
     GREY: 'grey',
-    BLUE: '#1a73e8'
+    BLUE: '#1a73e8',
+    YELLOW: '#F2CB66',
+    BG2: '#1F262E',
+    BORDER: '#30373F'
 };
 import { StyleSheet } from 'react-native';
 

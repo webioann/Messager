@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         height: '100%',
         marginLeft: SIZES.GAP,
         borderBottomWidth: 1,
-        borderBottomColor: '#333333',
+        borderBottomColor: COLORS.BORDER,
     },
     metaData: {
         height: '100%',
