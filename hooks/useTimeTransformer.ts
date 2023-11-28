@@ -10,8 +10,9 @@ const useTimeTransformer = ( time: Date ) => {
         let hours = dateObject.getHours();
         let minutes = dateObject.getMinutes();
         let day = dateObject.getDay();
-        // let time_builder = `${hours + 1} : ${minutes + 1}`
-        setNewTime(`${hours + 1}:${minutes + 1}`)
+        minutes < 10
+            ? setNewTime(`${hours + 1}:0${minutes +1}`) 
+            : setNewTime(`${hours + 1}:${minutes +1}`)
     }
 
     useEffect(() => {
