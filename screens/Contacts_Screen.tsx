@@ -9,7 +9,7 @@ import UserAvatarImage from '../components/UserAvatarImage';
 import ContactInfo from '../components/ContactInfo';
 import { UserContext } from '../context/UserContext';
 
-import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 
 interface IUser {
     displayName: string 
