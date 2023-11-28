@@ -17,35 +17,34 @@ interface IUser {
     phoneNumber: string 
 }
 
-const ContactInfo: React.FC<IUser> = (data) => {
-    const user = useContext(UserContext)
+const ContactInfo: React.FC<IUser> = (contact) => {
+    const currentUser = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
 
     const startChatting = () => {
-        if(user?.uid) {
+        if(currentUser?.uid) {
             let roomID = ''
-            let contactShortUID = data.uid.slice(0,10)
-            let userShortUID = user.uid.slice(0,10)
-            if( contactShortUID > userShortUID ) {
-                roomID = contactShortUID?.concat('_@_', userShortUID)
+            if( contact.uid > currentUser.uid ) {
+                roomID = contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
             }
-            if( userShortUID > contactShortUID ) {
-                roomID = userShortUID?.concat('_@_', contactShortUID)
+            if( currentUser.uid > contact.uid ) {
+                roomID = currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8))
             }
             Alert.alert(roomID) 
+
         } 
         else { Alert.alert('You must register for chatting') }
     }
 
     return (
         <View style={styles.contact_item}>
-            <UserAvatarImage pathToImage={data.photoURL} size={50}/>
+            <UserAvatarImage pathToImage={contact.photoURL} size={50}/>
             <View style={{flex: 1}}>
                 <Text style={{color: COLORS.LIGHT}}>
-                    {data.displayName}
+                    {contact.displayName}
                 </Text>
                 <Text style={{color: COLORS.LIGHT, fontSize: 13}}>
-                    {data.phoneNumber}
+                    {contact.phoneNumber}
                 </Text>
             </View>
             <TouchableOpacity 
@@ -57,7 +56,7 @@ const ContactInfo: React.FC<IUser> = (data) => {
                 <Icon2 name='phone' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
-                onPress={() => {navigation.navigate("EditContactProfile", {contact: data})}}>
+                onPress={() => {navigation.navigate("EditContactProfile", {contact: contact})}}>
                 <Icon name='edit' size={20} color={COLORS.LIGHT}/>
             </TouchableOpacity>
         </View>

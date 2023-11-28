@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, ScrollView, FlatList, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { defaultAvatar } from '../constants/dummyMessages';
@@ -7,6 +7,8 @@ import { COLORS, SIZES, G } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ContactInfo from '../components/ContactInfo';
+import { UserContext } from '../context/UserContext';
+
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 interface IUser {
@@ -19,13 +21,16 @@ interface IUser {
 
 const Contacts_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
+    const currentUser = useContext(UserContext)
+
     const [searchValue, setSearchValue] = useState('')
     const [contactsList, setContactsList] = useState<IUser[]>([])
 
     const fetchAllContacts = async() => {
         const contacts = await firestore().collection('USERS_DB').get();
         let raw = contacts.docs.map((doc) => ({...doc.data()}))
-        setContactsList(raw as IUser[])
+        let temp = raw.filter(item => item.uid !== currentUser?.uid)
+        setContactsList(temp as IUser[])
     }
 
     useEffect(() => {
