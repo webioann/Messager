@@ -23,21 +23,19 @@ const ContactInfo: React.FC<IUser> = (contact) => {
     const [ROOM_ID, setROOM_ID] = useState('')
 
     // create ROOM_ID on start
-    useEffect(() => {
-        const beforeStartChatting = async() => {
-            // if(currentUser?.uid) {
-            //     // set CHAT ROOM unique ID
-            //     if( contact.uid > currentUser.uid ) {
-            //         setROOM_ID(contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8)))
-            //     }
-            //     if( currentUser.uid > contact.uid ) {
-            //         setROOM_ID(currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8)))
-            //     }
-            // } 
-            currentUser?.uid && setROOM_ID(currentUser.uid > contact.uid ? currentUser.uid + contact.uid : contact.uid + currentUser.uid)
+    const createChatRoomID = async() => {
+        if(currentUser?.uid) {
+            if( contact.uid > currentUser.uid ) {
+                setROOM_ID(contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8)))
+            }
+            if( currentUser.uid > contact.uid ) {
+                setROOM_ID(currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8)))
+            }
+        } 
+    }
 
-        }
-        beforeStartChatting();
+    useEffect(() => {
+        createChatRoomID();
     }, [])  
     
     const onStartChatting = async() => {
