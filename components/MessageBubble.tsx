@@ -4,25 +4,26 @@ import useTimeTransformer from '../hooks/useTimeTransformer';
 import { UserContext } from '../context/UserContext';
 import { COLORS, SIZES } from '../constants/SIZES';
 import { IMessage } from '../Types/chats_types';
+import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
 
 type OneMessageProps = {
-    data: IMessage
+    message: messageType
 }
 
-const MessageBubble: React.FC<OneMessageProps> = ({ data }) => {
+const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
     const user = useContext(UserContext)
-    const newTime = useTimeTransformer(data.time_stamp)
+    const newTime = useTimeTransformer(message.createdAt)
 
     return (
-        <View style={[styles.cell, {justifyContent: user ? 'flex-end' : 'flex-start'}]}>
+        <View style={[styles.cell, {justifyContent: user?.uid !== message.senderID ? 'flex-end' : 'flex-start'}]}>
             <View style={[
                 styles.message, 
                 { 
-                    backgroundColor: user ? COLORS.ACCENT : COLORS.DARK,
-                    borderBottomLeftRadius: user ? 8 : 0,
-                    borderBottomRightRadius: user ? 0 : 8,
+                    backgroundColor: user?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
+                    borderBottomLeftRadius: user?.uid !== message.senderID ? 8 : 0,
+                    borderBottomRightRadius: user?.uid !== message.senderID ? 0 : 8,
                 }]}>
-                <Text style={styles.messageText}>{data.text}</Text>
+                <Text style={styles.messageText}>{message.text}</Text>
                 <Text style={styles.timeStamp}>
                     { newTime }
                 </Text>

@@ -20,10 +20,10 @@ export type CurrentUser_Type = {
 };
 
 export interface IUser {
-    displayName: string | null
-    email: string | null
-    uid: string | null
-    photoURL: string | null
-    phoneNumber: string | null
+    displayName: string 
+    email: string 
+    uid: string 
+    photoURL: string 
+    phoneNumber: string 
 }
 

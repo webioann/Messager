@@ -11,31 +11,48 @@ import { COLORS, SIZES, G } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import firestore from '@react-native-firebase/firestore';
 import { IMessage } from '../Types/chats_types';
+import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
 
 type StackProps = NativeStackScreenProps<RootStackParams, 'SingleChat'>
 
 const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const {sender, avatar_url, room} = route.params;
-    const [ messages, setMessages ] = useState<IMessage[]>([] as IMessage[])
+    const {contact, avatar_url, room, contactId} = route.params;
+    const [ messages, setMessages ] = useState<messageType[]>([] as messageType[])
 
-    const fetchMessages = async() => {
-        if(room === 'room_2') {
-            const data = await firestore().collection('room_2').get();
-            let raw = data.docs.map((doc) => ({...doc.data()}))
-            // order in data by time stamp
-            const raw1 = raw.sort((a, b) => {
-                if(a.time_stamp > b.time_stamp) {return 1}
-                if(a.time_stamp < b.time_stamp) {return -1}
-                return 0
-            })
-            setMessages(raw1 as IMessage [])
-        }
-        else return 
+    // // TODO: delete this after correct data fetching
+    // const fetchMessages = async() => {
+    //     if(room === 'room_2') {
+    //         const data = await firestore().collection('room_2').get();
+    //         let raw = data.docs.map((doc) => ({...doc.data()}))
+    //         // order in data by time stamp
+    //         const raw1 = raw.sort((a, b) => {
+    //             if(a.time_stamp > b.time_stamp) {return 1}
+    //             if(a.time_stamp < b.time_stamp) {return -1}
+    //             return 0
+    //         })
+    //         setMessages(raw1 as IMessage [])
+    //     }
+    //     else return 
+    // }
+    const fetchMessagesList = async() => {
+        const response = await firestore().collection('CHAT_ROOM_DB').doc(room).get();
+        let raw = response.data()
+        raw && setMessages(raw.messages)
+        // console.log(raw.messages)
+        // order in data by time stamp
+        // const temp = raw.sort((a, b) => {
+        //     if(a.time_stamp > b.time_stamp) {return 1}
+        //     if(a.time_stamp < b.time_stamp) {return -1}
+        //     return 0
+        // })
+        // setMessages(temp as IMessage [])
     }
+    console.log(messages)
+
 
     useEffect(() => {
-        fetchMessages()
+        fetchMessagesList()
     }, [room])
 
     return (
@@ -48,7 +65,7 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
             <UserAvatarImage pathToImage={avatar_url} size={SIZES.MEDIUM}/>
             <View style={{flex: 1, paddingHorizontal: SIZES.GAP}}>
                 <Text style={{color: COLORS.LIGHT, fontSize: 15, fontWeight: '600'}}>
-                    { sender }
+                    { contact }
                 </Text>
                 <Text style={{color: COLORS.LIGHT, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
             </View>
@@ -59,13 +76,13 @@ const SingleChat_Screen: React.FC<StackProps> = ({ route }) => {
         {/* === list of messages === */}
         <FlatList
             data={messages}
-            renderItem={(message) => <MessageBubble data={message.item}/>}
-            keyExtractor={item => item.time_stamp.toString()}
+            renderItem={(message) => <MessageBubble message={message.item}/>}
+            keyExtractor={item => item.createdAt.toString()}
         />
 
         {/* bottom input and links  */}
         <BottomSectionWrapper>
-            <MessageCreateTools room={room}/>
+            <MessageCreateTools room={room} senderID={contactId}/>
         </BottomSectionWrapper>
     </SafeAreaView>
     )

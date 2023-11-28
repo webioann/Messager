@@ -4,29 +4,33 @@ import { UserContext } from '../context/UserContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
+import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
 
-type RoomProp = { room: string }
+type RoomProp = { 
+    room: string
+    senderID: string
+}
 
-const MessageCreateTools: React.FC<RoomProp> = ({ room }) => {
+const MessageCreateTools: React.FC<RoomProp> = ({ room, senderID }) => {
     const [message, setMessage] = useState('')
     const user = useContext(UserContext)
 
     const addDataInFirestore = async () => {
         if(message.length > 0) {
-            await firestore().collection(room).add({
+            let newMessage: messageType = {
                 text: message,
-                room: room,
-                author: user?.displayName,
-                sender_id: user?.uid,
-                avatar_url: user?.photoURL,
-                time_stamp: Date.now(),
+                senderID: senderID,
+                createdAt: Date.now(),
                 reviewed: false,
-                file: null
+                files: []
+            } 
+            await firestore().collection('CHAT_ROOM_DB').doc(room).update({
+                messages: firestore.FieldValue.arrayUnion(newMessage)
             })
             .then(() => {
                 setMessage('')
                 Keyboard.dismiss()
-                console.log('Message is sended')
+                // console.log('Message is sended')
             })
         } else return
     }

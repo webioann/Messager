@@ -8,7 +8,7 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
-
+import { chatRoomMetadataType, messageType, ChatRoomType } from '../Types/CHAT_ROOM_DB_types';
 interface IUser {
     displayName: string 
     email: string 
@@ -20,10 +20,9 @@ interface IUser {
 const ContactInfo: React.FC<IUser> = (contact) => {
     const currentUser = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
-    const [roomWasCreated, setRoomWasCreated] = useState(false)
-    const [ROOM_ID, setROOM_ID] = useState<string  | undefined>(undefined)
+    const [ROOM_ID, setROOM_ID] = useState('')
 
-    // check Chat Room was created or not and create ROOM_ID
+    // create ROOM_ID on start
     useEffect(() => {
         const beforeStartChatting = async() => {
             if(currentUser?.uid) {
@@ -34,15 +33,44 @@ const ContactInfo: React.FC<IUser> = (contact) => {
                 if( currentUser.uid > contact.uid ) {
                     setROOM_ID(currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8)))
                 }
-                await firestore().collection('CHAT_ROOM_DB').doc(ROOM_ID).get()
-                .then((room) => {
-                    room.data() ? setRoomWasCreated(true) : setRoomWasCreated(false)
-                })
             } 
-            else { Alert.alert('You must register for chatting') }
         }
         beforeStartChatting();
-    }, [])    
+    }, [])  
+    
+    const onStartChatting = async() => {
+        let roomWasCreated = false
+        await firestore().collection('CHAT_ROOM_DB').doc(ROOM_ID).get()
+        .then((response) => {
+            response.data() ? roomWasCreated = true : roomWasCreated = false
+        })
+        if( !roomWasCreated && currentUser) {
+            let rawMetadata: chatRoomMetadataType = {
+                startAt: Date.now(),
+                users: [currentUser?.uid, contact.uid]
+            }
+            let rawMessages: messageType[] = []
+            await firestore().collection('CHAT_ROOM_DB').doc(ROOM_ID).set({ 
+                metadata: rawMetadata, 
+                messages: rawMessages 
+            })
+            .then(() => { console.log('Chat room created!!!')})
+            .then(() => navigation.navigate('SingleChat', {
+                contact: contact.displayName,
+                avatar_url: contact.photoURL,
+                room: ROOM_ID,
+                contactId: contact.uid
+            }))
+        }
+        if( roomWasCreated ) {
+            navigation.navigate('SingleChat', {
+                contact: contact.displayName,
+                avatar_url: contact.photoURL,
+                room: ROOM_ID,
+                contactId: contact.uid
+            })
+        }
+    }
 
     return (
         <View style={styles.contact_item}>
@@ -56,7 +84,7 @@ const ContactInfo: React.FC<IUser> = (contact) => {
                 </Text>
             </View>
             <TouchableOpacity 
-                onPress={() => console.log(roomWasCreated, ROOM_ID)}>
+                onPress={onStartChatting}>
                 <Icon2 name='message-outline' size={24} color={COLORS.LIGHT}/>
             </TouchableOpacity>
             <TouchableOpacity 
