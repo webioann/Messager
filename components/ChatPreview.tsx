@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import UserAvatarImage from './UserAvatarImage';
 import { useNavigation } from '@react-navigation/native';
@@ -7,20 +7,15 @@ import { COLORS, SIZES } from '../constants/SIZES';
 import { UserType } from '../Types/users_types';
 import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
 import { UserContext } from '../context/UserContext';
+import useFetchMessages from '../hooks/useFetchMessages';
+import { messageType } from '../Types/chats_types';
+import useTimeTransformer from '../hooks/useTimeTransformer';
 
-// type DummyChatsList = {
-//     room: string
-//     pathToImage: string
-//     contactName: string
-//     shortMessage: string
-//     timeStamp: string
-//     messageCount: number
-// }
 
-const ChatPreview: React.FC<UserType> = ({...data}) => {
+const ChatPreview: React.FC<UserType> = ({...contact}) => {
     const navigation = useNavigation<UseNavigation_Type>();
-    // const currentUser = useContext(UserContext)
-    const chatRoomID = useChatRoomIDCreator(data.uid)
+    const chatRoomID = useChatRoomIDCreator(contact.uid)
+    const { messages, lastMessage } = useFetchMessages(chatRoomID)
 
     return (
         <TouchableOpacity 
@@ -29,36 +24,38 @@ const ChatPreview: React.FC<UserType> = ({...data}) => {
                 navigation.navigate(
                     "Chat", 
                     {
-                        contact: data.displayName,
-                        contactId: data.uid,
-                        avatar_url: data.photoURL,
+                        contact: contact.displayName,
+                        contactId: contact.uid,
+                        avatar_url: contact.photoURL,
                         room: chatRoomID
                     }
                 )}
             }>
-            <UserAvatarImage pathToImage={data.photoURL} size={SIZES.LARGE}/>
+            <UserAvatarImage pathToImage={contact.photoURL} size={SIZES.LARGE}/>
             {/* user contact-name and short message */}
             <View style={styles.userData}>
                 <Text style={{ color: COLORS.LIGHT, fontSize: 15, fontWeight: '600' }}>
-                    { data.displayName }
+                    { contact.displayName }
                 </Text>
                 <Text style={{ color: COLORS.LIGHT, fontSize: 12 }}>
-                    THIS IS SHORT MESSAGE
+                    { lastMessage?.text }
                 </Text>
             </View>
             {/* end of row time stamp and counter */}
-            {/* <View style={styles.metaData}>
-                <Text style={{ color: data.messageCount <= 0 ? COLORS.LIGHT : COLORS.ACCENT }}>
-                    {data.timeStamp}
-                </Text>
-                {data.messageCount > 0 && (
-                    <View style={styles.counter}>
-                        <Text style={{ color: COLORS.LIGHT, paddingHorizontal: 5 }}>
-                            {data.messageCount}
+            <View style={styles.metaData}>
+                { ( lastMessage && messages.length > 0 ) && (
+                    <>
+                        <Text style={{ color: COLORS.LIGHT}}>
+                            { new Date(lastMessage.createdAt).getHours() + 1 } : { new Date(lastMessage.createdAt).getMinutes() + 1 } 
                         </Text>
-                    </View>
+                        <View style={styles.counter}>
+                            <Text style={{ color: COLORS.LIGHT, paddingHorizontal: 5 }}>
+                                {messages.length}
+                            </Text>
+                        </View>
+                    </>
                 )}
-            </View> */}
+            </View>
         </TouchableOpacity>
     )
 }

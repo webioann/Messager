@@ -4,6 +4,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const useFetchMessages = (room: string) => {
     const [ messages, setMessages ] = useState<messageType[]>([] as messageType[])
+    const [ lastMessage, setLastMessage ] = useState<messageType>({} as messageType)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState<string | null>(null)
 
@@ -13,7 +14,11 @@ const useFetchMessages = (room: string) => {
             await firestore().collection('CHAT_ROOM_DB').doc(room)
             .onSnapshot((response) => {
                 let raw = response.data()
-                raw && setMessages(raw.messages)
+                if(raw) {
+                    setMessages(raw.messages)
+                    let lastIndex = raw.messages.length - 1
+                    setLastMessage(raw.messages[lastIndex])
+                }
             })
             setIsLoading(false)
         }
@@ -27,14 +32,14 @@ const useFetchMessages = (room: string) => {
 
     useEffect(() => {
         fetchMessagesList()
-    }, [])
+    }, [room])
 
     const reFetch = () => {
         setIsLoading(true)
         fetchMessagesList();
     }
 
-    return { messages, isLoading, isError, reFetch }
+    return { messages, isLoading, isError, reFetch, lastMessage }
 }
 
 export default useFetchMessages;

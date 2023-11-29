@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvatarImage from '../components/UserAvatarImage';
-import ContactInfo from '../components/Contact';
+import Contact from '../components/Contact';
 import { UserContext } from '../context/UserContext';
 import { UserType } from '../Types/users_types';
 import firestore from '@react-native-firebase/firestore';
@@ -46,7 +46,7 @@ const Contacts_Screen = () => {
             </View>
             <FlatList 
                 data={contactsList} 
-                renderItem={({item}) => <ContactInfo {...item}/>} 
+                renderItem={({item}) => <Contact {...item}/>} 
                 keyExtractor={item => item.uid}
                 style={{paddingVertical: 20}}>
                 <View style={styles.contact_item}>

@@ -8,12 +8,14 @@ import { COLORS, SIZES, G } from '../constants/SIZES';
 import { UserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
+import { useNavigation } from '@react-navigation/native';
+import { UseNavigation_Type } from '../Types/navigation_types';
 
 const Chats_Screen = () => {
   const [value, setValue] = useState('')
   const [contactsList, setContactsList] = useState<UserType[]>([])
-
   const currentUser = useContext(UserContext)
+  const navigation = useNavigation<UseNavigation_Type>();
 
 const fetchAllChattingUsers = async() => {
   const chatsDocs = await firestore().collection('CHAT_ROOM_DB').get();
@@ -32,8 +34,6 @@ const fetchAllChattingUsers = async() => {
     }
     return chatRoomID
   })
-  // TODO:
-  console.log(temp.map(item => item.displayName))
   setContactsList(temp as UserType[])
 }
 
