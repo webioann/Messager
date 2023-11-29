@@ -3,7 +3,6 @@ import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } 
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import Menu from '../components/Menu';
-import { DUMMY_CHATS } from '../constants/dummyChatsList';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import { UserContext } from '../context/UserContext';
@@ -16,39 +15,38 @@ const Chats_Screen = () => {
 
   const currentUser = useContext(UserContext)
 
-// const fetchAllChattingUsers = async() => {
-//   const chats = await firestore().collection('CHAT_ROOM_DB').get();
-//   let IDS = chats.docs.map((doc) => doc.id)
-//   const data = await firestore().collection('USERS_DB').get();
-//   let allRegsterUsers = data.docs.map((doc) => ({...doc.data()}))
-//   let temp = allRegsterUsers.filter((item) => {
-//     let roomId = ''
-//     if(currentUser?.uid) {
-//       // set CHAT ROOM unique ID
-//       if( item.uid > currentUser.uid ) {
-//         roomId = item.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
-//       }
-//       if( currentUser.uid > item.uid ) {
-//         roomId = currentUser.uid.slice(0,8).concat('_@_', item.uid.slice(0,8))
-//       }
-//     }
-//     let ss = IDS.filter(i => i === roomId)
-//     return ss
-//   })
-//   console.log(temp)
-//   // setContactsList(temp as IUser[])
-// }
+const fetchAllChattingUsers = async() => {
+  const chatsDocs = await firestore().collection('CHAT_ROOM_DB').get();
+  let chats = chatsDocs.docs.map((doc) => doc.id)
+  const contactsDocs = await firestore().collection('USERS_DB').get();
+  let contacts = contactsDocs.docs.map((doc) => ({...doc.data()}))
+  let temp = contacts.filter((contact) => { 
+    let chatRoomID: string | null = null
+    if(currentUser?.uid) {
+      if( contact.uid > currentUser.uid ) {
+        chatRoomID = contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
+      }
+      if( currentUser.uid > contact.uid ) {
+        chatRoomID = currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8))
+      }
+    }
+    return chatRoomID
+  })
+  // TODO:
+  console.log(temp.map(item => item.displayName))
+  setContactsList(temp as UserType[])
+}
 
-// useEffect(() => {
-//   fetchAllChattingUsers()
-// }, [currentUser])
+useEffect(() => {
+  fetchAllChattingUsers()
+}, [])
 
 
   return (
     <SafeAreaView style={styles.area}>
       <StatusBar backgroundColor={COLORS.BG}/>
       <View style={styles.headerContainer}>
-        <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
+        <UserAvatarImage pathToImage={currentUser?.photoURL} size={SIZES.MEDIUM}/>
         <Text style={styles.headerTitle}>Chats</Text>
         <View style={styles.headerAddButton}>
           <MaterialIcons name='add' size={24} color={COLORS.LIGHT}/>
@@ -61,9 +59,9 @@ const Chats_Screen = () => {
         placeholderTextColor={COLORS.LIGHT}
         value={value}/>
       <FlatList 
-        data={DUMMY_CHATS}
+        data={contactsList}
         renderItem={({item}) => <ChatPreview {...item}/>}
-        keyExtractor={item => item.timeStamp}
+        keyExtractor={item => item.uid}
       />
       <Menu/>
     </SafeAreaView>

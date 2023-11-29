@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import UserAvatarImage from './UserAvatarImage';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { COLORS, SIZES } from '../constants/SIZES';
+import { UserType } from '../Types/users_types';
+import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
+import { UserContext } from '../context/UserContext';
 
-type DummyChatsList = {
-    room: string
-    pathToImage: string
-    contactName: string
-    shortMessage: string
-    timeStamp: string
-    messageCount: number
-}
+// type DummyChatsList = {
+//     room: string
+//     pathToImage: string
+//     contactName: string
+//     shortMessage: string
+//     timeStamp: string
+//     messageCount: number
+// }
 
-const ChatPreview: React.FC<DummyChatsList> = ({...data}) => {
+const ChatPreview: React.FC<UserType> = ({...data}) => {
     const navigation = useNavigation<UseNavigation_Type>();
+    // const currentUser = useContext(UserContext)
+    const chatRoomID = useChatRoomIDCreator(data.uid)
 
     return (
         <TouchableOpacity 
@@ -24,25 +29,25 @@ const ChatPreview: React.FC<DummyChatsList> = ({...data}) => {
                 navigation.navigate(
                     "Chat", 
                     {
-                        contact: data.contactName,
-                        contactId: data.contactName,
-                        avatar_url: data.pathToImage,
-                        room: data.room
+                        contact: data.displayName,
+                        contactId: data.uid,
+                        avatar_url: data.photoURL,
+                        room: chatRoomID
                     }
                 )}
             }>
-            <UserAvatarImage pathToImage={data.pathToImage} size={SIZES.LARGE}/>
+            <UserAvatarImage pathToImage={data.photoURL} size={SIZES.LARGE}/>
             {/* user contact-name and short message */}
             <View style={styles.userData}>
                 <Text style={{ color: COLORS.LIGHT, fontSize: 15, fontWeight: '600' }}>
-                    { data.contactName }
+                    { data.displayName }
                 </Text>
                 <Text style={{ color: COLORS.LIGHT, fontSize: 12 }}>
-                    { data.shortMessage }
+                    THIS IS SHORT MESSAGE
                 </Text>
             </View>
             {/* end of row time stamp and counter */}
-            <View style={styles.metaData}>
+            {/* <View style={styles.metaData}>
                 <Text style={{ color: data.messageCount <= 0 ? COLORS.LIGHT : COLORS.ACCENT }}>
                     {data.timeStamp}
                 </Text>
@@ -53,7 +58,7 @@ const ChatPreview: React.FC<DummyChatsList> = ({...data}) => {
                         </Text>
                     </View>
                 )}
-            </View>
+            </View> */}
         </TouchableOpacity>
     )
 }
