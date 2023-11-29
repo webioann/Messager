@@ -7,6 +7,7 @@ const useFetchMessages = (room: string) => {
     const [ lastMessage, setLastMessage ] = useState<messageType>({} as messageType)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState<string | null>(null)
+    const [lastTimeStamp, setLastTimeStamp] = useState<string | null>(null)
 
     const fetchMessagesList = async() => {
         setIsLoading(true)
@@ -18,6 +19,15 @@ const useFetchMessages = (room: string) => {
                     setMessages(raw.messages)
                     let lastIndex = raw.messages.length - 1
                     setLastMessage(raw.messages[lastIndex])
+                    if(raw.messages[lastIndex]) {
+                        let time = raw.messages[lastIndex].createdAt
+                        const dateObject = new Date(time)
+                        let hours = dateObject.getHours();
+                        let minutes = dateObject.getMinutes();
+                        minutes < 10
+                            ? setLastTimeStamp(`${hours + 1}:0${minutes +1}`) 
+                            : setLastTimeStamp(`${hours + 1}:${minutes +1}`)
+                    }
                 }
             })
             setIsLoading(false)
@@ -39,7 +49,7 @@ const useFetchMessages = (room: string) => {
         fetchMessagesList();
     }
 
-    return { messages, isLoading, isError, reFetch, lastMessage }
+    return { messages, isLoading, isError, reFetch, lastMessage, lastTimeStamp }
 }
 
 export default useFetchMessages;

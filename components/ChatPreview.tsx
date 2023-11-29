@@ -15,7 +15,7 @@ import useTimeTransformer from '../hooks/useTimeTransformer';
 const ChatPreview: React.FC<UserType> = ({...contact}) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
-    const { messages, lastMessage } = useFetchMessages(chatRoomID)
+    const { messages, lastMessage, lastTimeStamp } = useFetchMessages(chatRoomID)
 
     return (
         <TouchableOpacity 
@@ -43,10 +43,10 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
             </View>
             {/* end of row time stamp and counter */}
             <View style={styles.metaData}>
-                { ( lastMessage && messages.length > 0 ) && (
+                {  messages.length > 0  && (
                     <>
                         <Text style={{ color: COLORS.LIGHT}}>
-                            { new Date(lastMessage.createdAt).getHours() + 1 } : { new Date(lastMessage.createdAt).getMinutes() + 1 } 
+                            { lastTimeStamp }
                         </Text>
                         <View style={styles.counter}>
                             <Text style={{ color: COLORS.LIGHT, paddingHorizontal: 5 }}>
