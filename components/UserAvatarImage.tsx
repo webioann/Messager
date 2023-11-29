@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { COLORS } from '../constants/SIZES';
-import DefaultUserIcon from './DefaultUserIcon';
 
 type avatarProps = {
     pathToImage?: string | undefined;
@@ -19,8 +18,18 @@ const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
                         alt='user avatar'
                         resizeMode='contain'
                     />
-                : <DefaultUserIcon size={size} color={COLORS.GREY}/>
-            }
+                : <Image 
+                    source={require('../assets/defaultUserIcon.png')}
+                    style={{ 
+                        width: size, 
+                        height: size, 
+                        borderRadius: size / 2,
+                        tintColor: COLORS.GREY,
+                    }}
+                    alt='default user icon'
+                    resizeMode='contain'
+                />
+                }
         </View>
     )
 }
