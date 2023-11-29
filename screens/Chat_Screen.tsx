@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Pressable, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList } from 'react-native';
+import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
 import MessageBubble from '../components/MessageBubble';
@@ -8,27 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import firestore from '@react-native-firebase/firestore';
-import { messageType, ChatRoomType } from '../Types/chats_types';
+import useFetchMessages from '../hooks/useFetchMessages';
 
 type StackProps = NativeStackScreenProps<RootStackParams, 'Chat'>
 
 const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {contact, avatar_url, room, contactId} = route.params;
-    const [ messages, setMessages ] = useState<messageType[]>([] as messageType[])
-
-    const fetchMessagesList = async() => {
-        await firestore().collection('CHAT_ROOM_DB').doc(room)
-        .onSnapshot((response) => {
-            let raw = response.data()
-            raw && setMessages(raw.messages)
-        });
-    }
-
-    useEffect(() => {
-        fetchMessagesList()
-    }, [room])
+    const { messages, isLoading, isError } = useFetchMessages(room)
 
     return (
     <SafeAreaView style={styles.container}>
