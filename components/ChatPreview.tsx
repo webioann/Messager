@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import UserAvatarImage from './UserAvatarImage';
 import { useNavigation } from '@react-navigation/native';
@@ -6,11 +6,7 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { COLORS, SIZES } from '../constants/SIZES';
 import { UserType } from '../Types/users_types';
 import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
-import { UserContext } from '../context/UserContext';
 import useFetchMessages from '../hooks/useFetchMessages';
-import { messageType } from '../Types/chats_types';
-import useTimeTransformer from '../hooks/useTimeTransformer';
-
 
 const ChatPreview: React.FC<UserType> = ({...contact}) => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -37,9 +33,10 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
                 <Text style={{ color: COLORS.LIGHT, fontSize: 15, fontWeight: '600' }}>
                     { contact.displayName }
                 </Text>
-                <Text style={{ color: COLORS.LIGHT, fontSize: 12 }}>
-                    { lastMessage?.text }
-                </Text>
+                { lastMessage 
+                    ? <Text style={{ color: COLORS.LIGHT, fontSize: 16 }}>{ lastMessage?.text }</Text>
+                    : <Text style={{ color: COLORS.ACCENT, fontSize: 16 }}>Chat created but not messages yet!</Text>
+                }
             </View>
             {/* end of row time stamp and counter */}
             <View style={styles.metaData}>
