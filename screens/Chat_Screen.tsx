@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
@@ -36,11 +36,14 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
             </View>
         </View>
         {/* === list of messages === */}
-        <FlatList
-            data={messages}
-            renderItem={(message) => <MessageBubble message={message.item}/>}
-            keyExtractor={item => item.createdAt.toString()}
-        />
+        { isLoading 
+            ? <ActivityIndicator/> 
+            : <FlatList
+                data={messages}
+                renderItem={(message) => <MessageBubble message={message.item}/>}
+                keyExtractor={item => item.createdAt.toString()}
+            />
+        }
 
         {/* bottom input and links  */}
         <View style={styles.bottomSection}>
