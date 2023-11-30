@@ -16,7 +16,7 @@ export const COLORS = {
     BLUE: '#1a73e8',
     YELLOW: '#F2CB66',
     BG2: '#1F262E',
-    BORDER: '#30373F'
+    BORDER: '#30373F',
 };
 import { StyleSheet } from 'react-native';
 

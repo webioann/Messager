@@ -39,7 +39,7 @@ const fetchAllChattingUsers = async() => {
 
 useEffect(() => {
   fetchAllChattingUsers()
-}, [])
+}, [currentUser])
 
 
   return (
