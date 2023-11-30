@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } from 'react-native'
 import { UserContext } from '../context/UserContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ImageUploader from './ImageUploader';
+import UploadImageInStorage from './UploadImageInStorage';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
 import {  messageType } from '../Types/chats_types';
@@ -13,34 +15,52 @@ type RoomProp = {
 
 const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
     const [message, setMessage] = useState('')
+    const [image, setImage] = useState<string | undefined>(undefined)
     const user = useContext(UserContext)
 
     const addDataInFirestore = async () => {
-        if(message.length > 0) {
-            let newMessage: messageType = {
-                text: message,
-                senderID: senderID,
-                createdAt: Date.now(),
-                reviewed: false,
-                files: []
-            } 
-            await firestore().collection('CHAT_ROOM_DB').doc(room).update({
-                messages: firestore.FieldValue.arrayUnion(newMessage)
-            })
-            .then(() => {
-                setMessage('')
-                Keyboard.dismiss()
-                // console.log('Message is sended')
-            })
-        } else return
+        try {
+            if(message.length > 0 ) {
+                let newMessage: messageType = {
+                    text: message,
+                    senderID: senderID,
+                    createdAt: Date.now(),
+                    reviewed: false,
+                    files: []
+                } 
+                await firestore().collection('CHAT_ROOM_DB').doc(room).update({
+                    messages: firestore.FieldValue.arrayUnion(newMessage)
+                })
+            }
+            if(message.length == 0 && image) {
+                let newMessage: messageType = {
+                    text: '',
+                    senderID: senderID,
+                    createdAt: Date.now(),
+                    reviewed: false,
+                    files: [image]
+                } 
+                await firestore().collection('CHAT_ROOM_DB').doc(room).update({
+                    messages: firestore.FieldValue.arrayUnion(newMessage)
+                })
+            }
+            else return
+        }
+        catch(error) {  }
+        finally {
+            setMessage('')
+            setImage(undefined)
+            Keyboard.dismiss()
+        }
     }
 
     return (
         <View style={styles.wrapper}>
             <View style={styles.tools}>
-                <TouchableOpacity 
-                    onPress={() => console.log('click on emojy icon')}>
-                    <Icon name='emoticon-outline' color={COLORS.ACCENT} size={24}/>    
+            <TouchableOpacity 
+                    style={{transform: [{rotate: '315deg'}]}}
+                    onPress={() => console.log('click on paperclip icon')}>
+                    <Icon name='paperclip' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
                 <TextInput 
                     value={message}
@@ -57,15 +77,11 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity 
-                    style={{transform: [{rotate: '315deg'}]}}
-                    onPress={() => console.log('click on paperclip icon')}>
-                    <Icon name='paperclip' color={COLORS.ACCENT} size={24}/>    
-                </TouchableOpacity>
-                <TouchableOpacity 
                     onPress={() => console.log('click on camera icon')}>
                     <Icon name='camera-outline' color={COLORS.ACCENT} size={24}/>    
                 </TouchableOpacity>
-
+                <UploadImageInStorage getImageURL={setImage} uniqueName='NAME'  color={COLORS.ACCENT} size={24}/>
+                {/* <ImageUploader setFilePath={setImage} color={COLORS.ACCENT} size={24}/> */}
             </View>
             {/* === microphone === */}
         </View>

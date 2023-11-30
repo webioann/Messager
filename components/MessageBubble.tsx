@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useContext } from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
 import { UserContext } from '../context/UserContext';
@@ -12,21 +12,34 @@ type OneMessageProps = {
 const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
     const user = useContext(UserContext)
     const newTime = useTimeTransformer(message.createdAt)
+    // TODO:
+    // console.log(`IMAGE --> ${message.files.length}`)
+    const variants = {
+        backgroundColor: user?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
+        borderBottomLeftRadius: user?.uid !== message.senderID ? 8 : 0,
+        borderBottomRightRadius: user?.uid !== message.senderID ? 0 : 8,
+    }
 
     return (
         <View style={[styles.cell, {justifyContent: user?.uid !== message.senderID ? 'flex-end' : 'flex-start'}]}>
-            <View style={[
-                styles.message, 
-                { 
-                    backgroundColor: user?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
-                    borderBottomLeftRadius: user?.uid !== message.senderID ? 8 : 0,
-                    borderBottomRightRadius: user?.uid !== message.senderID ? 0 : 8,
-                }]}>
-                <Text style={styles.messageText}>{message.text}</Text>
-                <Text style={styles.timeStamp}>
-                    { newTime }
-                </Text>
-            </View>
+            { message.files.length < 1 
+                ? (
+                    <View style={[styles.message, variants]}>
+                        <Text style={styles.messageText}>{message.text}</Text>
+                        <Text style={styles.timeStamp}>
+                            { newTime }
+                        </Text>
+                    </View>
+                    )
+                : (
+                    <View style={[styles.imageContainer, variants]}>
+                        <Image style={styles.image} resizeMode='cover' source={{uri: message.files[0]}}/>
+                        <Text style={[styles.timeStamp, styles.outsideTimeStamp]}>
+                            { newTime }
+                        </Text>
+                    </View>
+                    )    
+            }
         </View>
     )
 }
@@ -53,8 +66,24 @@ const styles = StyleSheet.create({
         color: COLORS.LIGHT,
         lineHeight: 19
     },
+    imageContainer: {
+        width: "80%",
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        position: 'relative',
+        overflow: 'hidden'
+    },
+    image: {
+        width: '100%',
+        height: 300
+    },
     timeStamp: {
         color: COLORS.LIGHT,
         minWidth: 40
     },
+    outsideTimeStamp: {
+        position: 'absolute',
+        bottom: 8,
+        right: 8,
+    }
 })

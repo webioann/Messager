@@ -6,9 +6,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type ImageUploaderProps = {
     setFilePath: React.Dispatch<SetStateAction<string | undefined>>
+    color: string
+    size: number
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({setFilePath}) => {
+const ImageUploader: React.FC<ImageUploaderProps> = ({setFilePath, color, size}) => {
 
     const openGalleryAndChooseImage = () => {
         ImagePicker.openPicker({
@@ -22,9 +24,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({setFilePath}) => {
     return (
         <View style={styles.imagePicker}>
             <TouchableOpacity onPress={openGalleryAndChooseImage}>
-                <Icon name='photo' color={COLORS.BLUE} size={34}/>
+                <Icon name='photo' color={color} size={size}/>
             </TouchableOpacity>
-            <Text style={{color: COLORS.LIGHT}}>Choose user image</Text>
         </View>
     )
 }

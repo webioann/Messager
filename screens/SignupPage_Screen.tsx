@@ -27,6 +27,8 @@ const SignupPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
+    // TODO: you must complete this
+    // const [photoURL, setPhotoURL] = useState<string | undefined>(undefined)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -41,9 +43,12 @@ const SignupPage_Screen = () => {
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
         // create unique image name for save on Storage
         let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`
+
+
         // put image in Storage and download image URL
         filePath && await storage().ref(uniqueAvatarName).putFile(filePath)
         let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
+
         await newUser.user.updateProfile({ // <--- update user profile with adding name and photo
             displayName: name,
             photoURL: imageURL
@@ -90,7 +95,10 @@ const SignupPage_Screen = () => {
                 />
 
                 {/* image picker for uploading images on Firebase Storage */}
-                <ImageUploader setFilePath={setFilePath}/>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 16, paddingBottom: 16}}>
+                    <ImageUploader setFilePath={setFilePath} color={COLORS.BLUE} size={34}/>
+                    <Text style={{color: COLORS.LIGHT}}>Choose user image</Text>
+                </View>
                 
                 {/* auth buttons box */}
                 <TouchableOpacity 
