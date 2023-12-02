@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Button_Signout from '../components/Button_Signout';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
-const Wellcome_Screen = () => {
+const Welcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
 
     return (
@@ -40,7 +40,7 @@ const Wellcome_Screen = () => {
     )
     
 }
-export default Wellcome_Screen;
+export default Welcome_Screen;
 
 const styles = StyleSheet.create({
     page_title: {

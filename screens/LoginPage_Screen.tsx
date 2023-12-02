@@ -57,7 +57,7 @@ const LoginPage_Screen = () => {
                 <StatusBar backgroundColor={COLORS.BG}/>
                 <View style={{flex: 1}}>
                     <View style={G.row}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
                             <Icon name='chevron-left' color={'#ffffff'} size={44}/>
                         </TouchableOpacity>
                         <Button_Signout/>

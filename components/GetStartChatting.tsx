@@ -47,6 +47,8 @@ const GetStartChatting: React.FC<UserType> = (contact) => {
                 contactId: contact.uid
             })
         }
+        // FIXME:
+        console.log('STERT_____O')
     }
 
     return (

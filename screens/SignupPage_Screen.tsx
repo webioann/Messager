@@ -79,7 +79,7 @@ const SignupPage_Screen = () => {
                 {/* go back button */}
                 <View style={{flex: 1}}>
                     <View style={G.row}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Wellcome")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
                             <Icon name='chevron-left' color={'#ffffff'} size={44}/>
                         </TouchableOpacity>
                         <Button_Signout/>

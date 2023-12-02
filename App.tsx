@@ -2,7 +2,7 @@ import React from 'react';
 import Chats_Screen from './screens/Chats_Screen';
 import Chat_Screen from './screens/Chat_Screen';
 import Settings_Screen from './screens/Settings_Screen';
-import Wellcome_Screen from './screens/Wellcome_Screen';
+import Welcome_Screen from './screens/Welcome_Screen';
 import LoginPage_Screen from './screens/LoginPage_Screen';
 import SignupPage_Screen from './screens/SignupPage_Screen';
 import Contacts_Screen from './screens/Contacts_Screen';
@@ -27,10 +27,10 @@ const App: React.FC = () => {
   return (
     <USER_CONTEXT_PROVIDER>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Wellcome'>
+        <Stack.Navigator initialRouteName='Welcome'>
           <Stack.Screen 
-            name="Wellcome" 
-            component={Wellcome_Screen}
+            name="Welcome" 
+            component={Welcome_Screen}
             options={ screenOptions } 
           />
           <Stack.Screen 
