@@ -46,7 +46,7 @@ useEffect(() => {
     <SafeAreaView style={styles.area}>
       <StatusBar backgroundColor={COLORS.BG}/>
       <View style={styles.headerContainer}>
-        <UserAvatarImage pathToImage={currentUser?.photoURL} size={SIZES.MEDIUM}/>
+        <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
         <Text style={styles.headerTitle}>Chats</Text>
         <View style={styles.headerAddButton}>
           <MaterialIcons name='add' size={24} color={COLORS.LIGHT}/>

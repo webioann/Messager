@@ -12,8 +12,7 @@ type OneMessageProps = {
 const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
     const user = useContext(UserContext)
     const newTime = useTimeTransformer(message.createdAt)
-    // TODO:
-    // console.log(`IMAGE --> ${message.files.length}`)
+    
     const variants = {
         backgroundColor: user?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
         borderBottomLeftRadius: user?.uid !== message.senderID ? 8 : 0,

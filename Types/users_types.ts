@@ -27,3 +27,10 @@ export type UserType = {
     phoneNumber: string 
 }
 
+export type currentUserType = {
+    displayName: string | null
+    email: string | null 
+    uid: string 
+    photoURL: string | null
+    phoneNumber: string | null
+}

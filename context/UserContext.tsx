@@ -1,14 +1,15 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 import auth from '@react-native-firebase/auth'
-import { IUser } from "../Types/users_types";
+import { UserType, currentUserType } from "../Types/users_types";
+
 type childrenType = {
     children: ReactNode[] | ReactNode 
 }
 
-export const UserContext = createContext<IUser | null>(null);
+export const UserContext = createContext<currentUserType | null>(null);
 
 export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState<IUser | null>(null);
+    const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
 
     const onAuthStateChanged = () => {
         const user = auth().currentUser
@@ -18,7 +19,7 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 email: user.email,
                 uid: user.uid,
                 photoURL: user.photoURL,
-                phoneNumber: null
+                phoneNumber: user.phoneNumber
             })
         }
         else { setCurrentUser(null) }
@@ -27,7 +28,8 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     useEffect(() => {
         auth().onAuthStateChanged(onAuthStateChanged)
     }, [auth])
-
+    // TODO:
+    console.log(currentUser)
     return (
         <UserContext.Provider value={currentUser}>
             {children}
