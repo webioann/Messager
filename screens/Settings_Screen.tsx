@@ -15,7 +15,7 @@ const Settings_Screen = () => {
                 <TouchableOpacity
                     style={[styles.button, styles.elevation]}
                     onPress={() => navigation.navigate("Chats")}>
-                    <Text style={{backgroundColor: 'white'}}>Go to the Chats</Text>
+                    <Text style={{backgroundColor: 'white', color: '#bbb9c8'}}>Go to the Chats</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -32,9 +32,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        color: COLORS.ACCENT,
+        // color: COLORS.ACCENT,
+        color: '#3f3764',
         fontSize: 50,
         marginBottom: 50,
+        fontWeight: '600',
+        letterSpacing: 5
     },
     button: {
         padding: 10,

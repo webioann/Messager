@@ -20,7 +20,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     return (
     <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={COLORS.BG}/>
-        <View style={G.row}>
+        <View style={[G.row, {paddingBottom: 16}]}>
             <TouchableOpacity style={styles.goBackArrow} onPress={() => navigation.navigate("Chats")}>
                 <Icon2 name='arrow-left' size={22} color={COLORS.ACCENT}/>
             </TouchableOpacity>
@@ -57,7 +57,7 @@ export default Chat_Screen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.BG,
+        backgroundColor: '#141627',
         paddingHorizontal: SIZES.GAP,
         paddingTop:10,
         paddingBottom: 77

@@ -18,6 +18,11 @@ export const COLORS = {
     BG2: '#1F262E',
     BORDER: '#30373F',
 };
+export const newCOLORS = {
+    GREY: '#bbb9c8',
+    DARK: '#3f3764',
+    BG: '#141627'
+}
 import { StyleSheet } from 'react-native';
 
 export const G = StyleSheet.create({
