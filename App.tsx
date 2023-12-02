@@ -27,48 +27,47 @@ const App: React.FC = () => {
   return (
     <USER_CONTEXT_PROVIDER>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Chats'>
-            <Stack.Screen 
-              name="Chats" 
-              component={Chats_Screen}
-              options={ screenOptions}
-            />
-            <Stack.Screen 
-              name="Chat" 
-              component={Chat_Screen} 
-              options={ screenOptions }
-            />
-            <Stack.Screen 
-              name="Settings" 
-              component={Settings_Screen}
-              options={ screenOptions } 
-            />
-            <Stack.Screen 
-              name="Wellcome" 
-              component={Wellcome_Screen}
-              options={ screenOptions } 
-            />
-            <Stack.Screen 
-              name="LoginPage" 
-              component={LoginPage_Screen}
-              options={ screenOptions } 
-            />
-            <Stack.Screen 
-              name="SignupPage" 
-              component={SignupPage_Screen}
-              options={ screenOptions } 
-            />
-            <Stack.Screen 
-              name="Contacts" 
-              component={Contacts_Screen}
-              options={ screenOptions } 
-            />
-            <Stack.Screen 
-              name="EditContact" 
-              component={EditContact_Screen}
-              options={ screenOptions } 
-            />
-
+        <Stack.Navigator initialRouteName='Wellcome'>
+          <Stack.Screen 
+            name="Wellcome" 
+            component={Wellcome_Screen}
+            options={ screenOptions } 
+          />
+          <Stack.Screen 
+            name="Chats" 
+            component={Chats_Screen}
+            options={ screenOptions}
+          />
+          <Stack.Screen 
+            name="Chat" 
+            component={Chat_Screen} 
+            options={ screenOptions }
+          />
+          <Stack.Screen 
+            name="Settings" 
+            component={Settings_Screen}
+            options={ screenOptions } 
+          />
+          <Stack.Screen 
+            name="LoginPage" 
+            component={LoginPage_Screen}
+            options={ screenOptions } 
+          />
+          <Stack.Screen 
+            name="SignupPage" 
+            component={SignupPage_Screen}
+            options={ screenOptions } 
+          />
+          <Stack.Screen 
+            name="Contacts" 
+            component={Contacts_Screen}
+            options={ screenOptions } 
+          />
+          <Stack.Screen 
+            name="EditContact" 
+            component={EditContact_Screen}
+            options={ screenOptions } 
+          />
         </Stack.Navigator>  
       </NavigationContainer>
     </USER_CONTEXT_PROVIDER>
