@@ -14,7 +14,7 @@ const Menu = () => {
             <View style={styles.menu}>
                 <TouchableOpacity 
                     style={styles.link} 
-                    onPress={() => navigation.navigate("Wellcome")}>
+                    onPress={() => console.log('GO on ---->')}>
                     <Icon2 name='message' size={24} color={COLORS.ACCENT}/>
                 </TouchableOpacity>
                 <View style={styles.link}>

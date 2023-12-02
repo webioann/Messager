@@ -16,12 +16,6 @@ const Welcome_Screen = () => {
             style={G.auth_container} >
             <StatusBar backgroundColor={COLORS.BG}/>
             <View style={{flex: 1}}>
-                <View style={G.row}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Chats")}>
-                        <Icon name='chevron-left' color={'#ffffff'} size={44}/>
-                    </TouchableOpacity>
-                    <Button_Signout/>
-                </View>
             </View>
             <Text style={styles.page_title}>Wellcome</Text>
 
