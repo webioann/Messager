@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList, ActivityIndicator, ScrollView } from 'react-native';
 import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
@@ -36,15 +36,15 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
             </View>
         </View>
         {/* === list of messages === */}
-        { isLoading 
-            ? <ActivityIndicator/> 
-            : <FlatList
-                data={messages}
-                renderItem={(message) => <MessageBubble message={message.item}/>}
-                keyExtractor={item => item.createdAt.toString()}
-            />
-        }
-
+            { isLoading 
+                ? <ActivityIndicator/> 
+                : <FlatList
+                    style={{paddingBottom: 70}}
+                    data={messages}
+                    renderItem={(message) => <MessageBubble message={message.item}/>}
+                    keyExtractor={item => item.createdAt.toString()}
+                />
+            }
         {/* bottom input and links  */}
         <View style={styles.bottomSection}>
             <MessageCreateTools room={room} senderID={contactId}/>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.BG,
         paddingHorizontal: SIZES.GAP,
-        paddingTop:10
+        paddingTop:10,
+        paddingBottom: 77
     },
     // header field ===
     goBackArrow: {

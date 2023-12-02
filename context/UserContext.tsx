@@ -28,8 +28,7 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     useEffect(() => {
         auth().onAuthStateChanged(onAuthStateChanged)
     }, [auth])
-    // TODO:
-    console.log(currentUser)
+
     return (
         <UserContext.Provider value={currentUser}>
             {children}
