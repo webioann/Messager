@@ -23,6 +23,14 @@ export const newCOLORS = {
     DARK: '#3f3764',
     BG: '#141627'
 }
+
+const ColorScheme = {
+    BG_MAIN: 'white',
+    BG_TINT: 'grey',
+    ACCENT: '#ef4c4c',
+    TEXT_MAIN: '#3f3764',
+    TEXT_TINT: '#bbb9c8'
+}
 import { StyleSheet } from 'react-native';
 
 export const G = StyleSheet.create({

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
+import ScreenWrapper from './ScreenWrapper';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants/SIZES';
@@ -8,17 +9,17 @@ const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     
     return (
-        <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={COLORS.BG}/>
-            <View>
+        <ScreenWrapper>
+            <View style={styles.container}>
                 <Text style={styles.text}>Settings</Text>
                 <TouchableOpacity
                     style={[styles.button, styles.elevation]}
                     onPress={() => navigation.navigate("Chats")}>
                     <Text style={{backgroundColor: 'white', color: '#bbb9c8'}}>Go to the Chats</Text>
                 </TouchableOpacity>
+                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam ducimus necessitatibus sint saepe dolorum minus ab suscipit. Sed velit aspernatur aperiam porro enim quasi voluptatibus cum, suscipit provident vero quibusdam debitis rem illo. Dolorum deleniti quisquam aperiam veniam quidem quasi itaque nemo ratione atque eligendi vitae quam rem temporibus, quis esse. Ratione, perferendis.</Text>
             </View>
-        </SafeAreaView>
+        </ScreenWrapper>
     )
     
 }
@@ -26,10 +27,9 @@ export default Settings_Screen;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: 'white',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white'
     },
     text: {
         // color: COLORS.ACCENT,
