@@ -27,8 +27,6 @@ const SignupPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
-    // TODO: you must complete this
-    // const [photoURL, setPhotoURL] = useState<string | undefined>(undefined)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -65,7 +63,6 @@ const SignupPage_Screen = () => {
         .then(() => navigation.navigate("Chats"))
         .catch(error => {
             console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
-            Alert.alert('ERROR')
         })
     }
 

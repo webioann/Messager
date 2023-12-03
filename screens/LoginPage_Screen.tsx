@@ -16,13 +16,13 @@ import UserLoginForms from '../components/UserLoginForms';
 import Button_Signout from '../components/Button_Signout';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
-import { UserContext } from '../context/UserContext';
+// import { UserContext } from '../context/UserContext';
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const currentUser = useContext(UserContext)
+    // const currentUser = useContext(UserContext)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -31,20 +31,13 @@ const LoginPage_Screen = () => {
     }
 
     const loginCurrentUser = async() => {
-        if(email.length > 4 || password.length > 4){
-            if(currentUser) {
-                Alert.alert('You must Log Out before new Login')
-            }
-            if(currentUser == null) {
-                await auth().signInWithEmailAndPassword(email, password)
-                .then(() => Alert.alert('You are LOGGED IN '))
-                .then(() => getCleanUpScreen())
-                .then(() => navigation.navigate("Chats"))
-                .catch(error => {
-                    console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
-                    Alert.alert('ERROR')
-                })
-            }
+        if(email.length > 4 && password.length > 4){
+            await auth().signInWithEmailAndPassword(email, password)
+            .then(() => getCleanUpScreen())
+            .then(() => navigation.navigate("Chats"))
+            .catch(error => {
+                console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
+            })
         } else return null
     }
 

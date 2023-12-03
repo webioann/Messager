@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Alert, Button, ImageBackground, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -8,15 +9,18 @@ import { COLORS, SIZES, G } from '../constants/SIZES';
 
 const Welcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-
+    const user = useContext(UserContext)
     return (
         <ImageBackground 
             source={require('../assets/BG-2.jpg')} 
             resizeMode='cover'
             style={G.auth_container} >
             <StatusBar backgroundColor={COLORS.BG}/>
+            {/* TODO:  red circle for user activity highlighting*/}
             <View style={{flex: 1}}>
+                <View style={[styles.signal, {backgroundColor:  user ? 'red' : 'blue'}]}></View>
             </View>
+            
             <Text style={styles.page_title}>Wellcome</Text>
 
             <Text style={styles.alert}>You can now focus your console experience by customizing your navigation</Text>
@@ -47,4 +51,10 @@ const styles = StyleSheet.create({
         lineHeight: 30,
         marginBottom: 16
     },
+    signal: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: 'red'
+    }
 });

@@ -27,7 +27,7 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
             else { setCurrentUser(null) }
         })
         
-    }, [auth])
+    }, [])
 
     return (
         <UserContext.Provider value={currentUser}>
