@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS, SIZES } from './constants/SIZES';
 import { USER_CONTEXT_PROVIDER } from './context/UserContext';
+import { COLOR_SCHEME_PROVIDER } from './context/ColorSchemeContext';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
@@ -26,6 +27,7 @@ const App: React.FC = () => {
 
   return (
     <USER_CONTEXT_PROVIDER>
+    <COLOR_SCHEME_PROVIDER> 
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Welcome'>
           <Stack.Screen 
@@ -70,6 +72,7 @@ const App: React.FC = () => {
           />
         </Stack.Navigator>  
       </NavigationContainer>
+    </COLOR_SCHEME_PROVIDER> 
     </USER_CONTEXT_PROVIDER>
   )
 }
