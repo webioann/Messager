@@ -3,21 +3,15 @@ import React, { useContext } from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS, SIZES } from '../constants/SIZES';
+import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import useColorScheme from '../hooks/useColorScheme';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    // TODO: remove this later
-    const { setAppColorScheme, appColorScheme, COLORS } = useColorScheme()
-    console.log(appColorScheme)
+    const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
     return (
-        <SafeAreaView style={{backgroundColor: COLORS.BG_MAIN, flex: 1}}>
-            <StatusBar 
-                backgroundColor={COLORS.BG_MAIN} 
-                barStyle={ appColorScheme === 'dark' ? 'light-content' : 'dark-content'}/>
+        <ScreenWrapper>
             <View style={[styles.container, {backgroundColor: COLORS.BG_MAIN, paddingHorizontal: SIZES.GAP}]}>
                 <Text style={[styles.text, {color: COLORS.TEXT_MAIN}]}>Settings</Text>
                 <TouchableOpacity
@@ -28,13 +22,13 @@ const Settings_Screen = () => {
 
                 <TouchableOpacity
                     style={[styles.button, styles.elevation, {backgroundColor: COLORS.BG_MAIN}]}
-                    onPress={() => setAppColorScheme(prev => prev === 'dark' ? 'light' : 'dark')}>
+                    onPress={() => toggleColorScheme()}>
                     <Icon name={appColorScheme === 'light' ? 'dark-mode' : 'light-mode'} size={24} color={'blue'}/>
                 </TouchableOpacity>
 
                 <Text style={{color: COLORS.TEXT_MAIN}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam ducimus necessitatibus sint saepe dolorum minus ab suscipit. Sed velit aspernatur aperiam porro enim quasi voluptatibus cum, suscipit provident vero quibusdam debitis rem illo. Dolorum deleniti quisquam aperiam veniam quidem quasi itaque nemo ratione atque eligendi vitae quam rem temporibus, quis esse. Ratione, perferendis.</Text>
             </View>
-        </SafeAreaView>
+        </ScreenWrapper>
     )
     
 }

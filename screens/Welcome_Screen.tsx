@@ -6,14 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Button_Signout from '../components/Button_Signout';
 import { COLORS, SIZES, G } from '../constants/SIZES';
-import useColorScheme from '../hooks/useColorScheme';
 
 const Welcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const user = useContext(UserContext)
-
-    // TODO: remove this later
-    const { appColorScheme } = useColorScheme()
 
     return (
         <ImageBackground 
