@@ -18,19 +18,6 @@ export const COLORS = {
     BG2: '#1F262E',
     BORDER: '#30373F',
 };
-export const newCOLORS = {
-    GREY: '#bbb9c8',
-    DARK: '#3f3764',
-    BG: '#141627'
-}
-
-const ColorScheme = {
-    BG_MAIN: 'white',
-    BG_TINT: 'grey',
-    ACCENT: '#ef4c4c',
-    TEXT_MAIN: '#3f3764',
-    TEXT_TINT: '#bbb9c8'
-}
 import { StyleSheet } from 'react-native';
 
 export const G = StyleSheet.create({
@@ -62,16 +49,16 @@ export const G = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    fixedOnBottom: {
-        position: 'absolute',
-        bottom: 5,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: 10,
-    },
+    // fixedOnBottom: {
+    //     position: 'absolute',
+    //     bottom: 5,
+    //     left: 0,
+    //     right: 0,
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between',
+    //     alignItems: 'center',
+    //     paddingVertical: 10,
+    // },
 
 
 })

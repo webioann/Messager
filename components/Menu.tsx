@@ -54,7 +54,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     bottomSection: {
-        ...G.fixedOnBottom
+        position: 'absolute',
+        bottom: 5,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 10,
+
     }
     
 });

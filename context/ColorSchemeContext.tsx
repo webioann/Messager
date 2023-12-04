@@ -21,7 +21,7 @@ type ColorSchemeContextType = {
 export const ColorSchemeContext = createContext<ColorSchemeContextType>({} as ColorSchemeContextType);
 
 export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
-    const [appColorScheme, setAppColorScheme] = useState<'dark' | 'light'>('light')
+    const [appColorScheme, setAppColorScheme] = useState<Mode>('light')
     const [COLORS, setCOLORS] = useState<ColorsType>({
         BG_MAIN: 'white',
         BG_TINT: 'grey',

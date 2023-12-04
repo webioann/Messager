@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Alert, Pressable } from 'react-native'
+import { StyleSheet, Text, Alert, Pressable } from 'react-native'
 import React, { useContext } from 'react'
 import auth from '@react-native-firebase/auth'
 import Icon from 'react-native-vector-icons/MaterialIcons';

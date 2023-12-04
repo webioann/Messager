@@ -31,7 +31,7 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
             }>
             <UserAvatarImage pathToImage={contact.photoURL} size={SIZES.LARGE}/>
             {/* user contact-name and short message */}
-            <View style={styles.userData}>
+            <View style={[styles.userData, {borderBottomColor: COLORS.TEXT_TINT}]}>
                 <Text style={{ color: COLORS.TEXT_MAIN, fontSize: 15, fontWeight: '600' }}>
                     { contact.displayName }
                 </Text>
@@ -41,7 +41,7 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
                 }
             </View>
             {/* end of row time stamp and counter */}
-            <View style={styles.metaData}>
+            <View style={[styles.metaData, {borderBottomColor: COLORS.TEXT_TINT}]}>
                 {  messages.length > 0  && (
                     <>
                         <Text style={{ color: COLORS.TEXT_MAIN}}>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     metaData: {
         height: '100%',
         borderBottomWidth: 1,
-        borderBottomColor: '#333333',
+        // borderBottomColor: '#333333',
     },
     counter: {
         backgroundColor: COLORS.ACCENT,
