@@ -46,9 +46,9 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
         }
         if(appColorScheme === 'dark') {
             setCOLORS({
-                BG_MAIN: '#141627',
-                BG_TINT: '#3f3764',
-                ACCENT: '#ef4c4c',
+                BG_MAIN: '#292f3f',
+                BG_TINT: '#1f232f',
+                ACCENT: '#3a7ff7',
                 TEXT_MAIN: 'white',
                 TEXT_TINT: '#bbb9c8'
             })

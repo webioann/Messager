@@ -10,7 +10,7 @@ type avatarProps = {
 const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
     
     return (
-        <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, borderWidth: size / 12, }]}>
+        <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}>
             { pathToImage 
                 ? <Image 
                         source={{uri: pathToImage}}
@@ -37,8 +37,8 @@ export default UserAvatarImage;
 
 const styles = StyleSheet.create({
     avatar: {
-        borderColor: COLORS.DARK,
-        borderStyle: 'solid',
+        // borderColor: COLORS.DARK,
+        // borderStyle: 'solid',
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center'

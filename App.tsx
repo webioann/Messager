@@ -29,7 +29,7 @@ const App: React.FC = () => {
     <USER_CONTEXT_PROVIDER>
     <COLOR_SCHEME_PROVIDER> 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Welcome'>
+        <Stack.Navigator initialRouteName='Chats'>
           <Stack.Screen 
             name="Welcome" 
             component={Welcome_Screen}
