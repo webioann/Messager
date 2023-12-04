@@ -4,17 +4,22 @@ import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import Menu from '../components/Menu';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import { SIZES, G } from '../constants/SIZES';
 import { UserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
 // import { useNavigation } from '@react-navigation/native';
 // import { UseNavigation_Type } from '../Types/navigation_types';
+import ScreenWrapper from './ScreenWrapper';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
+
 
 const Chats_Screen = () => {
   const [value, setValue] = useState('')
   const [contactsList, setContactsList] = useState<UserType[]>([])
   const currentUser = useContext(UserContext)
+  const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
+
   // const navigation = useNavigation<UseNavigation_Type>();
 
 const fetchAllChattingUsers = async() => {
@@ -43,20 +48,19 @@ useEffect(() => {
 
 
   return (
-    <SafeAreaView style={styles.area}>
-      <StatusBar backgroundColor={COLORS.BG}/>
+    <ScreenWrapper>
       <View style={styles.headerContainer}>
         <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
-        <Text style={styles.headerTitle}>Chats</Text>
-        <View style={styles.headerAddButton}>
-          <MaterialIcons name='add' size={24} color={COLORS.LIGHT}/>
+        <Text style={[styles.headerTitle, {color: COLORS.TEXT_MAIN}]}>Chats</Text>
+        <View style={[styles.headerAddButton, {backgroundColor: COLORS.ACCENT}]}>
+          <MaterialIcons name='add' size={24} color={'white'}/>
         </View>
       </View>
       <TextInput 
         onChangeText={setValue}
-        style={styles.searchInput}
+        style={[styles.searchInput, {backgroundColor: COLORS.BG_TINT}]}
         placeholder='Search'
-        placeholderTextColor={COLORS.LIGHT}
+        placeholderTextColor={'white'}
         value={value}/>
       <FlatList 
         data={contactsList}
@@ -64,19 +68,12 @@ useEffect(() => {
         keyExtractor={item => item.uid}
       />
       <Menu/>
-    </SafeAreaView>
+    </ScreenWrapper>
   )
 }
 export default Chats_Screen;
 
 const styles = StyleSheet.create({
-  area: {
-    backgroundColor: COLORS.BG,
-    flex: 1,
-    paddingHorizontal: SIZES.GAP,
-    position: 'relative',
-    paddingBottom: SIZES.SAFE,
-  },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -86,7 +83,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 1,
     paddingHorizontal: 16,
-    color: COLORS.LIGHT,
     fontSize: 26,
     fontWeight: '600'
   },
@@ -94,12 +90,10 @@ const styles = StyleSheet.create({
     width: SIZES.SMALL,
     height: SIZES.SMALL,
     borderRadius: SIZES.SMALL / 2,
-    backgroundColor: COLORS.ACCENT,
     justifyContent: 'center',
     alignItems: 'center'
   },
   searchInput: {
-    backgroundColor: '#272b34',
     height: 40,
     borderRadius: 20,
     paddingHorizontal: 20,

@@ -15,7 +15,7 @@ const ScreenWrapper: React.FC<childrenType> = ({ children }) => {
             <StatusBar 
                 backgroundColor={COLORS.BG_MAIN} 
                 barStyle={ appColorScheme === 'dark' ? 'light-content' : 'dark-content'}/>
-            <View style={{backgroundColor: COLORS.BG_MAIN, paddingHorizontal: SIZES.GAP}}>
+            <View style={{backgroundColor: COLORS.BG_MAIN, paddingHorizontal: SIZES.GAP, position: 'relative',flex: 1}}>
                 { children }
             </View>
         </SafeAreaView>

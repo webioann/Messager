@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
 import ScreenWrapper from './ScreenWrapper';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
