@@ -1,6 +1,6 @@
-import { StyleSheet, SafeAreaView, StatusBar, View } from 'react-native'
+import { SafeAreaView, StatusBar, View } from 'react-native'
 import React from 'react'
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import { SIZES, G } from '../constants/SIZES';
 import useColorScheme from '../hooks/useColorScheme';
 
 type childrenType = {
@@ -8,11 +8,13 @@ type childrenType = {
 }
 
 const ScreenWrapper: React.FC<childrenType> = ({ children }) => {
-    const { COLORS } = useColorScheme()
+    const { COLORS, appColorScheme } = useColorScheme()
     return (
-        <SafeAreaView style={styles.area}>
-            <StatusBar backgroundColor={COLORS.BG_MAIN} barStyle={'dark-content'}/>
-            <View style={styles.wrapper}>
+        <SafeAreaView style={{backgroundColor: COLORS.BG_MAIN, flex: 1}}>
+            <StatusBar 
+                backgroundColor={COLORS.BG_MAIN} 
+                barStyle={ appColorScheme === 'dark' ? 'light-content' : 'dark-content'}/>
+            <View style={{backgroundColor: COLORS.BG_MAIN, paddingHorizontal: SIZES.GAP}}>
                 { children }
             </View>
         </SafeAreaView>
@@ -20,14 +22,3 @@ const ScreenWrapper: React.FC<childrenType> = ({ children }) => {
 }
 
 export default ScreenWrapper;
-
-const styles = StyleSheet.create({
-    area: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    wrapper: {
-        backgroundColor: 'white',
-        paddingHorizontal: SIZES.GAP,
-    }
-})

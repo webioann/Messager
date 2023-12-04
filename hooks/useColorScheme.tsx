@@ -31,7 +31,7 @@ const useColorScheme = () => {
                 TEXT_TINT: '#bbb9c8'
             })
         }
-    }, [appColorScheme])
+    }, [])
 
     return { appColorScheme, setAppColorScheme, COLORS }
 }
