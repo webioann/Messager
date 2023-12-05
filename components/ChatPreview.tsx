@@ -31,24 +31,24 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
             }>
             <UserAvatarImage pathToImage={contact.photoURL} size={SIZES.LARGE}/>
             {/* user contact-name and short message */}
-            <View style={[styles.userData, {borderBottomColor: COLORS.TEXT_TINT}]}>
-                <Text style={{ color: COLORS.TEXT_MAIN, fontSize: 15, fontWeight: '600' }}>
+            <View style={[styles.userData, {borderBottomColor: COLORS.minor}]}>
+                <Text style={{ color: COLORS.color, fontSize: 15, fontWeight: '600' }}>
                     { contact.displayName }
                 </Text>
                 { lastMessage 
-                    ? <Text style={{ color: COLORS.TEXT_TINT, fontSize: 16 }}>{ lastMessage?.text }</Text>
-                    : <Text style={{ color: COLORS.ACCENT, fontSize: 16 }}>Chat created but not messages yet!</Text>
+                    ? <Text style={{ color: COLORS.color, fontSize: 16 }}>{ lastMessage?.text }</Text>
+                    : <Text style={{ color: COLORS.accent, fontSize: 16 }}>Chat created but not messages yet!</Text>
                 }
             </View>
             {/* end of row time stamp and counter */}
-            <View style={[styles.metaData, {borderBottomColor: COLORS.TEXT_TINT}]}>
+            <View style={[styles.metaData, {borderBottomColor: COLORS.minor}]}>
                 {  messages.length > 0  && (
                     <>
-                        <Text style={{ color: COLORS.TEXT_MAIN}}>
+                        <Text style={{ color: COLORS.color}}>
                             { lastTimeStamp }
                         </Text>
                         <View style={styles.counter}>
-                            <Text style={{ color: COLORS.TEXT_MAIN, paddingHorizontal: 5 }}>
+                            <Text style={{ color: COLORS.color, paddingHorizontal: 5 }}>
                                 {messages.length}
                             </Text>
                         </View>

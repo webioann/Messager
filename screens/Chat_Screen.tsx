@@ -1,38 +1,42 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList, ActivityIndicator, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
 import MessageBubble from '../components/MessageBubble';
+import ScreenWrapper from './ScreenWrapper';
+
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import { SIZES, G } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import useFetchMessages from '../hooks/useFetchMessages';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
 type StackProps = NativeStackScreenProps<RootStackParams, 'Chat'>
 
 const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {contact, avatar_url, room, contactId} = route.params;
+    const { COLORS } = useContext(ColorSchemeContext)
+
     const { messages, isLoading, isError } = useFetchMessages(room)
 
     return (
-    <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor={COLORS.BG}/>
+    <ScreenWrapper>
         <View style={[G.row, {paddingBottom: 16}]}>
             <TouchableOpacity style={styles.goBackArrow} onPress={() => navigation.navigate("Chats")}>
-                <Icon2 name='arrow-left' size={22} color={COLORS.ACCENT}/>
+                <Icon2 name='arrow-left' size={22} color={COLORS.accent}/>
             </TouchableOpacity>
             <UserAvatarImage pathToImage={avatar_url} size={SIZES.MEDIUM}/>
             <View style={{flex: 1, paddingHorizontal: SIZES.GAP}}>
-                <Text style={{color: COLORS.LIGHT, fontSize: 15, fontWeight: '600'}}>
+                <Text style={{color: COLORS.color, fontSize: 15, fontWeight: '600'}}>
                     { contact }
                 </Text>
-                <Text style={{color: COLORS.LIGHT, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
+                <Text style={{color: COLORS.color, fontSize: 12, fontWeight: '300'}}>Gomes Sara</Text>
             </View>
             <View style={styles.call}>
-                <Icon2 name='phone' size={24} color={COLORS.ACCENT}/>
+                <Icon2 name='phone' size={24} color={COLORS.accent}/>
             </View>
         </View>
         {/* === list of messages === */}
@@ -49,7 +53,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
         <View style={styles.bottomSection}>
             <MessageCreateTools room={room} senderID={contactId}/>
         </View>
-    </SafeAreaView>
+    </ScreenWrapper>
     )
 }
 export default Chat_Screen;
@@ -81,6 +85,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     bottomSection: {
-        ...G.fixedOnBottom
+        position: 'absolute',
+        bottom: 5,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 10,
+
     }
 });

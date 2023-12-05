@@ -6,11 +6,16 @@ type childrenType = {
 }
 type Mode = 'dark' | 'light'
 type ColorsType = {
-    BG_MAIN: string
-    BG_TINT: string
-    ACCENT: string
-    TEXT_MAIN: string
-    TEXT_TINT: string
+    main: string
+    minor: string
+    third: string
+    accent: string
+    white: string
+    black: string
+    grey: string
+    color: string
+    tint: string
+    adorn: string
 }
 type ColorSchemeContextType = {
     appColorScheme: Mode
@@ -23,12 +28,17 @@ export const ColorSchemeContext = createContext<ColorSchemeContextType>({} as Co
 export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const [appColorScheme, setAppColorScheme] = useState<Mode>('light')
     const [COLORS, setCOLORS] = useState<ColorsType>({
-        BG_MAIN: 'white',
-        BG_TINT: 'grey',
-        ACCENT: '#ef4c4c',
-        TEXT_MAIN: '#3f3764',
-        TEXT_TINT: '#bbb9c8'
-    })
+        main: '#fefeff',
+        minor: '#f9f9f9',
+        third: '#ffffff',
+        accent: '#4b46b8',
+        white: '#ffffff',
+        black: '#111213',
+        grey: '#f0f0f0',
+        color: '#111213',
+        tint: '#f0f0f0',
+        adorn: 'gray'
+        })
 
     const toggleColorScheme = () => {
         setAppColorScheme(appColorScheme === "light" ? "dark" : "light")
@@ -37,21 +47,31 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
     useEffect(() => {
         if(appColorScheme === "light") {
             setCOLORS({
-                BG_MAIN: 'white',
-                BG_TINT: 'grey',
-                ACCENT: '#ef4c4c',
-                TEXT_MAIN: '#3f3764',
-                TEXT_TINT: '#bbb9c8'
-            })
+                main: '#fefeff',
+                minor: '#f9f9f9',
+                third: '#ffffff',
+                accent: '#4b46b8',
+                white: '#ffffff',
+                black: '#111213',
+                grey: '#f0f0f0',
+                color: '#111213',
+                tint: '#f0f0f0',
+                adorn: 'gray'
+                    })
         }
         if(appColorScheme === 'dark') {
             setCOLORS({
-                BG_MAIN: '#292f3f',
-                BG_TINT: '#1f232f',
-                ACCENT: '#3a7ff7',
-                TEXT_MAIN: 'white',
-                TEXT_TINT: '#bbb9c8'
-            })
+                main: '#141627',
+                minor: '#202232',
+                third: '#282a3a',
+                accent: '#4b46b8',
+                white: '#ffffff',
+                black: '#111213',
+                grey: '#f0f0f0',
+                color: '#ffffff',
+                tint: '#f0f0f0',
+                adorn: 'gray'
+                    })
         }
     }, [appColorScheme])
 

@@ -51,16 +51,16 @@ useEffect(() => {
     <ScreenWrapper>
       <View style={styles.headerContainer}>
         <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
-        <Text style={[styles.headerTitle, {color: COLORS.TEXT_MAIN}]}>Chats</Text>
-        <View style={[styles.headerAddButton, {backgroundColor: COLORS.ACCENT}]}>
+        <Text style={[styles.headerTitle, {color: COLORS.color}]}>Chats</Text>
+        <View style={[styles.headerAddButton, {backgroundColor: COLORS.accent}]}>
           <MaterialIcons name='add' size={24} color={'white'}/>
         </View>
       </View>
       <TextInput 
         onChangeText={setValue}
-        style={[styles.searchInput, {backgroundColor: COLORS.BG_TINT}]}
+        style={[styles.searchInput, {backgroundColor: COLORS.grey}]}
         placeholder='Search'
-        placeholderTextColor={'white'}
+        placeholderTextColor={COLORS.color}
         value={value}/>
       <FlatList 
         data={contactsList}

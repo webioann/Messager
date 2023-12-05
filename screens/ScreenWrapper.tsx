@@ -11,11 +11,11 @@ const ScreenWrapper: React.FC<childrenType> = ({ children }) => {
     const { COLORS, appColorScheme } = useContext(ColorSchemeContext)
 
     return (
-        <SafeAreaView style={{backgroundColor: COLORS.BG_MAIN, flex: 1}}>
+        <SafeAreaView style={{backgroundColor: COLORS.main, flex: 1}}>
             <StatusBar 
-                backgroundColor={COLORS.BG_MAIN} 
+                backgroundColor={COLORS.main} 
                 barStyle={ appColorScheme === 'dark' ? 'light-content' : 'dark-content'}/>
-            <View style={{backgroundColor: COLORS.BG_MAIN, paddingHorizontal: SIZES.GAP, position: 'relative',flex: 1}}>
+            <View style={{backgroundColor: COLORS.main, paddingHorizontal: SIZES.GAP, position: 'relative',flex: 1}}>
                 { children }
             </View>
         </SafeAreaView>

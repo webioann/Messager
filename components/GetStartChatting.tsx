@@ -9,12 +9,14 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { UserType } from '../Types/users_types';
 import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
 const GetStartChatting: React.FC<UserType> = (contact) => {
 
     const currentUser = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
+    const { COLORS } = useContext(ColorSchemeContext)
 
     const onStartChatting = async() => {
         let roomWasCreated = false
@@ -47,14 +49,12 @@ const GetStartChatting: React.FC<UserType> = (contact) => {
                 contactId: contact.uid
             })
         }
-        // FIXME:
-        console.log('STERT_____O')
     }
 
     return (
         <TouchableOpacity 
             onPress={onStartChatting}>
-            <Icon2 name='message-outline' size={24} color={COLORS.LIGHT}/>
+            <Icon2 name='message-outline' size={24} color={COLORS.tint}/>
         </TouchableOpacity>
     )
 }
