@@ -15,6 +15,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
 import Button_Signout from '../components/Button_Signout';
 import ImageUploader from '../components/ImageUploader';
+import ScreenWrapper from './ScreenWrapper';
+
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage';
@@ -68,11 +70,7 @@ const SignupPage_Screen = () => {
 
     return (
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
-            <ImageBackground 
-                source={require('../assets/BG-2.jpg')} 
-                resizeMode='cover'
-                style={G.auth_container} >
-                <StatusBar backgroundColor={COLORS.BG}/>
+            <ScreenWrapper>
                 {/* go back button */}
                 <View style={{flex: 1}}>
                     <View style={G.row}>
@@ -115,7 +113,7 @@ const SignupPage_Screen = () => {
                     style={G.auth_buttons}>
                     <Text style={G.auth_btn_text}>Log in</Text>
                 </TouchableOpacity>
-            </ImageBackground>
+            </ScreenWrapper>
         </TouchableWithoutFeedback>
     )
 }

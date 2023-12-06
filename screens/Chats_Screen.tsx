@@ -3,13 +3,12 @@ import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } 
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import Menu from '../components/Menu';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Button_Signout from '../components/Button_Signout';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { SIZES, G } from '../constants/SIZES';
 import { UserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
-// import { useNavigation } from '@react-navigation/native';
-// import { UseNavigation_Type } from '../Types/navigation_types';
 import ScreenWrapper from './ScreenWrapper';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
@@ -52,8 +51,9 @@ useEffect(() => {
       <View style={styles.headerContainer}>
         <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
         <Text style={[styles.headerTitle, {color: COLORS.color}]}>Chats</Text>
+        <Button_Signout/>
         <View style={[styles.headerAddButton, {backgroundColor: COLORS.third}]}>
-          <MaterialIcons name='add' size={24} color={'white'}/>
+          <Icon name='add' size={24} color={'white'}/>
         </View>
       </View>
       <TextInput 

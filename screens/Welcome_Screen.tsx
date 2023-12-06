@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, Alert, Button, ImageBackground, TouchableOpacity } from 'react-native';
-import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, {  useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Button_Signout from '../components/Button_Signout';
+import ScreenWrapper from './ScreenWrapper';
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
 const Welcome_Screen = () => {
@@ -12,11 +11,7 @@ const Welcome_Screen = () => {
     const user = useContext(UserContext)
 
     return (
-        <ImageBackground 
-            source={require('../assets/BG-2.jpg')} 
-            resizeMode='cover'
-            style={G.auth_container} >
-            <StatusBar backgroundColor={COLORS.BG}/>
+        <ScreenWrapper>
             {/* TODO:  red circle for user activity highlighting*/}
             <View style={{flex: 1}}>
                 <View style={[styles.signal, {backgroundColor:  user ? 'red' : 'blue'}]}></View>
@@ -36,7 +31,7 @@ const Welcome_Screen = () => {
                 style={[G.auth_buttons, {marginTop: 16}]}>
                 <Text style={G.auth_btn_text}>Sign up</Text>
             </TouchableOpacity>
-        </ImageBackground>
+        </ScreenWrapper>
     )
     
 }

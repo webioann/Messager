@@ -14,6 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserLoginForms from '../components/UserLoginForms';
 import Button_Signout from '../components/Button_Signout';
+import ScreenWrapper from './ScreenWrapper';
+
 import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 
@@ -44,11 +46,7 @@ const LoginPage_Screen = () => {
 
     return (
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
-            <ImageBackground 
-                source={require('../assets/BG-2.jpg')} 
-                resizeMode='cover'
-                style={G.auth_container} >
-                <StatusBar backgroundColor={COLORS.BG}/>
+            <ScreenWrapper>
                 <View style={{flex: 1}}>
                     <View style={G.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
@@ -81,7 +79,7 @@ const LoginPage_Screen = () => {
                     style={G.auth_buttons}>
                     <Text style={G.auth_btn_text}>Sign up</Text>
                 </TouchableOpacity>
-            </ImageBackground>
+            </ScreenWrapper>
         </TouchableWithoutFeedback>
     )
 }
