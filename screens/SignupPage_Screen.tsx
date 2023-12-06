@@ -13,18 +13,19 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CreateAccountForm from '../components/CreateAccountForm';
-import Button_Signout from '../components/Button_Signout';
 import ImageUploader from '../components/ImageUploader';
 import ScreenWrapper from './ScreenWrapper';
+import ThemeModeToggle from '../components/ThemeModeToggle';
+import { G } from '../constants/SIZES';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
-import { COLORS, SIZES, G } from '../constants/SIZES';
 import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-
+    const { COLORS } = useContext(ColorSchemeContext)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -43,8 +44,6 @@ const SignupPage_Screen = () => {
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
         // create unique image name for save on Storage
         let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`
-
-
         // put image in Storage and download image URL
         filePath && await storage().ref(uniqueAvatarName).putFile(filePath)
         let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
@@ -73,46 +72,44 @@ const SignupPage_Screen = () => {
             <ScreenWrapper>
                 {/* go back button */}
                 <View style={{flex: 1}}>
-                    <View style={G.row}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
-                            <Icon name='chevron-left' color={'#ffffff'} size={44}/>
-                        </TouchableOpacity>
-                        <Button_Signout/>
-                    </View>
-                    <Text style={styles.page_title}>Create Account</Text>
-                </View>
 
+                    <View style={styles.nav_header}>
+                        <TouchableOpacity 
+                            style={{flexDirection: 'row', alignItems: 'center'}}
+                            onPress={() => navigation.navigate("Welcome")}>
+                            <Icon name='chevron-left' color={COLORS.tint} size={34}/>
+                            <Text style={{fontSize: 18, color: COLORS.tint}}>Back</Text>
+                        </TouchableOpacity>
+                        <ThemeModeToggle/>
+                    </View>
+
+                    <Text style={[styles.page_title, {color: COLORS.color}]}>Create Account</Text>
+                </View>
                 {/* form for creating new users ----> */}
                 <CreateAccountForm 
                     name={name} setName={setName} 
                     email={email} setEmail={setEmail}
                     password={password} setPassword={setPassword}
                 />
-
                 {/* image picker for uploading images on Firebase Storage */}
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 16, paddingBottom: 16}}>
-                    <ImageUploader setFilePath={setFilePath} color={COLORS.BLUE} size={34}/>
-                    <Text style={{color: COLORS.LIGHT}}>Choose user image</Text>
+                    <ImageUploader setFilePath={setFilePath} color={COLORS.blue} size={34}/>
+                    <Text style={{color: COLORS.color}}>Choose user image</Text>
                 </View>
-                
-                {/* auth buttons box */}
                 <TouchableOpacity 
                     onPress={createNewUserAccount} 
-                    style={G.auth_buttons}>
-                    <Text style={G.auth_btn_text}>Sign up</Text>
+                    style={[styles.button, {backgroundColor: COLORS.orange}]}>
+                    <Text style={[styles.button_text, {color: COLORS.white}]}>Create new Account</Text>
                 </TouchableOpacity>
-                {/* ------- or ------ */}
-                <View style={G.row}>
-                    <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
-                    <Text style={{color: COLORS.LIGHT, paddingHorizontal: 10, fontSize: 20}}>or</Text>
-                    <View style={{flex: 1, height: 1, backgroundColor: COLORS.LIGHT}}></View>
+                <View style={styles.text_link}>
+                    <Text style={{color: COLORS.tint}}>Have an account?</Text>
+                    <TouchableOpacity 
+                        style={{flexDirection: 'row', gap: 10}}
+                        onPress={() => navigation.navigate("LoginPage")}>
+                        <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
+                        <Icon name='east' size={24} color={COLORS.tint}/>
+                    </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity 
-                    onPress={() => navigation.navigate("LoginPage")} 
-                    style={G.auth_buttons}>
-                    <Text style={G.auth_btn_text}>Log in</Text>
-                </TouchableOpacity>
             </ScreenWrapper>
         </TouchableWithoutFeedback>
     )
@@ -121,13 +118,35 @@ export default SignupPage_Screen;
 
 const styles = StyleSheet.create({
     page_title: {
-        color: COLORS.ACCENT,
         fontSize: 36,
         marginBottom: 50,
     },
-    alert: {
-        color: COLORS.LIGHT,
-        lineHeight: 30,
-        marginBottom: 16
+    // title: {
+    //     fontSize: 46,
+    //     fontWeight: '600'
+    // },
+    nav_header: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between', 
+        alignItems: 'center'
     },
+    button: {
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 20
+    },
+    button_text: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: '500'
+    }, 
+    text_link: {
+        flexDirection: 'row',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        paddingBottom: 40,
+        gap: 10
+    },
+
 });

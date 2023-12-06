@@ -28,12 +28,13 @@ const Welcome_Screen = () => {
                 <Text style={[styles.button_text, {color: COLORS.white}]}>Create My Account</Text>
             </TouchableOpacity>
             <View style={styles.text_link}>
-                <Text>Have an account?</Text>
+                <Text style={{color: COLORS.tint}}>Have an account?</Text>
                 <TouchableOpacity 
+                    style={{flexDirection: 'row', gap: 10}}
                     onPress={() => navigation.navigate("LoginPage")}>
                     <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
+                    <Icon name='east' size={24} color={COLORS.tint}/>
                 </TouchableOpacity>
-                <Icon name='east' size={24} color={COLORS.tint}/>
             </View>
         </ScreenWrapper>
     )
