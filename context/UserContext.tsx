@@ -27,23 +27,25 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     // useEffect(() => {
     //     const listener = auth().onAuthStateChanged(() => changeCurrentUserState)
     //     return listener;// unsubscribe on unmount
-    // }, [])
+    // }, [currentUser])
 
     useEffect(() => {
-        const listener = auth().onAuthStateChanged((user) => {
-            if(user) {
-                setCurrentUser({
-                    displayName: user.displayName,
-                    email: user.email,
-                    uid: user.uid,
-                    photoURL: user.photoURL,
-                    phoneNumber: user.phoneNumber
-                })
-            }
-            else { setCurrentUser(null) }
-        })
-
-        return listener;// unsubscribe on unmount
+        if(currentUser) { auth().signOut() }
+        else {
+            auth().onAuthStateChanged((user) => {
+                if(user) {
+                    setCurrentUser({
+                        displayName: user.displayName,
+                        email: user.email,
+                        uid: user.uid,
+                        photoURL: user.photoURL,
+                        phoneNumber: user.phoneNumber
+                    })
+                }
+                else { setCurrentUser(null) }
+            })
+        }
+        // return listener();// unsubscribe on unmount
     }, [])
 
     // TODO:
