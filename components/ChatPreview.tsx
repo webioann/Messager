@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import UserAvatarImage from './UserAvatarImage';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
-import { COLORS, SIZES } from '../constants/SIZES';
+import { SIZES } from '../constants/SIZES';
 import { UserType } from '../Types/users_types';
 import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
 import useFetchMessages from '../hooks/useFetchMessages';
@@ -13,11 +13,11 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
     const { messages, lastMessage, lastTimeStamp } = useFetchMessages(chatRoomID)
-    const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
+    const { COLORS } = useContext(ColorSchemeContext)
 
     return (
         <TouchableOpacity 
-            style={styles.previewContainer} 
+            style={[styles.previewContainer, {backgroundColor: COLORS.third}]} 
             onPress={() => {
                 navigation.navigate(
                     "Chat", 
@@ -31,12 +31,12 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
             }>
             <UserAvatarImage pathToImage={contact.photoURL} size={SIZES.LARGE}/>
             {/* user contact-name and short message */}
-            <View style={[styles.userData, {borderBottomColor: COLORS.minor}]}>
+            <View style={[styles.userData]}>
                 <Text style={{ color: COLORS.color, fontSize: 15, fontWeight: '600' }}>
                     { contact.displayName }
                 </Text>
                 { lastMessage 
-                    ? <Text style={{ color: COLORS.color, fontSize: 16 }}>{ lastMessage?.text }</Text>
+                    ? <Text style={{ color: COLORS.tint, fontSize: 16 }}>{ lastMessage?.text }</Text>
                     : <Text style={{ color: COLORS.accent, fontSize: 16 }}>Chat created but not messages yet!</Text>
                 }
             </View>
@@ -47,7 +47,7 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
                         <Text style={{ color: COLORS.color}}>
                             { lastTimeStamp }
                         </Text>
-                        <View style={styles.counter}>
+                        <View style={[styles.counter, {backgroundColor: COLORS.accent}]}>
                             <Text style={{ color: COLORS.color, paddingHorizontal: 5 }}>
                                 {messages.length}
                             </Text>
@@ -67,21 +67,19 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 10,
+        marginTop: 10
     },
     userData: {
         flex: 1,
         height: '100%',
         marginLeft: SIZES.GAP,
-        borderBottomWidth: 1,
-        borderBottomColor: COLORS.BORDER,
+        // borderBottomWidth: 1,
     },
     metaData: {
         height: '100%',
         borderBottomWidth: 1,
-        // borderBottomColor: '#333333',
     },
     counter: {
-        backgroundColor: COLORS.ACCENT,
         borderRadius: 6,
         flexDirection: 'row',
         alignSelf: 'flex-end',

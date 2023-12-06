@@ -12,21 +12,21 @@ const Settings_Screen = () => {
     const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
     return (
         <ScreenWrapper>
-            <View style={[styles.container, {backgroundColor: COLORS.BG_MAIN, paddingHorizontal: SIZES.GAP}]}>
-                <Text style={[styles.text, {color: COLORS.TEXT_MAIN}]}>Settings</Text>
+            <View style={[styles.container, {backgroundColor: COLORS.main, paddingHorizontal: SIZES.GAP}]}>
+                <Text style={[styles.text, {color: COLORS.color}]}>Settings</Text>
                 <TouchableOpacity
-                    style={[styles.button, styles.elevation, {backgroundColor: COLORS.BG_MAIN}]}
+                    style={[styles.button, styles.elevation, {backgroundColor: COLORS.main}]}
                     onPress={() => navigation.navigate("Chats")}>
-                    <Text style={{backgroundColor: COLORS.BG_MAIN, color: COLORS.TEXT_TINT}}>Go to the Chats</Text>
+                    <Text style={{backgroundColor: COLORS.main, color: COLORS.color}}>Go to the Chats</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.button, styles.elevation, {backgroundColor: COLORS.BG_MAIN}]}
+                    style={[styles.button, styles.elevation, {backgroundColor: COLORS.main}]}
                     onPress={() => toggleColorScheme()}>
                     <Icon name={appColorScheme === 'light' ? 'dark-mode' : 'light-mode'} size={24} color={'blue'}/>
                 </TouchableOpacity>
 
-                <Text style={{color: COLORS.TEXT_MAIN}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam ducimus necessitatibus sint saepe dolorum minus ab suscipit. Sed velit aspernatur aperiam porro enim quasi voluptatibus cum, suscipit provident vero quibusdam debitis rem illo. Dolorum deleniti quisquam aperiam veniam quidem quasi itaque nemo ratione atque eligendi vitae quam rem temporibus, quis esse. Ratione, perferendis.</Text>
+                <Text style={{color: COLORS.tint}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam ducimus necessitatibus sint saepe dolorum minus ab suscipit. Sed velit aspernatur aperiam porro enim quasi voluptatibus cum, suscipit provident vero quibusdam debitis rem illo. Dolorum deleniti quisquam aperiam veniam quidem quasi itaque nemo ratione atque eligendi vitae quam rem temporibus, quis esse. Ratione, perferendis.</Text>
             </View>
         </ScreenWrapper>
     )
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         alignItems: 'center',
         borderRadius: 8,
+        marginBottom: 20
     },
     shadowProp: {
         shadowColor: '#171717',
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     elevation: {
-        elevation: 5,
+        elevation: 8,
         shadowColor: '#171717',
     },
 });

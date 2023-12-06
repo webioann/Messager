@@ -6,9 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS } from '../constants/SIZES';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-
 import { UserType } from '../Types/users_types';
 
 const Contact: React.FC<UserType> = (contact) => {

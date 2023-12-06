@@ -38,12 +38,12 @@ const Contacts_Screen = () => {
         <ScreenWrapper>
             <Text style={{color: COLORS.color, fontSize: 24, paddingLeft: 40, paddingBottom: 20}}>Contacts</Text>
             <View style={[styles.search, {backgroundColor: COLORS.minor}]}>
-                <Icon name='search' size={26} color={COLORS.color}/>
+                <Icon name='search' size={26} color={COLORS.tint}/>
                 <TextInput 
                     value={searchValue}
                     onChangeText={setSearchValue}
                     placeholder='Search'
-                    placeholderTextColor={COLORS.color}
+                    placeholderTextColor={COLORS.tint}
                     cursorColor={COLORS.color}
                     style={{flex: 1, color: COLORS.color, fontSize: 18}}/>
             </View>

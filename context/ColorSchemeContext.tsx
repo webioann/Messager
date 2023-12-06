@@ -28,16 +28,16 @@ export const ColorSchemeContext = createContext<ColorSchemeContextType>({} as Co
 export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const [appColorScheme, setAppColorScheme] = useState<Mode>('light')
     const [COLORS, setCOLORS] = useState<ColorsType>({
-        main: '#fefeff',
-        minor: '#f9f9f9',
-        third: '#ffffff',
-        accent: '#4b46b8',
+        main: '#fefeff', //main background color
+        minor: '#eeeeee',//background color
+        third: '#ffffff',//background color
+        accent: '#3a7ff7',
         white: '#ffffff',
         black: '#111213',
         grey: '#f0f0f0',
-        color: '#111213',
-        tint: '#f0f0f0',
-        adorn: 'gray'
+        color: 'rgba(0, 0, 0, 0.7)',//main text color
+        tint: 'rgba(0, 0, 0, 0.5)',//text color
+        adorn: 'gray'//text color
         })
 
     const toggleColorScheme = () => {
@@ -48,14 +48,14 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
         if(appColorScheme === "light") {
             setCOLORS({
                 main: '#fefeff',
-                minor: '#f9f9f9',
+                minor: '#eeeeee',
                 third: '#ffffff',
-                accent: '#4b46b8',
+                accent: '#3a7ff7',
                 white: '#ffffff',
                 black: '#111213',
                 grey: '#f0f0f0',
-                color: '#111213',
-                tint: '#f0f0f0',
+                color: 'rgba(0, 0, 0, 0.7)',
+                tint: 'rgba(0, 0, 0, 0.5)',
                 adorn: 'gray'
                     })
         }
@@ -64,7 +64,7 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 main: '#141627',
                 minor: '#202232',
                 third: '#282a3a',
-                accent: '#4b46b8',
+                accent: '#3a7ff7',
                 white: '#ffffff',
                 black: '#111213',
                 grey: '#f0f0f0',

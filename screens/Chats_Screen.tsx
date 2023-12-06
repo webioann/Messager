@@ -52,13 +52,13 @@ useEffect(() => {
       <View style={styles.headerContainer}>
         <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
         <Text style={[styles.headerTitle, {color: COLORS.color}]}>Chats</Text>
-        <View style={[styles.headerAddButton, {backgroundColor: COLORS.accent}]}>
+        <View style={[styles.headerAddButton, {backgroundColor: COLORS.third}]}>
           <MaterialIcons name='add' size={24} color={'white'}/>
         </View>
       </View>
       <TextInput 
         onChangeText={setValue}
-        style={[styles.searchInput, {backgroundColor: COLORS.grey}]}
+        style={[styles.searchInput, {backgroundColor: 'rgb(210, 208, 208)'}]}
         placeholder='Search'
         placeholderTextColor={COLORS.color}
         value={value}/>
