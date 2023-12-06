@@ -11,6 +11,8 @@ type ColorsType = {
     third: string
     accent: string
     white: string
+    blue: string
+    orange: string
     black: string
     grey: string
     color: string
@@ -33,6 +35,8 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
         third: '#ffffff',//background color
         accent: '#3a7ff7',
         white: '#ffffff',
+        blue: '#3a7ff7',
+        orange: '#ff6a33',
         black: '#111213',
         grey: '#f0f0f0',
         color: 'rgba(0, 0, 0, 0.7)',//main text color
@@ -52,6 +56,8 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 third: '#ffffff',
                 accent: '#3a7ff7',
                 white: '#ffffff',
+                blue: '#3a7ff7',
+                orange: '#ff6a33',
                 black: '#111213',
                 grey: '#f0f0f0',
                 color: 'rgba(0, 0, 0, 0.7)',
@@ -66,6 +72,8 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 third: '#282a3a',
                 accent: '#3a7ff7',
                 white: '#ffffff',
+                blue: '#3a7ff7',
+                orange: '#ff6a33',
                 black: '#111213',
                 grey: '#f0f0f0',
                 color: '#ffffff',

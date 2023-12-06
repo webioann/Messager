@@ -1,57 +1,72 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React, {  useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import React, { useContext } from 'react';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import ScreenWrapper from './ScreenWrapper';
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Welcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const user = useContext(UserContext)
-    console.log(`USER ---> ${user?.displayName}`)
+    const { COLORS } = useContext(ColorSchemeContext)
+
     return (
         <ScreenWrapper>
-            {/* TODO:  red circle for user activity highlighting*/}
-            <View style={{flex: 1}}>
-                <View style={[styles.signal, {backgroundColor:  user ? 'red' : 'blue'}]}></View>
-                {/* <View style={[styles.signal, {backgroundColor:  appColorScheme === 'dark' ? 'black' : 'white'}]}></View> */}
+            <View style={styles.bigboard}>
+                <Text style={[styles.title, {color: COLORS.color}]}>Wellcome</Text>
+                <Image 
+                    source={require('../assets/whatsapp.png')} 
+                    style={{width: '80%', height: '80%'}}                        
+                    alt='whatsapp logo '
+                    resizeMode='contain'
+                />
+                <Text style={{color: COLORS.tint}}>You can now focus your console experience by customizing your navigation</Text>
             </View>
-            
-            <Text style={styles.page_title}>Wellcome</Text>
-
-            <Text style={styles.alert}>You can now focus your console experience by customizing your navigation</Text>
-            <TouchableOpacity 
-                onPress={() => navigation.navigate("LoginPage")} 
-                style={G.auth_buttons}>
-                <Text style={G.auth_btn_text}>Log in</Text>
-            </TouchableOpacity>
             <TouchableOpacity 
                 onPress={() => navigation.navigate("SignupPage")} 
-                style={[G.auth_buttons, {marginTop: 16}]}>
-                <Text style={G.auth_btn_text}>Sign up</Text>
+                style={[styles.button, {backgroundColor: COLORS.orange}]}>
+                <Text style={[styles.button_text, {color: COLORS.white}]}>Create My Account</Text>
             </TouchableOpacity>
+            <View style={styles.text_link}>
+                <Text>Have an account?</Text>
+                <TouchableOpacity 
+                    onPress={() => navigation.navigate("LoginPage")}>
+                    <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
+                </TouchableOpacity>
+                <Icon name='east' size={24} color={COLORS.tint}/>
+            </View>
         </ScreenWrapper>
     )
-    
 }
 export default Welcome_Screen;
 
 const styles = StyleSheet.create({
-    page_title: {
-        color: COLORS.ACCENT,
-        fontSize: 36,
-        marginBottom: 50,
+    bigboard: {
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingTop: 80,
+        paddingBottom: 20
     },
-    alert: {
-        color: COLORS.LIGHT,
-        lineHeight: 30,
-        marginBottom: 16
+    title: {
+        fontSize: 46,
+        fontWeight: '600'
     },
-    signal: {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
-        backgroundColor: 'red'
-    }
+    button: {
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 20
+    },
+    button_text: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: '500'
+    }, 
+    text_link: {
+        flexDirection: 'row',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        paddingBottom: 40,
+        gap: 10
+    },
 });

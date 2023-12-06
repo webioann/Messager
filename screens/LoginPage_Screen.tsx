@@ -50,7 +50,8 @@ const LoginPage_Screen = () => {
                 <View style={{flex: 1}}>
                     <View style={G.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
-                            <Icon name='chevron-left' color={'#ffffff'} size={44}/>
+                            <Icon name='chevron-left' color={'blue'} size={44}/>
+                            <Text>Back</Text>
                         </TouchableOpacity>
                         <Button_Signout/>
                     </View>
