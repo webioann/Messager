@@ -9,7 +9,7 @@ import { COLORS, SIZES, G } from '../constants/SIZES';
 const Welcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const user = useContext(UserContext)
-
+    console.log(`USER ---> ${user?.displayName}`)
     return (
         <ScreenWrapper>
             {/* TODO:  red circle for user activity highlighting*/}

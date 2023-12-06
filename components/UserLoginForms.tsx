@@ -19,12 +19,12 @@ const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, se
             <View style={styles.inputs}>
                 <Icon name='mail' color={COLORS.GREY} size={24}/>
                 <TextInput 
-                    style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}
+                    style={{flex: 1, color: COLORS.BG, fontSize: 18}}
                     onChangeText={setEmail}
                     value={email}
                     placeholder='Email'
                     placeholderTextColor={COLORS.GREY}
-                    cursorColor={COLORS.LIGHT}
+                    cursorColor={COLORS.BG}
                 />
                 <Icon name='done' color={COLORS.GREY} size={24}/>
             </View>
@@ -32,12 +32,12 @@ const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, se
             <View style={styles.inputs}>
                 <Icon name='lock' color={COLORS.GREY} size={24}/>
                 <TextInput 
-                    style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}
+                    style={{flex: 1, color: COLORS.BG, fontSize: 18}}
                     onChangeText={setPassword}
                     value={password}
                     placeholder='Password'
                     placeholderTextColor={COLORS.GREY}
-                    cursorColor={COLORS.LIGHT}
+                    cursorColor={COLORS.BG}
                     secureTextEntry
                 />
                 <Icon name='visibility-off' color={COLORS.GREY} size={24}/>
