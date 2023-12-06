@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, FlatList, ActivityIndicator, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import React, { useContext } from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
 import MessageBubble from '../components/MessageBubble';
 import ScreenWrapper from './ScreenWrapper';
-
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
@@ -19,7 +18,6 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const {contact, avatar_url, room, contactId} = route.params;
     const { COLORS } = useContext(ColorSchemeContext)
-
     const { messages, isLoading, isError } = useFetchMessages(room)
 
     return (

@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native'
-import React, { SetStateAction, useState } from 'react'
+import React, { SetStateAction, useContext } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
+
 import { COLORS, SIZES, G } from '../constants/SIZES';
 
 type loginFormProps = {
@@ -13,37 +15,38 @@ type loginFormProps = {
 const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
     // const [passwordVisibility, setPasswordVisibility] = useState(false)
     // console.log(passwordVisibility)
+    const { COLORS } = useContext(ColorSchemeContext)
     return (
         <View style={styles.form}>
             {/* email input */}
             <View style={styles.inputs}>
-                <Icon name='mail' color={COLORS.GREY} size={24}/>
+                <Icon name='mail' color={COLORS.grey} size={24}/>
                 <TextInput 
-                    style={{flex: 1, color: COLORS.BG, fontSize: 18}}
+                    style={{flex: 1, color: COLORS.color, fontSize: 18}}
                     onChangeText={setEmail}
                     value={email}
                     placeholder='Email'
-                    placeholderTextColor={COLORS.GREY}
-                    cursorColor={COLORS.BG}
+                    placeholderTextColor={COLORS.grey}
+                    cursorColor={COLORS.tint}
                 />
-                <Icon name='done' color={COLORS.GREY} size={24}/>
+                <Icon name='done' color={COLORS.grey} size={24}/>
             </View>
             {/* password input */}
             <View style={styles.inputs}>
-                <Icon name='lock' color={COLORS.GREY} size={24}/>
+                <Icon name='lock' color={COLORS.grey} size={24}/>
                 <TextInput 
-                    style={{flex: 1, color: COLORS.BG, fontSize: 18}}
+                    style={{flex: 1, color: COLORS.color, fontSize: 18}}
                     onChangeText={setPassword}
                     value={password}
                     placeholder='Password'
-                    placeholderTextColor={COLORS.GREY}
-                    cursorColor={COLORS.BG}
+                    placeholderTextColor={COLORS.grey}
+                    cursorColor={COLORS.tint}
                     secureTextEntry
                 />
-                <Icon name='visibility-off' color={COLORS.GREY} size={24}/>
+                <Icon name='visibility-off' color={COLORS.grey} size={24}/>
             </View>
             <TouchableHighlight style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: COLORS.BLUE, fontSize: 16}}>Forgate password ?</Text>
+                <Text style={{color: COLORS.blue, fontSize: 16}}>Forgate password ?</Text>
             </TouchableHighlight>
         </View>
     )

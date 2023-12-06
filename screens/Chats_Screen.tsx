@@ -19,8 +19,6 @@ const Chats_Screen = () => {
   const currentUser = useContext(UserContext)
   const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
 
-  // const navigation = useNavigation<UseNavigation_Type>();
-
 const fetchAllChattingUsers = async() => {
   // const chatsDocs = await firestore().collection('CHAT_ROOM_DB').get();
   // let chats = chatsDocs.docs.map((doc) => doc.id)
@@ -43,7 +41,7 @@ const fetchAllChattingUsers = async() => {
 
 useEffect(() => {
   fetchAllChattingUsers()
-}, [currentUser])
+}, [])
 
 
   return (

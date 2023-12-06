@@ -2,11 +2,8 @@ import {
     StyleSheet, 
     Text, 
     View, 
-    Alert,
     TouchableWithoutFeedback, 
-    StatusBar, 
     TouchableOpacity, 
-    ImageBackground,
     Keyboard } from 'react-native';
 import React, { useState, useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
@@ -16,9 +13,7 @@ import CreateAccountForm from '../components/CreateAccountForm';
 import ImageUploader from '../components/ImageUploader';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
-import { G } from '../constants/SIZES';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-
 import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
@@ -72,11 +67,11 @@ const SignupPage_Screen = () => {
             <ScreenWrapper>
                 {/* go back button */}
                 <View style={{flex: 1}}>
-
+                    {/* TODO: maybe create separate component*/}
                     <View style={styles.nav_header}>
                         <TouchableOpacity 
                             style={{flexDirection: 'row', alignItems: 'center'}}
-                            onPress={() => navigation.navigate("Welcome")}>
+                            onPress={() => navigation.goBack()}>
                             <Icon name='chevron-left' color={COLORS.tint} size={34}/>
                             <Text style={{fontSize: 18, color: COLORS.tint}}>Back</Text>
                         </TouchableOpacity>
@@ -121,10 +116,6 @@ const styles = StyleSheet.create({
         fontSize: 36,
         marginBottom: 50,
     },
-    // title: {
-    //     fontSize: 46,
-    //     fontWeight: '600'
-    // },
     nav_header: {
         flexDirection: 'row',
         width: '100%',
