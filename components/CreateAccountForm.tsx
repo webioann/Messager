@@ -18,20 +18,20 @@ const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, set
         <View style={styles.form}>
             {/*  */}
             <View style={styles.inputs}>
-                <Icon name='person' color={COLORS.GREY} size={24}/>
+                <Icon name='person' size={24} color={COLORS.GREY}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}
                     onChangeText={setName}
                     value={name}
-                    placeholder='Name'
+                    placeholder='Name...'
                     placeholderTextColor={COLORS.GREY}
                     cursorColor={COLORS.LIGHT}
                 />
-                <Icon name='done' color={COLORS.GREY} size={24}/>
+                <Icon name='done' size={24} color={COLORS.GREY}/>
             </View>
             {/* email input */}
             <View style={styles.inputs}>
-                <Icon name='mail' color={COLORS.GREY} size={24}/>
+                <Icon name='mail' size={24} color={COLORS.GREY}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}
                     onChangeText={setEmail}
@@ -40,11 +40,11 @@ const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, set
                     placeholderTextColor={COLORS.GREY}
                     cursorColor={COLORS.LIGHT}
                 />
-                <Icon name='done' color={COLORS.GREY} size={24}/>
+                <Icon name='done' size={24} color={COLORS.GREY}/>
             </View>
             {/* password input */}
             <View style={styles.inputs}>
-                <Icon name='lock' color={COLORS.GREY} size={24}/>
+                <Icon name='lock' size={24} color={COLORS.GREY}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.LIGHT, fontSize: 18}}
                     onChangeText={setPassword}
@@ -54,7 +54,7 @@ const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, set
                     cursorColor={COLORS.LIGHT}
                     secureTextEntry
                 />
-                <Icon name='visibility-off' color={COLORS.GREY} size={24}/>
+                <Icon name='visibility-off' size={24} color={COLORS.GREY}/>
             </View>
         </View>
     )

@@ -45,7 +45,6 @@ const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, se
             <TouchableHighlight style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
                 <Text style={{color: COLORS.BLUE, fontSize: 16}}>Forgate password ?</Text>
             </TouchableHighlight>
-
         </View>
     )
 }

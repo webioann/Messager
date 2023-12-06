@@ -1,7 +1,8 @@
 import { StyleSheet, Text, Alert, Pressable } from 'react-native'
 import React, { useContext } from 'react'
-import auth from '@react-native-firebase/auth'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
 import { COLORS, G } from '../constants/SIZES';
 
@@ -16,7 +17,7 @@ const Button_Signout = () => {
     
     return (
         currentUser && <Pressable onLongPress={signoutCurrentUser} style={styles.logout}>
-            <Icon name='logout' size={24} color={COLORS.LIGHT}/>
+            <Icon name='logout' size={24} color={COLORS.ACCENT}/>
             <Text style={{color: COLORS.LIGHT}}>Logout</Text>
         </Pressable>
     )
