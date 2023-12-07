@@ -16,6 +16,7 @@ export type RootStackParams = {
   SignupPage: undefined
   Contacts: undefined
   EditContact: { contact: UserType }
+  Profile: undefined
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>
