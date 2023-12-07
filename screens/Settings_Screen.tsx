@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
 import ScreenWrapper from './ScreenWrapper';
+import NavigationHeader from '../components/NavigationHeader';
+import ThemeModeToggle from '../components/ThemeModeToggle';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
@@ -13,19 +15,9 @@ const Settings_Screen = () => {
     return (
         <ScreenWrapper>
             <View style={[styles.container, {backgroundColor: COLORS.main, paddingHorizontal: SIZES.GAP}]}>
-                <Text style={[styles.text, {color: COLORS.color}]}>Settings</Text>
-                <TouchableOpacity
-                    style={[styles.button, styles.elevation, {backgroundColor: COLORS.main}]}
-                    onPress={() => navigation.navigate("Chats")}>
-                    <Text style={{backgroundColor: COLORS.main, color: COLORS.color}}>Go to the Chats</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={[styles.button, styles.elevation, {backgroundColor: COLORS.main}]}
-                    onPress={() => toggleColorScheme()}>
-                    <Icon name={appColorScheme === 'light' ? 'dark-mode' : 'light-mode'} size={24} color={'blue'}/>
-                </TouchableOpacity>
-
+                <NavigationHeader title='Settings'>
+                    <ThemeModeToggle/>
+                </NavigationHeader>
                 <Text style={{color: COLORS.tint}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam ducimus necessitatibus sint saepe dolorum minus ab suscipit. Sed velit aspernatur aperiam porro enim quasi voluptatibus cum, suscipit provident vero quibusdam debitis rem illo. Dolorum deleniti quisquam aperiam veniam quidem quasi itaque nemo ratione atque eligendi vitae quam rem temporibus, quis esse. Ratione, perferendis.</Text>
             </View>
         </ScreenWrapper>

@@ -1,6 +1,8 @@
 import { StyleSheet, Text, Alert, Pressable } from 'react-native'
 import React, { useContext } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { UseNavigation_Type } from '../Types/navigation_types';
+import { useNavigation } from '@react-navigation/native';
 
 import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
@@ -8,10 +10,11 @@ import { COLORS, G } from '../constants/SIZES';
 
 const Button_Signout = () => {
     const currentUser = useContext(UserContext)
+    const navigation = useNavigation<UseNavigation_Type>();
 
     const signoutCurrentUser = () => {
         auth().signOut()
-        .then(() => Alert.alert('You are logged out'))
+        .then(() => navigation.navigate('Welcome'))
         .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
     }
     

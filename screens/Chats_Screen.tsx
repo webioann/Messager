@@ -3,8 +3,6 @@ import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } 
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import Menu from '../components/Menu';
-import Button_Signout from '../components/Button_Signout';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { SIZES, G } from '../constants/SIZES';
 import { UserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
@@ -47,12 +45,12 @@ useEffect(() => {
   return (
     <ScreenWrapper>
       <View style={styles.headerContainer}>
-        <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={SIZES.MEDIUM}/>
-        <Text style={[styles.headerTitle, {color: COLORS.color}]}>Chats</Text>
-        <Button_Signout/>
-        <View style={[styles.headerAddButton, {backgroundColor: COLORS.third}]}>
-          <Icon name='add' size={24} color={'white'}/>
-        </View>
+        <Text style={[styles.headerTitle, {color: COLORS.color}]}>
+          Chats
+        </Text>
+        <UserAvatarImage 
+          pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} 
+          size={SIZES.MEDIUM}/>
       </View>
       <TextInput 
         onChangeText={setValue}

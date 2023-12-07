@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserLoginForms from '../components/UserLoginForms';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
+import NavigationHeader from '../components/NavigationHeader';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 
@@ -43,19 +44,9 @@ const LoginPage_Screen = () => {
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
             <ScreenWrapper>
                 <View style={{flex: 1}}>
-
-                    {/* TODO: maybe create separate component*/}
-                    <View style={styles.nav_header}>
-                        <TouchableOpacity 
-                            style={{flexDirection: 'row', alignItems: 'center'}}
-                            onPress={() => navigation.goBack()}>
-                            <Icon name='chevron-left' color={COLORS.tint} size={34}/>
-                            <Text style={{fontSize: 18, color: COLORS.tint}}>Back</Text>
-                        </TouchableOpacity>
+                    <NavigationHeader title='Log in'>
                         <ThemeModeToggle/>
-                    </View>
-                    
-                    <Text style={{fontSize: 36, color: COLORS.color}}>Wellcome Back</Text>
+                    </NavigationHeader>
                 </View>
                 <UserLoginForms 
                     email={email} setEmail={setEmail} 

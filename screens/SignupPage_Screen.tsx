@@ -13,6 +13,7 @@ import CreateAccountForm from '../components/CreateAccountForm';
 import ImageUploader from '../components/ImageUploader';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
+import NavigationHeader from '../components/NavigationHeader';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage';
@@ -65,20 +66,10 @@ const SignupPage_Screen = () => {
     return (
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
             <ScreenWrapper>
-                {/* go back button */}
                 <View style={{flex: 1}}>
-                    {/* TODO: maybe create separate component*/}
-                    <View style={styles.nav_header}>
-                        <TouchableOpacity 
-                            style={{flexDirection: 'row', alignItems: 'center'}}
-                            onPress={() => navigation.goBack()}>
-                            <Icon name='chevron-left' color={COLORS.tint} size={34}/>
-                            <Text style={{fontSize: 18, color: COLORS.tint}}>Back</Text>
-                        </TouchableOpacity>
+                    <NavigationHeader title='Sign up'>
                         <ThemeModeToggle/>
-                    </View>
-
-                    <Text style={[styles.page_title, {color: COLORS.color}]}>Create Account</Text>
+                    </NavigationHeader>
                 </View>
                 {/* form for creating new users ----> */}
                 <CreateAccountForm 

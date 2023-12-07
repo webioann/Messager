@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvatarImage from '../components/UserAvatarImage';
 import Contact from '../components/Contact';
 import ScreenWrapper from './ScreenWrapper';
+import NavigationHeader from '../components/NavigationHeader';
 
 import { UserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
@@ -36,7 +37,7 @@ const Contacts_Screen = () => {
 
     return (
         <ScreenWrapper>
-            <Text style={{color: COLORS.color, fontSize: 24, paddingLeft: 40, paddingBottom: 20}}>Contacts</Text>
+            <NavigationHeader title='Contacts'/>
             <View style={[styles.search, {backgroundColor: COLORS.minor}]}>
                 <Icon name='search' size={26} color={COLORS.tint}/>
                 <TextInput 
@@ -68,27 +69,11 @@ const Contacts_Screen = () => {
                 </View>
 
             </FlatList>
-            <TouchableOpacity 
-                onPress={() => navigation.navigate("Chats")} 
-                style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name='chevron-left' size={44} color={COLORS.color}/>
-                <Text style={{color: COLORS.color, fontSize: 30}}>Back</Text>
-            </TouchableOpacity>
-
         </ScreenWrapper>
     )
 }
 
 export default Contacts_Screen;
-
-{/* <View style={G.row}>
-<UserAvatarImage pathToImage={defaultAvatar} size={60}/>
-<Text style={{color: COLORS.LIGHT, fontSize: 24}}>Contacts</Text>
-<View style={styles.edit}>
-    <Icon name='edit' size={24} color={COLORS.LIGHT}/>
-</View>
-</View> */}
-
 
 const styles = StyleSheet.create({
     search: {

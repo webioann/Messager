@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { COLORS, SIZES } from '../constants/SIZES';
+import ScreenWrapper from './ScreenWrapper';
+import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import NavigationHeader from '../components/NavigationHeader';
+
+import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
@@ -11,7 +15,7 @@ type StackProps = NativeStackScreenProps<RootStackParams, 'EditContact'>
 
 
 const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
-    const navigation = useNavigation<UseNavigation_Type>();
+    const { COLORS } = useContext(ColorSchemeContext)
     const {contact} = route.params;
     const [newNumber, setNewNumber] = useState('')
 
@@ -28,12 +32,9 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
     }
 
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: COLORS.BG}}>
-            <StatusBar backgroundColor={COLORS.BG}/>
+        <ScreenWrapper>
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.navigate("Contacts")}>
-                    <Icon name='chevron-left' size={40} color={COLORS.LIGHT}/>
-                </TouchableOpacity>
+                <NavigationHeader title={`Edit contact ${contact.displayName}`}/>
                 <View style={{alignItems: 'center', paddingVertical: SIZES.GAP}}>
                     <Image 
                         source={{uri: contact.photoURL}}
@@ -41,27 +42,27 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
                         alt='contact avatar'
                         resizeMode='contain'
                     />
-                    <Text style={styles.name}>{ contact.displayName }</Text>
-                    <Text style={styles.email}>{ contact.email }</Text>
+                    <Text style={[styles.name, {color: COLORS.color}]}>{ contact.displayName }</Text>
+                    <Text style={[styles.email, {color: COLORS.color}]}>{ contact.email }</Text>
                     { contact.phoneNumber
-                        ? <Text style={styles.phone}>Phone: {contact.phoneNumber }</Text> 
-                        : <Text style={styles.phone}>Phone not correct</Text> 
+                        ? <Text style={[styles.phone, {color: COLORS.color}]}>Phone: {contact.phoneNumber }</Text> 
+                        : <Text style={[styles.phone, {color: COLORS.color}]}>Phone not correct</Text> 
                     }
                     <TextInput 
-                        style={styles.numberInput}
+                        style={[styles.numberInput, {color: COLORS.color}]}
                         onChangeText={(number) => setNewNumber(number.toString())}
                         value={newNumber}
                         keyboardType='numeric'
                         // placeholder='+380 ( _ _ ) _ _ _ - _ _ - __'
-                        placeholderTextColor={COLORS.GREY}
-                        cursorColor={COLORS.LIGHT}
+                        placeholderTextColor={COLORS.tint}
+                        cursorColor={COLORS.color}
                     />
                     <TouchableOpacity onPress={updatePhoneNumber}>
-                        <Icon name='beenhere' color={COLORS.LIGHT} size={34}/>
+                        <Icon name='beenhere' color={COLORS.color} size={34}/>
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+        </ScreenWrapper>
     )
 }
 
@@ -70,7 +71,6 @@ export default EditContact_Screen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: SIZES.GAP,
     },
     contactAvatar: {
         width: 150,
@@ -79,25 +79,21 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     name: {
-        color: COLORS.LIGHT,
         fontSize: 30,
         letterSpacing: 6
     },
     email: {
-        color: COLORS.LIGHT,
         fontSize: 20,
         letterSpacing: 4,
         fontWeight: '300'
     },
     numberInput: {
         fontSize: 30,
-        color: COLORS.LIGHT,
         backgroundColor: 'blue',
         width: 300
     }, 
     phone: {
         fontSize: 30,
-        color: COLORS.LIGHT,
         width: '100%'
     }
 });
