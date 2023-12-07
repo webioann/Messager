@@ -30,46 +30,14 @@ const App: React.FC = () => {
     <COLOR_SCHEME_PROVIDER> 
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Welcome' screenOptions={screenOptions}>
-          <Stack.Screen 
-            name="Welcome" 
-            component={Welcome_Screen}
-            // options={ screenOptions } 
-          />
-          <Stack.Screen 
-            name="Chats" 
-            component={Chats_Screen}
-            // options={ screenOptions}
-          />
-          <Stack.Screen 
-            name="Chat" 
-            component={Chat_Screen} 
-            // options={ screenOptions }
-          />
-          <Stack.Screen 
-            name="Settings" 
-            component={Settings_Screen}
-            options={ screenOptions } 
-          />
-          <Stack.Screen 
-            name="LoginPage" 
-            component={LoginPage_Screen}
-            // options={ screenOptions } 
-          />
-          <Stack.Screen 
-            name="SignupPage" 
-            component={SignupPage_Screen}
-            // options={ screenOptions } 
-          />
-          <Stack.Screen 
-            name="Contacts" 
-            component={Contacts_Screen}
-            // options={ screenOptions } 
-          />
-          <Stack.Screen 
-            name="EditContact" 
-            component={EditContact_Screen}
-            // options={ screenOptions } 
-          />
+          <Stack.Screen name="Welcome" component={Welcome_Screen}/>
+          <Stack.Screen name="Chats" component={Chats_Screen}/>
+          <Stack.Screen name="Chat" component={Chat_Screen}/>
+          <Stack.Screen name="Settings" component={Settings_Screen}/>
+          <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
+          <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
+          <Stack.Screen name="Contacts" component={Contacts_Screen}/>
+          <Stack.Screen name="EditContact" component={EditContact_Screen}/>
         </Stack.Navigator>  
       </NavigationContainer>
     </COLOR_SCHEME_PROVIDER> 
