@@ -29,21 +29,21 @@ const App: React.FC = () => {
     <USER_CONTEXT_PROVIDER>
     <COLOR_SCHEME_PROVIDER> 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Welcome'>
+        <Stack.Navigator initialRouteName='Welcome' screenOptions={screenOptions}>
           <Stack.Screen 
             name="Welcome" 
             component={Welcome_Screen}
-            options={ screenOptions } 
+            // options={ screenOptions } 
           />
           <Stack.Screen 
             name="Chats" 
             component={Chats_Screen}
-            options={ screenOptions}
+            // options={ screenOptions}
           />
           <Stack.Screen 
             name="Chat" 
             component={Chat_Screen} 
-            options={ screenOptions }
+            // options={ screenOptions }
           />
           <Stack.Screen 
             name="Settings" 
@@ -53,22 +53,22 @@ const App: React.FC = () => {
           <Stack.Screen 
             name="LoginPage" 
             component={LoginPage_Screen}
-            options={ screenOptions } 
+            // options={ screenOptions } 
           />
           <Stack.Screen 
             name="SignupPage" 
             component={SignupPage_Screen}
-            options={ screenOptions } 
+            // options={ screenOptions } 
           />
           <Stack.Screen 
             name="Contacts" 
             component={Contacts_Screen}
-            options={ screenOptions } 
+            // options={ screenOptions } 
           />
           <Stack.Screen 
             name="EditContact" 
             component={EditContact_Screen}
-            options={ screenOptions } 
+            // options={ screenOptions } 
           />
         </Stack.Navigator>  
       </NavigationContainer>

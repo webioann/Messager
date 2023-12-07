@@ -13,6 +13,11 @@ const Contact: React.FC<UserType> = (contact) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useContext(ColorSchemeContext)
 
+    const goEditThisContact = () => {
+        navigation.navigate("EditContact", {contact: contact})
+    }
+
+
     return (
         <View style={styles.contact_item}>
             <UserAvatarImage pathToImage={contact.photoURL} size={50}/>
@@ -30,7 +35,7 @@ const Contact: React.FC<UserType> = (contact) => {
                 <Icon2 name='phone' size={24} color={COLORS.tint}/>
             </TouchableOpacity>
             <TouchableOpacity 
-                onPress={() => {navigation.navigate("EditContact", {contact: contact})}}>
+                onPress={goEditThisContact}>
                 <Icon name='edit' size={20} color={COLORS.tint}/>
             </TouchableOpacity>
         </View>
