@@ -98,7 +98,7 @@ const Profile_Screen = () => {
                         style={[styles.edit_input, {borderColor: COLORS.tint}]}
                         value={phone}
                         onChangeText={(value) => setPhone(value)}
-                        placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'phone ...'}
+                        placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'phone number not install yet'}
                         cursorColor={COLORS.color}
                         placeholderTextColor={COLORS.color}
                     />
