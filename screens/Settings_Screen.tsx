@@ -119,7 +119,7 @@ const Settings_Screen = () => {
                     <TouchableOpacity
                         onPress={signoutCurrentUser}
                         style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='logout' size={24} color={COLORS.color}/>
+                        <Icon2 name='logout' size={24} color={COLORS.orange}/>
                         <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
                     </TouchableOpacity>
                 </View>
