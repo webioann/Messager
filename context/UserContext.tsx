@@ -1,5 +1,6 @@
-import React, { createContext, useEffect, useState, ReactNode, SetStateAction } from "react";
+import React, { createContext, useEffect, useState, ReactNode } from "react";
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserType, currentUserType } from "../Types/users_types";
 
 type childrenType = {
@@ -29,6 +30,18 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     useEffect(() => {
         changeCurrentUserState();
     }, [])
+
+    const storeCurrentUser = async (value: currentUserType) => {
+        try {
+            await AsyncStorage.setItem('CURRENT_USER', JSON.stringify(value));
+            console.log(value)
+        } catch (e) {
+            console.log(e)
+        }
+    };
+    useEffect(() => {
+        currentUser && storeCurrentUser(currentUser)
+    }, [currentUser])
 
     // TODO:
     console.log(`AUTH_STATE_CONTEXT_USER --->`, currentUser)
