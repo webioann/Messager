@@ -29,8 +29,8 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={currentUser ? 'Chats' : 'Welcome'} screenOptions={screenOptions}>
-        <Stack.Screen name="Welcome" component={Welcome_Screen}/>
+      <Stack.Navigator initialRouteName={'Welcome'} screenOptions={screenOptions}>
+        <Stack.Screen name="Welcome" component={ currentUser ? Chats_Screen : Welcome_Screen}/>
         <Stack.Screen name="Chats" component={Chats_Screen}/>
         <Stack.Screen name="Chat" component={Chat_Screen}/>
         <Stack.Screen name="Settings" component={Settings_Screen}/>

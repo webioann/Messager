@@ -6,6 +6,7 @@ import UserAvatarImage from '../components/UserAvatarImage'
 import Menu from '../components/Menu'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImagePicker from 'react-native-image-crop-picker';
+import Button_Signout from '../components/Button_Signout'
 
 import { UserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
@@ -41,7 +42,9 @@ const Profile_Screen = () => {
 
     return (
         <ScreenWrapper>
-            <NavigationHeader title='Edit Profile'/>
+            <NavigationHeader title='Edit Profile'>
+                <Button_Signout/>
+            </NavigationHeader>
             <View style={{alignItems: 'center'}}>
                 <View style={{position: 'relative'}}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
