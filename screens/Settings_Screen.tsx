@@ -8,17 +8,124 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth'
+
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
+
+    const signoutCurrentUser = () => {
+        auth().signOut()
+        .then(() => navigation.navigate('Welcome'))
+        .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
+    }
+
+    const defaultFunc = () => {console.log('THIS IS DEFAULT CLICK FUNCTION')}
+
     return (
         <ScreenWrapper>
             <View style={[styles.container, {backgroundColor: COLORS.main, paddingHorizontal: SIZES.GAP}]}>
                 <NavigationHeader title='Settings'>
                     <ThemeModeToggle/>
                 </NavigationHeader>
-                <Text style={{color: COLORS.tint}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam ducimus necessitatibus sint saepe dolorum minus ab suscipit. Sed velit aspernatur aperiam porro enim quasi voluptatibus cum, suscipit provident vero quibusdam debitis rem illo. Dolorum deleniti quisquam aperiam veniam quidem quasi itaque nemo ratione atque eligendi vitae quam rem temporibus, quis esse. Ratione, perferendis.</Text>
+            </View>
+            <View>
+                {/* Accoun section */}
+                <Text style={[styles.block_title, {color: COLORS.color}]}>Account</Text>
+                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Profile')}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='account-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Edit profile</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='shield-account-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Security</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='bell-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Notifications</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon name='lock-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Privacy</Text>
+                    </TouchableOpacity>
+                </View>
+                {/* support section */}
+                <Text style={[styles.block_title, {color: COLORS.color}]}>Support & About</Text>
+                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='credit-card-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>My Subscribtion</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='help-circle-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Help and Supports</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='alert-circle-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Terms and Policies</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+                {/* cache section */}
+                <Text style={[styles.block_title, {color: COLORS.color}]}>Cache & cellular</Text>
+                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='trash-can-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Free up space</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon name='data-exploration' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Data Server</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+
+                {/* actions section */}
+                <Text style={[styles.block_title, {color: COLORS.color}]}>Actions</Text>
+                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='flag-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Report a problem</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={defaultFunc}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='account-multiple-outline' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Add account</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={signoutCurrentUser}
+                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
+                        <Icon2 name='logout' size={24} color={COLORS.color}/>
+                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </ScreenWrapper>
     )
@@ -31,28 +138,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    text: {
-        fontSize: 50,
-        marginBottom: 50,
-        fontWeight: '600',
-        letterSpacing: 5
-    },
-    button: {
-        padding: 10,
-        borderColor: '#cccccc',
-        borderWidth: 1,
-        alignItems: 'center',
+    settings: {
         borderRadius: 8,
-        marginBottom: 20
+        padding: 8
     },
-    shadowProp: {
-        shadowColor: '#171717',
-        shadowOffset: {width: -2, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-    },
-    elevation: {
-        elevation: 8,
-        shadowColor: '#171717',
-    },
+    block_title: {
+        fontSize: 20,
+        fontWeight: '600',
+        paddingVertical: 6
+    }
 });
