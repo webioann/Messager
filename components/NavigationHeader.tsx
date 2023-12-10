@@ -22,7 +22,7 @@ const NavigationHeader: React.FC<NavHeaderProps> = ({children, title}) => {
                 style={{flexDirection: 'row', alignItems: 'center'}}
                 onPress={() => navigation.goBack()}>
                 <Icon name='chevron-left' color={COLORS.tint} size={34}/>
-                <Text style={{fontSize: 18, color: COLORS.tint}}>Back</Text>
+                {/* <Text style={{fontSize: 18, color: COLORS.tint}}>Back</Text> */}
             </TouchableOpacity>
             <Text style={[styles.screen_title, {color: COLORS.color}]}>{ title }</Text>
             { children }
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between', 
         alignItems: 'center',
-        paddingBottom: 10
+        marginBottom: 10
     },
     screen_title: {
         fontSize: 24,
