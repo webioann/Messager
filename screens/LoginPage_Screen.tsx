@@ -15,6 +15,7 @@ import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import { UserContext } from '../context/UserContext';
 import auth from '@react-native-firebase/auth'
 
 const LoginPage_Screen = () => {

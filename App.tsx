@@ -12,8 +12,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS, SIZES } from './constants/SIZES';
-import { USER_CONTEXT_PROVIDER } from './context/UserContext';
-import { COLOR_SCHEME_PROVIDER } from './context/ColorSchemeContext';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
@@ -27,23 +25,19 @@ const App: React.FC = () => {
   }
 
   return (
-    <USER_CONTEXT_PROVIDER>
-    <COLOR_SCHEME_PROVIDER> 
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Welcome' screenOptions={screenOptions}>
-          <Stack.Screen name="Welcome" component={Welcome_Screen}/>
-          <Stack.Screen name="Chats" component={Chats_Screen}/>
-          <Stack.Screen name="Chat" component={Chat_Screen}/>
-          <Stack.Screen name="Settings" component={Settings_Screen}/>
-          <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
-          <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
-          <Stack.Screen name="Contacts" component={Contacts_Screen}/>
-          <Stack.Screen name="EditContact" component={EditContact_Screen}/>
-          <Stack.Screen name="Profile" component={Profile_Screen}/>
-        </Stack.Navigator>  
-      </NavigationContainer>
-    </COLOR_SCHEME_PROVIDER> 
-    </USER_CONTEXT_PROVIDER>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Welcome' screenOptions={screenOptions}>
+        <Stack.Screen name="Welcome" component={Welcome_Screen}/>
+        <Stack.Screen name="Chats" component={Chats_Screen}/>
+        <Stack.Screen name="Chat" component={Chat_Screen}/>
+        <Stack.Screen name="Settings" component={Settings_Screen}/>
+        <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
+        <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
+        <Stack.Screen name="Contacts" component={Contacts_Screen}/>
+        <Stack.Screen name="EditContact" component={EditContact_Screen}/>
+        <Stack.Screen name="Profile" component={Profile_Screen}/>
+      </Stack.Navigator>  
+    </NavigationContainer>
   )
 }
 export default App;
