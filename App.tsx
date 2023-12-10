@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Chats_Screen from './screens/Chats_Screen';
 import Chat_Screen from './screens/Chat_Screen';
 import Settings_Screen from './screens/Settings_Screen';
@@ -12,9 +12,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS, SIZES } from './constants/SIZES';
+import { UserContext } from './context/UserContext';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParams>();
+  const currentUser = useContext(UserContext)
+
 
   const screenOptions: ScreenOptions_Type = {
     headerStyle: {backgroundColor: COLORS.BG},
@@ -26,7 +29,7 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome' screenOptions={screenOptions}>
+      <Stack.Navigator initialRouteName={currentUser ? 'Chats' : 'Welcome'} screenOptions={screenOptions}>
         <Stack.Screen name="Welcome" component={Welcome_Screen}/>
         <Stack.Screen name="Chats" component={Chats_Screen}/>
         <Stack.Screen name="Chat" component={Chat_Screen}/>
