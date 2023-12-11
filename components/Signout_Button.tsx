@@ -7,7 +7,7 @@ import auth from '@react-native-firebase/auth'
 import { UserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
-const Button_Signout = () => {
+const Signout_Button = () => {
     const currentUser = useContext(UserContext)
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useContext(ColorSchemeContext)
@@ -26,7 +26,7 @@ const Button_Signout = () => {
     )
 }
 
-export default Button_Signout;
+export default Signout_Button;
 
 const styles = StyleSheet.create({
     logout: {

@@ -5,7 +5,7 @@ import NavigationHeader from '../components/NavigationHeader'
 import UserAvatarImage from '../components/UserAvatarImage'
 import Menu from '../components/Menu'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Button_Signout from '../components/Button_Signout'
+import Button_Signout from '../components/Signout_Button'
 import UploadImageInStorage from '../components/UploadImageInStorage'
 import { UserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
