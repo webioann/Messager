@@ -29,7 +29,7 @@ const SignupPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
-    const [validationResult, setValidationResult] = useState(false)
+    // const [validationResult, setValidationResult] = useState(false)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -39,20 +39,17 @@ const SignupPage_Screen = () => {
         setFilePath(undefined)
     }
 
-    useEffect(() => {
-        let emailTest = emailRegExpPattern.test(email)
-        let nameTest = nameRegExpPattern.test(name)
-        let passwordTest = passwordRegExpPattern.test(password)
-        if( emailTest && nameTest && passwordTest && filePath ) { setValidationResult(true) }
-        else { setValidationResult(false) }
-    }, [name, email, password, filePath])
+    // useEffect(() => {
+    //     let emailTest = emailRegExpPattern.test(email)
+    //     let nameTest = nameRegExpPattern.test(name)
+    //     let passwordTest = passwordRegExpPattern.test(password)
+    //     if( emailTest && nameTest && passwordTest && filePath ) { setValidationResult(true) }
+    //     else { setValidationResult(false) }
+    // }, [name, email, password, filePath])
 
 
     const createNewUserAccount = async() => {
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
-        // let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`// <--- create unique image name for save on Storage
-        // filePath && await storage().ref(uniqueAvatarName).putFile(filePath)// <--- put image in Storage and download image URL
-        // let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
         await newUser.user.updateProfile({ // <--- update user profile with adding name and photo
             displayName: name,
             photoURL: filePath
