@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator, ScrollView } from 'react-native';
 import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
@@ -16,6 +16,12 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     const {contact, avatar_url, room, contactId} = route.params;
     const { messages, isLoading, isError } = useFetchMessages(room)
 
+    const safeBottomPadding = () => {
+        return (
+            <View style={{width: '100%', height: 70}}></View>
+        )
+    }
+
     return (
     <ScreenWrapper>
         <NavigationHeader title={`chat with ${contact}`}>
@@ -25,6 +31,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
             ? <ActivityIndicator/> 
             : <FlatList
                 style={{paddingBottom: 70}}
+                ListFooterComponent={safeBottomPadding}
                 data={messages}
                 renderItem={(message) => <MessageBubble message={message.item}/>}
                 keyExtractor={item => item.createdAt.toString()}
@@ -39,31 +46,6 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
 export default Chat_Screen;
 
 const styles = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     backgroundColor: '#141627',
-    //     paddingHorizontal: SIZES.GAP,
-    //     paddingTop:10,
-    //     paddingBottom: 77
-    // },
-    // // header field ===
-    // goBackArrow: {
-    //     width: SIZES.SMALL,
-    //     height: SIZES.SMALL,
-    //     borderRadius: SIZES.SMALL / 2,
-    //     backgroundColor: '#272b34',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     marginRight: SIZES.GAP
-    // },
-    // call: {
-    //     width: SIZES.MEDIUM,
-    //     height: SIZES.MEDIUM,
-    //     borderRadius: SIZES.MEDIUM / 2,
-    //     backgroundColor: '#272b34',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    // },
     bottomSection: {
         position: 'absolute',
         bottom: 5,
