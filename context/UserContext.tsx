@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, ReactNode, SetStateAction } from "react";
+import React, { useEffect, useState, ReactNode, SetStateAction } from "react";
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { currentUserType } from "../Types/users_types";
@@ -7,12 +7,12 @@ type childrenType = {
     children: ReactNode[] | ReactNode 
 }
 
-// type UserContextType = {
-//     currentUser: currentUserType | null
-//     restartAuthState: () => void
-// }
+type UserContextType = {
+    currentUser: currentUserType | null
+    restartAuthState: () => void
+}
 
-export const UserContext = createContext<currentUserType | null>(null);
+export const UserContext = React.createContext<currentUserType | null>(null);
 
 export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
