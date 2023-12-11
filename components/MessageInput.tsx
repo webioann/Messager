@@ -84,7 +84,7 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
                     onPress={() => console.log('click on camera icon')}>
                     <Icon name='camera-outline' color={COLORS.orange} size={24}/>    
                 </TouchableOpacity>
-                <UploadImageInStorage getImageURL={setImage}>
+                <UploadImageInStorage getImageURL={setImage} storageFolder='messages'>
                     <Icon2 name='photo' color={COLORS.orange} size={24}/>
                 </UploadImageInStorage>
             </View>

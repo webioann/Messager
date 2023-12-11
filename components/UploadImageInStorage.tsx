@@ -7,9 +7,10 @@ import { UserContext } from '../context/UserContext';
 type ImageUploaderProps = {
     getImageURL: React.Dispatch<SetStateAction<string | undefined>>
     children: React.JSX.Element | React.JSX.Element[]
+    storageFolder: 'avatars' | 'messages' | 'images'
 }
 
-const UploadImageInStorage: React.FC<ImageUploaderProps> = ({ getImageURL, children }) => {
+const UploadImageInStorage: React.FC<ImageUploaderProps> = ({ getImageURL, children, storageFolder }) => {
     const currentUser = useContext(UserContext)
 
     const openGalleryAndChooseImage = async() => {
@@ -20,7 +21,7 @@ const UploadImageInStorage: React.FC<ImageUploaderProps> = ({ getImageURL, child
             cropping: true
         })
         .then((file) => { fileLocationOnPhone = Platform.OS === 'ios' ? file.sourceURL : file.path });
-        let uniqueName = `images/${currentUser?.uid}/${Date.now().toString()}`
+        let uniqueName = `${storageFolder}/${currentUser?.uid}/${Date.now().toString()}`;
         // put image in Storage and download image URL
         fileLocationOnPhone && await storage().ref(uniqueName).putFile(fileLocationOnPhone)
         let imageURL = await storage().ref(uniqueName).getDownloadURL()

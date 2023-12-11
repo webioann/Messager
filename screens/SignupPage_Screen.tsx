@@ -87,7 +87,7 @@ const SignupPage_Screen = () => {
                 />
                 {/* image picker for uploading images on Firebase Storage */}
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 16, paddingBottom: 16}}>
-                    <UploadImageInStorage getImageURL={setFilePath}>
+                    <UploadImageInStorage getImageURL={setFilePath} storageFolder='avatars'>
                         <Icon2 name='camera' size={20} color={COLORS.blue}/>
                     </UploadImageInStorage>
                     <Text style={{color: COLORS.color}}>Choose user image</Text>

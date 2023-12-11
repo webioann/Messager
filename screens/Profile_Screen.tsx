@@ -58,7 +58,7 @@ const Profile_Screen = () => {
                 <View style={{position: 'relative'}}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
                     <View style={[styles.photo_editor, {backgroundColor: COLORS.minor}]}>
-                        <UploadImageInStorage getImageURL={setImageURL}>
+                        <UploadImageInStorage getImageURL={setImageURL} storageFolder='avatars'>
                             <Icon2 name='camera' size={20} color={COLORS.blue}/>
                         </UploadImageInStorage>
                     </View>
