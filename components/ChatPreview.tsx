@@ -41,7 +41,7 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
                 }
             </View>
             {/* end of row time stamp and counter */}
-            <View style={[styles.metaData, {borderBottomColor: COLORS.minor}]}>
+            <View style={styles.metaData}>
                 {  messages.length > 0  && (
                     <>
                         <Text style={{ color: COLORS.color}}>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     metaData: {
         height: '100%',
-        borderBottomWidth: 1,
+        // borderBottomWidth: 1,
     },
     counter: {
         borderRadius: 6,
