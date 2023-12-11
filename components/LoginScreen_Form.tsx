@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native'
 import React, { SetStateAction, useContext } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-
-import { COLORS, SIZES, G } from '../constants/SIZES';
+import { COLORS, G } from '../constants/SIZES';
 
 type loginFormProps = {
     email: string
@@ -12,7 +11,7 @@ type loginFormProps = {
     setPassword: React.Dispatch<SetStateAction<string>>
 }
 
-const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
+const LoginScreen_Form: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
     // const [passwordVisibility, setPasswordVisibility] = useState(false)
     // console.log(passwordVisibility)
     const { COLORS } = useContext(ColorSchemeContext)
@@ -20,30 +19,30 @@ const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, se
         <View style={styles.form}>
             {/* email input */}
             <View style={styles.inputs}>
-                <Icon name='mail' color={COLORS.grey} size={24}/>
+                <Icon name='mail' color={COLORS.tint} size={24}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.color, fontSize: 18}}
                     onChangeText={setEmail}
                     value={email}
                     placeholder='Email'
-                    placeholderTextColor={COLORS.grey}
+                    placeholderTextColor={COLORS.tint}
                     cursorColor={COLORS.tint}
                 />
-                <Icon name='done' color={COLORS.grey} size={24}/>
+                <Icon name='done' color={COLORS.tint} size={24}/>
             </View>
             {/* password input */}
             <View style={styles.inputs}>
-                <Icon name='lock' color={COLORS.grey} size={24}/>
+                <Icon name='lock' color={COLORS.tint} size={24}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.color, fontSize: 18}}
                     onChangeText={setPassword}
                     value={password}
                     placeholder='Password'
-                    placeholderTextColor={COLORS.grey}
+                    placeholderTextColor={COLORS.tint}
                     cursorColor={COLORS.tint}
                     secureTextEntry
                 />
-                <Icon name='visibility-off' color={COLORS.grey} size={24}/>
+                <Icon name='visibility-off' color={COLORS.tint} size={24}/>
             </View>
             <TouchableHighlight style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
                 <Text style={{color: COLORS.blue, fontSize: 16}}>Forgate password ?</Text>
@@ -52,7 +51,7 @@ const UserLoginForms: React.FC<loginFormProps> = ({email, setEmail, password, se
     )
 }
 
-export default UserLoginForms;
+export default LoginScreen_Form;
 
 const styles = StyleSheet.create({
     form: {

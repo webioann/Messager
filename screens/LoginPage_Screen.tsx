@@ -10,12 +10,11 @@ import React, { useState, useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import UserLoginForms from '../components/UserLoginForms';
+import LoginScreen_Form from '../components/LoginScreen_Form';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-import { UserContext } from '../context/UserContext';
 import auth from '@react-native-firebase/auth'
 
 const LoginPage_Screen = () => {
@@ -49,14 +48,14 @@ const LoginPage_Screen = () => {
                         <ThemeModeToggle/>
                     </NavigationHeader>
                 </View>
-                <UserLoginForms 
+                <LoginScreen_Form 
                     email={email} setEmail={setEmail} 
                     password={password} setPassword={setPassword}
                 />
                 <TouchableOpacity 
                     onPress={loginCurrentUser} 
                     style={[styles.button, {backgroundColor: COLORS.orange}]}>
-                    <Text style={[styles.button_text, {color: COLORS.white}]}>Login on you Account</Text>
+                    <Text style={[styles.button_text, {color: COLORS.white}]}>Log in</Text>
                 </TouchableOpacity>
                 <View style={styles.text_link}>
                     <Text style={{color: COLORS.tint}}>Have an account?</Text>

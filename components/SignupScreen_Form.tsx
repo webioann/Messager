@@ -1,7 +1,7 @@
 import { StyleSheet, View, TextInput } from 'react-native'
 import React, { SetStateAction } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { COLORS,  G } from '../constants/SIZES';
+import { COLORS, G } from '../constants/SIZES';
 
 type signupFormProps = {
     name: string
@@ -12,7 +12,7 @@ type signupFormProps = {
     setPassword: React.Dispatch<SetStateAction<string>>
 }
 
-const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, setEmail, password, setPassword}) => {
+const SignupScreen_Form: React.FC<signupFormProps> = ({name, setName, email, setEmail, password, setPassword}) => {
 
     return (
         <View style={styles.form}>
@@ -60,7 +60,7 @@ const CreateAccountForm: React.FC<signupFormProps> = ({name, setName, email, set
     )
 }
 
-export default CreateAccountForm;
+export default SignupScreen_Form;
 
 const styles = StyleSheet.create({
     form: {
