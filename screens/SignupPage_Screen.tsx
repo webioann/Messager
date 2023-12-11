@@ -9,8 +9,9 @@ import React, { useState, useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import SignupScreen_Form from '../components/SignupScreen_Form';
-import ImageUploader from '../components/ImageUploader';
+import UploadImageInStorage from '../components/UploadImageInStorage';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
@@ -74,7 +75,9 @@ const SignupPage_Screen = () => {
                 />
                 {/* image picker for uploading images on Firebase Storage */}
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 16, paddingBottom: 16}}>
-                    <ImageUploader setFilePath={setFilePath} color={COLORS.blue} size={34}/>
+                    <UploadImageInStorage getImageURL={setFilePath}>
+                        <Icon2 name='camera' size={20} color={COLORS.blue}/>
+                    </UploadImageInStorage>
                     <Text style={{color: COLORS.color}}>Choose user image</Text>
                 </View>
                 <TouchableOpacity 
