@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-nat
 import React, { SetStateAction, useContext } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-import { COLORS, G } from '../constants/SIZES';
+import {  G } from '../constants/SIZES';
 
 type loginFormProps = {
     email: string
@@ -18,7 +18,7 @@ const LoginScreen_Form: React.FC<loginFormProps> = ({email, setEmail, password, 
     return (
         <View style={styles.form}>
             {/* email input */}
-            <View style={styles.inputs}>
+            <View style={[styles.inputs, {borderBottomColor: COLORS.tint}]}>
                 <Icon name='mail' color={COLORS.tint} size={24}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.color, fontSize: 18}}
@@ -31,7 +31,7 @@ const LoginScreen_Form: React.FC<loginFormProps> = ({email, setEmail, password, 
                 <Icon name='done' color={COLORS.tint} size={24}/>
             </View>
             {/* password input */}
-            <View style={styles.inputs}>
+            <View style={[styles.inputs, {borderBottomColor: COLORS.tint}]}>
                 <Icon name='lock' color={COLORS.tint} size={24}/>
                 <TextInput 
                     style={{flex: 1, color: COLORS.color, fontSize: 18}}
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     },
     inputs: {
         ...G.row,
-        borderBottomColor: COLORS.GREY,
         borderBottomWidth: 1,
         marginVertical: 10
     },

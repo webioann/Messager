@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native'
 import React, { useContext, SetStateAction } from 'react'
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
 import { UserContext } from '../context/UserContext';
-import { G } from '../constants/SIZES';
 
 type ImageUploaderProps = {
     getImageURL: React.Dispatch<SetStateAction<string | undefined>>
@@ -21,7 +20,7 @@ const UploadImageInStorage: React.FC<ImageUploaderProps> = ({ getImageURL, child
             cropping: true
         })
         .then((file) => { fileLocationOnPhone = Platform.OS === 'ios' ? file.sourceURL : file.path });
-        let uniqueName = `send/${currentUser?.uid.slice(0,8)}/at${Date.now().toString()}`
+        let uniqueName = `images/${currentUser?.uid}/${Date.now().toString()}`
         // put image in Storage and download image URL
         fileLocationOnPhone && await storage().ref(uniqueName).putFile(fileLocationOnPhone)
         let imageURL = await storage().ref(uniqueName).getDownloadURL()
@@ -42,7 +41,8 @@ export default UploadImageInStorage;
 
 const styles = StyleSheet.create({
     imagePicker: {
-        ...G.row,
+        flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'flex-start',
         gap: 16
     }

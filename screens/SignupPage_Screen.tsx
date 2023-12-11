@@ -1,11 +1,12 @@
 import { 
+    Alert,
     StyleSheet, 
     Text, 
     View, 
     TouchableWithoutFeedback, 
     TouchableOpacity, 
     Keyboard } from 'react-native';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -19,6 +20,7 @@ import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import { nameRegExpPattern, emailRegExpPattern, passwordRegExpPattern } from '../constants/SIZES';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
@@ -27,6 +29,7 @@ const SignupPage_Screen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
+    const [validationResult, setValidationResult] = useState(false)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -35,20 +38,29 @@ const SignupPage_Screen = () => {
         setPassword('')
         setFilePath(undefined)
     }
-    // on press Sign Up button will be created new User Account on Firebase
+
+    useEffect(() => {
+        let emailTest = emailRegExpPattern.test(email)
+        let nameTest = nameRegExpPattern.test(name)
+        let passwordTest = passwordRegExpPattern.test(password)
+        if( emailTest && nameTest && passwordTest && filePath ) { setValidationResult(true) }
+        else { setValidationResult(false) }
+    }, [name, email, password, filePath])
+
+
     const createNewUserAccount = async() => {
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
-        let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`// <--- create unique image name for save on Storage
-        filePath && await storage().ref(uniqueAvatarName).putFile(filePath)// <--- put image in Storage and download image URL
-        let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
+        // let uniqueAvatarName = `user_avatars/${name}_${newUser.user.uid.slice(0,4)}_avatar`// <--- create unique image name for save on Storage
+        // filePath && await storage().ref(uniqueAvatarName).putFile(filePath)// <--- put image in Storage and download image URL
+        // let imageURL = await storage().ref(uniqueAvatarName).getDownloadURL()
         await newUser.user.updateProfile({ // <--- update user profile with adding name and photo
             displayName: name,
-            photoURL: imageURL
+            photoURL: filePath
         })
         await firestore().collection('USERS_DB').doc(newUser.user.uid).set({// <--- save User on Storage DB
             displayName: name,
             email,
-            photoURL: imageURL,
+            photoURL: filePath,
             uid: newUser.user.uid,
             phoneNumber: null
         })
@@ -82,6 +94,7 @@ const SignupPage_Screen = () => {
                 </View>
                 <TouchableOpacity 
                     onPress={createNewUserAccount} 
+                    // onPress={() => console.log(validationResult, name, email, password, filePath)} 
                     style={[styles.button, {backgroundColor: COLORS.orange}]}>
                     <Text style={[styles.button_text, {color: COLORS.white}]}>Create new Account</Text>
                 </TouchableOpacity>
