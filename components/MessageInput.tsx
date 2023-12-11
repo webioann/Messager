@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } 
 import { UserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/MaterialIcons';
+
 import UploadImageInStorage from './UploadImageInStorage';
 import { SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
@@ -82,7 +84,9 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
                     onPress={() => console.log('click on camera icon')}>
                     <Icon name='camera-outline' color={COLORS.orange} size={24}/>    
                 </TouchableOpacity>
-                <UploadImageInStorage getImageURL={setImage} uniqueName='NAME'  color={COLORS.orange} size={24}/>
+                <UploadImageInStorage getImageURL={setImage}>
+                    <Icon2 name='photo' color={COLORS.orange} size={24}/>
+                </UploadImageInStorage>
             </View>
         </View>
     )
