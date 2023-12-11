@@ -17,7 +17,7 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
 
     return (
         <TouchableOpacity 
-            style={[styles.previewContainer, {backgroundColor: COLORS.third}]} 
+            style={[styles.previewContainer, {backgroundColor: COLORS.main}]} 
             onPress={() => {
                 navigation.navigate(
                     "Chat", 
