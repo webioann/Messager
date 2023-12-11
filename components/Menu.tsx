@@ -14,18 +14,18 @@ const Menu = () => {
     return (
         <View style={styles.bottomSection}>
             <View style={[styles.menu, {backgroundColor: COLORS.minor}]}>
-                <View style={[styles.link, {backgroundColor: COLORS.grey}]}>
+                <View style={[styles.link, {backgroundColor: COLORS.main}]}>
                     <Icon2 name='home-outline' size={30} color={COLORS.tint}/>
                 </View>
                 <TouchableOpacity 
-                    style={[styles.link, {backgroundColor: COLORS.grey}]} 
+                    style={[styles.link, {backgroundColor: COLORS.main}]} 
                     onPress={() => navigation.navigate('Profile')}>
                     <Icon2 name='account-circle-outline' size={30} color={COLORS.tint}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.link, {backgroundColor: COLORS.grey}]}  onPress={() => navigation.navigate("Contacts")}>
+                <TouchableOpacity style={[styles.link, {backgroundColor: COLORS.main}]}  onPress={() => navigation.navigate("Contacts")}>
                     <Icon2 name='account-outline' size={30} color={COLORS.tint}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.link, {backgroundColor: COLORS.grey}]} onPress={() => navigation.navigate("Settings")}>
+                <TouchableOpacity style={[styles.link, {backgroundColor: COLORS.main}]} onPress={() => navigation.navigate("Settings")}>
                     <Icon2 name='cog-outline' size={30} color={COLORS.tint}/>
                 </TouchableOpacity>
             </View>
