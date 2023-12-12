@@ -2,8 +2,9 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
 import { useUserContext } from '../context/UserContext';
-import { COLORS, SIZES } from '../constants/SIZES';
+import { SIZES } from '../constants/SIZES';
 import { messageType } from '../Types/chats_types';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type OneMessageProps = {
     message: messageType
@@ -12,9 +13,10 @@ type OneMessageProps = {
 const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
     const { currentUser } = useUserContext()
     const newTime = useTimeTransformer(message.createdAt)
-    
+    const { COLORS } = useColorSchemeContext()
+
     const variants = {
-        backgroundColor: currentUser?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
+        backgroundColor: currentUser?.uid !== message.senderID ? COLORS.accent : COLORS.adorn,
         borderBottomLeftRadius: currentUser?.uid !== message.senderID ? 8 : 0,
         borderBottomRightRadius: currentUser?.uid !== message.senderID ? 0 : 8,
     }
@@ -24,8 +26,8 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
             { message.files.length < 1 
                 ? (
                     <View style={[styles.message, variants]}>
-                        <Text style={styles.messageText}>{message.text}</Text>
-                        <Text style={styles.timeStamp}>
+                        <Text style={[styles.messageText, {color: COLORS.white}]}>{message.text}</Text>
+                        <Text style={[styles.timeStamp, {color: COLORS.white}]}>
                             { newTime }
                         </Text>
                     </View>
@@ -33,7 +35,7 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
                 : (
                     <View style={[styles.imageContainer, variants]}>
                         <Image style={styles.image} resizeMode='cover' source={{uri: message.files[0]}}/>
-                        <Text style={[styles.timeStamp, styles.outsideTimeStamp]}>
+                        <Text style={[styles.timeStamp, styles.outsideTimeStamp, {color: COLORS.white}]}>
                             { newTime }
                         </Text>
                     </View>
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
     },
     messageText: {
         maxWidth: '80%',
-        color: COLORS.LIGHT,
         lineHeight: 19
     },
     imageContainer: {
@@ -77,7 +78,6 @@ const styles = StyleSheet.create({
         height: 300
     },
     timeStamp: {
-        color: COLORS.LIGHT,
         minWidth: 40
     },
     outsideTimeStamp: {

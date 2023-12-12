@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import React, { useContext } from 'react';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import React from 'react';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import ScreenWrapper from './ScreenWrapper';
@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Welcome_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     return (
         <ScreenWrapper>

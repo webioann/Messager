@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, TextInput, Text, View, FlatList } from 'react-native';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
@@ -7,13 +7,13 @@ import { SIZES } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
 import ScreenWrapper from './ScreenWrapper';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { useUserContext } from '../context/UserContext';
 
 const Chats_Screen = () => {
   const [value, setValue] = useState('')
   const [contactsList, setContactsList] = useState<UserType[]>([])
-  const { COLORS } = useContext(ColorSchemeContext)
+  const { COLORS } = useColorSchemeContext()
   const { currentUser } = useUserContext()
 
 const fetchAllChattingUsers = async() => {

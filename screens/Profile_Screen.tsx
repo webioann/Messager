@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader'
 import UserAvatarImage from '../components/UserAvatarImage'
@@ -8,13 +8,13 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button_Signout from '../components/Signout_Button'
 import UploadImageInStorage from '../components/UploadImageInStorage'
 import { useUserContext } from '../context/UserContext';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 
 const Profile_Screen = () => {
     const { currentUser } = useUserContext()
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

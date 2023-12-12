@@ -1,17 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import UserAvatarImage from './UserAvatarImage';
 import GetStartChatting from './GetStartChatting';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import { UserType } from '../Types/users_types';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const Contact: React.FC<UserType> = (contact) => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     const goEditThisContact = () => {
         navigation.navigate("EditContact", {contact: contact})
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
         gap: 10,
         paddingVertical: 5
     },
-})
+});

@@ -6,7 +6,7 @@ import {
     Keyboard, 
     TouchableOpacity, 
     } from 'react-native';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,13 +14,13 @@ import LoginScreen_Form from '../components/LoginScreen_Form';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import { useUserContext } from '../context/UserContext';
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { restartAuthState } = useUserContext()

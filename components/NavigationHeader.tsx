@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useContext, ReactNode } from 'react'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 
 type NavHeaderProps = {
-    children?: ReactNode | ReactNode[]
+    children?: React.ReactNode | React.ReactNode[]
     title: string
 }
 
 const NavigationHeader: React.FC<NavHeaderProps> = ({children, title}) => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     return (
         <View style={[styles.nav_header, {
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         paddingHorizontal: 20
     }
-})
+});

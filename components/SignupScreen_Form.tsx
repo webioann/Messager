@@ -1,20 +1,19 @@
 import { StyleSheet, View, TextInput } from 'react-native'
-import React, { SetStateAction, useContext } from 'react'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
-import { COLORS, G } from '../constants/SIZES';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type signupFormProps = {
     name: string
-    setName: React.Dispatch<SetStateAction<string>>
+    setName: React.Dispatch<React.SetStateAction<string>>
     email: string
-    setEmail: React.Dispatch<SetStateAction<string>>
+    setEmail: React.Dispatch<React.SetStateAction<string>>
     password: string
-    setPassword: React.Dispatch<SetStateAction<string>>
+    setPassword: React.Dispatch<React.SetStateAction<string>>
 }
 
 const SignupScreen_Form: React.FC<signupFormProps> = ({name, setName, email, setEmail, password, setPassword}) => {
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     return (
         <View style={styles.form}>
@@ -69,9 +68,10 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
     },
     inputs: {
-        ...G.row,
-        borderBottomColor: COLORS.GREY,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         borderBottomWidth: 1,
         marginVertical: 10
     },
-})
+});

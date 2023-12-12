@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { COLORS } from '../constants/SIZES';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type avatarProps = {
     pathToImage?: string | undefined;
@@ -8,7 +8,8 @@ type avatarProps = {
 }
 
 const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
-    
+    const { COLORS } = useColorSchemeContext()
+
     return (
         <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}>
             { pathToImage 
@@ -24,7 +25,7 @@ const UserAvatarImage: React.FC<avatarProps> = ({ pathToImage, size }) => {
                         width: size, 
                         height: size, 
                         borderRadius: size / 2,
-                        tintColor: COLORS.GREY,
+                        tintColor: COLORS.tint,
                     }}
                     alt='default user icon'
                     resizeMode='contain'

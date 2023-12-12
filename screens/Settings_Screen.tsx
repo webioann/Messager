@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React, { useContext } from 'react';
+import React from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
 import ThemeModeToggle from '../components/ThemeModeToggle';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -12,7 +12,7 @@ import auth from '@react-native-firebase/auth'
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     const signoutCurrentUser = () => {
         auth().signOut()

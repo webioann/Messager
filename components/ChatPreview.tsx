@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import UserAvatarImage from './UserAvatarImage';
 import { useNavigation } from '@react-navigation/native';
@@ -7,13 +7,13 @@ import { SIZES } from '../constants/SIZES';
 import { UserType } from '../Types/users_types';
 import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
 import useFetchMessages from '../hooks/useFetchMessages';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const ChatPreview: React.FC<UserType> = ({...contact}) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
     const { messages, lastMessage, lastTimeStamp } = useFetchMessages(chatRoomID)
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     return (
         <TouchableOpacity 
@@ -73,11 +73,9 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         marginLeft: SIZES.GAP,
-        // borderBottomWidth: 1,
     },
     metaData: {
         height: '100%',
-        // borderBottomWidth: 1,
     },
     counter: {
         borderRadius: 6,
@@ -85,4 +83,4 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         marginTop: 4
     },
-})
+});

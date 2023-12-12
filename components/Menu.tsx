@@ -1,15 +1,15 @@
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { SIZES } from '../constants/SIZES';
 
 const Menu = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     return (
         <View style={styles.bottomSection}>

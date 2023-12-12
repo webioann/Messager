@@ -1,11 +1,10 @@
 import { TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import React from 'react'
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ThemeModeToggle = () => {
-    const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext);
-
+    const { COLORS, toggleColorScheme, appColorScheme } = useColorSchemeContext()
     return (
         <TouchableOpacity
             style={{backgroundColor: COLORS.main}}

@@ -5,7 +5,7 @@ import {
     TouchableWithoutFeedback, 
     TouchableOpacity, 
     Keyboard } from 'react-native';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -15,7 +15,7 @@ import UploadImageInStorage from '../components/UploadImageInStorage';
 import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
@@ -23,7 +23,7 @@ import firestore from '@react-native-firebase/firestore';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
     const { restartAuthState } = useUserContext()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')

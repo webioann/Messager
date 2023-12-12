@@ -1,16 +1,16 @@
 import { StyleSheet, Text, Pressable } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth'
 import { useUserContext } from '../context/UserContext';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const Signout_Button = () => {
     const { currentUser, restartAuthState } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     const signoutCurrentUser = () => {
         auth().signOut()
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
         padding: 8,
         borderRadius: 8,
     },
-})
+});

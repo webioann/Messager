@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native'
-import React, { SetStateAction, useContext } from 'react'
+import React, { SetStateAction } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type loginFormProps = {
     email: string
@@ -13,7 +13,8 @@ type loginFormProps = {
 const LoginScreen_Form: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
     // const [passwordVisibility, setPasswordVisibility] = useState(false)
     // console.log(passwordVisibility)
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
+    
     return (
         <View style={styles.form}>
             {/* email input */}
@@ -63,4 +64,4 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginVertical: 10
     },
-})
+});

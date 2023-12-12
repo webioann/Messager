@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import NavigationHeader from '../components/NavigationHeader';
 import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,7 +13,7 @@ type StackProps = NativeStackScreenProps<RootStackParams, 'EditContact'>
 
 
 const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
     const {contact} = route.params;
     const [newNumber, setNewNumber] = useState('')
 

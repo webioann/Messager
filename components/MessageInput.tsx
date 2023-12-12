@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } from 'react-native'
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import React, { useState } from 'react'
+import { StyleSheet, View, TouchableOpacity, TextInput, Keyboard } from 'react-native'
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import UploadImageInStorage from './UploadImageInStorage';
@@ -16,7 +16,7 @@ type RoomProp = {
 const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
     const [message, setMessage] = useState('')
     const [image, setImage] = useState<string | undefined>(undefined)
-    const { COLORS } = useContext(ColorSchemeContext);
+    const { COLORS } = useColorSchemeContext()
 
     const addDataInFirestore = async () => {
         try {
@@ -75,7 +75,6 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
                     onPress={addDataInFirestore}> 
                     <Icon name='send' color={COLORS.blue} size={24}/>    
                 </TouchableOpacity>
-
                 <TouchableOpacity 
                     onPress={() => console.log('click on camera icon')}>
                     <Icon name='camera-outline' color={COLORS.orange} size={24}/>    

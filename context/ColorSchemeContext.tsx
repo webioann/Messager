@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
-import auth from '@react-native-firebase/auth'
 
 type childrenType = {
     children: ReactNode[] | ReactNode 
@@ -82,7 +81,6 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                     })
         }
     }, [appColorScheme])
-
 
     return (
         <ColorSchemeContext.Provider value={{ appColorScheme, toggleColorScheme, COLORS }}>

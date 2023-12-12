@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import firestore from '@react-native-firebase/firestore';
 import { useUserContext } from '../context/UserContext';
@@ -8,14 +8,13 @@ import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import { UserType } from '../Types/users_types';
 import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const GetStartChatting: React.FC<UserType> = (contact) => {
-
     const { currentUser } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
 
     const onStartChatting = async() => {
         let roomWasCreated = false

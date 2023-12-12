@@ -1,17 +1,17 @@
 import { StyleSheet, View, FlatList, TextInput } from 'react-native'
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Contact from '../components/Contact';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
 import { useUserContext } from '../context/UserContext';
-import { ColorSchemeContext } from '../context/ColorSchemeContext';
+import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UserType } from '../Types/users_types';
 import firestore from '@react-native-firebase/firestore';
 
 const Contacts_Screen = () => {
     const { currentUser } = useUserContext()
-    const { COLORS } = useContext(ColorSchemeContext)
+    const { COLORS } = useColorSchemeContext()
     const [searchValue, setSearchValue] = useState('')
     const [contactsList, setContactsList] = useState<UserType[]>([])
 
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
         gap: 10,
         paddingVertical: 5
     },
-})
+});
