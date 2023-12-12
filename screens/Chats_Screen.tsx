@@ -1,25 +1,22 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, TextInput, Text, View, SafeAreaView, StatusBar, FlatList } from 'react-native';
+import { StyleSheet, TextInput, Text, View, FlatList } from 'react-native';
 import UserAvatarImage from '../components/UserAvatarImage';
 import ChatPreview from '../components/ChatPreview';
 import Menu from '../components/Menu';
-import { SIZES, G } from '../constants/SIZES';
-import { UserContext } from '../context/UserContext';
+import { SIZES } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
 import ScreenWrapper from './ScreenWrapper';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-
+import { useUserContext } from '../context/UserContext';
 
 const Chats_Screen = () => {
   const [value, setValue] = useState('')
   const [contactsList, setContactsList] = useState<UserType[]>([])
-  const currentUser = useContext(UserContext)
-  const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
+  const { COLORS } = useContext(ColorSchemeContext)
+  const { currentUser } = useUserContext()
 
 const fetchAllChattingUsers = async() => {
-  // const chatsDocs = await firestore().collection('CHAT_ROOM_DB').get();
-  // let chats = chatsDocs.docs.map((doc) => doc.id)
   const contactsDocs = await firestore().collection('USERS_DB').get();
   let contacts = contactsDocs.docs.map((doc) => ({...doc.data()}))
   let temp = contacts.filter((contact) => { 
@@ -40,7 +37,6 @@ const fetchAllChattingUsers = async() => {
 useEffect(() => {
   fetchAllChattingUsers()
 }, [])
-
 
   return (
     <ScreenWrapper>

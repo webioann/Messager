@@ -4,16 +4,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth'
-import { UserContext } from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 
 const Signout_Button = () => {
-    const currentUser = useContext(UserContext)
+    const { currentUser, restartAuthState } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useContext(ColorSchemeContext)
 
     const signoutCurrentUser = () => {
         auth().signOut()
+        .then(() => restartAuthState())
         .then(() => navigation.navigate('Welcome'))
         .catch(error => console.log(`_AUTH_SIGN_OUT_ERROR_ --> ${error}`))
     }

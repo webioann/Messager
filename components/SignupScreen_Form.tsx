@@ -2,7 +2,6 @@ import { StyleSheet, View, TextInput } from 'react-native'
 import React, { SetStateAction, useContext } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-
 import { COLORS, G } from '../constants/SIZES';
 
 type signupFormProps = {

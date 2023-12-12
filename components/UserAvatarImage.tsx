@@ -37,8 +37,6 @@ export default UserAvatarImage;
 
 const styles = StyleSheet.create({
     avatar: {
-        // borderColor: COLORS.DARK,
-        // borderStyle: 'solid',
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center'

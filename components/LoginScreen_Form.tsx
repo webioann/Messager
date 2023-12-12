@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-nat
 import React, { SetStateAction, useContext } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
-import {  G } from '../constants/SIZES';
 
 type loginFormProps = {
     email: string
@@ -58,7 +57,9 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
     },
     inputs: {
-        ...G.row,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         borderBottomWidth: 1,
         marginVertical: 10
     },

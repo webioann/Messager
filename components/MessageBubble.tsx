@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
-import { UserContext } from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 import { COLORS, SIZES } from '../constants/SIZES';
 import { messageType } from '../Types/chats_types';
 
@@ -10,17 +10,17 @@ type OneMessageProps = {
 }
 
 const MessageBubble: React.FC<OneMessageProps> = ({ message }) => {
-    const user = useContext(UserContext)
+    const { currentUser } = useUserContext()
     const newTime = useTimeTransformer(message.createdAt)
     
     const variants = {
-        backgroundColor: user?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
-        borderBottomLeftRadius: user?.uid !== message.senderID ? 8 : 0,
-        borderBottomRightRadius: user?.uid !== message.senderID ? 0 : 8,
+        backgroundColor: currentUser?.uid !== message.senderID ? COLORS.ACCENT : COLORS.DARK,
+        borderBottomLeftRadius: currentUser?.uid !== message.senderID ? 8 : 0,
+        borderBottomRightRadius: currentUser?.uid !== message.senderID ? 0 : 8,
     }
 
     return (
-        <View style={[styles.cell, {justifyContent: user?.uid !== message.senderID ? 'flex-end' : 'flex-start'}]}>
+        <View style={[styles.cell, {justifyContent: currentUser?.uid !== message.senderID ? 'flex-end' : 'flex-start'}]}>
             { message.files.length < 1 
                 ? (
                     <View style={[styles.message, variants]}>

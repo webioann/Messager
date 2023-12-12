@@ -1,8 +1,8 @@
 import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native'
-import React, { useContext, SetStateAction } from 'react'
+import React, { SetStateAction } from 'react'
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
-import { UserContext } from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 
 type ImageUploaderProps = {
     getImageURL: React.Dispatch<SetStateAction<string | undefined>>
@@ -11,7 +11,7 @@ type ImageUploaderProps = {
 }
 
 const UploadImageInStorage: React.FC<ImageUploaderProps> = ({ getImageURL, children, storageFolder }) => {
-    const currentUser = useContext(UserContext)
+    const { currentUser } = useUserContext()
 
     const openGalleryAndChooseImage = async() => {
         let fileLocationOnPhone = undefined;
@@ -47,5 +47,4 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         gap: 16
     }
-
 })

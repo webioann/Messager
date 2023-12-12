@@ -16,12 +16,14 @@ import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import auth from '@react-native-firebase/auth'
+import { useUserContext } from '../context/UserContext';
 
 const LoginPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useContext(ColorSchemeContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { restartAuthState } = useUserContext()
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()
@@ -32,6 +34,7 @@ const LoginPage_Screen = () => {
     const loginCurrentUser = async() => {
         if(email.length > 4 && password.length > 4){
             await auth().signInWithEmailAndPassword(email, password)
+            .then(() => restartAuthState())
             .then(() => getCleanUpScreen())
             .then(() => navigation.navigate("Chats"))
             .catch(error => {
@@ -96,6 +99,4 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
         gap: 10
     },
-
-
 });

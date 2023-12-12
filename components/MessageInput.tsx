@@ -1,10 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Keyboard } from 'react-native'
-import { UserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
-
 import UploadImageInStorage from './UploadImageInStorage';
 import { SIZES, G } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
@@ -19,8 +17,6 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
     const [message, setMessage] = useState('')
     const [image, setImage] = useState<string | undefined>(undefined)
     const { COLORS } = useContext(ColorSchemeContext);
-
-    const user = useContext(UserContext)
 
     const addDataInFirestore = async () => {
         try {

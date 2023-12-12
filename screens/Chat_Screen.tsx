@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, ActivityIndicator, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageCreateTools from '../components/MessageInput';
@@ -6,7 +6,7 @@ import MessageBubble from '../components/MessageBubble';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
 import { RootStackParams } from '../Types/navigation_types';
-import { SIZES, G } from '../constants/SIZES';
+import { SIZES } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import useFetchMessages from '../hooks/useFetchMessages';
 
@@ -55,6 +55,5 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 10,
-
     }
 });

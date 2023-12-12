@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { messageType } from '../Types/chats_types';
 import firestore from '@react-native-firebase/firestore';
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
@@ -6,15 +6,13 @@ import ThemeModeToggle from '../components/ThemeModeToggle';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth'
 
-
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS, toggleColorScheme, appColorScheme } = useContext(ColorSchemeContext)
+    const { COLORS } = useContext(ColorSchemeContext)
 
     const signoutCurrentUser = () => {
         auth().signOut()
@@ -80,8 +78,6 @@ const Settings_Screen = () => {
                         <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Terms and Policies</Text>
                     </TouchableOpacity>
                 </View>
-
-
                 {/* cache section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Cache & cellular</Text>
                 <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
@@ -98,9 +94,6 @@ const Settings_Screen = () => {
                         <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Data Server</Text>
                     </TouchableOpacity>
                 </View>
-
-
-
                 {/* actions section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Actions</Text>
                 <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
@@ -123,7 +116,6 @@ const Settings_Screen = () => {
                         <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
                     </TouchableOpacity>
                 </View>
-
             </View>
         </ScreenWrapper>
     )

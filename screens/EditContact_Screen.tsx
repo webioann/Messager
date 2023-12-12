@@ -1,14 +1,12 @@
-import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
 import React, { useState, useContext } from 'react'
-import { useNavigation } from '@react-navigation/native';
 import ScreenWrapper from './ScreenWrapper';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import NavigationHeader from '../components/NavigationHeader';
-
 import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams, UseNavigation_Type } from '../Types/navigation_types';
+import { RootStackParams } from '../Types/navigation_types';
 import firestore from '@react-native-firebase/firestore';
 
 type StackProps = NativeStackScreenProps<RootStackParams, 'EditContact'>

@@ -7,13 +7,13 @@ import Menu from '../components/Menu'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button_Signout from '../components/Signout_Button'
 import UploadImageInStorage from '../components/UploadImageInStorage'
-import { UserContext } from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 
 const Profile_Screen = () => {
-    const currentUser = useContext(UserContext)
+    const { currentUser } = useUserContext()
     const { COLORS } = useContext(ColorSchemeContext)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -120,7 +120,6 @@ const Profile_Screen = () => {
                     style={[styles.button, {backgroundColor: COLORS.orange}]}>
                     <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                 </TouchableOpacity>
-
             </View>
             <Menu/>
         </ScreenWrapper>
@@ -168,5 +167,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '500'
     }, 
-
 })

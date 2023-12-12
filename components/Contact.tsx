@@ -17,7 +17,6 @@ const Contact: React.FC<UserType> = (contact) => {
         navigation.navigate("EditContact", {contact: contact})
     }
 
-
     return (
         <View style={styles.contact_item}>
             <UserAvatarImage pathToImage={contact.photoURL} size={50}/>
@@ -51,5 +50,4 @@ const styles = StyleSheet.create({
         gap: 10,
         paddingVertical: 5
     },
-
 })

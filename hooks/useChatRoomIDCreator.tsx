@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { UserContext } from '../context/UserContext';
+import { useEffect, useState } from 'react'
+import { useUserContext } from '../context/UserContext';
 
 const useChatRoomIDCreator = (contactUID: string) => {
-    const currentUser = useContext(UserContext)
     const [chatRoomID, setChatRoomID] = useState('')
+    const { currentUser } = useUserContext()
 
     const createChatRoomID = () => {
         if(currentUser?.uid) {
@@ -19,7 +19,6 @@ const useChatRoomIDCreator = (contactUID: string) => {
 
     useEffect(() => { 
         createChatRoomID(); 
-        console.log(`chatRoomID ---> ${chatRoomID}`)
     }, [contactUID])
 
     return chatRoomID

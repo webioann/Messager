@@ -1,12 +1,11 @@
 import { 
-    Alert,
     StyleSheet, 
     Text, 
     View, 
     TouchableWithoutFeedback, 
     TouchableOpacity, 
     Keyboard } from 'react-native';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -18,13 +17,14 @@ import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
 import { ColorSchemeContext } from '../context/ColorSchemeContext';
 import auth from '@react-native-firebase/auth'
-import storage from '@react-native-firebase/storage';
+import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
-import { nameRegExpPattern, emailRegExpPattern, passwordRegExpPattern } from '../constants/SIZES';
+// import { nameRegExpPattern, emailRegExpPattern, passwordRegExpPattern } from '../constants/SIZES';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useContext(ColorSchemeContext)
+    const { restartAuthState } = useUserContext()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -39,15 +39,6 @@ const SignupPage_Screen = () => {
         setFilePath(undefined)
     }
 
-    // useEffect(() => {
-    //     let emailTest = emailRegExpPattern.test(email)
-    //     let nameTest = nameRegExpPattern.test(name)
-    //     let passwordTest = passwordRegExpPattern.test(password)
-    //     if( emailTest && nameTest && passwordTest && filePath ) { setValidationResult(true) }
-    //     else { setValidationResult(false) }
-    // }, [name, email, password, filePath])
-
-
     const createNewUserAccount = async() => {
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
         await newUser.user.updateProfile({ // <--- update user profile with adding name and photo
@@ -61,6 +52,7 @@ const SignupPage_Screen = () => {
             uid: newUser.user.uid,
             phoneNumber: null
         })
+        .then(() => restartAuthState())
         .then(() => getCleanUpScreen())
         .then(() => navigation.navigate("Chats"))
         .catch(error => {

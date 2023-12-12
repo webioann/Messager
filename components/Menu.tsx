@@ -1,6 +1,6 @@
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import React, { useContext } from 'react'
-import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
@@ -59,5 +59,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     }
-    
 });
