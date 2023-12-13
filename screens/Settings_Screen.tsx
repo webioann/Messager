@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
-import ThemeModeToggle from '../components/ThemeModeToggle';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
@@ -115,6 +114,7 @@ const Settings_Screen = () => {
                         <Icon2 name='logout' size={24} color={COLORS.orange}/>
                         <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
                     </TouchableOpacity>
+
                 </View>
             </View>
         </ScreenWrapper>

@@ -31,4 +31,5 @@ export type ScreenOptions_Type = {
   headerShown?: boolean
   title?: string
   headerLeft?: () => React.ReactNode
+  drawerActiveBackgroundColor?: string
 }

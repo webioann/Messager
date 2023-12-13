@@ -20,9 +20,8 @@ const Signout_Button = () => {
     }
     
     return (
-        currentUser && <Pressable onLongPress={signoutCurrentUser} style={[styles.logout, {backgroundColor: COLORS.main}]}>
+        currentUser && <Pressable onPress={signoutCurrentUser}>
             <Icon name='logout' size={24} color={COLORS.orange}/>
-            <Text style={{color: COLORS.color}}>Logout</Text>
         </Pressable>
     )
 }

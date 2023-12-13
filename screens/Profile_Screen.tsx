@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
-import NavigationHeader from '../components/NavigationHeader'
 import UserAvatarImage from '../components/UserAvatarImage'
-import Menu from '../components/Menu'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Button_Signout from '../components/Signout_Button'
 import UploadImageInStorage from '../components/UploadImageInStorage'
 import { useUserContext } from '../context/UserContext';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
@@ -51,9 +48,6 @@ const Profile_Screen = () => {
 
     return (
         <ScreenWrapper>
-            {/* <NavigationHeader title='Edit Profile'>
-                <Button_Signout/>
-            </NavigationHeader> */}
             <View style={{alignItems: 'center'}}>
                 <View style={{position: 'relative'}}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
@@ -121,7 +115,6 @@ const Profile_Screen = () => {
                     <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                 </TouchableOpacity>
             </View>
-            <Menu/>
         </ScreenWrapper>
     )
 }

@@ -15,7 +15,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackNavigatorParams, ScreenOptions_Type } from './Types/navigation_types';
 import useColorSchemeContext from './hooks/useColorSchemeContext';
 import { useUserContext } from './context/UserContext';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
@@ -34,15 +33,6 @@ const App: React.FC = () => {
     headerShown: false,
     title: ''
   }
-  // const DrawerNavigatorOptions: ScreenOptions_Type = {
-  //   headerStyle: {backgroundColor: COLORS.main},
-  //   headerTintColor: COLORS.color,
-  //   headerShadowVisible: false,
-  //   headerShown: true,
-  //   headerLeft: () => {
-  //     return(<Icon name='list' color={'red'} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>)
-  //   }
-  // }
 
   const DrawerNavigator = () => {
     const navigation = useNavigation()
@@ -54,7 +44,8 @@ const App: React.FC = () => {
       headerShown: true,
       headerLeft: () => {
         return(<Icon name='list' color={'red'} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>)
-      }
+      },
+      drawerActiveBackgroundColor: 'red'
     }
     return (
       <Drawer.Navigator screenOptions={options} drawerContent={() => <DrawerNavigatorContent/>}>
@@ -70,14 +61,10 @@ const App: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Welcome'} screenOptions={StackNavigationOptions}>
         <Stack.Screen name="Welcome" component={ currentUser ? DrawerNavigator : Welcome_Screen}/>
-        {/* <Stack.Screen name="Chats" component={DrawerNavigator}/> */}
         <Stack.Screen name="Chat" component={Chat_Screen}/>
-        {/* <Stack.Screen name="Settings" component={Settings_Screen}/> */}
         <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
         <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
-        {/* <Stack.Screen name="Contacts" component={Contacts_Screen}/> */}
         <Stack.Screen name="EditContact" component={EditContact_Screen}/>
-        {/* <Stack.Screen name="Profile" component={Profile_Screen}/> */}
       </Stack.Navigator>  
     </NavigationContainer>
   )
