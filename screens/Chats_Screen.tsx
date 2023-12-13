@@ -40,14 +40,14 @@ useEffect(() => {
 
   return (
     <ScreenWrapper>
-      <View style={styles.headerContainer}>
+      {/* <View style={styles.headerContainer}>
         <Text style={[styles.headerTitle, {color: COLORS.color}]}>
           Chats
         </Text>
         <UserAvatarImage 
           pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} 
           size={SIZES.MEDIUM}/>
-      </View>
+      </View> */}
       <TextInput 
         onChangeText={setValue}
         style={[styles.searchInput, {backgroundColor: 'rgb(210, 208, 208)'}]}
@@ -59,7 +59,7 @@ useEffect(() => {
         renderItem={({item}) => <ChatPreview {...item}/>}
         keyExtractor={item => item.uid}
       />
-      <Menu/>
+      {/* <Menu/> */}
     </ScreenWrapper>
   )
 }

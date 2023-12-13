@@ -28,7 +28,7 @@ const Contacts_Screen = () => {
 
     return (
         <ScreenWrapper>
-            <NavigationHeader title='Contacts'/>
+            {/* <NavigationHeader title='Contacts'/> */}
             <View style={[styles.search, {backgroundColor: COLORS.minor}]}>
                 <Icon name='search' size={26} color={COLORS.tint}/>
                 <TextInput 

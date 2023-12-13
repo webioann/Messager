@@ -51,9 +51,9 @@ const Profile_Screen = () => {
 
     return (
         <ScreenWrapper>
-            <NavigationHeader title='Edit Profile'>
+            {/* <NavigationHeader title='Edit Profile'>
                 <Button_Signout/>
-            </NavigationHeader>
+            </NavigationHeader> */}
             <View style={{alignItems: 'center'}}>
                 <View style={{position: 'relative'}}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
