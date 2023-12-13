@@ -6,10 +6,10 @@ import NavigationHeader from '../components/NavigationHeader';
 import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../Types/navigation_types';
+import { StackNavigatorParams } from '../Types/navigation_types';
 import firestore from '@react-native-firebase/firestore';
 
-type StackProps = NativeStackScreenProps<RootStackParams, 'EditContact'>
+type StackProps = NativeStackScreenProps<StackNavigatorParams, 'EditContact'>
 
 
 const EditContact_Screen: React.FC<StackProps> = ({ route }) => {

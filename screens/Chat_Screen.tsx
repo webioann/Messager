@@ -5,12 +5,12 @@ import MessageCreateTools from '../components/MessageInput';
 import MessageBubble from '../components/MessageBubble';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
-import { RootStackParams } from '../Types/navigation_types';
+import { StackNavigatorParams } from '../Types/navigation_types';
 import { SIZES } from '../constants/SIZES';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import useFetchMessages from '../hooks/useFetchMessages';
 
-type StackProps = NativeStackScreenProps<RootStackParams, 'Chat'>
+type StackProps = NativeStackScreenProps<StackNavigatorParams, 'Chat'>
 
 const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     const {contact, avatar_url, room, contactId} = route.params;

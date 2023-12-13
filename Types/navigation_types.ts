@@ -2,7 +2,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 import { UserType } from './users_types';
 
-export type RootStackParams = {
+export type StackNavigatorParams = {
   Chat: {
     contact: string
     contactId: string
@@ -19,7 +19,7 @@ export type RootStackParams = {
   Profile: undefined
 };
 
-export type UseNavigation_Type = NativeStackNavigationProp<RootStackParams>
+export type UseNavigation_Type = NativeStackNavigationProp<StackNavigatorParams>
 
 export type ScreenOptions_Type = {
   headerStyle: {backgroundColor: string}
@@ -28,18 +28,3 @@ export type ScreenOptions_Type = {
   headerShown?: boolean
   title: string
 }
-// export interface IUser {
-//   displayName: string | null
-//   email: string | null
-//   uid: string | null
-//   photoURL: string | null
-//   phoneNumber: string | null
-// }
-
-// export type Contact_Type = {
-//   displayName: string 
-//   email: string 
-//   uid: string 
-//   photoURL: string 
-//   phoneNumber: string 
-// }

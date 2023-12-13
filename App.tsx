@@ -10,12 +10,14 @@ import EditContact_Screen from './screens/EditContact_Screen';
 import Profile_Screen from './screens/Profile_Screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParams, ScreenOptions_Type } from './Types/navigation_types';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { StackNavigatorParams, ScreenOptions_Type } from './Types/navigation_types';
 import { COLORS } from './constants/SIZES';
 import { useUserContext } from './context/UserContext';
 
 const App: React.FC = () => {
-  const Stack = createNativeStackNavigator<RootStackParams>();
+  const Stack = createNativeStackNavigator<StackNavigatorParams>();
+  const Drawer = createDrawerNavigator();
   const { currentUser } = useUserContext()
 
   const screenOptions: ScreenOptions_Type = {
