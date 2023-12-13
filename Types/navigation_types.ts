@@ -1,6 +1,7 @@
 // ===================================
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 import { UserType } from './users_types';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 export type StackNavigatorParams = {
   Chat: {

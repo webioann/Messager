@@ -12,21 +12,25 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackNavigatorParams, ScreenOptions_Type } from './Types/navigation_types';
-import { COLORS } from './constants/SIZES';
+import useColorSchemeContext from './hooks/useColorSchemeContext';
 import { useUserContext } from './context/UserContext';
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<StackNavigatorParams>();
   const Drawer = createDrawerNavigator();
   const { currentUser } = useUserContext()
+  const { COLORS } = useColorSchemeContext()
+
 
   const screenOptions: ScreenOptions_Type = {
-    headerStyle: {backgroundColor: COLORS.BG},
-    headerTintColor: COLORS.LIGHT,
+    headerStyle: {backgroundColor: COLORS.main},
+    headerTintColor: COLORS.color,
     headerShadowVisible: false,
     headerShown: false,
     title: ''
   }
+
+  
 
   return (
     <NavigationContainer>
