@@ -16,6 +16,7 @@ import { StackNavigatorParams, ScreenOptions_Type } from './Types/navigation_typ
 import useColorSchemeContext from './hooks/useColorSchemeContext';
 import { useUserContext } from './context/UserContext';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
 
 
 const App: React.FC = () => {
@@ -43,9 +44,11 @@ const App: React.FC = () => {
       headerShadowVisible: false,
       headerShown: true,
       headerLeft: () => {
-        return(<Icon name='list' color={'red'} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>)
+        return( 
+          <View style={{paddingLeft: 16}}>
+            <Icon name='menu' color={COLORS.color} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>
+          </View>)
       },
-      drawerActiveBackgroundColor: 'red'
     }
     return (
       <Drawer.Navigator screenOptions={options} drawerContent={() => <DrawerNavigatorContent/>}>
