@@ -38,7 +38,7 @@ const App: React.FC = () => {
   const DrawerNavigator = () => {
     const navigation = useNavigation()
 
-    const options: ScreenOptions_Type = {
+    const drawerScreenOptions: ScreenOptions_Type = {
       headerStyle: {backgroundColor: COLORS.main},
       headerTintColor: COLORS.color,
       headerShadowVisible: false,
@@ -50,9 +50,12 @@ const App: React.FC = () => {
           </View>)
       },
     }
+    const drawerListItemOptions = {
+
+    }
     return (
-      <Drawer.Navigator screenOptions={options} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
-        <Drawer.Screen name="Chats" component={Chats_Screen} options={{drawerActiveBackgroundColor: COLORS.orange}}/>
+      <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
+        <Drawer.Screen name="Chats" component={Chats_Screen} options={{drawerActiveBackgroundColor: 'orange'}}/>
         <Drawer.Screen name="Settings" component={Settings_Screen}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen}/>
         <Drawer.Screen name="Profile" component={Profile_Screen}/>
