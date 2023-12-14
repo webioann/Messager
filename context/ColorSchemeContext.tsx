@@ -29,12 +29,12 @@ export const ColorSchemeContext = createContext<ColorSchemeContextType>({} as Co
 export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const [appColorScheme, setAppColorScheme] = useState<Mode>('light')
     const [COLORS, setCOLORS] = useState<ColorsType>({
-        main: '#fefeff', //main background color
-        minor: '#eeeeee',//background color
-        third: '#ffffff',//background color
+        main: '#ffffff', //main background color
+        minor: '#5a8fbb',//background color
+        third: '#f0f0f0',//background color
         accent: '#3a7ff7',
         white: '#ffffff',
-        blue: '#3a7ff7',
+        blue: '#37abe1',
         orange: '#ff6a33',
         black: '#111213',
         grey: '#f0f0f0',
@@ -50,12 +50,12 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
     useEffect(() => {
         if(appColorScheme === "light") {
             setCOLORS({
-                main: '#fefeff',
-                minor: '#eeeeee',
-                third: '#ffffff',
+                main: '#ffffff',
+                minor: '#5a8fbb',
+                third: '#f0f0f0',
                 accent: '#3a7ff7',
                 white: '#ffffff',
-                blue: '#3a7ff7',
+                blue: '#37abe1',
                 orange: '#ff6a33',
                 black: '#111213',
                 grey: '#f0f0f0',
@@ -66,12 +66,12 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
         }
         if(appColorScheme === 'dark') {
             setCOLORS({
-                main: '#141627',
-                minor: '#202232',
-                third: '#282a3a',
+                main: '#1b2831',
+                minor: '#232e3c',
+                third: '#151d26',
                 accent: '#3a7ff7',
                 white: '#ffffff',
-                blue: '#3a7ff7',
+                blue: '#37abe1',
                 orange: '#ff6a33',
                 black: '#111213',
                 grey: '#f0f0f0',

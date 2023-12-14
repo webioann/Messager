@@ -51,8 +51,8 @@ const App: React.FC = () => {
       },
     }
     return (
-      <Drawer.Navigator screenOptions={options} drawerContent={() => <DrawerNavigatorContent/>}>
-        <Drawer.Screen name="Chats" component={Chats_Screen}/>
+      <Drawer.Navigator screenOptions={options} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
+        <Drawer.Screen name="Chats" component={Chats_Screen} options={{drawerActiveBackgroundColor: COLORS.orange}}/>
         <Drawer.Screen name="Settings" component={Settings_Screen}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen}/>
         <Drawer.Screen name="Profile" component={Profile_Screen}/>

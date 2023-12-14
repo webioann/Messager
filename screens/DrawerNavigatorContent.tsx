@@ -26,7 +26,7 @@ const DrawerContentItemData: DrawerItemProps[] = [
     {label: 'Profile', icon_name: 'account-circle', to: 'Profile'},
 ]
 
-const DrawerNavigatorContent = ( ) => {
+const DrawerNavigatorContent = ({...props }) => {
     const { currentUser, restartAuthState } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useColorSchemeContext()
@@ -40,7 +40,6 @@ const DrawerNavigatorContent = ( ) => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <DrawerContentScrollView style={{backgroundColor: COLORS.main}}>
                 <View style={[styles.drawer_header, {backgroundColor: COLORS.minor}]}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={70}/>
                     <View>
@@ -53,8 +52,12 @@ const DrawerNavigatorContent = ( ) => {
                     </View>
                     <ThemeModeToggle/>
                 </View>
+
+            <DrawerContentScrollView style={{backgroundColor: COLORS.main}} {...props}>
+                {/* <DrawerItemList {...props} /> */}
                 { DrawerContentItemData.map((item) => (
                     <DrawerItem 
+                        key={item.to}
                         label={item.label}
                         activeBackgroundColor={'orange'}
                         labelStyle={{fontSize: 16, color: COLORS.color}}
@@ -62,8 +65,6 @@ const DrawerNavigatorContent = ( ) => {
                         onPress={() => navigation.navigate(item.to)}
                     />
                 )) }
-            
-
             </DrawerContentScrollView> 
             <View style={[styles.drawer_footer, {backgroundColor: COLORS.main, borderTopColor: COLORS.orange}]}>
                 <TouchableOpacity
