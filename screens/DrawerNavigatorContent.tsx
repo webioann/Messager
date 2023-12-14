@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Linking, SafeAreaView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Switch, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { DrawerContentScrollView, DrawerItemList, DrawerItem} from '@react-navigation/drawer';
 import UserAvatarImage from '../components/UserAvatarImage';
@@ -26,12 +26,10 @@ const DrawerContentItemData: DrawerItemProps[] = [
     {label: 'Profile', icon_name: 'account-circle', to: 'Profile'},
 ]
 
-const DrawerNavigatorContent = ({...props }) => {
+const DrawerNavigatorContent = () => {
     const { currentUser, restartAuthState } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
-    const { COLORS } = useColorSchemeContext()
-
-    // console.log(`HISTORY ===> ${JSON.stringify(navigation)}`)
+    const { COLORS, toggleColorScheme, appColorScheme } = useColorSchemeContext()
 
     const signoutCurrentUser = () => {
         auth().signOut()
@@ -42,7 +40,7 @@ const DrawerNavigatorContent = ({...props }) => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-                <View style={[styles.drawer_header, {backgroundColor: COLORS.minor}]}>
+                <View style={[styles.drawer_header, {backgroundColor: COLORS.minor, borderBottomColor: COLORS.third}]}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={70}/>
                     <View>
                         <Text style={[styles.user_name, {color: COLORS.color}]}>
@@ -55,7 +53,7 @@ const DrawerNavigatorContent = ({...props }) => {
                     <ThemeModeToggle/>
                 </View>
 
-            <DrawerContentScrollView style={{backgroundColor: COLORS.main}} {...props}>
+            <DrawerContentScrollView style={{backgroundColor: COLORS.main}}>
                 {/* <DrawerItemList 
                     state={navigation.getParent()}
                     navigation={navigation.getParent()}
@@ -64,7 +62,6 @@ const DrawerNavigatorContent = ({...props }) => {
                 /> */}
                 { DrawerContentItemData.map((item) => (
                     <DrawerItem 
-                        {...props}
                         key={item.to}
                         label={item.label}
                         labelStyle={{fontSize: 16, color: COLORS.color}}
@@ -73,7 +70,17 @@ const DrawerNavigatorContent = ({...props }) => {
                     />
                 )) }
             </DrawerContentScrollView> 
-            <View style={[styles.drawer_footer, {backgroundColor: COLORS.main, borderTopColor: COLORS.orange}]}>
+            <View style={[styles.drawer_footer, {backgroundColor: COLORS.minor, borderTopColor: COLORS.third}]}>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8, paddingBottom: 30}}>
+                    <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Dark theme mode</Text>
+                    <Switch 
+                        onChange={toggleColorScheme}
+                        thumbColor={appColorScheme === 'light' ? COLORS.blue : COLORS.adorn}
+                        value={appColorScheme === 'light' ? true : false}
+                        trackColor={{true: COLORS.accent, false: COLORS.grey}}
+                    />
+                </View>
+
                 <TouchableOpacity
                     onPress={signoutCurrentUser}
                     style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
@@ -93,7 +100,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         justifyContent: 'space-between', 
         paddingVertical: 30,
-        paddingHorizontal: SIZES.GAP
+        paddingHorizontal: SIZES.GAP,
+        borderBottomWidth: 1
     },
     user_name: {
         fontSize: 20,

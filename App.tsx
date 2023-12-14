@@ -57,7 +57,7 @@ const App: React.FC = () => {
     //     drawerInactiveBackgroundColor: COLORS.main,
     // }
     return (
-      <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
+      <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent/>}>
         <Drawer.Screen name="Chats" component={Chats_Screen}/>
         <Drawer.Screen name="Settings" component={Settings_Screen}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen}/>
