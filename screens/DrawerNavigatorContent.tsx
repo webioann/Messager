@@ -54,13 +54,13 @@ const DrawerNavigatorContent = ({...props }) => {
                 </View>
 
             <DrawerContentScrollView style={{backgroundColor: COLORS.main}} {...props}>
-                <DrawerItemList 
+                {/* <DrawerItemList 
                     state={navigation.getParent()}
                     navigation={navigation.getParent()}
                     descriptors={navigation.getParent()}
                     {...props}
-                />
-                {/* { DrawerContentItemData.map((item) => (
+                /> */}
+                { DrawerContentItemData.map((item) => (
                     <DrawerItem 
                         key={item.to}
                         label={item.label}
@@ -68,7 +68,7 @@ const DrawerNavigatorContent = ({...props }) => {
                         icon={({focused}) => <Icon name={item.icon_name} size={34} color={focused ? COLORS.orange : COLORS.tint}/>}
                         onPress={() => navigation.navigate(item.to)}
                     />
-                )) } */}
+                )) }
             </DrawerContentScrollView> 
             <View style={[styles.drawer_footer, {backgroundColor: COLORS.main, borderTopColor: COLORS.orange}]}>
                 <TouchableOpacity

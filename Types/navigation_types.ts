@@ -1,6 +1,6 @@
 // ===================================
 import React from 'react'
-
+import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 import { UserType } from './users_types';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -37,5 +37,5 @@ export type DrawerItemOptions_Type = {
   drawerIcon?: (props: { focused: boolean; color: string; size: number }) => React.ReactNode;
   drawerActiveBackgroundColor?: string
   drawerInactiveBackgroundColor?: string
-
+  contentContainerStyle?: StyleProp<ViewStyle>
 }
