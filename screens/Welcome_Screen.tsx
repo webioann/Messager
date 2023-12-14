@@ -15,7 +15,7 @@ const Welcome_Screen = () => {
             <View style={styles.bigboard}>
                 <Text style={[styles.title, {color: COLORS.color}]}>Wellcome</Text>
                 <Image 
-                    source={require('../assets/whatsapp.png')} 
+                    source={require('../assets/telegram.png')} 
                     style={{width: '80%', height: '80%'}}                        
                     alt='whatsapp logo '
                     resizeMode='contain'
