@@ -31,6 +31,8 @@ const DrawerNavigatorContent = ({...props }) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useColorSchemeContext()
 
+    // console.log(`HISTORY ===> ${JSON.stringify(navigation)}`)
+
     const signoutCurrentUser = () => {
         auth().signOut()
         .then(() => restartAuthState())
@@ -62,6 +64,7 @@ const DrawerNavigatorContent = ({...props }) => {
                 /> */}
                 { DrawerContentItemData.map((item) => (
                     <DrawerItem 
+                        {...props}
                         key={item.to}
                         label={item.label}
                         labelStyle={{fontSize: 16, color: COLORS.color}}
