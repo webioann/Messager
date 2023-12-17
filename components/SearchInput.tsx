@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Pressable, Keyboard } from 'react-native'
 import Animated, { useSharedValue, withSpring, withTiming, Easing, ReduceMotion, useAnimatedStyle } from 'react-native-reanimated';
-import React, { useState, useRef, LegacyRef, MutableRefObject, RefObject } from 'react'
+import React, { useState, useEffect } from 'react'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 // import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,37 +9,34 @@ const SearchInput = () => {
     const [value, setValue] = useState('')
     const [unfolded, setUnfolded] = useState(false)
     const { COLORS } = useColorSchemeContext()
-    // animation consts
+    // animation conststants --->
     const searchBarWidth = useSharedValue(0);
-    const startTiming = withTiming(0)
+    const bgColor = useSharedValue(COLORS.main);
 
     const onSearchIconClick = () => {
         if(unfolded == true) {
             setUnfolded(false)
             Keyboard.dismiss()
             setValue('')
-            searchBarWidth.value = withSpring(searchBarWidth.value - 100);
+            searchBarWidth.value = withTiming(searchBarWidth.value - 200);
+            bgColor.value = withTiming(COLORS.main)
+
         }
         if(unfolded == false) {
             setUnfolded(true)
-            searchBarWidth.value = withSpring(searchBarWidth.value + 100);
-            // withTiming(startTiming, {
-            //     duration: 400,
-            //     easing: Easing.inOut(Easing.quad),
-            //     reduceMotion: ReduceMotion.System
-            // })
-
+            searchBarWidth.value = withTiming(searchBarWidth.value + 200);
+            bgColor.value = withTiming(COLORS.minor)
         }
     }
 
     return (
         <View style={[styles.searchBody, {flex: 1}]}>
-            <Animated.View style={{width: 0}}>
+            <Animated.View style={{width: searchBarWidth, backgroundColor: bgColor, borderRadius: 6, height: 40}}>
                 <TextInput 
                     onChangeText={setValue}
                     style={[
                         styles.searchInput, 
-                        {backgroundColor: COLORS.minor}
+                        // {backgroundColor: COLORS.main}
                     ]}
                     placeholder='Search'
                     placeholderTextColor={COLORS.color}
