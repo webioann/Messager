@@ -2,21 +2,19 @@ import { StyleSheet, Text, View, Switch, SafeAreaView, TouchableOpacity } from '
 import React from 'react'
 import { DrawerContentScrollView, DrawerItemList, DrawerItem} from '@react-navigation/drawer';
 import UserAvatarImage from '../components/UserAvatarImage';
-import ThemeModeToggle from '../components/ThemeModeToggle';
 import { useUserContext } from '../context/UserContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { SIZES } from '../constants/SIZES';
-// import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 
-type DrawerItemProps = {
-    label: string;
-    icon_name: string
-    to: 'Chats' | 'Settings' | 'Contacts' | 'Profile'
-}
+// type DrawerItemProps = {
+//     label: string;
+//     icon_name: string
+//     to: 'Chats' | 'Settings' | 'Contacts' | 'Profile'
+// }
 // type A = React.ComponentProps<typeof DrawerItemList>
 
 // const DrawerContentItemData: DrawerItemProps[] = [
@@ -50,7 +48,6 @@ const DrawerNavigatorContent = ({...props}) => {
                         {currentUser?.email ? currentUser.email : 'DEFAULT NAME'}
                     </Text>
                 </View>
-                <ThemeModeToggle/>
             </View>
 
             <DrawerContentScrollView style={{backgroundColor: COLORS.main}}>
@@ -70,6 +67,7 @@ const DrawerNavigatorContent = ({...props}) => {
                     />
                 )) } */}
             </DrawerContentScrollView> 
+            {/* footer of menu hose to contained theme toggle button (Switch) and Logout user button*/}
             <View style={[styles.drawer_footer, {backgroundColor: COLORS.minor, borderTopColor: COLORS.third}]}>
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8, paddingBottom: 30}}>
                     <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Dark theme mode</Text>
