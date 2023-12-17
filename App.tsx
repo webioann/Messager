@@ -50,15 +50,17 @@ const App: React.FC = () => {
           </View>)
       },
     }
-    // const drawerListItemOptions: DrawerItemOptions_Type = {
-    //     drawerIcon: ({focused, color, size}) => <Icon name='chat' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
-    //     drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Chats</Text>,
-    //     drawerActiveBackgroundColor: COLORS.third,
-    //     drawerInactiveBackgroundColor: COLORS.main,
-    // }
+    const drawerListItemOptions: DrawerItemOptions_Type = {
+      drawerIcon: ({focused, color, size}) => <Icon name='chat' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
+      drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Chats</Text>,
+      drawerActiveBackgroundColor: COLORS.third,
+      drawerInactiveBackgroundColor: COLORS.main,
+    }
+
+
     return (
-      <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent/>}>
-        <Drawer.Screen name="Chats" component={Chats_Screen}/>
+      <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
+        <Drawer.Screen name="Chats" component={Chats_Screen} options={drawerListItemOptions}/>
         <Drawer.Screen name="Settings" component={Settings_Screen}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen}/>
         <Drawer.Screen name="Profile" component={Profile_Screen}/>

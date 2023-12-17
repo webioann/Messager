@@ -26,7 +26,7 @@ const DrawerContentItemData: DrawerItemProps[] = [
     {label: 'Profile', icon_name: 'account-circle', to: 'Profile'},
 ]
 
-const DrawerNavigatorContent = () => {
+const DrawerNavigatorContent = ({...props}) => {
     const { currentUser, restartAuthState } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS, toggleColorScheme, appColorScheme } = useColorSchemeContext()
@@ -54,12 +54,12 @@ const DrawerNavigatorContent = () => {
                 </View>
 
             <DrawerContentScrollView style={{backgroundColor: COLORS.main}}>
-                {/* <DrawerItemList 
+                <DrawerItemList 
                     state={navigation.getParent()}
                     navigation={navigation.getParent()}
                     descriptors={navigation.getParent()}
                     {...props}
-                /> */}
+                />
                 { DrawerContentItemData.map((item) => (
                     <DrawerItem 
                         key={item.to}
