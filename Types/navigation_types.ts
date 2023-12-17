@@ -31,6 +31,7 @@ export type ScreenOptions_Type = {
   headerShown?: boolean
   title?: string
   headerLeft?: () => React.ReactNode
+  headerRight?: () => React.ReactNode
 }
 export type DrawerItemOptions_Type = {
   drawerLabel?: string | ((props: { focused: boolean; color: string }) => React.ReactNode);

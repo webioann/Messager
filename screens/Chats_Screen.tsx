@@ -48,12 +48,12 @@ useEffect(() => {
           pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} 
           size={SIZES.MEDIUM}/>
       </View> */}
-      <TextInput 
+      {/* <TextInput 
         onChangeText={setValue}
         style={[styles.searchInput, {backgroundColor: 'rgb(210, 208, 208)'}]}
         placeholder='Search'
         placeholderTextColor={COLORS.color}
-        value={value}/>
+        value={value}/> */}
       <FlatList 
         data={contactsList}
         renderItem={({item}) => <ChatPreview {...item}/>}

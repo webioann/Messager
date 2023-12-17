@@ -8,6 +8,7 @@ import SignupPage_Screen from './screens/SignupPage_Screen';
 import Contacts_Screen from './screens/Contacts_Screen';
 import EditContact_Screen from './screens/EditContact_Screen';
 import Profile_Screen from './screens/Profile_Screen';
+import SearchInput from './components/SearchInput';
 import DrawerNavigatorContent from './screens/DrawerNavigatorContent';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -78,7 +79,7 @@ const App: React.FC = () => {
     }
     return (
       <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
-        <Drawer.Screen name="Chats" component={Chats_Screen} options={chatsDrawerOptions}/>
+        <Drawer.Screen name="Telegram" component={Chats_Screen} options={{...chatsDrawerOptions, headerRight: () => { return ( <SearchInput/> )}}}/>
         <Drawer.Screen name="Settings" component={Settings_Screen} options={settingsDrawerOptions}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen} options={contactsDrawerOptions}/>
         <Drawer.Screen name="Profile" component={Profile_Screen} options={profileDrawerOptions}/>
