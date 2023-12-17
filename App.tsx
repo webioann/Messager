@@ -15,8 +15,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackNavigatorParams, ScreenOptions_Type, DrawerItemOptions_Type } from './Types/navigation_types';
 import useColorSchemeContext from './hooks/useColorSchemeContext';
 import { useUserContext } from './context/UserContext';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import { View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const App: React.FC = () => {
@@ -46,24 +47,41 @@ const App: React.FC = () => {
       headerLeft: () => {
         return( 
           <View style={{paddingLeft: 16}}>
-            <Icon name='menu' color={COLORS.color} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>
+            <Icon2 name='menu' color={COLORS.color} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>
           </View>)
       },
     }
-    const drawerListItemOptions: DrawerItemOptions_Type = {
-      drawerIcon: ({focused, color, size}) => <Icon name='chat' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
+  
+    const chatsDrawerOptions: DrawerItemOptions_Type = {
+      drawerIcon: ({focused, color, size}) => <Icon name='chat-outline' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
       drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Chats</Text>,
       drawerActiveBackgroundColor: COLORS.third,
       drawerInactiveBackgroundColor: COLORS.main,
     }
-
-
+    const settingsDrawerOptions: DrawerItemOptions_Type = {
+      drawerIcon: ({focused, color, size}) => <Icon name='cog-outline' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
+      drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Settings</Text>,
+      drawerActiveBackgroundColor: COLORS.third,
+      drawerInactiveBackgroundColor: COLORS.main,
+    }
+    const contactsDrawerOptions: DrawerItemOptions_Type = {
+      drawerIcon: ({focused, color, size}) => <Icon name='account-outline' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
+      drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Contacts</Text>,
+      drawerActiveBackgroundColor: COLORS.third,
+      drawerInactiveBackgroundColor: COLORS.main,
+    }
+    const profileDrawerOptions: DrawerItemOptions_Type = {
+      drawerIcon: ({focused, color, size}) => <Icon name='account-circle' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
+      drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Profile</Text>,
+      drawerActiveBackgroundColor: COLORS.third,
+      drawerInactiveBackgroundColor: COLORS.main,
+    }
     return (
       <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
-        <Drawer.Screen name="Chats" component={Chats_Screen} options={drawerListItemOptions}/>
-        <Drawer.Screen name="Settings" component={Settings_Screen}/>
-        <Drawer.Screen name="Contacts" component={Contacts_Screen}/>
-        <Drawer.Screen name="Profile" component={Profile_Screen}/>
+        <Drawer.Screen name="Chats" component={Chats_Screen} options={chatsDrawerOptions}/>
+        <Drawer.Screen name="Settings" component={Settings_Screen} options={settingsDrawerOptions}/>
+        <Drawer.Screen name="Contacts" component={Contacts_Screen} options={contactsDrawerOptions}/>
+        <Drawer.Screen name="Profile" component={Profile_Screen} options={profileDrawerOptions}/>
       </Drawer.Navigator>  
     )
   }

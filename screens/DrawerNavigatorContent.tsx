@@ -19,12 +19,12 @@ type DrawerItemProps = {
 }
 // type A = React.ComponentProps<typeof DrawerItemList>
 
-const DrawerContentItemData: DrawerItemProps[] = [
-    {label: 'Chats', icon_name: 'chat-outline', to: 'Chats'},
-    {label: 'Settings', icon_name: 'cog-outline', to: 'Settings'},
-    {label: 'Contacts', icon_name: 'account-outline', to: 'Contacts'},
-    {label: 'Profile', icon_name: 'account-circle', to: 'Profile'},
-]
+// const DrawerContentItemData: DrawerItemProps[] = [
+//     {label: 'Chats', icon_name: 'chat-outline', to: 'Chats'},
+//     {label: 'Settings', icon_name: 'cog-outline', to: 'Settings'},
+//     {label: 'Contacts', icon_name: 'account-outline', to: 'Contacts'},
+//     {label: 'Profile', icon_name: 'account-circle', to: 'Profile'},
+// ]
 
 const DrawerNavigatorContent = ({...props}) => {
     const { currentUser, restartAuthState } = useUserContext()
@@ -40,18 +40,18 @@ const DrawerNavigatorContent = ({...props}) => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-                <View style={[styles.drawer_header, {backgroundColor: COLORS.minor, borderBottomColor: COLORS.third}]}>
-                    <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={70}/>
-                    <View>
-                        <Text style={[styles.user_name, {color: COLORS.color}]}>
-                            {currentUser?.displayName ? currentUser.displayName : 'DEFAULT NAME'}
-                        </Text>
-                        <Text style={[styles.user_email, {color: COLORS.color}]}>
-                            {currentUser?.email ? currentUser.email : 'DEFAULT NAME'}
-                        </Text>
-                    </View>
-                    <ThemeModeToggle/>
+            <View style={[styles.drawer_header, {backgroundColor: COLORS.minor, borderBottomColor: COLORS.third}]}>
+                <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={70}/>
+                <View>
+                    <Text style={[styles.user_name, {color: COLORS.color}]}>
+                        {currentUser?.displayName ? currentUser.displayName : 'DEFAULT NAME'}
+                    </Text>
+                    <Text style={[styles.user_email, {color: COLORS.color}]}>
+                        {currentUser?.email ? currentUser.email : 'DEFAULT NAME'}
+                    </Text>
                 </View>
+                <ThemeModeToggle/>
+            </View>
 
             <DrawerContentScrollView style={{backgroundColor: COLORS.main}}>
                 <DrawerItemList 
@@ -60,7 +60,7 @@ const DrawerNavigatorContent = ({...props}) => {
                     descriptors={navigation.getParent()}
                     {...props}
                 />
-                { DrawerContentItemData.map((item) => (
+                {/* { DrawerContentItemData.map((item) => (
                     <DrawerItem 
                         key={item.to}
                         label={item.label}
@@ -68,7 +68,7 @@ const DrawerNavigatorContent = ({...props}) => {
                         icon={({focused}) => <Icon name={item.icon_name} size={34} color={focused ? COLORS.orange : COLORS.tint}/>}
                         onPress={() => navigation.navigate(item.to)}
                     />
-                )) }
+                )) } */}
             </DrawerContentScrollView> 
             <View style={[styles.drawer_footer, {backgroundColor: COLORS.minor, borderTopColor: COLORS.third}]}>
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8, paddingBottom: 30}}>
@@ -80,7 +80,6 @@ const DrawerNavigatorContent = ({...props}) => {
                         trackColor={{true: COLORS.accent, false: COLORS.grey}}
                     />
                 </View>
-
                 <TouchableOpacity
                     onPress={signoutCurrentUser}
                     style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
