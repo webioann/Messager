@@ -24,7 +24,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
 
     return (
     <ScreenWrapper>
-        <NavigationHeader title={`chat with ${contact}`}>
+        <NavigationHeader type='goBack' screen='Chat'>
             <UserAvatarImage pathToImage={avatar_url} size={SIZES.MEDIUM}/>
         </NavigationHeader>
         { isLoading 

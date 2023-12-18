@@ -12,19 +12,20 @@ const SearchInput = () => {
     // animation conststants --->
     const searchBarWidth = useSharedValue(0);
     const bgColor = useSharedValue(COLORS.main);
+    const maxWidth = 300;
 
     const onSearchIconClick = () => {
         if(unfolded == true) {
             setUnfolded(false)
             Keyboard.dismiss()
             setValue('')
-            searchBarWidth.value = withTiming(searchBarWidth.value - 300);
+            searchBarWidth.value = withTiming(searchBarWidth.value - maxWidth);
             bgColor.value = withTiming(COLORS.main)
 
         }
         if(unfolded == false) {
             setUnfolded(true)
-            searchBarWidth.value = withTiming(searchBarWidth.value + 300);
+            searchBarWidth.value = withTiming(searchBarWidth.value + maxWidth);
             bgColor.value = withTiming(COLORS.minor)
         }
     }
@@ -56,11 +57,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 10,
-        marginRight: 16
     },
     animeView: {
         borderRadius: 6, 
-        height: 40
+        height: 35
     },
     searchInput: {
         borderRadius: 6,

@@ -16,7 +16,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackNavigatorParams, ScreenOptions_Type, DrawerItemOptions_Type } from './Types/navigation_types';
 import useColorSchemeContext from './hooks/useColorSchemeContext';
 import { useUserContext } from './context/UserContext';
-import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -24,10 +23,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<StackNavigatorParams>();
   const Drawer = createDrawerNavigator();
-
   const { currentUser } = useUserContext()
   const { COLORS } = useColorSchemeContext()
-
 
   const StackNavigationOptions: ScreenOptions_Type = {
     headerStyle: {backgroundColor: COLORS.main},
@@ -38,19 +35,11 @@ const App: React.FC = () => {
   }
 
   const DrawerNavigator = () => {
-    const navigation = useNavigation()
-
     const drawerScreenOptions: ScreenOptions_Type = {
       headerStyle: {backgroundColor: COLORS.main},
       headerTintColor: COLORS.color,
       headerShadowVisible: false,
-      headerShown: true,
-      headerLeft: () => {
-        return( 
-          <View style={{paddingLeft: 16}}>
-            <Icon2 name='menu' color={COLORS.color} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>
-          </View>)
-      },
+      headerShown: false,
     }
   
     const chatsDrawerOptions: DrawerItemOptions_Type = {
@@ -100,3 +89,9 @@ const App: React.FC = () => {
   )
 }
 export default App;
+      // headerLeft: () => {
+      //   return( 
+      //     <View style={{paddingLeft: 16}}>
+      //       <Icon2 name='menu' color={COLORS.color} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>
+      //     </View>)
+      // },

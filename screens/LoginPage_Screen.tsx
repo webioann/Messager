@@ -47,7 +47,7 @@ const LoginPage_Screen = () => {
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
             <ScreenWrapper>
                 <View style={{flex: 1}}>
-                    <NavigationHeader title='Log in'>
+                    <NavigationHeader type='goBack' screen='LoginPage'>
                         <ThemeModeToggle/>
                     </NavigationHeader>
                 </View>

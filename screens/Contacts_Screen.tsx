@@ -1,9 +1,9 @@
 import { StyleSheet, View, FlatList, TextInput } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Contact from '../components/Contact';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
+import SearchInput from '../components/SearchInput';
 import { useUserContext } from '../context/UserContext';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UserType } from '../Types/users_types';
@@ -28,17 +28,9 @@ const Contacts_Screen = () => {
 
     return (
         <ScreenWrapper>
-            {/* <NavigationHeader title='Contacts'/> */}
-            <View style={[styles.search, {backgroundColor: COLORS.minor}]}>
-                <Icon name='search' size={26} color={COLORS.tint}/>
-                <TextInput 
-                    value={searchValue}
-                    onChangeText={setSearchValue}
-                    placeholder='Search'
-                    placeholderTextColor={COLORS.tint}
-                    cursorColor={COLORS.color}
-                    style={{flex: 1, color: COLORS.color, fontSize: 18}}/>
-            </View>
+            <NavigationHeader type='drawer' screen='Contacts'>
+                <SearchInput/>
+            </NavigationHeader>
             <FlatList 
                 data={contactsList} 
                 renderItem={({item}) => <Contact {...item}/>} 
@@ -52,16 +44,4 @@ const Contacts_Screen = () => {
 export default Contacts_Screen;
 
 const styles = StyleSheet.create({
-    search: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        borderRadius: 8,
-        paddingHorizontal: 12,
-    },
-    contact_item: {
-        flexDirection: 'row',
-        gap: 10,
-        paddingVertical: 5
-    },
 });

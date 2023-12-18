@@ -32,7 +32,7 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
     return (
         <ScreenWrapper>
             <View style={styles.container}>
-                <NavigationHeader title={`Edit contact ${contact.displayName}`}/>
+                <NavigationHeader type='goBack' screen='EditContact'/>
                 <View style={{alignItems: 'center', paddingVertical: SIZES.GAP}}>
                     <Image 
                         source={{uri: contact.photoURL}}

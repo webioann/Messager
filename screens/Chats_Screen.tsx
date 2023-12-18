@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, TextInput, Text, View, FlatList } from 'react-native';
-import UserAvatarImage from '../components/UserAvatarImage';
+import SearchInput from '../components/SearchInput';
 import ChatPreview from '../components/ChatPreview';
-import Menu from '../components/Menu';
+import NavigationHeader from '../components/NavigationHeader';
 import { SIZES } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
@@ -11,7 +11,7 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { useUserContext } from '../context/UserContext';
 
 const Chats_Screen = () => {
-  const [value, setValue] = useState('')
+  const [searchQuery, setsearchQuery] = useState<string | null>(null)
   const [contactsList, setContactsList] = useState<UserType[]>([])
   const { COLORS } = useColorSchemeContext()
   const { currentUser } = useUserContext()
@@ -40,26 +40,14 @@ useEffect(() => {
 
   return (
     <ScreenWrapper>
-      {/* <View style={styles.headerContainer}>
-        <Text style={[styles.headerTitle, {color: COLORS.color}]}>
-          Chats
-        </Text>
-        <UserAvatarImage 
-          pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} 
-          size={SIZES.MEDIUM}/>
-      </View> */}
-      {/* <TextInput 
-        onChangeText={setValue}
-        style={[styles.searchInput, {backgroundColor: 'rgb(210, 208, 208)'}]}
-        placeholder='Search'
-        placeholderTextColor={COLORS.color}
-        value={value}/> */}
+      <NavigationHeader type='drawer' screen='Chats'>
+        <SearchInput/>
+      </NavigationHeader>
       <FlatList 
         data={contactsList}
         renderItem={({item}) => <ChatPreview {...item}/>}
         keyExtractor={item => item.uid}
       />
-      {/* <Menu/> */}
     </ScreenWrapper>
   )
 }

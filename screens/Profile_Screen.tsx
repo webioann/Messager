@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
+import NavigationHeader from '../components/NavigationHeader';
+
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import UploadImageInStorage from '../components/UploadImageInStorage'
@@ -48,6 +50,7 @@ const Profile_Screen = () => {
 
     return (
         <ScreenWrapper>
+            <NavigationHeader type='drawer' screen='Profile'/>
             <View style={{alignItems: 'center'}}>
                 <View style={{position: 'relative'}}>
                     <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>

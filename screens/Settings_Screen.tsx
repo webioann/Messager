@@ -23,9 +23,7 @@ const Settings_Screen = () => {
 
     return (
         <ScreenWrapper>
-            {/* <NavigationHeader title='Settings'>
-                <ThemeModeToggle/>
-            </NavigationHeader> */}
+            <NavigationHeader type='drawer' screen='Settings'/>
             <View>
                 {/* Accoun section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Account</Text>

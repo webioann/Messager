@@ -64,7 +64,7 @@ const SignupPage_Screen = () => {
         <TouchableWithoutFeedback onPress={getCleanUpScreen}>
             <ScreenWrapper>
                 <View style={{flex: 1}}>
-                    <NavigationHeader title='Sign up'>
+                    <NavigationHeader type='goBack' screen='Welcome'>
                         <ThemeModeToggle/>
                     </NavigationHeader>
                 </View>
