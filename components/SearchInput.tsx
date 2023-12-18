@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, Pressable, Keyboard } from 'react-native'
-import Animated, { useSharedValue,  withTiming } from 'react-native-reanimated';
+import Animated, { useSharedValue,  withTiming, withDelay } from 'react-native-reanimated';
 import React, { useState } from 'react'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 // import { MaterialCommunityIcons } from 'react-native-vector-icons';
@@ -7,7 +7,7 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SearchInput = () => {
     const [value, setValue] = useState('')
-    const [unfolded, setUnfolded] = useState(false)
+    const [isActive, setIsActive] = useState(false)
     const { COLORS } = useColorSchemeContext()
     // animation conststants --->
     const searchBarWidth = useSharedValue(0);
@@ -15,16 +15,15 @@ const SearchInput = () => {
     const maxWidth = 300;
 
     const onSearchIconClick = () => {
-        if(unfolded == true) {
-            setUnfolded(false)
+        if(isActive == true) {
+            setIsActive(false)
             Keyboard.dismiss()
             setValue('')
             searchBarWidth.value = withTiming(searchBarWidth.value - maxWidth);
             bgColor.value = withTiming(COLORS.main)
-
         }
-        if(unfolded == false) {
-            setUnfolded(true)
+        if(isActive == false) {
+            setIsActive(true)
             searchBarWidth.value = withTiming(searchBarWidth.value + maxWidth);
             bgColor.value = withTiming(COLORS.minor)
         }
@@ -36,7 +35,7 @@ const SearchInput = () => {
                 <TextInput 
                     onChangeText={setValue}
                     style={styles.searchInput}
-                    placeholder='Search'
+                    placeholder={isActive ? 'Search' : ''}
                     placeholderTextColor={COLORS.color}
                     cursorColor={COLORS.color}
                     onSubmitEditing={Keyboard.dismiss}
