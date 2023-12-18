@@ -40,7 +40,7 @@ useEffect(() => {
 
   return (
     <ScreenWrapper>
-      <NavigationHeader type='drawer' screen='Chats'>
+      <NavigationHeader type='drawer' screen='Telegram'>
         <SearchInput/>
       </NavigationHeader>
       <FlatList 

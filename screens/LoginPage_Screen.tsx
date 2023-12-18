@@ -36,7 +36,7 @@ const LoginPage_Screen = () => {
             await auth().signInWithEmailAndPassword(email, password)
             .then(() => restartAuthState())
             .then(() => getCleanUpScreen())
-            .then(() => navigation.navigate("Chats"))
+            .then(() => navigation.navigate('Telegram'))
             .catch(error => {
                 console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
             })

@@ -54,7 +54,7 @@ const SignupPage_Screen = () => {
         })
         .then(() => restartAuthState())
         .then(() => getCleanUpScreen())
-        .then(() => navigation.navigate("Chats"))
+        .then(() => navigation.navigate("Telegram"))
         .catch(error => {
             console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
         })
