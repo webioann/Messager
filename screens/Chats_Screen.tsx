@@ -11,7 +11,9 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { useUserContext } from '../context/UserContext';
 
 const Chats_Screen = () => {
-  const [searchQuery, setsearchQuery] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState<string | null>(null)
+  // TODO: remove console log
+  console.log(searchQuery)
   const [contactsList, setContactsList] = useState<UserType[]>([])
   const { COLORS } = useColorSchemeContext()
   const { currentUser } = useUserContext()
@@ -41,7 +43,7 @@ useEffect(() => {
   return (
     <ScreenWrapper>
       <NavigationHeader type='drawer' screen='Telegram'>
-        <SearchInput/>
+        <SearchInput getSearchQuery={setSearchQuery}/>
       </NavigationHeader>
       <FlatList 
         data={contactsList}

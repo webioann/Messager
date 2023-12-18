@@ -5,7 +5,11 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 // import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SearchInput = () => {
+type searchInputProps = {
+    getSearchQuery: React.Dispatch<React.SetStateAction<string | null>>
+}
+
+const SearchInput: React.FC<searchInputProps> = ({getSearchQuery}) => {
     const [value, setValue] = useState('')
     const [isActive, setIsActive] = useState(false)
     const { COLORS } = useColorSchemeContext()
@@ -16,14 +20,16 @@ const SearchInput = () => {
 
     const onSearchIconClick = () => {
         if(isActive == true) {
+            getSearchQuery(value)
             setIsActive(false)
             Keyboard.dismiss()
-            setValue('')
             searchBarWidth.value = withTiming(searchBarWidth.value - maxWidth);
             bgColor.value = withTiming(COLORS.main)
+            setValue('')
         }
         if(isActive == false) {
             setIsActive(true)
+            getSearchQuery(null)
             searchBarWidth.value = withTiming(searchBarWidth.value + maxWidth);
             bgColor.value = withTiming(COLORS.minor)
         }

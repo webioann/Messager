@@ -12,7 +12,9 @@ import firestore from '@react-native-firebase/firestore';
 const Contacts_Screen = () => {
     const { currentUser } = useUserContext()
     const { COLORS } = useColorSchemeContext()
-    const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState<string | null>(null)
+    // TODO: remove console log
+    console.log(searchValue)
     const [contactsList, setContactsList] = useState<UserType[]>([])
 
     const fetchAllContacts = async() => {
@@ -29,7 +31,7 @@ const Contacts_Screen = () => {
     return (
         <ScreenWrapper>
             <NavigationHeader type='drawer' screen='Contacts'>
-                <SearchInput/>
+                <SearchInput getSearchQuery={setSearchValue}/>
             </NavigationHeader>
             <FlatList 
                 data={contactsList} 
