@@ -62,7 +62,7 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 color: 'rgba(0, 0, 0, 0.7)',
                 tint: 'rgba(0, 0, 0, 0.5)',
                 adorn: 'gray'
-                    })
+            })
         }
         if(appColorScheme === 'dark') {
             setCOLORS({
@@ -78,7 +78,7 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 color: '#ffffff',
                 tint: '#f0f0f0',
                 adorn: 'gray'
-                    })
+            })
         }
     }, [appColorScheme])
 

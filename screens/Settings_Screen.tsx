@@ -112,7 +112,6 @@ const Settings_Screen = () => {
                         <Icon2 name='logout' size={24} color={COLORS.orange}/>
                         <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
                     </TouchableOpacity>
-
                 </View>
             </View>
         </ScreenWrapper>
@@ -127,12 +126,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     settings: {
-        borderRadius: 8,
         padding: 8
     },
     block_title: {
         fontSize: 20,
         fontWeight: '600',
-        paddingVertical: 6
+        paddingVertical: 6,
+        paddingHorizontal: 16
     }
 });

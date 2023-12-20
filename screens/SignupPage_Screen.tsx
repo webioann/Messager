@@ -68,33 +68,35 @@ const SignupPage_Screen = () => {
                         <ThemeModeToggle/>
                     </NavigationHeader>
                 </View>
-                {/* form for creating new users ----> */}
-                <SignupScreen_Form 
-                    name={name} setName={setName} 
-                    email={email} setEmail={setEmail}
-                    password={password} setPassword={setPassword}
-                />
-                {/* image picker for uploading images on Firebase Storage */}
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 16, paddingBottom: 16}}>
-                    <UploadImageInStorage getImageURL={setFilePath} storageFolder='avatars'>
-                        <Icon2 name='camera' size={20} color={COLORS.blue}/>
-                    </UploadImageInStorage>
-                    <Text style={{color: COLORS.color}}>Choose user image</Text>
-                </View>
-                <TouchableOpacity 
-                    onPress={createNewUserAccount} 
-                    // onPress={() => console.log(validationResult, name, email, password, filePath)} 
-                    style={[styles.button, {backgroundColor: COLORS.orange}]}>
-                    <Text style={[styles.button_text, {color: COLORS.white}]}>Create new Account</Text>
-                </TouchableOpacity>
-                <View style={styles.text_link}>
-                    <Text style={{color: COLORS.tint}}>Have an account?</Text>
+                <View style={{paddingHorizontal: 16, flex: 1}}>
+                    {/* form for creating new users ----> */}
+                    <SignupScreen_Form 
+                        name={name} setName={setName} 
+                        email={email} setEmail={setEmail}
+                        password={password} setPassword={setPassword}
+                    />
+                    {/* image picker for uploading images on Firebase Storage */}
+                    <View style={{flexDirection: 'row', alignItems: 'center', gap: 16, paddingBottom: 16}}>
+                        <UploadImageInStorage getImageURL={setFilePath} storageFolder='avatars'>
+                            <Icon2 name='camera' size={20} color={COLORS.blue}/>
+                        </UploadImageInStorage>
+                        <Text style={{color: COLORS.color}}>Choose user image</Text>
+                    </View>
                     <TouchableOpacity 
-                        style={{flexDirection: 'row', gap: 10}}
-                        onPress={() => navigation.navigate("LoginPage")}>
-                        <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
-                        <Icon name='east' size={24} color={COLORS.tint}/>
+                        onPress={createNewUserAccount} 
+                        // onPress={() => console.log(validationResult, name, email, password, filePath)} 
+                        style={[styles.button, {backgroundColor: COLORS.orange}]}>
+                        <Text style={[styles.button_text, {color: COLORS.white}]}>Create new Account</Text>
                     </TouchableOpacity>
+                    <View style={styles.text_link}>
+                        <Text style={{color: COLORS.tint}}>Have an account?</Text>
+                        <TouchableOpacity 
+                            style={{flexDirection: 'row', gap: 10}}
+                            onPress={() => navigation.navigate("LoginPage")}>
+                            <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
+                            <Icon name='east' size={24} color={COLORS.tint}/>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ScreenWrapper>
         </TouchableWithoutFeedback>

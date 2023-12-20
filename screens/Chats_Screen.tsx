@@ -49,6 +49,7 @@ useEffect(() => {
         data={contactsList}
         renderItem={({item}) => <ChatPreview {...item}/>}
         keyExtractor={item => item.uid}
+        style={{paddingHorizontal: 16}}
       />
     </ScreenWrapper>
   )

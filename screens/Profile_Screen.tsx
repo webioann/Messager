@@ -62,7 +62,7 @@ const Profile_Screen = () => {
                 </View>
                 <Text style={[styles.user_name, {color: COLORS.color}]}>{currentUser?.displayName}</Text>
             </View>
-            <View style={{flex: 1, paddingHorizontal: 10}}>
+            <View style={{flex: 1, paddingHorizontal: 16}}>
                 {/* name edit */}
                 <View style={{paddingTop: 10}}>
                     <Text style={[styles.label, {color: COLORS.color}]}>Name</Text>

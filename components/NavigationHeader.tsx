@@ -30,7 +30,7 @@ const CustomNavigationHeader: React.FC<NavHeaderProps> = ({ screen, type, childr
                 />
                 <Text style={[styles.screen_title, {color: COLORS.color}]}>{ screen }</Text>
             </View>
-            <View style={{position: 'absolute', right: 0}}>
+            <View style={{position: 'absolute', right: 16}}>
                 { children }
             </View>
         </View>
@@ -46,7 +46,11 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         height: 40,
-        marginTop: 10
+        marginTop: 10,
+        paddingHorizontal: 16,
+        borderColor: 'red',
+        borderWidth: 1
+
     },
     screen_title: {
         fontSize: 20,

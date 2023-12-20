@@ -37,7 +37,7 @@ const Contacts_Screen = () => {
                 data={contactsList} 
                 renderItem={({item}) => <Contact {...item}/>} 
                 keyExtractor={item => item.uid}
-                style={{paddingVertical: 20}}>
+                style={{padding: 16}}>
             </FlatList>
         </ScreenWrapper>
     )

@@ -51,23 +51,25 @@ const LoginPage_Screen = () => {
                         <ThemeModeToggle/>
                     </NavigationHeader>
                 </View>
-                <LoginScreen_Form 
-                    email={email} setEmail={setEmail} 
-                    password={password} setPassword={setPassword}
-                />
-                <TouchableOpacity 
-                    onPress={loginCurrentUser} 
-                    style={[styles.button, {backgroundColor: COLORS.orange}]}>
-                    <Text style={[styles.button_text, {color: COLORS.white}]}>Log in</Text>
-                </TouchableOpacity>
-                <View style={styles.text_link}>
-                    <Text style={{color: COLORS.tint}}>Have an account?</Text>
+                <View style={{paddingHorizontal: 16, flex: 1}}>
+                    <LoginScreen_Form 
+                        email={email} setEmail={setEmail} 
+                        password={password} setPassword={setPassword}
+                    />
                     <TouchableOpacity 
-                        style={{flexDirection: 'row', gap: 10}}
-                        onPress={() => navigation.navigate("SignupPage")}>
-                        <Text style={[styles.button_text, {color: COLORS.tint}]}>Sign up</Text>
-                        <Icon name='east' size={24} color={COLORS.tint}/>
+                        onPress={loginCurrentUser} 
+                        style={[styles.button, {backgroundColor: COLORS.orange}]}>
+                        <Text style={[styles.button_text, {color: COLORS.white}]}>Log in</Text>
                     </TouchableOpacity>
+                    <View style={styles.text_link}>
+                        <Text style={{color: COLORS.tint}}>Have an account?</Text>
+                        <TouchableOpacity 
+                            style={{flexDirection: 'row', gap: 10}}
+                            onPress={() => navigation.navigate("SignupPage")}>
+                            <Text style={[styles.button_text, {color: COLORS.tint}]}>Sign up</Text>
+                            <Icon name='east' size={24} color={COLORS.tint}/>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ScreenWrapper>
         </TouchableWithoutFeedback>

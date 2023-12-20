@@ -53,34 +53,5 @@ export const G = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    // fixedOnBottom: {
-    //     position: 'absolute',
-    //     bottom: 5,
-    //     left: 0,
-    //     right: 0,
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between',
-    //     alignItems: 'center',
-    //     paddingVertical: 10,
-    // },
-
-
 })
-
-
-{/* <LinearGradient 
-    start={{x: 0, y: 0}} 
-    end={{x: 1, y: 1}}
-    locations={[0.5, 1]}
-    COLORS={['#373b44','#1a1d24']}
-    >
-    <View>
-        <Text style={styles.text}>Settings</Text>
-    </View>
-    <Button
-        title='Go to the Chats'
-        onPress={() => navigation.navigate("Chats")}
-    />
-
-</LinearGradient > */}
 

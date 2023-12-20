@@ -12,29 +12,31 @@ const Welcome_Screen = () => {
 
     return (
         <ScreenWrapper>
-            <View style={styles.bigboard}>
-                <Text style={[styles.title, {color: COLORS.color}]}>Wellcome</Text>
-                <Image 
-                    source={require('../assets/telegram.png')} 
-                    style={{width: '80%', height: '80%'}}                        
-                    alt='whatsapp logo '
-                    resizeMode='contain'
-                />
-                <Text style={{color: COLORS.tint}}>You can now focus your console experience by customizing your navigation</Text>
-            </View>
-            <TouchableOpacity 
-                onPress={() => navigation.navigate("SignupPage")} 
-                style={[styles.button, {backgroundColor: COLORS.orange}]}>
-                <Text style={[styles.button_text, {color: COLORS.white}]}>Create My Account</Text>
-            </TouchableOpacity>
-            <View style={styles.text_link}>
-                <Text style={{color: COLORS.tint}}>Have an account?</Text>
+            <View style={{paddingHorizontal: 16, flex: 1}}>
+                <View style={styles.bigboard}>
+                    <Text style={[styles.title, {color: COLORS.color}]}>Wellcome</Text>
+                    <Image 
+                        source={require('../assets/telegram.png')} 
+                        style={{width: '80%', height: '80%'}}                        
+                        alt='whatsapp logo '
+                        resizeMode='contain'
+                    />
+                    <Text style={{color: COLORS.tint}}>You can now focus your console experience by customizing your navigation</Text>
+                </View>
                 <TouchableOpacity 
-                    style={{flexDirection: 'row', gap: 10}}
-                    onPress={() => navigation.navigate("LoginPage")}>
-                    <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
-                    <Icon name='east' size={24} color={COLORS.tint}/>
+                    onPress={() => navigation.navigate("SignupPage")} 
+                    style={[styles.button, {backgroundColor: COLORS.orange}]}>
+                    <Text style={[styles.button_text, {color: COLORS.white}]}>Create My Account</Text>
                 </TouchableOpacity>
+                <View style={styles.text_link}>
+                    <Text style={{color: COLORS.tint}}>Have an account?</Text>
+                    <TouchableOpacity 
+                        style={{flexDirection: 'row', gap: 10}}
+                        onPress={() => navigation.navigate("LoginPage")}>
+                        <Text style={[styles.button_text, {color: COLORS.tint}]}>Log in</Text>
+                        <Icon name='east' size={24} color={COLORS.tint}/>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ScreenWrapper>
     )
