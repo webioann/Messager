@@ -36,8 +36,12 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
                     { contact.displayName }
                 </Text>
                 { lastMessage 
-                    ? <Text style={{ color: COLORS.tint, fontSize: 16 }}>{ lastMessage?.text }</Text>
-                    : <Text style={{ color: COLORS.accent, fontSize: 16 }}>Chat created but not messages yet!</Text>
+                    ? <Text style={{ color: COLORS.tint, fontSize: 16 }}>
+                        { lastMessage?.text ? lastMessage.text.substring(0, 30) : '... sended image' }
+                        </Text>
+                    : <Text style={{ color: COLORS.accent, fontSize: 16 }}>
+                        Chat created but not messages yet!
+                        </Text>
                 }
             </View>
             {/* end of row time stamp and counter */}

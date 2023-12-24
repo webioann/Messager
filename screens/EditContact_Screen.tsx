@@ -33,7 +33,7 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
         <ScreenWrapper>
             <View style={styles.container}>
                 <NavigationHeader type='goBack' screen='Contacts'/>
-                <View style={{alignItems: 'center', paddingVertical: SIZES.GAP}}>
+                <View style={{alignItems: 'center', padding: SIZES.GAP}}>
                     <Image 
                         source={{uri: contact.photoURL}}
                         style={styles.contactAvatar}
