@@ -33,7 +33,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
                 style={{paddingBottom: 70, paddingHorizontal: 16}}
                 ListFooterComponent={safeBottomPadding}
                 data={messages}
-                renderItem={(message) => <MessageBubble message={message.item}/>}
+                renderItem={(message) => <MessageBubble message={message.item} room={room}/>}
                 keyExtractor={item => item.createdAt.toString()}
             />
         }
