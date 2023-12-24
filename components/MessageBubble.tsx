@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import useTimeTransformer from '../hooks/useTimeTransformer';
 import { useUserContext } from '../context/UserContext';
 import { SIZES } from '../constants/SIZES';
 import { messageType } from '../Types/chats_types';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 type OneMessageProps = {
     message: messageType
@@ -16,6 +18,7 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message, room }) => {
     const { currentUser } = useUserContext()
     const newTime = useTimeTransformer(message.createdAt)
     const { COLORS } = useColorSchemeContext()
+    const [isOpened, setIsOpened] = useState(false)
 
     const variants = {
         backgroundColor: currentUser?.uid !== message.senderID ? COLORS.accent : COLORS.adorn,
@@ -29,21 +32,31 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message, room }) => {
         if ( allMessages !== undefined ) {
             let temp: messageType[] = [...allMessages.messages]
             let messageObjectForDelete = temp.filter((item: messageType) => item.createdAt === message.createdAt)
-            // let indexItemForDelete = temp.findIndex(item => item.createdAt === message.createdAt)
-            console.log(messageObjectForDelete)
             await firestore().collection('CHAT_ROOM_DB').doc(room).update({
                 messages: firestore.FieldValue.arrayRemove(messageObjectForDelete[0])
             })
+            setIsOpened(false)
         }
         else return
     }
 
     return (
         <View style={[styles.cell, {justifyContent: currentUser?.uid !== message.senderID ? 'flex-end' : 'flex-start'}]}>
+            { isOpened && <Pressable 
+                onPress={deleteMessage}
+                style={[styles.delete, {}, {
+                    left: currentUser?.uid === message.senderID ? null : 0 , 
+                    right: currentUser?.uid === message.senderID ? 0 : null,
+                    backgroundColor: variants.backgroundColor
+                }]}
+            >
+                <Icon name='delete-outline' size={24} color={COLORS.orange}/>
+            </Pressable>}
             { message.files.length < 1 
                 ? (
                     <Pressable 
-                        onLongPress={deleteMessage}
+                        onLongPress={() => setIsOpened(true)}
+                        onPress={() => setIsOpened(false)}
                         style={[styles.message, variants]}
                         >
                         <Text style={[styles.messageText, {color: COLORS.white}]}>{message.text}</Text>
@@ -54,7 +67,8 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message, room }) => {
                     )
                 : (
                     <Pressable 
-                        onLongPress={deleteMessage}
+                        onLongPress={() => setIsOpened(true)}
+                        onPress={() => setIsOpened(false)}
                         style={[styles.imageContainer, variants]}
                         >
                         <Image style={styles.image} resizeMode='cover' source={{uri: message.files[0]}}/>
@@ -62,7 +76,7 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message, room }) => {
                             { newTime }
                         </Text>
                     </Pressable>
-                    )    
+                )    
             }
         </View>
     )
@@ -74,6 +88,13 @@ const styles = StyleSheet.create({
     cell: {
         flexDirection: 'row',
         marginTop: SIZES.GAP,
+        position: 'relative'
+    },
+    delete: {
+        position: 'absolute',
+        backgroundColor: 'blue',
+        padding: 5,
+        borderRadius: 5
     },
     message: {
         padding: 8 ,
