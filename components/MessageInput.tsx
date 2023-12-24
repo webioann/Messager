@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, TouchableOpacity, TextInput, Keyboard } from 'react-native'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,7 +18,7 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
     const [image, setImage] = useState<string | undefined>(undefined)
     const { COLORS } = useColorSchemeContext()
 
-    const addDataInFirestore = async () => {
+    const sendMessageInFirestore = async () => {
         try {
             if(message.length > 0 ) {
                 let newMessage: messageType = {// <--- fill message object
@@ -32,7 +32,17 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
                     messages: firestore.FieldValue.arrayUnion(newMessage)
                 })
             }
-            if(message.length == 0 && image) {// <--- if input empty but need send image
+        }
+        catch(error) {  }
+        finally {
+            setMessage('')
+            Keyboard.dismiss()
+        }
+    }
+
+    const seveImageInFirestore = async() => {
+        try {
+            if(image) {
                 let newMessage: messageType = {
                     text: '',
                     senderID: senderID,
@@ -46,13 +56,13 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
             }
             else return
         }
-        catch(error) {  }
-        finally {
-            setMessage('')
-            setImage(undefined)
-            Keyboard.dismiss()
-        }
+        catch (error) {}
+        finally { setImage(undefined) }
     }
+
+    useEffect(() => {
+        seveImageInFirestore();
+    }, [image])
 
     return (
         <View style={styles.wrapper}>
@@ -72,7 +82,7 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
                     style={{flex: 1, color: COLORS.color, fontSize: 18}}/>
                 <TouchableOpacity 
                     style={{transform: [{rotate: '330deg'}]}} 
-                    onPress={addDataInFirestore}> 
+                    onPress={sendMessageInFirestore}> 
                     <Icon name='send' color={COLORS.blue} size={24}/>    
                 </TouchableOpacity>
                 <TouchableOpacity 

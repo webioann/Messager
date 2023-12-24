@@ -1,7 +1,7 @@
 import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
-import MessageCreateTools from '../components/MessageInput';
+import MessageInput from '../components/MessageInput';
 import MessageBubble from '../components/MessageBubble';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
@@ -38,7 +38,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
             />
         }
         <View style={styles.bottomSection}>
-            <MessageCreateTools room={room} senderID={contactId}/>
+            <MessageInput room={room} senderID={contactId}/>
         </View>
     </ScreenWrapper>
     )
