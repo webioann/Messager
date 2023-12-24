@@ -30,7 +30,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
         { isLoading 
             ? <ActivityIndicator/> 
             : <FlatList
-                style={{paddingBottom: 70}}
+                style={{paddingBottom: 70, paddingHorizontal: 16}}
                 ListFooterComponent={safeBottomPadding}
                 data={messages}
                 renderItem={(message) => <MessageBubble message={message.item}/>}
