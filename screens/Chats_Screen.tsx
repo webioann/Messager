@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, TextInput, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Button , FlatList } from 'react-native';
 import SearchInput from '../components/SearchInput';
 import ChatPreview from '../components/ChatPreview';
 import NavigationHeader from '../components/NavigationHeader';
@@ -7,38 +7,46 @@ import { SIZES } from '../constants/SIZES';
 import firestore from '@react-native-firebase/firestore';
 import { UserType } from '../Types/users_types';
 import ScreenWrapper from './ScreenWrapper';
-import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { useUserContext } from '../context/UserContext';
 
 const Chats_Screen = () => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null)
-  // TODO: remove console log
-  console.log(searchQuery)
   const [contactsList, setContactsList] = useState<UserType[]>([])
-  const { COLORS } = useColorSchemeContext()
   const { currentUser } = useUserContext()
 
 const fetchAllChattingUsers = async() => {
-  const contactsDocs = await firestore().collection('USERS_DB').get();
-  let contacts = contactsDocs.docs.map((doc) => ({...doc.data()}))
-  let temp = contacts.filter((contact) => { 
-    let chatRoomID: string | null = null
-    if(currentUser?.uid) {
-      if( contact.uid > currentUser.uid ) {
-        chatRoomID = contact.uid.slice(0,8).concat('_@_', currentUser.uid.slice(0,8))
+  if (currentUser?.uid) {
+    const contactsDocs = await firestore().collection('USERS_DB').get();
+    const currentUserShortId = currentUser?.uid.slice(0, 8)
+    let contacts = contactsDocs.docs.map((doc) => ({...doc.data()}))
+    let temp = contacts.filter((contact) => { 
+      let chatRoomID: string | null = null
+      const shortContactID = contact.uid.slice(0, 8)
+      if( shortContactID > currentUserShortId ) {
+        chatRoomID = shortContactID.concat('_@_', currentUserShortId)
       }
-      if( currentUser.uid > contact.uid ) {
-        chatRoomID = currentUser.uid.slice(0,8).concat('_@_', contact.uid.slice(0,8))
+      if( currentUserShortId > shortContactID ) {
+        chatRoomID = currentUserShortId.concat('_@_', shortContactID)
       }
-    }
-    return chatRoomID
-  })
-  setContactsList(temp as UserType[])
+      return chatRoomID
+    })
+    setContactsList(temp as UserType[])
+  }
+  else return
 }
-
 useEffect(() => {
   fetchAllChattingUsers()
 }, [])
+
+useEffect(() => {
+  if (searchQuery && contactsList.length > 0 ) {
+    let temp = contactsList.filter(item => item.displayName.toLowerCase() == searchQuery.toLowerCase())
+    console.log(temp)
+    // temp && setContactsList(temp)
+    // setSearchQuery(null)
+  }
+  else return
+}, [searchQuery])
 
   return (
     <ScreenWrapper>
