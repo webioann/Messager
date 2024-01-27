@@ -20,23 +20,23 @@ const useFetchMessages = (chatRoomID: string) => {
         const howManyDaysAgoSent = dayNow - dayInTimeStamp
         if(howManyDaysAgoSent === 0) {
             minutes < 10
-                ? setLastTimeStamp(`${hoursInTimeStamp + 1}:0${minutes +1}`) 
-                : setLastTimeStamp(`${hoursInTimeStamp + 1}:${minutes +1}`)
+                ? setLastTimeStamp(`today ${hoursInTimeStamp + 1}:0${minutes +1}`) 
+                : setLastTimeStamp(`today ${hoursInTimeStamp + 1}:${minutes +1}`)
         }
         if(howManyDaysAgoSent === 1) {
-            setLastTimeStamp('...yestrday')
+            setLastTimeStamp('yestrday')
         }
         if(howManyDaysAgoSent === 2) {
-            setLastTimeStamp('...two days ago')
+            setLastTimeStamp('two days ago')
         }
         if(howManyDaysAgoSent === 3) {
-            setLastTimeStamp('...three days ago')
+            setLastTimeStamp('three days ago')
         }
         if(howManyDaysAgoSent > 3) {
             let date =  new Date(time).getDate()
             let monthIndex =  new Date(time).getMonth()
             let monthsList = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-            setLastTimeStamp(`${date} ${monthsList[monthIndex]}`)
+            setLastTimeStamp(`${monthsList[monthIndex]}. ${date}`)
         }
     }
 
@@ -52,14 +52,7 @@ const useFetchMessages = (chatRoomID: string) => {
                     setLastMessage(raw.messages[lastIndex])
                     if(raw.messages[lastIndex]) {
                         let time = raw.messages[lastIndex].createdAt
-                        // TODO: must be used in the future
-                        // createLastMessageTimeStamp(time)
-                        const dateObject = new Date(time)
-                        let hours = dateObject.getHours();
-                        let minutes = dateObject.getMinutes();
-                        minutes < 10
-                            ? setLastTimeStamp(`${hours + 1}:0${minutes +1}`) 
-                            : setLastTimeStamp(`${hours + 1}:${minutes +1}`)
+                        createLastMessageTimeStamp(time)
                     }
                 }
             })
