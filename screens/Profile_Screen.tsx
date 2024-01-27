@@ -109,7 +109,7 @@ const Profile_Screen = () => {
                         onChangeText={(value) => setPhone(value)}
                         placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'phone number not install yet'}
                         cursorColor={COLORS.color}
-                        placeholderTextColor={COLORS.color}
+                        placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
                     />
                 </View>
                 <TouchableOpacity 
