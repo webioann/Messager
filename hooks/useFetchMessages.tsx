@@ -48,19 +48,20 @@ const useFetchMessages = (chatRoomID: string) => {
 
     const groupMessagesByDate = (messagesArray: messageType[]) => {
         let arrayOfDates: string[] = []
-        let group: groupedMessagesType = {} as groupedMessagesType
         messagesArray.map((item) => {
             let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
             arrayOfDates.push(creatingDate)
-            // let newGroupItem: groupedMessagesType = {
-            //     sectionTittle: creatingDate,
-            //     groupedMessages: [...item]
-            // }
         })
         let uniqueDates = new Set(arrayOfDates)
-        const result = messagesArray.map((item) => {
-
-        })
+        if(uniqueDates) {
+            let oneGroup = messagesArray.filter((item, index) => {
+                let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
+                if(uniqueDates.has(creatingDate)) {
+                    console.log('HEY')
+                }
+            })
+            console.log(oneGroup)
+        }
     }
 
     const fetchMessagesList = async() => {
@@ -71,6 +72,7 @@ const useFetchMessages = (chatRoomID: string) => {
                 let raw = response.data()
                 if(raw) {
                     setMessages(raw.messages)
+                    groupMessagesByDate(raw.messages)
                     let lastIndex = raw.messages.length - 1
                     setLastMessage(raw.messages[lastIndex])
                     if(raw.messages[lastIndex]) {
