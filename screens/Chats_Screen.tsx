@@ -41,7 +41,7 @@ useEffect(() => {
 useEffect(() => {
   if (searchQuery && contactsList.length > 0 ) {
     let temp = contactsList.filter(item => item.displayName.toLowerCase() == searchQuery.toLowerCase())
-    console.log(temp)
+    // console.log(temp)
     // temp && setContactsList(temp)
     // setSearchQuery(null)
   }

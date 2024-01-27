@@ -22,7 +22,7 @@ const CustomNavigationHeader: React.FC<NavHeaderProps> = ({ screen, type, childr
                 <Icon 
                     name={ type === 'drawer' ? 'menu' : 'chevron-left'} 
                     color={COLORS.color} 
-                    size={24}
+                    size={28}
                     onPress={() => {
                         if(type === 'drawer') { navigation.dispatch(DrawerActions.openDrawer()) }
                         if(type === 'goBack') { navigation.goBack() }
