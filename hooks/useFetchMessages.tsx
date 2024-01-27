@@ -20,8 +20,8 @@ const useFetchMessages = (chatRoomID: string) => {
         const howManyDaysAgoSent = dayNow - dayInTimeStamp
         if(howManyDaysAgoSent === 0) {
             minutes < 10
-                ? setLastTimeStamp(`today ${hoursInTimeStamp + 1}:0${minutes +1}`) 
-                : setLastTimeStamp(`today ${hoursInTimeStamp + 1}:${minutes +1}`)
+                ? setLastTimeStamp(`${hoursInTimeStamp + 1}:0${minutes +1}`) 
+                : setLastTimeStamp(`${hoursInTimeStamp + 1}:${minutes +1}`)
         }
         if(howManyDaysAgoSent === 1) {
             setLastTimeStamp('yestrday')
