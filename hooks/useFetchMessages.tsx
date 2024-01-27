@@ -9,6 +9,37 @@ const useFetchMessages = (chatRoomID: string) => {
     const [isError, setIsError] = useState<string | null>(null)
     const [lastTimeStamp, setLastTimeStamp] = useState<string | null>(null)
 
+    const createLastMessageTimeStamp = (time: number) => {
+        const hoursInTimeStamp = new Date(time).getHours()
+        const dayInTimeStamp = new Date(time).getDay()
+        let minutes = new Date(time).getMinutes();
+        // time right now
+        const currentDate = Date.now()
+        const dayNow = new Date(currentDate).getDay()
+        // difference between stamps in hours
+        const howManyDaysAgoSent = dayNow - dayInTimeStamp
+        if(howManyDaysAgoSent === 0) {
+            minutes < 10
+                ? setLastTimeStamp(`${hoursInTimeStamp + 1}:0${minutes +1}`) 
+                : setLastTimeStamp(`${hoursInTimeStamp + 1}:${minutes +1}`)
+        }
+        if(howManyDaysAgoSent === 1) {
+            setLastTimeStamp('...yestrday')
+        }
+        if(howManyDaysAgoSent === 2) {
+            setLastTimeStamp('...two days ago')
+        }
+        if(howManyDaysAgoSent === 3) {
+            setLastTimeStamp('...three days ago')
+        }
+        if(howManyDaysAgoSent > 3) {
+            let date =  new Date(time).getDate()
+            let monthIndex =  new Date(time).getMonth()
+            let monthsList = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+            setLastTimeStamp(`${date} ${monthsList[monthIndex]}`)
+        }
+    }
+
     const fetchMessagesList = async() => {
         setIsLoading(true)
         try{
@@ -21,6 +52,8 @@ const useFetchMessages = (chatRoomID: string) => {
                     setLastMessage(raw.messages[lastIndex])
                     if(raw.messages[lastIndex]) {
                         let time = raw.messages[lastIndex].createdAt
+                        // TODO: must be used in the future
+                        // createLastMessageTimeStamp(time)
                         const dateObject = new Date(time)
                         let hours = dateObject.getHours();
                         let minutes = dateObject.getMinutes();
