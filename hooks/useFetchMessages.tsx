@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react'
 import { messageType } from '../Types/chats_types';
 import firestore from '@react-native-firebase/firestore';
 
+type groupedMessagesType = {
+    sectionTittle: string
+    groupedMessages: messageType[]
+}
+
 const useFetchMessages = (chatRoomID: string) => {
     const [ messages, setMessages ] = useState<messageType[]>([] as messageType[])
     const [ lastMessage, setLastMessage ] = useState<messageType>({} as messageType)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState<string | null>(null)
     const [lastTimeStamp, setLastTimeStamp] = useState<string | null>(null)
+    const [messagesGroup, setMessagesGroup] = useState<groupedMessagesType[]>([] as groupedMessagesType[])
 
     const createLastMessageTimeStamp = (time: number) => {
         const hoursInTimeStamp = new Date(time).getHours()
@@ -38,6 +44,23 @@ const useFetchMessages = (chatRoomID: string) => {
             let monthsList = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
             setLastTimeStamp(`${monthsList[monthIndex]}. ${date}`)
         }
+    }
+
+    const groupMessagesByDate = (messagesArray: messageType[]) => {
+        let arrayOfDates: string[] = []
+        let group: groupedMessagesType = {} as groupedMessagesType
+        messagesArray.map((item) => {
+            let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
+            arrayOfDates.push(creatingDate)
+            // let newGroupItem: groupedMessagesType = {
+            //     sectionTittle: creatingDate,
+            //     groupedMessages: [...item]
+            // }
+        })
+        let uniqueDates = new Set(arrayOfDates)
+        const result = messagesArray.map((item) => {
+
+        })
     }
 
     const fetchMessagesList = async() => {
