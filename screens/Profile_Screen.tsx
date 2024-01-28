@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
@@ -26,6 +26,7 @@ const Profile_Screen = () => {
         setPassword('')
         setPhone('')
         setImageURL(undefined)
+        Keyboard.dismiss
     }
 
     const confirmChangesOnUserProfile = async() => {

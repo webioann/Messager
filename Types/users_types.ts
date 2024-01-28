@@ -34,3 +34,13 @@ export type currentUserType = {
     photoURL: string | null
     phoneNumber: string | null
 }
+
+export type currentUserDataType = {
+    displayName: string | null
+    email: string | null 
+    uid: string 
+    photoURL: string | null
+    phoneNumber: string | null
+    gender: 'male' | 'female' | 'not defined'
+    dateOfBirth: string | '00/00/0000'
+}
