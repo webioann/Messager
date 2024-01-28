@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
@@ -52,73 +52,80 @@ const Profile_Screen = () => {
     return (
         <ScreenWrapper>
             <NavigationHeader type='drawer' screen='Profile'/>
-            <View style={{alignItems: 'center'}}>
-                <View style={{position: 'relative'}}>
-                    <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
-                    <View style={[styles.photo_editor, {backgroundColor: COLORS.minor}]}>
-                        <UploadImageInStorage getImageURL={setImageURL} storageFolder='avatars'>
-                            <Icon2 name='camera' size={20} color={COLORS.blue}/>
-                        </UploadImageInStorage>
+            <ScrollView style={{flex: 1}}>
+                <KeyboardAvoidingView 
+                    behavior={Platform.OS === 'ios' ? 'padding': 'height'}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0} 
+                    style = {{flex: 1}}>
+                    <View style={{alignItems: 'center'}}>
+                        <View style={{position: 'relative'}}>
+                            <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
+                            <View style={[styles.photo_editor, {backgroundColor: COLORS.minor}]}>
+                                <UploadImageInStorage getImageURL={setImageURL} storageFolder='avatars'>
+                                    <Icon2 name='camera' size={20} color={COLORS.blue}/>
+                                </UploadImageInStorage>
+                            </View>
+                        </View>
+                        <Text style={[styles.user_name, {color: COLORS.color}]}>{currentUser?.displayName}</Text>
                     </View>
-                </View>
-                <Text style={[styles.user_name, {color: COLORS.color}]}>{currentUser?.displayName}</Text>
-            </View>
-            <View style={{flex: 1, paddingHorizontal: 16}}>
-                {/* name edit */}
-                <View style={{paddingTop: 10}}>
-                    <Text style={[styles.label, {color: COLORS.color}]}>Name</Text>
-                    <TextInput
-                        style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                        value={name}
-                        onChangeText={(value) => setName(value)}
-                        placeholder={currentUser?.displayName ? currentUser.displayName : 'name ...'}
-                        cursorColor={COLORS.color}
-                        placeholderTextColor={COLORS.color}
-                    />
-                </View>
-                {/* email edit */}
-                <View style={{paddingTop: 10}}>
-                    <Text style={[styles.label, {color: COLORS.color}]}>Email</Text>
-                    <TextInput
-                        style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                        value={email}
-                        onChangeText={(value) => setEmail(value)}
-                        placeholder={currentUser?.email ? currentUser.email : 'email ...'}
-                        cursorColor={COLORS.color}
-                        placeholderTextColor={COLORS.color}
-                    />
-                </View>
-                {/* password edit */}
-                <View style={{paddingTop: 10}}>
-                    <Text style={[styles.label, {color: COLORS.color}]}>Password</Text>
-                    <TextInput
-                        style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                        value={password}
-                        onChangeText={(value) => setPassword(value)}
-                        secureTextEntry
-                        placeholder={currentUser?.displayName ? currentUser.displayName : 'password ...'}
-                        cursorColor={COLORS.color}
-                        placeholderTextColor={COLORS.color}
-                    />
-                </View>
-                {/* phone number  */}
-                <View style={{paddingTop: 10}}>
-                    <Text style={[styles.label, {color: COLORS.color}]}>Phone</Text>
-                    <TextInput
-                        style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                        value={phone}
-                        onChangeText={(value) => setPhone(value)}
-                        placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'phone number not install yet'}
-                        cursorColor={COLORS.color}
-                        placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
-                    />
-                </View>
-                <TouchableOpacity 
-                    onPress={confirmChangesOnUserProfile} 
-                    style={[styles.button, {backgroundColor: COLORS.orange}]}>
-                    <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
-                </TouchableOpacity>
-            </View>
+                    <View style={{flex: 1, paddingHorizontal: 16}}>
+                        {/* name edit */}
+                        <View style={{paddingTop: 10}}>
+                            <Text style={[styles.label, {color: COLORS.color}]}>Name</Text>
+                            <TextInput
+                                style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                                value={name}
+                                onChangeText={(value) => setName(value)}
+                                placeholder={currentUser?.displayName ? currentUser.displayName : 'name ...'}
+                                cursorColor={COLORS.color}
+                                placeholderTextColor={COLORS.color}
+                            />
+                        </View>
+                        {/* email edit */}
+                        <View style={{paddingTop: 10}}>
+                            <Text style={[styles.label, {color: COLORS.color}]}>Email</Text>
+                            <TextInput
+                                style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                                value={email}
+                                onChangeText={(value) => setEmail(value)}
+                                placeholder={currentUser?.email ? currentUser.email : 'email ...'}
+                                cursorColor={COLORS.color}
+                                placeholderTextColor={COLORS.color}
+                            />
+                        </View>
+                        {/* password edit */}
+                        <View style={{paddingTop: 10}}>
+                            <Text style={[styles.label, {color: COLORS.color}]}>Password</Text>
+                            <TextInput
+                                style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                                value={password}
+                                onChangeText={(value) => setPassword(value)}
+                                secureTextEntry
+                                placeholder={currentUser?.displayName ? currentUser.displayName : 'password ...'}
+                                cursorColor={COLORS.color}
+                                placeholderTextColor={COLORS.color}
+                            />
+                        </View>
+                        {/* phone number  */}
+                        <View style={{paddingTop: 10}}>
+                            <Text style={[styles.label, {color: COLORS.color}]}>Phone</Text>
+                            <TextInput
+                                style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                                value={phone}
+                                onChangeText={(value) => setPhone(value)}
+                                placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'phone number not install yet'}
+                                cursorColor={COLORS.color}
+                                placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
+                            />
+                        </View>
+                        <TouchableOpacity 
+                            onPress={confirmChangesOnUserProfile} 
+                            style={[styles.button, {backgroundColor: COLORS.orange}]}>
+                            <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
+                        </TouchableOpacity>
+                    </View>
+                </KeyboardAvoidingView>
+            </ScrollView>
         </ScreenWrapper>
     )
 }
