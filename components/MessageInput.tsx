@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, View, TouchableOpacity, TextInput, Keyboard } from 'react-native'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -40,7 +40,7 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
         }
     }
 
-    const seveImageInFirestore = async() => {
+    const saveImageInFirestore = async() => {
         try {
             if(image) {
                 let newMessage: messageType = {
@@ -61,7 +61,7 @@ const MessageInput: React.FC<RoomProp> = ({ room, senderID }) => {
     }
 
     useEffect(() => {
-        seveImageInFirestore();
+        saveImageInFirestore();
     }, [image])
 
     return (
