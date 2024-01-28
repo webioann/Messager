@@ -46,23 +46,37 @@ const useFetchMessages = (chatRoomID: string) => {
         }
     }
 
+    // const groupMessagesByDate = (messagesArray: messageType[]) => {
+    //     let arrayOfDates: string[] = []
+    //     messagesArray.map((item) => {
+    //         let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
+    //         arrayOfDates.push(creatingDate)
+    //     })
+    //     let uniqueDates = new Set(arrayOfDates)
+    //     if(uniqueDates) {
+    //         let oneGroup = messagesArray.filter((item, index) => {
+    //             let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
+    //             if(uniqueDates.has(creatingDate)) {
+    //                 console.log('HEY')
+    //             }
+    //         })
+    //         console.log(oneGroup)
+    //     }
+    // }
     const groupMessagesByDate = (messagesArray: messageType[]) => {
-        let arrayOfDates: string[] = []
+        let raw: groupedMessagesType[] = [] as groupedMessagesType[]
         messagesArray.map((item) => {
             let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
-            arrayOfDates.push(creatingDate)
+            let temp: groupedMessagesType = {
+                sectionTittle: creatingDate,
+                groupedMessages: [item]
+            }
+            raw.push(temp)
         })
-        let uniqueDates = new Set(arrayOfDates)
-        if(uniqueDates) {
-            let oneGroup = messagesArray.filter((item, index) => {
-                let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
-                if(uniqueDates.has(creatingDate)) {
-                    console.log('HEY')
-                }
-            })
-            console.log(oneGroup)
-        }
+        setMessagesGroup([...new Set(raw)])
     }
+    // TODO:
+    console.log(messagesGroup[0])
 
     const fetchMessagesList = async() => {
         setIsLoading(true)
@@ -100,7 +114,7 @@ const useFetchMessages = (chatRoomID: string) => {
         fetchMessagesList();
     }
 
-    return { messages, isLoading, isError, reFetch, lastMessage, lastTimeStamp }
+    return { messages, isLoading, isError, reFetch, lastMessage, lastTimeStamp, messagesGroup }
 }
 
 export default useFetchMessages;
