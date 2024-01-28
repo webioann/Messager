@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, Keyboard
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
-
+import ProfileFieldEditor from '../components/ProfileFieldEditor';
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import UploadImageInStorage from '../components/UploadImageInStorage'
@@ -70,6 +70,12 @@ const Profile_Screen = () => {
                     </View>
                     <View style={{flex: 1, paddingHorizontal: 16}}>
                         {/* name edit */}
+                        {/* <ProfileFieldEditor 
+                            label='Username' 
+                            value={name} 
+                            setValue={setName} 
+                            info={currentUser?.displayName ? currentUser.displayName : ''}
+                        /> */}
                         <View style={{paddingTop: 10}}>
                             <Text style={[styles.label, {color: COLORS.color}]}>Name</Text>
                             <TextInput
@@ -81,6 +87,7 @@ const Profile_Screen = () => {
                                 placeholderTextColor={COLORS.color}
                             />
                         </View>
+
                         {/* email edit */}
                         <View style={{paddingTop: 10}}>
                             <Text style={[styles.label, {color: COLORS.color}]}>Email</Text>

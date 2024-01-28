@@ -34,13 +34,13 @@ export type currentUserType = {
     photoURL: string | null
     phoneNumber: string | null
 }
-
+// TODO: you must use this in the future
 export type currentUserDataType = {
     displayName: string | null
     email: string | null 
     uid: string 
     photoURL: string | null
-    phoneNumber: string | null
+    phoneNumber: string | '+38(0XX) XXX XX XX'
     gender: 'male' | 'female' | 'not defined'
     dateOfBirth: string | '00/00/0000'
 }
