@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
     },
     screen_title: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: '500',
         paddingLeft: 16
     },
