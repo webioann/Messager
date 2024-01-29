@@ -12,7 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 
 const Profile_Screen = () => {
-    const { currentUser } = useUserContext()
+    const { currentUser, restartAuthState } = useUserContext()
     const { COLORS } = useColorSchemeContext()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -44,6 +44,7 @@ const Profile_Screen = () => {
                 photoURL: imageURL ? imageURL : currentUser.photoURL
             })
             .then(() => getCleanUpScreen())
+            .then(() => restartAuthState())
         } 
         catch {(error: Error) => {console.log(`_ERROR_ON_TIME_USER_PROFILE_DATA_CHANGING --> ${error.message}`)}}
         finally {() => getCleanUpScreen()}
