@@ -14,6 +14,7 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
     const chatRoomID = useChatRoomIDCreator(contact.uid)
     const { messages, lastMessage, lastTimeStamp } = useFetchMessages(chatRoomID)
     const { COLORS } = useColorSchemeContext()
+    const defaultImage = "https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png"
 
     return (
         <TouchableOpacity 
@@ -22,14 +23,14 @@ const ChatPreview: React.FC<UserType> = ({...contact}) => {
                 navigation.navigate(
                     "Chat", 
                     {
-                        contact: contact.displayName,
+                        contact: contact.displayName ? contact.displayName : 'DO NOT HAVE A NAME',
                         contactId: contact.uid,
-                        avatar_url: contact.photoURL,
+                        avatar_url: contact.photoURL ? contact.photoURL : defaultImage,
                         room: chatRoomID
                     }
                 )}
             }>
-            <UserAvatarImage pathToImage={contact.photoURL} size={SIZES.LARGE}/>
+            <UserAvatarImage pathToImage={contact.photoURL ? contact.photoURL : defaultImage} size={SIZES.LARGE}/>
             {/* user contact-name and short message */}
             <View style={[styles.userData]}>
                 <Text style={{ color: COLORS.color, fontSize: 15, fontWeight: '600' }}>
