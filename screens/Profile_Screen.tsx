@@ -18,7 +18,7 @@ const Profile_Screen = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
-    const [dataOfBirth, setDateOfBirth] = useState('')
+    const [dateOfBirth, setDateOfBirth] = useState('')
 
     const [imageURL, setImageURL] = useState<string | undefined>(undefined)
 
@@ -45,27 +45,37 @@ const Profile_Screen = () => {
 
     const confirmChangesOnUserProfile = async() => {
         try{
-            currentUser && await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
-                // displayName: name.length > 3 ? name : currentUser.displayName,
-                // email: email.length > 7 ? email : currentUser.email,
-                // photoURL: imageURL ? imageURL : currentUser.photoURL,
-                // uid: currentUser.uid,
-                // phoneNumber: phone.length > 7 ? phone : null,
-                gender: genderFieldValidation(),
-                dataOfBirth: dataOfBirth.length > 5 ? dataOfBirth : 'not defined'
-            })
-            let user = auth().currentUser;
-            currentUser && user && await user.updateProfile({// <--- update profile data inside Firebase Auth
-                displayName: name.length > 3 ? name : currentUser.displayName,
-                photoURL: imageURL ? imageURL : currentUser.photoURL,
-            })
-            // TODO: need validation method for email
-            currentUser && user && await user.updateEmail( // <--- update email data inside Firebase Auth
-                email.length > 8 ? email : 'dummy email'
-            )
+            const user = auth().currentUser
+            if(currentUser && user) {
+                await user.updateProfile({// <--- update profile data inside Firebase Auth
+                    displayName: name.length > 3 ? name : currentUser.displayName,
+                    photoURL: imageURL ? imageURL : currentUser.photoURL,
+                })
+                user.email && await user.updateEmail( // <--- update email data inside Firebase Auth
+                    email.length > 8 || user.email ? email : user.email // TODO: need RegExp validation method for email
+                )
+                await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
+                    // displayName: user.displayName,
+                    // email: user.email,
+                    // photoURL: user.photoURL,
+                    // uid: user.uid,
+                    phoneNumber: phone.length > 7 ? phone : currentUser.phoneNumber,
+                    gender: genderFieldValidation(),
+                    dateOfBirth: dateOfBirth.length > 5 ? dateOfBirth : currentUser.dateOfBirth
+                })
+                // await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
+                //     displayName: name.length > 3 ? name : currentUser.displayName,
+                //     email: email.length > 7 ? email : currentUser.email,
+                //     photoURL: imageURL ? imageURL : currentUser.photoURL,
+                //     uid: currentUser.uid,
+                //     phoneNumber: phone.length > 7 ? phone : null,
+                //     gender: genderFieldValidation(),
+                //     dataOfBirth: dataOfBirth.length > 5 ? dataOfBirth : 'not defined'
+                // })
 
-            .then(() => getCleanUpScreen())
-            .then(() => restartAuthState())
+                .then(() => getCleanUpScreen())
+                .then(() => restartAuthState())
+            }
         } 
         catch {(error: Error) => {console.log(`_ERROR_ON_TIME_USER_PROFILE_DATA_CHANGING --> ${error.message}`)}}
         finally {() => getCleanUpScreen()}
@@ -147,7 +157,7 @@ const Profile_Screen = () => {
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Date of Birth</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                                value={dataOfBirth}
+                                value={dateOfBirth}
                                 onChangeText={(value) => setDateOfBirth(value)}
                                 placeholder={currentUser?.dateOfBirth}
                                 cursorColor={COLORS.color}
@@ -156,8 +166,8 @@ const Profile_Screen = () => {
                         </View>
 
                         <TouchableOpacity 
-                            onPress={() => console.log('PRIFILE IS SAVED')} 
-                            // onPress={confirmChangesOnUserProfile} 
+                            // onPress={() => console.log('PRIFILE IS SAVED')} 
+                            onPress={confirmChangesOnUserProfile} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>
