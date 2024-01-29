@@ -6,22 +6,22 @@ type editorProps = {
     label: string
     value: string
     setValue: (value: string) => void
-    info: string | null
+    placeholder: string | null
 }
 
-const ProfileFieldEditor: React.FC<editorProps> = ({label, value, setValue, info}) => {
+const ProfileFieldEditor: React.FC<editorProps> = ({label, value, setValue, placeholder}) => {
     const { COLORS } = useColorSchemeContext()
 
     return (
-        <View style={{paddingVertical: 10}}>
-            <Text style={[styles.label, {color: COLORS.color}]}>{label}</Text>
+        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
+            <Text style={[styles.label, {color: COLORS.adorn}]}>{label}</Text>
             <TextInput
-                style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                style={styles.edit_input}
                 value={value}
                 onChangeText={(value) => setValue(value)}
-                placeholder={info ? info : 'phone number not install yet'}
+                placeholder={placeholder ? placeholder : 'phone number not install yet'}
                 cursorColor={COLORS.color}
-                placeholderTextColor={info ? COLORS.color : COLORS.orange}
+                placeholderTextColor={placeholder ? COLORS.color : COLORS.orange}
             />
         </View>
     )
@@ -30,17 +30,19 @@ const ProfileFieldEditor: React.FC<editorProps> = ({label, value, setValue, info
 export default ProfileFieldEditor;
 
 const styles = StyleSheet.create({
-    edit_input: {
-        fontSize: 16,
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 10,
-        paddingVertical: 5
+    field: {
+        borderBottomWidth: 2,
+        marginVertical: 10
     },
     label: {
         fontSize: 18,
-        fontWeight: '700',
-        paddingBottom: 5
+        fontWeight: '500',
     },
-
+    edit_input: {
+        fontSize: 20,
+        fontWeight: '600',
+        // borderWidth: 1,
+        // borderRadius: 8,
+        // paddingVertical: 5
+    },
 })

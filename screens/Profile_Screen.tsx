@@ -57,27 +57,22 @@ const Profile_Screen = () => {
                     behavior={Platform.OS === 'ios' ? 'padding': 'height'}
                     keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0} 
                     style = {{flex: 1}}>
-                    <View style={{alignItems: 'center'}}>
+                    {/* AVATAR */}
+                    <View style={{alignItems: 'center', marginTop: 10}}>
                         <View style={{position: 'relative'}}>
                             <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
-                            <View style={[styles.photo_editor, {backgroundColor: COLORS.minor}]}>
+                            <View style={[styles.photo_editor, {backgroundColor: COLORS.adorn}]}>
                                 <UploadImageInStorage getImageURL={setImageURL} storageFolder='avatars'>
-                                    <Icon2 name='camera' size={20} color={COLORS.blue}/>
+                                    <Icon2 name='camera' size={20} color={COLORS.color}/>
                                 </UploadImageInStorage>
                             </View>
                         </View>
                         <Text style={[styles.user_name, {color: COLORS.color}]}>{currentUser?.displayName}</Text>
                     </View>
-                    <View style={{flex: 1, paddingHorizontal: 16}}>
+                    <View style={{flex: 1, paddingHorizontal: 26}}>
                         {/* name edit */}
-                        {/* <ProfileFieldEditor 
-                            label='Username' 
-                            value={name} 
-                            setValue={setName} 
-                            info={currentUser?.displayName ? currentUser.displayName : ''}
-                        /> */}
-                        <View style={{paddingTop: 10}}>
-                            <Text style={[styles.label, {color: COLORS.color}]}>Name</Text>
+                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
+                            <Text style={[styles.label, {color: COLORS.adorn}]}>Username</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={name}
@@ -89,8 +84,8 @@ const Profile_Screen = () => {
                         </View>
 
                         {/* email edit */}
-                        <View style={{paddingTop: 10}}>
-                            <Text style={[styles.label, {color: COLORS.color}]}>Email</Text>
+                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
+                            <Text style={[styles.label, {color: COLORS.adorn}]}>Email</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={email}
@@ -100,9 +95,9 @@ const Profile_Screen = () => {
                                 placeholderTextColor={COLORS.color}
                             />
                         </View>
-                        {/* password edit */}
-                        <View style={{paddingTop: 10}}>
-                            <Text style={[styles.label, {color: COLORS.color}]}>Password</Text>
+                        {/* phone numer edit */}
+                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
+                            <Text style={[styles.label, {color: COLORS.adorn}]}>Phone</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={password}
@@ -113,9 +108,9 @@ const Profile_Screen = () => {
                                 placeholderTextColor={COLORS.color}
                             />
                         </View>
-                        {/* phone number  */}
-                        <View style={{paddingTop: 10}}>
-                            <Text style={[styles.label, {color: COLORS.color}]}>Phone</Text>
+                        {/* gender field */}
+                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
+                            <Text style={[styles.label, {color: COLORS.adorn}]}>Gender</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={phone}
@@ -125,6 +120,19 @@ const Profile_Screen = () => {
                                 placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
                             />
                         </View>
+                        {/* date of birth field */}
+                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
+                            <Text style={[styles.label, {color: COLORS.adorn}]}>Date of Birth</Text>
+                            <TextInput
+                                style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                                value={phone}
+                                onChangeText={(value) => setPhone(value)}
+                                placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'XX/XX/XXXX'}
+                                cursorColor={COLORS.color}
+                                placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
+                            />
+                        </View>
+
                         <TouchableOpacity 
                             onPress={confirmChangesOnUserProfile} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
@@ -140,14 +148,17 @@ const Profile_Screen = () => {
 export default Profile_Screen
 
 const styles = StyleSheet.create({
+    field: {
+        borderBottomWidth: 1,
+        marginVertical: 8
+    },
     user_name: {
         fontSize: 24,
-        fontWeight: '600' 
+        fontWeight: '500' 
     },
     label: {
-        fontSize: 18,
-        fontWeight: '700',
-        paddingBottom: 5
+        fontSize: 16,
+        fontWeight: '500',
     },
     photo_editor: {
         position: 'absolute',
@@ -160,11 +171,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     edit_input: {
-        fontSize: 16,
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 10,
-        paddingVertical: 5
+        fontSize: 18,
+        fontWeight: '600',
     },
     button: {
         width: '70%',

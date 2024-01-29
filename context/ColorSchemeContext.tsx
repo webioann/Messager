@@ -40,7 +40,7 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
         grey: '#f0f0f0',
         color: 'rgba(0, 0, 0, 0.7)',//main text color
         tint: 'rgba(0, 0, 0, 0.5)',//text color
-        adorn: 'gray'//text color
+        adorn: '#b9c2d1'//text color
         })
 
     const toggleColorScheme = () => {
@@ -61,7 +61,7 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 grey: '#f0f0f0',
                 color: 'rgba(0, 0, 0, 0.7)',
                 tint: 'rgba(0, 0, 0, 0.5)',
-                adorn: 'gray'
+                adorn: '#b9c2d1'
             })
         }
         if(appColorScheme === 'dark') {
@@ -77,7 +77,7 @@ export const COLOR_SCHEME_PROVIDER: React.FC<childrenType> = ({ children }) => {
                 grey: '#f0f0f0',
                 color: '#ffffff',
                 tint: '#f0f0f0',
-                adorn: 'gray'
+                adorn: '#b9c2d1'
             })
         }
     }, [appColorScheme])
