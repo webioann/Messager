@@ -57,8 +57,13 @@ const Profile_Screen = () => {
             let user = auth().currentUser;
             currentUser && user && await user.updateProfile({// <--- update profile data inside Firebase Auth
                 displayName: name.length > 3 ? name : currentUser.displayName,
-                photoURL: imageURL ? imageURL : currentUser.photoURL
+                photoURL: imageURL ? imageURL : currentUser.photoURL,
             })
+            // TODO: need validation method for email
+            currentUser && user && await user.updateEmail( // <--- update email data inside Firebase Auth
+                email.length > 8 ? email : 'dummy email'
+            )
+
             .then(() => getCleanUpScreen())
             .then(() => restartAuthState())
         } 

@@ -39,7 +39,7 @@ type genderTypes = 'male' | 'female' | 'not defined';
 
 export type currentUserDataType = {
     displayName: string | null
-    email: string | null 
+    email: string 
     uid: string 
     photoURL: string | null
     phoneNumber: string | null
