@@ -66,9 +66,10 @@ const App: React.FC = () => {
       drawerActiveBackgroundColor: COLORS.third,
       drawerInactiveBackgroundColor: COLORS.main,
     }
+    // TODO: , headerRight: () => { return ( <SearchInput/> )} --> add if this need on ChatsScreen
     return (
       <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
-        <Drawer.Screen name="Telegram" component={Chats_Screen} options={{...chatsDrawerOptions, headerRight: () => { return ( <SearchInput/> )}}}/>
+        <Drawer.Screen name="Telegram" component={Chats_Screen} options={{...chatsDrawerOptions}}/>
         <Drawer.Screen name="Settings" component={Settings_Screen} options={settingsDrawerOptions}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen} options={contactsDrawerOptions}/>
         <Drawer.Screen name="Profile" component={Profile_Screen} options={profileDrawerOptions}/>

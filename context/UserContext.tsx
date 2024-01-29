@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ReactNode, useContext } from "react";
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
-import { currentUserDataType } from "../Types/users_types";
+import { unitedUserType, personalUserDataType } from "../Types/users_types";
 import firestore from '@react-native-firebase/firestore';
 
 type childrenType = {
@@ -8,14 +8,14 @@ type childrenType = {
 }
 
 type UserContextType = {
-    currentUser: currentUserDataType | null
+    currentUser: unitedUserType | null
     restartAuthState: () => void
 }
 
 export const UserContext = React.createContext<UserContextType | null>(null);
 
 export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState<currentUserDataType | null>(null);
+    const [currentUser, setCurrentUser] = useState<unitedUserType | null>(null);
     const [authStateIsChanged, setAuthStateIsChanged] = useState(false)
 
     const restartAuthState = () => {
@@ -24,7 +24,9 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
 
     const updateCurrentUserState = async(user: FirebaseAuthTypes.User) => {
         if(user) {
-            const stored_user = await firestore().collection('USERS_DB').doc(user.uid).get()
+            await firestore().collection('USERS_DB').doc(user.uid).get()
+            .then((doc) => console.log(doc.data()))
+
             // .onSnapshot(documentSnapshot => {
             //     setCurrentUser({
             //         displayName: user.displayName,
@@ -48,16 +50,17 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged((user) => {
-            if(user) {
-                // updateCurrentUserState(user)
+            if(user?.email) {
+                updateCurrentUserState(user)
                 setCurrentUser({
                     displayName: user.displayName,
                     email: user.email,
                     uid: user.uid,
                     photoURL: user.photoURL,
                     phoneNumber: user.phoneNumber,
-                    gender: currentUser?.gender ? currentUser.gender : 'not defined',
-                    dateOfBirth: currentUser?.dateOfBirth ? currentUser.dateOfBirth : 'not defined'
+
+                    gender: 'not defined',
+                    dateOfBirth: 'not defined'
                 })
             }
             else { setCurrentUser(null) }

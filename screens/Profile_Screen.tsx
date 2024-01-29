@@ -46,11 +46,11 @@ const Profile_Screen = () => {
     const confirmChangesOnUserProfile = async() => {
         try{
             currentUser && await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
-                displayName: name.length > 3 ? name : currentUser.displayName,
-                email: email.length > 7 ? email : currentUser.email,
-                photoURL: imageURL ? imageURL : currentUser.photoURL,
-                uid: currentUser.uid,
-                phoneNumber: phone.length > 7 ? phone : null,
+                // displayName: name.length > 3 ? name : currentUser.displayName,
+                // email: email.length > 7 ? email : currentUser.email,
+                // photoURL: imageURL ? imageURL : currentUser.photoURL,
+                // uid: currentUser.uid,
+                // phoneNumber: phone.length > 7 ? phone : null,
                 gender: genderFieldValidation(),
                 dataOfBirth: dataOfBirth.length > 5 ? dataOfBirth : 'not defined'
             })

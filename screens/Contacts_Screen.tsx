@@ -11,7 +11,6 @@ import firestore from '@react-native-firebase/firestore';
 
 const Contacts_Screen = () => {
     const { currentUser } = useUserContext()
-    const { COLORS } = useColorSchemeContext()
     const [searchValue, setSearchValue] = useState<string | null>(null)
     // TODO: remove console log
     console.log(searchValue)

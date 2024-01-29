@@ -40,17 +40,20 @@ const SignupPage_Screen = () => {
     }
 
     const createNewUserAccount = async() => {
+        // create new account
         const newUser = await auth().createUserWithEmailAndPassword(email, password)
+        // update user auth data
         await newUser.user.updateProfile({ // <--- update user profile with adding name and photo
             displayName: name,
             photoURL: filePath
         })
+        // create on Firestore USERS_DB and fill him in  the user data
         await firestore().collection('USERS_DB').doc(newUser.user.uid).set({// <--- save User on Storage DB
-            displayName: name,
-            email,
-            photoURL: filePath,
-            uid: newUser.user.uid,
-            phoneNumber: null,
+            // displayName: name,
+            // email,
+            // photoURL: filePath,
+            // uid: newUser.user.uid,
+            // phoneNumber: null,
             gender: 'not defined',
             dateOfBirth: 'not defined'
         })
