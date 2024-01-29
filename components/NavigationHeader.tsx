@@ -48,13 +48,9 @@ const styles = StyleSheet.create({
         height: 40,
         marginTop: 10,
         paddingHorizontal: 16,
-        // borderColor: 'red',
-        // borderWidth: 1
-
     },
     screen_title: {
         fontSize: 24,
-        fontWeight: '500',
-        paddingLeft: 16
+        paddingLeft: 100,
     },
 });
