@@ -18,7 +18,7 @@ export type CurrentUser_Type = {
     tenantId: string | null
     uid: string
 };
-
+// TODO: remove this code in future
 export type UserType = {
     displayName: string 
     email: string 
@@ -26,21 +26,23 @@ export type UserType = {
     photoURL: string 
     phoneNumber: string 
 }
+// TODO: remove this code in future
+// export type currentUserType = {
+//     displayName: string | null
+//     email: string | null 
+//     uid: string 
+//     photoURL: string | null
+//     phoneNumber: string | null
+// }
 
-export type currentUserType = {
-    displayName: string | null
-    email: string | null 
-    uid: string 
-    photoURL: string | null
-    phoneNumber: string | null
-}
-// TODO: you must use this in the future
+type genderTypes = 'male' | 'female' | 'not defined';
+
 export type currentUserDataType = {
     displayName: string | null
     email: string | null 
     uid: string 
     photoURL: string | null
-    phoneNumber: string | '+38(0XX) XXX XX XX'
-    gender: 'male' | 'female' | 'not defined'
-    dateOfBirth: string | '00/00/0000'
+    phoneNumber: string | null
+    gender: genderTypes
+    dateOfBirth: string | 'not defined'
 }

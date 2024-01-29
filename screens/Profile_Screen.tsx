@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, Keyboard
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
-import ProfileFieldEditor from '../components/ProfileFieldEditor';
+// import ProfileFieldEditor from '../components/ProfileFieldEditor';
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import UploadImageInStorage from '../components/UploadImageInStorage'
@@ -16,17 +16,31 @@ const Profile_Screen = () => {
     const { COLORS } = useColorSchemeContext()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
+    const [gender, setGender] = useState('')
+    const [dataOfBirth, setDateOfBirth] = useState('')
+
     const [imageURL, setImageURL] = useState<string | undefined>(undefined)
 
     const getCleanUpScreen = () => {
         setName('')
         setEmail('')
-        setPassword('')
         setPhone('')
+        setGender('')
+        setDateOfBirth('')
         setImageURL(undefined)
         Keyboard.dismiss
+    }
+
+    const genderFieldValidation = () => {
+        let validGender = 'not defined'
+        if(gender === 'male') {
+            validGender = 'male'
+        }
+        if(gender === 'female') {
+            validGender = 'female'
+        }
+        return validGender;
     }
 
     const confirmChangesOnUserProfile = async() => {
@@ -36,7 +50,9 @@ const Profile_Screen = () => {
                 email: email.length > 7 ? email : currentUser.email,
                 photoURL: imageURL ? imageURL : currentUser.photoURL,
                 uid: currentUser.uid,
-                phoneNumber: phone.length > 7 ? phone : null
+                phoneNumber: phone.length > 7 ? phone : null,
+                gender: genderFieldValidation(),
+                dataOfBirth: dataOfBirth.length > 5 ? dataOfBirth : 'not defined'
             })
             let user = auth().currentUser;
             currentUser && user && await user.updateProfile({// <--- update profile data inside Firebase Auth
@@ -96,15 +112,15 @@ const Profile_Screen = () => {
                                 placeholderTextColor={COLORS.color}
                             />
                         </View>
-                        {/* phone numer edit */}
+                        {/* phone number edit */}
                         <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Phone</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                                value={password}
-                                onChangeText={(value) => setPassword(value)}
+                                value={phone}
+                                onChangeText={(value) => setPhone(value)}
                                 secureTextEntry
-                                placeholder={currentUser?.displayName ? currentUser.displayName : 'password ...'}
+                                placeholder={currentUser?.phoneNumber ? currentUser.phoneNumber : '+38 (0XX) XXX XX XX'}
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
@@ -114,11 +130,11 @@ const Profile_Screen = () => {
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Gender</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                                value={phone}
-                                onChangeText={(value) => setPhone(value)}
-                                placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'phone number not install yet'}
+                                value={gender}
+                                onChangeText={(value) => setGender(value)}
+                                placeholder={currentUser?.gender}
                                 cursorColor={COLORS.color}
-                                placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
+                                placeholderTextColor={COLORS.color}
                             />
                         </View>
                         {/* date of birth field */}
@@ -126,11 +142,11 @@ const Profile_Screen = () => {
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Date of Birth</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                                value={phone}
-                                onChangeText={(value) => setPhone(value)}
-                                placeholder={currentUser?.phoneNumber ? currentUser?.phoneNumber : 'XX/XX/XXXX'}
+                                value={dataOfBirth}
+                                onChangeText={(value) => setDateOfBirth(value)}
+                                placeholder={currentUser?.dateOfBirth}
                                 cursorColor={COLORS.color}
-                                placeholderTextColor={currentUser?.phoneNumber ? COLORS.color : COLORS.orange}
+                                placeholderTextColor={COLORS.color}
                             />
                         </View>
 

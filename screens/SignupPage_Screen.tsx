@@ -50,7 +50,9 @@ const SignupPage_Screen = () => {
             email,
             photoURL: filePath,
             uid: newUser.user.uid,
-            phoneNumber: null
+            phoneNumber: null,
+            gender: 'not defined',
+            dateOfBirth: 'not defined'
         })
         .then(() => restartAuthState())
         .then(() => getCleanUpScreen())

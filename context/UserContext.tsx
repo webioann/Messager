@@ -1,35 +1,63 @@
 import React, { useEffect, useState, ReactNode, useContext } from "react";
-import auth from '@react-native-firebase/auth'
-import { currentUserType } from "../Types/users_types";
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import { currentUserDataType } from "../Types/users_types";
+import firestore from '@react-native-firebase/firestore';
 
 type childrenType = {
     children: ReactNode[] | ReactNode 
 }
 
 type UserContextType = {
-    currentUser: currentUserType | null
+    currentUser: currentUserDataType | null
     restartAuthState: () => void
 }
 
 export const UserContext = React.createContext<UserContextType | null>(null);
 
 export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
+    const [currentUser, setCurrentUser] = useState<currentUserDataType | null>(null);
     const [authStateIsChanged, setAuthStateIsChanged] = useState(false)
 
     const restartAuthState = () => {
         setAuthStateIsChanged(prev => !prev)
     }
 
+    const updateCurrentUserState = async(user: FirebaseAuthTypes.User) => {
+        if(user) {
+            const stored_user = await firestore().collection('USERS_DB').doc(user.uid).get()
+            // .onSnapshot(documentSnapshot => {
+            //     setCurrentUser({
+            //         displayName: user.displayName,
+            //         email: user.email,
+            //         uid: user.uid,
+            //         photoURL: user.photoURL,
+            //         phoneNumber: user.phoneNumber,
+            //         gender: documentSnapshot.data,
+            //         dateOfBirth: currentUser?.dateOfBirth ? currentUser.dateOfBirth : 'not defined'
+            //     })
+
+            //     console.log('User data: ', documentSnapshot.data());
+            // });
+            // let auth_email = user.email;
+            // let auth_uid = user.uid;
+            // let auth_displayName = user.displayName;
+
+        }
+        else return
+    }
+
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged((user) => {
             if(user) {
+                // updateCurrentUserState(user)
                 setCurrentUser({
                     displayName: user.displayName,
                     email: user.email,
                     uid: user.uid,
                     photoURL: user.photoURL,
-                    phoneNumber: user.phoneNumber
+                    phoneNumber: user.phoneNumber,
+                    gender: currentUser?.gender ? currentUser.gender : 'not defined',
+                    dateOfBirth: currentUser?.dateOfBirth ? currentUser.dateOfBirth : 'not defined'
                 })
             }
             else { setCurrentUser(null) }
