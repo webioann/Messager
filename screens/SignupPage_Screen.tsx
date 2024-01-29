@@ -19,6 +19,7 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
+import { UserType } from '../Types/users_types';
 // import { nameRegExpPattern, emailRegExpPattern, passwordRegExpPattern } from '../constants/SIZES';
 
 const SignupPage_Screen = () => {
@@ -47,13 +48,13 @@ const SignupPage_Screen = () => {
             displayName: name,
             photoURL: filePath
         })
-        // create on Firestore USERS_DB and fill him in  the user data
-        await firestore().collection('USERS_DB').doc(newUser.user.uid).set({// <--- save User on Storage DB
-            // displayName: name,
-            // email,
-            // photoURL: filePath,
-            // uid: newUser.user.uid,
-            // phoneNumber: null,
+        // create on Firestore USERS_DB and fill him in the user data
+        await firestore().collection('USERS_DB').doc(newUser.user.uid).set({
+            displayName: name,
+            email,
+            photoURL: filePath,
+            uid: newUser.user.uid,
+            phoneNumber: null,
             gender: 'not defined',
             dateOfBirth: 'not defined'
         })
