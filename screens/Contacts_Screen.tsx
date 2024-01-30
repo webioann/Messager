@@ -6,7 +6,7 @@ import NavigationHeader from '../components/NavigationHeader';
 import SearchInput from '../components/SearchInput';
 import { useUserContext } from '../context/UserContext';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
-import { currentUserType } from '../Types/users_types';
+import { UserType } from '../Types/users_types';
 import firestore from '@react-native-firebase/firestore';
 
 const Contacts_Screen = () => {
@@ -14,13 +14,13 @@ const Contacts_Screen = () => {
     const [searchValue, setSearchValue] = useState<string | null>(null)
     // TODO: remove console log
     // console.log(searchValue)
-    const [contactsList, setContactsList] = useState<currentUserType[]>([])
+    const [contactsList, setContactsList] = useState<UserType[]>([])
 
     const fetchAllContacts = async() => {
         const contacts = await firestore().collection('USERS_DB').get();
         let raw = contacts.docs.map((doc) => ({...doc.data()}))
         let temp = raw.filter(item => item.uid !== currentUser?.uid)
-        setContactsList(temp as currentUserType[])
+        setContactsList(temp as UserType[])
     }
 
     useEffect(() => {

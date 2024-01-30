@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
@@ -46,23 +46,23 @@ const Profile_Screen = () => {
     const confirmChangesOnUserProfile = async() => {
         try{
             const user = auth().currentUser
-            if(currentUser && user) {
+            if(user) {
                 await user.updateProfile({// <--- update profile data inside Firebase Auth
-                    displayName: name.length > 3 ? name : currentUser.displayName,
-                    photoURL: imageURL ? imageURL : currentUser.photoURL,
+                    displayName: name.length > 3 ? name : user.displayName,
+                    photoURL: imageURL ? imageURL : user.photoURL,
                 })
                 user.email && await user.updateEmail( // <--- update email data inside Firebase Auth
                     email.length > 8 || user.email ? email : user.email // TODO: need RegExp validation method for email
                 )
-                await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
-                    // displayName: user.displayName,
-                    // email: user.email,
-                    // photoURL: user.photoURL,
-                    // uid: user.uid,
-                    phoneNumber: phone.length > 7 ? phone : currentUser.phoneNumber,
-                    gender: genderFieldValidation(),
-                    dateOfBirth: dateOfBirth.length > 5 ? dateOfBirth : currentUser.dateOfBirth
-                })
+                // await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
+                //     // displayName: user.displayName,
+                //     // email: user.email,
+                //     // photoURL: user.photoURL,
+                //     // uid: user.uid,
+                //     phoneNumber: phone.length > 7 ? phone : currentUser.phoneNumber,
+                //     gender: genderFieldValidation(),
+                //     dateOfBirth: dateOfBirth.length > 5 ? dateOfBirth : currentUser.dateOfBirth
+                // })
                 // await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
                 //     displayName: name.length > 3 ? name : currentUser.displayName,
                 //     email: email.length > 7 ? email : currentUser.email,
@@ -81,8 +81,12 @@ const Profile_Screen = () => {
         finally {() => getCleanUpScreen()}
     }
 
+    const onClick = () => {
+        Alert.alert('PROFILE WAS CHANGED','',[],{cancelable: true})
+    }
+
     return (
-        <ScreenWrapper>
+        currentUser && <ScreenWrapper>
             <NavigationHeader type='drawer' screen='Profile'/>
             <ScrollView style={{flex: 1}}>
                 <KeyboardAvoidingView 
@@ -135,7 +139,7 @@ const Profile_Screen = () => {
                                 value={phone}
                                 onChangeText={(value) => setPhone(value)}
                                 secureTextEntry
-                                placeholder={currentUser?.phoneNumber ? currentUser.phoneNumber : '+38 (0XX) XXX XX XX'}
+                                placeholder={currentUser?.phoneNumber !== 'not defined' ? currentUser.phoneNumber : '+38 (000) 000 00 00 '}
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
@@ -159,14 +163,15 @@ const Profile_Screen = () => {
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={dateOfBirth}
                                 onChangeText={(value) => setDateOfBirth(value)}
-                                placeholder={currentUser?.dateOfBirth}
+                                placeholder={currentUser?.dateOfBirth !== 'not defined' ? currentUser.dateOfBirth : '00/00/0000'}
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
                         </View>
 
                         <TouchableOpacity 
-                            onPress={() => console.log('PROFILE IS SAVED')} 
+                            onPress={onClick} 
+                            // onPress={confirmChangesOnUserProfile} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>

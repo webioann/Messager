@@ -7,9 +7,9 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 export type StackNavigatorParams = {
   Chat: {
-    contact: string
+    contact: string | null
     contactId: string
-    avatar_url: string
+    avatar_url: string | null
     room: string
   }
   Telegram: undefined
