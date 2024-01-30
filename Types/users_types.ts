@@ -27,17 +27,17 @@
 //     phoneNumber: string 
 // }
 
-// export type currentUserType = {
-//     displayName: string | null
-//     email: string 
-//     uid: string 
-//     photoURL: string | null
-//     phoneNumber: string | null
-// }
-// export type personalUserDataType = {
-//     gender: 'male' | 'female' | 'not defined'
-//     dateOfBirth: string | 'not defined'
-// }
+export type currentUserType = {
+    displayName: string | null
+    email: string 
+    uid: string 
+    photoURL: string | null
+}
+export type additionalUserDataType = {
+    gender: 'male' | 'female' | 'not defined'
+    dateOfBirth: string | 'not defined'
+    phoneNumber: string | 'not defined'
+}
 
 export type UserType = {
     displayName: string | null

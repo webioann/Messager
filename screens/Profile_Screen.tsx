@@ -166,8 +166,7 @@ const Profile_Screen = () => {
                         </View>
 
                         <TouchableOpacity 
-                            // onPress={() => console.log('PRIFILE IS SAVED')} 
-                            onPress={confirmChangesOnUserProfile} 
+                            onPress={() => console.log('PROFILE IS SAVED')} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>

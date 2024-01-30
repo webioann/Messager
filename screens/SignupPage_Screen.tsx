@@ -19,7 +19,7 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
-import { UserType } from '../Types/users_types';
+import { additionalUserDataType } from '../Types/users_types';
 // import { nameRegExpPattern, emailRegExpPattern, passwordRegExpPattern } from '../constants/SIZES';
 
 const SignupPage_Screen = () => {
@@ -49,15 +49,12 @@ const SignupPage_Screen = () => {
             photoURL: filePath
         })
         // create on Firestore USERS_DB and fill him in the user data
-        await firestore().collection('USERS_DB').doc(newUser.user.uid).set({
-            displayName: name,
-            email,
-            photoURL: filePath,
-            uid: newUser.user.uid,
-            phoneNumber: null,
+        const additionalUserData: additionalUserDataType = {
+            phoneNumber: 'not defined',
             gender: 'not defined',
             dateOfBirth: 'not defined'
-        })
+        }
+        await firestore().collection('USERS_DB').doc(newUser.user.uid).set(additionalUserData)
         .then(() => restartAuthState())
         .then(() => getCleanUpScreen())
         .then(() => navigation.navigate("Telegram"))
