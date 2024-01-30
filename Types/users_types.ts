@@ -1,4 +1,4 @@
-// type for USER from firebase auth
+ // full type for USER from firebase auth
 // export type authedUserType = {
 //     displayName: string | null
 //     email: string
@@ -18,14 +18,6 @@
 //     tenantId: string | null
 //     uid: string
 // };
-// TODO: remove this code in future
-// export type UserType = {
-//     displayName: string 
-//     email: string 
-//     uid: string 
-//     photoURL: string 
-//     phoneNumber: string 
-// }
 
 export type currentUserType = {
     displayName: string | null
@@ -40,11 +32,13 @@ export type additionalUserDataType = {
 }
 
 export type UserType = {
+    // data from Auth
     displayName: string | null
     email: string 
     uid: string 
     photoURL: string | null
-    phoneNumber: string | null
+    // data from Firestore DB
+    phoneNumber: string | 'not defined'
     gender: 'male' | 'female' | 'not defined'
     dateOfBirth: string | 'not defined'
 }

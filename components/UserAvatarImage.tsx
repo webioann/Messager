@@ -3,7 +3,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type avatarProps = {
-    pathToImage?: string | undefined;
+    pathToImage?: string | null;
     size: number;
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ReactNode, useContext } from "react";
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
-import {  currentUserType } from "../Types/users_types";
+import {  currentUserType, additionalUserDataType } from "../Types/users_types";
 import firestore from '@react-native-firebase/firestore';
 
 type childrenType = {
@@ -16,6 +16,7 @@ export const UserContext = React.createContext<UserContextType | null>(null);
 
 export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
+    // const [additionalUserData, setAdditionalUserData] = useState<additionalUserDataType | null>(null)
     const [authStateIsChanged, setAuthStateIsChanged] = useState(false)
 
     const restartAuthState = () => {
@@ -23,18 +24,22 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     }
 
     // Function to read data from Firestore
-    const readDataFromFirestore = async (docId: string) => {
-        try {
-            const ref = firestore().collection('USERS_DB').doc(docId)
-            const response = await ref.get()
-            return response
-        } catch (error) {
-        return error
-        }
-    }
+    // const readDataFromFirestore = async (docId: string) => {
+    //     try {
+    //         await firestore().collection('USERS_DB').doc(docId)
+    //         .onSnapshot(doc => {
+    //             const data = {...doc.data()}
+    //             setAdditionalUserData({
+    //                 gender: data.gender,
+    //                 phoneNumber: data.phoneNumber,
+    //                 dateOfBirth: data.dateOfBirth
+    //             })
+    //         })
+    //     } 
+    //     catch (error) { return error }
+    // }
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged((user) => {
-            let dbUserData ;
             if(user && user.email) {
                 setCurrentUser({
                     displayName: user.displayName,
@@ -49,7 +54,8 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     }, [authStateIsChanged])
 
     // TODO:
-    // console.log(`AUTH_STATE_CONTEXT_USER --->`, currentUser)
+    console.log(`AUTH_STATE_CONTEXT_USER --->`, currentUser)
+    // console.log(`ADITIONAL_DATA --->`, additionalUserData)
 
     return (
         <UserContext.Provider value={{currentUser, restartAuthState}}>
