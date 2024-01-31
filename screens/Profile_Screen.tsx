@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
 // import ProfileFieldEditor from '../components/ProfileFieldEditor';
@@ -14,21 +14,28 @@ import auth from '@react-native-firebase/auth'
 const Profile_Screen = () => {
     const { currentUser, restartAuthState } = useUserContext()
     const { COLORS } = useColorSchemeContext()
+    // input fields state 
+    const [image, setImage] = useState<string | undefined>(undefined)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
-    const [dateOfBirth, setDateOfBirth] = useState('')
+    const [birthday, setBirthDay] = useState('')
 
-    const [imageURL, setImageURL] = useState<string | undefined>(undefined)
+
+    // check image picker output
+    useEffect(() => {
+        let empty = '';
+        console.log('IMAGE URL -->', image, empty ? "true" : "false")
+    }, [image])
 
     const getCleanUpScreen = () => {
+        setImage(undefined)
         setName('')
         setEmail('')
         setPhone('')
         setGender('')
-        setDateOfBirth('')
-        setImageURL(undefined)
+        setBirthDay('')
         Keyboard.dismiss
     }
 
@@ -46,35 +53,36 @@ const Profile_Screen = () => {
     const confirmChangesOnUserProfile = async() => {
         try{
             const user = auth().currentUser
-            if(user) {
-                await user.updateProfile({// <--- update profile data inside Firebase Auth
-                    displayName: name.length > 3 ? name : user.displayName,
-                    photoURL: imageURL ? imageURL : user.photoURL,
+            if(user && currentUser) {
+                // update on Firebase Auth user name and avatar URL
+                if(image || name.length > 4) {
+                    await user.updateProfile({
+                        displayName: name.length > 3 ? name : user.displayName,
+                        photoURL: image
+                    })
+                    .then(() => restartAuthState())
+                }
+                else {return};
+                // update user email in Firebase Auth 
+                if(email.length > 8) {
+                    user.email && await user.updateEmail( 
+                    user.email ? email : user.email 
+                    )
+                    .then(() => restartAuthState())
+                }
+                else {return};
+                // update User profile state on Firebase Storage DB
+                await firestore().collection('USERS_DB').doc(currentUser.uid).set({
+                    // displayName: name.length > 3 ? name : currentUser.displayName,
+                    // email: email.length > 7 ? email : currentUser.email,
+                    // photoURL: image ? image : currentUser.photoURL,
+                    // uid: currentUser.uid,
+                    phoneNumber: phone.length > 7 ? phone : null,
+                    gender: genderFieldValidation(),
+                    dataOfBirth: birthday.length > 5 ? birthday : 'not defined'
                 })
-                user.email && await user.updateEmail( // <--- update email data inside Firebase Auth
-                    email.length > 8 || user.email ? email : user.email // TODO: need RegExp validation method for email
-                )
-                // await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
-                //     // displayName: user.displayName,
-                //     // email: user.email,
-                //     // photoURL: user.photoURL,
-                //     // uid: user.uid,
-                //     phoneNumber: phone.length > 7 ? phone : currentUser.phoneNumber,
-                //     gender: genderFieldValidation(),
-                //     dateOfBirth: dateOfBirth.length > 5 ? dateOfBirth : currentUser.dateOfBirth
-                // })
-                // await firestore().collection('USERS_DB').doc(currentUser.uid).set({// <--- update User on Storage DB
-                //     displayName: name.length > 3 ? name : currentUser.displayName,
-                //     email: email.length > 7 ? email : currentUser.email,
-                //     photoURL: imageURL ? imageURL : currentUser.photoURL,
-                //     uid: currentUser.uid,
-                //     phoneNumber: phone.length > 7 ? phone : null,
-                //     gender: genderFieldValidation(),
-                //     dataOfBirth: dataOfBirth.length > 5 ? dataOfBirth : 'not defined'
-                // })
-
-                .then(() => getCleanUpScreen())
-                .then(() => restartAuthState())
+                getCleanUpScreen()
+                restartAuthState()
             }
         } 
         catch {(error: Error) => {console.log(`_ERROR_ON_TIME_USER_PROFILE_DATA_CHANGING --> ${error.message}`)}}
@@ -83,6 +91,7 @@ const Profile_Screen = () => {
 
     const onClick = () => {
         Alert.alert('PROFILE WAS CHANGED','',[],{cancelable: true})
+        getCleanUpScreen()
     }
 
     return (
@@ -98,7 +107,7 @@ const Profile_Screen = () => {
                         <View style={{position: 'relative'}}>
                             <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={150}/>
                             <View style={[styles.photo_editor, {backgroundColor: COLORS.adorn}]}>
-                                <UploadImageInStorage getImageURL={setImageURL} storageFolder='avatars'>
+                                <UploadImageInStorage getImageURL={setImage} storageFolder='avatars'>
                                     <Icon2 name='camera' size={20} color={COLORS.color}/>
                                 </UploadImageInStorage>
                             </View>
@@ -161,8 +170,8 @@ const Profile_Screen = () => {
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Date of Birth</Text>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                                value={dateOfBirth}
-                                onChangeText={(value) => setDateOfBirth(value)}
+                                value={birthday}
+                                onChangeText={(value) => setBirthDay(value)}
                                 placeholder={currentUser?.dateOfBirth !== 'not defined' ? currentUser.dateOfBirth : '00/00/0000'}
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
@@ -170,8 +179,8 @@ const Profile_Screen = () => {
                         </View>
 
                         <TouchableOpacity 
-                            onPress={onClick} 
-                            // onPress={confirmChangesOnUserProfile} 
+                            // onPress={onClick} 
+                            onPress={confirmChangesOnUserProfile} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>
@@ -182,7 +191,32 @@ const Profile_Screen = () => {
     )
 }
 
-export default Profile_Screen
+export default Profile_Screen;
+// TODO: REMOVE THIS LATER
+// type register<T, S> = {
+//     value: T
+//     error: S
+// }
+// interface IProfile {
+//     image: register<string | undefined, string>
+//     name: register<string, string>    
+//     email: register<string, string>    
+//     phone: register<string, string>   
+//     gender: register<string, string>  
+//     birthday: register<string, string>
+// }
+
+    // let O = {value: '', error: ''}
+
+    // const [profile, setProfile] = useState<IProfile>({
+    //     image: {value: undefined, error: ''},
+    //     name: {value: '', error: ''},
+    //     email: {value: '', error: ''},
+    //     phone: {value: '', error: ''},
+    //     gender: {value: '', error: ''},
+    //     birthday: {value: '', error: ''},
+    // })
+
 
 const styles = StyleSheet.create({
     field: {
