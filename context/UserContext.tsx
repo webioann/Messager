@@ -19,41 +19,45 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const [authStateIsChanged, setAuthStateIsChanged] = useState(false)
 
     const restartAuthState = () => {
-        setAuthStateIsChanged(prev => !prev)
+        setAuthStateIsChanged(true)
     }
 
     // Function to read data from Firestore
-    const createCurrentUser = async (user: FirebaseAuthTypes.User) => {
+    const updateCurrentUser = async (user: FirebaseAuthTypes.User) => {
         try {
             await firestore().collection('USERS_DB').doc(user.uid)
             .onSnapshot(doc => {
                 const data = {...doc.data()}
                 user && setCurrentUser({
                     // data from Auth
+                    photoURL: user?.photoURL,
                     displayName: user?.displayName,
                     email: user?.email ? user.email : 'EMAIL NOT DEFINED',
                     uid: user?.uid, 
-                    photoURL: user?.photoURL,
                     // data from Firestore DB
-                    phoneNumber: data.gender,
-                    gender: data.phoneNumber,
+                    phoneNumber: data.phoneNumber,
+                    gender: data.gender,
                     dateOfBirth: data.dateOfBirth
                 })
             })
+            setAuthStateIsChanged(false)
         } 
         catch (error) { return error }
     }
 
     useEffect(() => {
-        const subscriber = auth().onAuthStateChanged((user) => {
-            if(user && user.email) { createCurrentUser(user) }
-            else { setCurrentUser(null) }
-        });
-        return subscriber;
+        if(authStateIsChanged) {
+            const subscriber = auth().onAuthStateChanged((user) => {
+                if(user) { updateCurrentUser(user) }
+                else { setCurrentUser(null) }
+            });
+            return subscriber;
+        }
+        else return
     }, [authStateIsChanged])
 
     // TODO:
-    // console.log(`AUTH_STATE_CONTEXT_USER --->`, currentUser)
+    console.log(`AUTH_STATE_CONTEXT_USER --->`, currentUser)
 
     return (
         <UserContext.Provider value={{currentUser, restartAuthState}}>

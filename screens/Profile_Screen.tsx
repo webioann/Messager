@@ -9,7 +9,8 @@ import UploadImageInStorage from '../components/UploadImageInStorage'
 import { useUserContext } from '../context/UserContext';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import firestore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth'
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { GenderType } from '../Types/users_types';
 
 const Profile_Screen = () => {
     const { currentUser, restartAuthState } = useUserContext()
@@ -22,11 +23,10 @@ const Profile_Screen = () => {
     const [gender, setGender] = useState('')
     const [birthday, setBirthDay] = useState('')
 
-
     // check image picker output
     useEffect(() => {
         let empty = '';
-        console.log('IMAGE URL -->', image, empty ? "true" : "false")
+        console.log('IMAGE URL -->', image)
     }, [image])
 
     const getCleanUpScreen = () => {
@@ -39,47 +39,78 @@ const Profile_Screen = () => {
         Keyboard.dismiss
     }
 
-    const genderFieldValidation = () => {
-        let validGender = 'not defined'
-        if(gender === 'male') {
-            validGender = 'male'
-        }
-        if(gender === 'female') {
-            validGender = 'female'
-        }
+    const genderFieldValidation = (prevGender: GenderType) => {
+        let validGender = prevGender
+        if(gender.length === 0) { validGender = prevGender }
+        if(gender === 'male') { validGender = 'male' }
+        if(gender === 'female') { validGender = 'female' }
+        else { validGender = 'not defined' }
         return validGender;
     }
+
+    const updateUserNameOrImage = async (user: FirebaseAuthTypes.User) => {
+        if(image || name.length > 4) {
+            await user.updateProfile({
+                displayName: name.length > 3 ? name : user.displayName,
+                photoURL: image
+            })
+        }
+        else return
+    }
+
+    const updateUserEmail = async (user: FirebaseAuthTypes.User) => {
+        if(email.length > 8) {
+            user.email && await user.updateEmail( 
+            user.email ? email : user.email 
+            )
+        }
+        else return
+    }
+
+    const updateUserFirestore = async (user: FirebaseAuthTypes.User) => {
+        if(user && currentUser) {
+            await firestore().collection('USERS_DB').doc(currentUser.uid).set({
+                photoURL: image ? image : currentUser.photoURL,
+                displayName: name.length > 3 ? name : currentUser.displayName,
+                email: email.length > 7 ? email : currentUser.email,
+                uid: user.uid,
+                phoneNumber: phone.length > 7 ? phone : 'not defined',
+                gender: genderFieldValidation(currentUser.gender),
+                dateOfBirth: birthday.length > 5 ? birthday : 'not defined'
+            })
+        }
+        else return
+    }
+
 
     const confirmChangesOnUserProfile = async() => {
         try{
             const user = auth().currentUser
             if(user && currentUser) {
                 // update on Firebase Auth user name and avatar URL
-                if(image || name.length > 4) {
-                    await user.updateProfile({
-                        displayName: name.length > 3 ? name : user.displayName,
-                        photoURL: image
-                    })
-                    .then(() => restartAuthState())
-                }
-                else {return};
+                await updateUserNameOrImage(user)
+                // if(image || name.length > 4) {
+                //     await user.updateProfile({
+                //         displayName: name.length > 3 ? name : user.displayName,
+                //         photoURL: image
+                //     })
+                // }
                 // update user email in Firebase Auth 
-                if(email.length > 8) {
-                    user.email && await user.updateEmail( 
-                    user.email ? email : user.email 
-                    )
-                    .then(() => restartAuthState())
-                }
-                else {return};
+                await updateUserEmail(user)
+                // if(email.length > 8) {
+                //     user.email && await user.updateEmail( 
+                //     user.email ? email : user.email 
+                //     )
+                // }
                 // update User profile state on Firebase Storage DB
                 await firestore().collection('USERS_DB').doc(currentUser.uid).set({
-                    // displayName: name.length > 3 ? name : currentUser.displayName,
-                    // email: email.length > 7 ? email : currentUser.email,
-                    // photoURL: image ? image : currentUser.photoURL,
-                    // uid: currentUser.uid,
-                    phoneNumber: phone.length > 7 ? phone : null,
-                    gender: genderFieldValidation(),
-                    dataOfBirth: birthday.length > 5 ? birthday : 'not defined'
+                    photoURL: image ? image : currentUser.photoURL,
+                    displayName: name.length > 3 ? name : currentUser.displayName,
+                    email: email.length > 7 ? email : currentUser.email,
+                    uid: user.uid,
+                    phoneNumber: phone.length > 7 ? phone : 'not defined',
+                    gender: genderFieldValidation(currentUser.gender),
+                    dateOfBirth: birthday.length > 5 ? birthday : 'not defined'
                 })
                 getCleanUpScreen()
                 restartAuthState()
@@ -147,7 +178,6 @@ const Profile_Screen = () => {
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={phone}
                                 onChangeText={(value) => setPhone(value)}
-                                secureTextEntry
                                 placeholder={currentUser?.phoneNumber !== 'not defined' ? currentUser.phoneNumber : '+38 (000) 000 00 00 '}
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}

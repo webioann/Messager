@@ -25,8 +25,10 @@ export type currentUserType = {
     uid: string 
     photoURL: string | null
 }
+export type GenderType = 'male' | 'female' | 'not defined';
+
 export type additionalUserDataType = {
-    gender: 'male' | 'female' | 'not defined'
+    gender: GenderType
     dateOfBirth: string | 'not defined'
     phoneNumber: string | 'not defined'
 }

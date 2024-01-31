@@ -45,7 +45,7 @@ const DrawerNavigatorContent = ({...props}) => {
                         {currentUser?.displayName ? currentUser.displayName : 'DEFAULT NAME'}
                     </Text>
                     <Text style={[styles.user_email, {color: COLORS.color}]}>
-                        {currentUser?.email ? currentUser.email : 'DEFAULT NAME'}
+                        {currentUser?.email ? currentUser.email : 'EMAIL'}
                     </Text>
                 </View>
             </View>
