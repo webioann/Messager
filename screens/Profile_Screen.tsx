@@ -3,6 +3,7 @@ import React, { useState, useEffect, createRef } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
 // import ProfileFieldEditor from '../components/ProfileFieldEditor';
+import PhoneNumberInput from '../components/PhoneNumberInput';
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import UploadImageInStorage from '../components/UploadImageInStorage'
@@ -216,7 +217,6 @@ const Profile_Screen = () => {
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Phone</Text>
                             <TextInput
                                 keyboardType='numeric'
-                                defaultValue='+38 (067) 123 45 67'
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 onFocus={() => console.log('FOCUS OLD')}
                                 value={phone}
