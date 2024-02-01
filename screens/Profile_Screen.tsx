@@ -3,7 +3,7 @@ import React, { useState, useEffect, createRef } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
 // import ProfileFieldEditor from '../components/ProfileFieldEditor';
-import PhoneNumberInput from '../components/PhoneNumberInput';
+import RowWrapperWithLabel from '../components/RowWrapperWithLabel';
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import UploadImageInStorage from '../components/UploadImageInStorage'
@@ -188,8 +188,7 @@ const Profile_Screen = () => {
                     </View>
                     <View style={{flex: 1, paddingHorizontal: 26}}>
                         {/* name edit */}
-                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
-                            <Text style={[styles.label, {color: COLORS.adorn}]}>Username</Text>
+                        <RowWrapperWithLabel label='Username'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={name}
@@ -198,11 +197,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </View>
-
+                        </RowWrapperWithLabel>
                         {/* email edit */}
-                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
-                            <Text style={[styles.label, {color: COLORS.adorn}]}>Email</Text>
+                        <RowWrapperWithLabel label='Email'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={email}
@@ -211,10 +208,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </View>
+                        </RowWrapperWithLabel>
                         {/* phone number edit */}
-                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
-                            <Text style={[styles.label, {color: COLORS.adorn}]}>Phone</Text>
+                        <RowWrapperWithLabel label='Phone'>
                             <TextInput
                                 keyboardType='numeric'
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
@@ -225,11 +221,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </View>
-
+                        </RowWrapperWithLabel>
                         {/* gender field */}
-                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
-                            <Text style={[styles.label, {color: COLORS.adorn}]}>Gender</Text>
+                        <RowWrapperWithLabel label='Gender'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={gender}
@@ -238,10 +232,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </View>
+                        </RowWrapperWithLabel>
                         {/* date of birth field */}
-                        <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
-                            <Text style={[styles.label, {color: COLORS.adorn}]}>Date of Birth</Text>
+                        <RowWrapperWithLabel label='Date of Birth'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={birthday}
@@ -250,8 +243,7 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </View>
-
+                        </RowWrapperWithLabel>
                         <TouchableOpacity 
                             onPress={onClick} 
                             // onPress={confirmChangesOnUserProfile} 
