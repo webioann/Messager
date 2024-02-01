@@ -23,12 +23,6 @@ const Profile_Screen = () => {
     const [gender, setGender] = useState('')
     const [birthday, setBirthDay] = useState('')
 
-    // check image picker output
-    useEffect(() => {
-        let empty = '';
-        console.log('IMAGE URL -->', image)
-    }, [image])
-
     const getCleanUpScreen = () => {
         setImage(undefined)
         setName('')
@@ -41,10 +35,16 @@ const Profile_Screen = () => {
 
     const genderFieldValidation = (prevGender: GenderType) => {
         let validGender = prevGender
-        if(gender.length === 0) { validGender = prevGender }
+        // changes were not yet
+        if(gender.length < 4 && prevGender === 'not defined') { return }
+        // were changes but input is empty
+        if(gender.length < 4 && prevGender === 'male') { validGender = 'male' }
+        if(gender.length < 4 && prevGender === 'female') { validGender = 'female' }
+        // incorrect input value
+        if(gender.length > 3 && gender !== 'female' || 'male') { validGender = prevGender }
+        // correct input value
         if(gender === 'male') { validGender = 'male' }
         if(gender === 'female') { validGender = 'female' }
-        else { validGender = 'not defined' }
         return validGender;
     }
 
@@ -121,8 +121,12 @@ const Profile_Screen = () => {
     }
 
     const onClick = () => {
-        Alert.alert('PROFILE WAS CHANGED','',[],{cancelable: true})
-        getCleanUpScreen()
+        // let message = `name: ${name.length}, email: ${email.length}, phone: ${phone.length}, gender: ${gender.length},birthday: ${birthday.length}`;
+        // Alert.alert('STATE',message,[],{cancelable: true})
+        // getCleanUpScreen()
+        let string = '1234567890'
+        console.log('RegEx', string.match(/\d{10}/))
+    
     }
 
     return (
@@ -209,8 +213,8 @@ const Profile_Screen = () => {
                         </View>
 
                         <TouchableOpacity 
-                            // onPress={onClick} 
-                            onPress={confirmChangesOnUserProfile} 
+                            onPress={onClick} 
+                            // onPress={confirmChangesOnUserProfile} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>
