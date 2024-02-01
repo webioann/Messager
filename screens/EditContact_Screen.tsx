@@ -16,6 +16,7 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
     const { COLORS } = useColorSchemeContext()
     const {contact} = route.params;
     const [newNumber, setNewNumber] = useState('')
+    const defaultImage = "https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png"
 
     const updatePhoneNumber = async() => {
         firestore()
@@ -35,7 +36,7 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
                 <NavigationHeader type='goBack' screen='Contacts'/>
                 <View style={{alignItems: 'center', padding: SIZES.GAP}}>
                     <Image 
-                        source={{uri: contact.photoURL}}
+                        source={{uri: contact.photoURL ? contact.photoURL : defaultImage}}
                         style={styles.contactAvatar}
                         alt='contact avatar'
                         resizeMode='contain'

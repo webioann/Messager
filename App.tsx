@@ -90,9 +90,3 @@ const App: React.FC = () => {
   )
 }
 export default App;
-      // headerLeft: () => {
-      //   return( 
-      //     <View style={{paddingLeft: 16}}>
-      //       <Icon2 name='menu' color={COLORS.color} size={24} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}/>
-      //     </View>)
-      // },
