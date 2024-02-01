@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
 // import ProfileFieldEditor from '../components/ProfileFieldEditor';
@@ -22,6 +22,7 @@ const Profile_Screen = () => {
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
     const [birthday, setBirthDay] = useState('')
+    // collected phone number by parts
 
     const getCleanUpScreen = () => {
         setImage(undefined)
@@ -46,6 +47,43 @@ const Profile_Screen = () => {
         if(gender === 'male') { validGender = 'male' }
         if(gender === 'female') { validGender = 'female' }
         return validGender;
+    }
+
+    const phonenumberValidation = (prevPhoneNumber: string) => {
+        let correctNumber = prevPhoneNumber;
+        // changes were not yet
+        if(phone.length < 12 && prevPhoneNumber === 'not defined') { return }
+        // has an old correct phone but the input number is  short
+        if(phone.length < 12 && prevPhoneNumber !== 'not defined') { correctNumber = prevPhoneNumber  }
+        // if(phone.length < 4 && prevPhoneNumber === 'female') { correctNumber = 'female' }
+        // // incorrect input value
+        // if(gender.length > 3 && gender !== 'female' || 'male') { validGender = prevGender }
+        // // correct input value
+        // if(gender === 'male') { validGender = 'male' }
+        // if(gender === 'female') { validGender = 'female' }
+        return correctNumber;
+
+    }
+
+    // const phoneTranformation = () => {
+    //     setPhone('+38(0')
+    //     // const operatorCodePattern = /\+38(0\d\d/;
+    //     if(phone.length == 6) {
+    //         setPhone(prev => prev+') ')
+    //     }
+    //     if(phone.length == 8) {
+    //         setPhone(prev => prev+') ')
+    //     }
+    //     if(phone.length == 13) {
+    //         setPhone(prev => prev+' ')
+    //     }
+    //     if(phone.length == 15) {
+    //         setPhone(prev => prev+' ')
+    //     }
+    // }
+
+    const collectPhoneNumber = () => {
+
     }
 
     const updateUserNameOrImage = async (user: FirebaseAuthTypes.User) => {
@@ -81,7 +119,6 @@ const Profile_Screen = () => {
         }
         else return
     }
-
 
     const confirmChangesOnUserProfile = async() => {
         try{
@@ -125,8 +162,7 @@ const Profile_Screen = () => {
         // Alert.alert('STATE',message,[],{cancelable: true})
         // getCleanUpScreen()
         let string = '1234567890'
-        console.log('RegEx', string.match(/\d{10}/))
-    
+        console.log('PHONE  =', phone)
     }
 
     return (
@@ -179,7 +215,10 @@ const Profile_Screen = () => {
                         <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Phone</Text>
                             <TextInput
+                                keyboardType='numeric'
+                                defaultValue='+38 (067) 123 45 67'
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
+                                onFocus={() => console.log('FOCUS OLD')}
                                 value={phone}
                                 onChangeText={(value) => setPhone(value)}
                                 placeholder={currentUser?.phoneNumber !== 'not defined' ? currentUser.phoneNumber : '+38 (000) 000 00 00 '}
@@ -187,6 +226,7 @@ const Profile_Screen = () => {
                                 placeholderTextColor={COLORS.color}
                             />
                         </View>
+
                         {/* gender field */}
                         <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
                             <Text style={[styles.label, {color: COLORS.adorn}]}>Gender</Text>
@@ -218,6 +258,8 @@ const Profile_Screen = () => {
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>
+
+                        
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>
