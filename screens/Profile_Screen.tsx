@@ -13,6 +13,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { GenderType } from '../Types/users_types';
 
+
 const Profile_Screen = () => {
     const { currentUser, restartAuthState } = useUserContext()
     const { COLORS } = useColorSchemeContext()
@@ -23,7 +24,9 @@ const Profile_Screen = () => {
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
     const [birthday, setBirthDay] = useState('')
-    // collected phone number by parts
+    // country code if need localization
+    const countryCode = '+38 0';
+    const phoneNumberFormat = '+38 (000) 000 00 00';
 
     const getCleanUpScreen = () => {
         setImage(undefined)
@@ -35,6 +38,24 @@ const Profile_Screen = () => {
         Keyboard.dismiss
     }
 
+    const updateAuthUserNameOrImage = async (user: FirebaseAuthTypes.User) => {
+        if(image || name.length > 4) {
+            await user.updateProfile({
+                displayName: name.length > 3 ? name : user.displayName,
+                photoURL: image
+            })
+        }
+        else return
+    }
+    // TODO: fix this - it not change email on Auth console
+    const updateAuthUserEmail = async (user: FirebaseAuthTypes.User) => {
+        if(email.length > 8) {
+            user.email && await user.updateEmail( 
+            user.email ? email : user.email 
+            )
+        }
+        else return
+    }
     const genderFieldValidation = (prevGender: GenderType) => {
         let validGender = prevGender
         // changes were not yet
@@ -50,103 +71,37 @@ const Profile_Screen = () => {
         return validGender;
     }
 
-    const phonenumberValidation = (prevPhoneNumber: string) => {
-        let correctNumber = prevPhoneNumber;
+    const phoneInputValidation = (previosPhone: string) => {
+        // if country code = '+380' length = 13 if '+38 0' length = 13
+        let correctPhoneNumber = previosPhone
         // changes were not yet
-        if(phone.length < 12 && prevPhoneNumber === 'not defined') { return }
-        // has an old correct phone but the input number is  short
-        if(phone.length < 12 && prevPhoneNumber !== 'not defined') { correctNumber = prevPhoneNumber  }
-        // if(phone.length < 4 && prevPhoneNumber === 'female') { correctNumber = 'female' }
-        // // incorrect input value
-        // if(gender.length > 3 && gender !== 'female' || 'male') { validGender = prevGender }
-        // // correct input value
-        // if(gender === 'male') { validGender = 'male' }
-        // if(gender === 'female') { validGender = 'female' }
-        return correctNumber;
-
+        if(phone.length < 14 && previosPhone === 'not defined') { return }
+        // were changes but the input was not full
+        if(phone.length < 14 && previosPhone !== 'not defined') { correctPhoneNumber = previosPhone }
+        // first input with correct value
+        if(phone.length >= 14 && phone === 'not defined') { correctPhoneNumber = phone }
+        // change old phone number
+        if(phone.length >= 14 && phone !== 'not defined') { correctPhoneNumber = phone }
+        return correctPhoneNumber;
     }
 
-    // const phoneTranformation = () => {
-    //     setPhone('+38(0')
-    //     // const operatorCodePattern = /\+38(0\d\d/;
-    //     if(phone.length == 6) {
-    //         setPhone(prev => prev+') ')
-    //     }
-    //     if(phone.length == 8) {
-    //         setPhone(prev => prev+') ')
-    //     }
-    //     if(phone.length == 13) {
-    //         setPhone(prev => prev+' ')
-    //     }
-    //     if(phone.length == 15) {
-    //         setPhone(prev => prev+' ')
-    //     }
-    // }
 
-    const collectPhoneNumber = () => {
-
-    }
-
-    const updateUserNameOrImage = async (user: FirebaseAuthTypes.User) => {
-        if(image || name.length > 4) {
-            await user.updateProfile({
-                displayName: name.length > 3 ? name : user.displayName,
-                photoURL: image
-            })
-        }
-        else return
-    }
-
-    const updateUserEmail = async (user: FirebaseAuthTypes.User) => {
-        if(email.length > 8) {
-            user.email && await user.updateEmail( 
-            user.email ? email : user.email 
-            )
-        }
-        else return
-    }
-
-    const updateUserFirestore = async (user: FirebaseAuthTypes.User) => {
-        if(user && currentUser) {
-            await firestore().collection('USERS_DB').doc(currentUser.uid).set({
-                photoURL: image ? image : currentUser.photoURL,
-                displayName: name.length > 3 ? name : currentUser.displayName,
-                email: email.length > 7 ? email : currentUser.email,
-                uid: user.uid,
-                phoneNumber: phone.length > 7 ? phone : 'not defined',
-                gender: genderFieldValidation(currentUser.gender),
-                dateOfBirth: birthday.length > 5 ? birthday : 'not defined'
-            })
-        }
-        else return
-    }
-
+    
     const confirmChangesOnUserProfile = async() => {
         try{
             const user = auth().currentUser
             if(user && currentUser) {
                 // update on Firebase Auth user name and avatar URL
-                await updateUserNameOrImage(user)
-                // if(image || name.length > 4) {
-                //     await user.updateProfile({
-                //         displayName: name.length > 3 ? name : user.displayName,
-                //         photoURL: image
-                //     })
-                // }
+                await updateAuthUserNameOrImage(user)
                 // update user email in Firebase Auth 
-                await updateUserEmail(user)
-                // if(email.length > 8) {
-                //     user.email && await user.updateEmail( 
-                //     user.email ? email : user.email 
-                //     )
-                // }
+                await updateAuthUserEmail(user)
                 // update User profile state on Firebase Storage DB
                 await firestore().collection('USERS_DB').doc(currentUser.uid).set({
                     photoURL: image ? image : currentUser.photoURL,
                     displayName: name.length > 3 ? name : currentUser.displayName,
                     email: email.length > 7 ? email : currentUser.email,
                     uid: user.uid,
-                    phoneNumber: phone.length > 7 ? phone : 'not defined',
+                    phoneNumber: phoneInputValidation(currentUser.phoneNumber),
                     gender: genderFieldValidation(currentUser.gender),
                     dateOfBirth: birthday.length > 5 ? birthday : 'not defined'
                 })
@@ -214,10 +169,10 @@ const Profile_Screen = () => {
                             <TextInput
                                 keyboardType='numeric'
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
-                                onFocus={() => console.log('FOCUS OLD')}
+                                onFocus={() => setPhone(countryCode)}
                                 value={phone}
                                 onChangeText={(value) => setPhone(value)}
-                                placeholder={currentUser?.phoneNumber !== 'not defined' ? currentUser.phoneNumber : '+38 (000) 000 00 00 '}
+                                placeholder={currentUser?.phoneNumber !== 'not defined' ? currentUser.phoneNumber : phoneNumberFormat}
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
@@ -245,13 +200,11 @@ const Profile_Screen = () => {
                             />
                         </RowWrapperWithLabel>
                         <TouchableOpacity 
-                            onPress={onClick} 
-                            // onPress={confirmChangesOnUserProfile} 
+                            // onPress={onClick} 
+                            onPress={confirmChangesOnUserProfile} 
                             style={[styles.button, {backgroundColor: COLORS.orange}]}>
                             <Text style={[styles.button_text, {color: COLORS.white}]}>Save changes</Text>
                         </TouchableOpacity>
-
-                        
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>
@@ -260,44 +213,11 @@ const Profile_Screen = () => {
 }
 
 export default Profile_Screen;
-// TODO: REMOVE THIS LATER
-// type register<T, S> = {
-//     value: T
-//     error: S
-// }
-// interface IProfile {
-//     image: register<string | undefined, string>
-//     name: register<string, string>    
-//     email: register<string, string>    
-//     phone: register<string, string>   
-//     gender: register<string, string>  
-//     birthday: register<string, string>
-// }
-
-    // let O = {value: '', error: ''}
-
-    // const [profile, setProfile] = useState<IProfile>({
-    //     image: {value: undefined, error: ''},
-    //     name: {value: '', error: ''},
-    //     email: {value: '', error: ''},
-    //     phone: {value: '', error: ''},
-    //     gender: {value: '', error: ''},
-    //     birthday: {value: '', error: ''},
-    // })
-
 
 const styles = StyleSheet.create({
-    field: {
-        borderBottomWidth: 1,
-        marginVertical: 8
-    },
     user_name: {
         fontSize: 24,
         fontWeight: '500' 
-    },
-    label: {
-        fontSize: 16,
-        fontWeight: '500',
     },
     photo_editor: {
         position: 'absolute',
