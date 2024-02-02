@@ -94,14 +94,14 @@ const Profile_Screen = () => {
         // were changes but the input was not full
         if(birthday.length < 8 && previousBirthdayDate !== 'not defined') { correctDateOfBirthday = previousBirthdayDate }
         // first input with correct value
-        if(birthday.length >= 8 && birthday === 'not defined') { 
+        if(birthday.length >= 8 && previousBirthdayDate === 'not defined') { 
             let day = birthday.slice(0, 1)
             let month = birthday.slice(2, 3)
             let year = birthday.slice(5, 9)
             correctDateOfBirthday = `${day}/${month}/${year}`
         }
         // change old birthday date
-        if(birthday.length >= 8 && birthday !== 'not defined') { 
+        if(birthday.length >= 8 && previousBirthdayDate !== 'not defined') { 
             let day = birthday.slice(0, 2)
             let month = birthday.slice(2, 4)
             let year = birthday.slice(4, 9)
@@ -151,7 +151,8 @@ const Profile_Screen = () => {
             <NavigationHeader type='drawer' screen='Profile'/>
             <ScrollView style={{flex: 1}}>
                 <KeyboardAvoidingView 
-                    behavior={Platform.OS === 'ios' ? 'padding': 'height'}
+                    // behavior={Platform.OS === 'ios' ? 'padding': 'height'}
+                    behavior='position'
                     keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0} 
                     style = {{flex: 1}}>
                     {/* AVATAR */}
@@ -214,7 +215,7 @@ const Profile_Screen = () => {
                             />
                         </RowWrapperWithLabel>
                         {/* date of birth field */}
-                        <RowWrapperWithLabel label='Date of Birth' hintLabel='format 01/03/1980' showHint={showHint}>
+                        <RowWrapperWithLabel label='Date of Birth' hintLabel=' format 01/03/1980' showHint={showHint}>
                             <TextInput
                                 keyboardType='numeric'
                                 onFocus={() => setShowHint(true)}
