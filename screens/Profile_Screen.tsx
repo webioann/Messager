@@ -24,6 +24,8 @@ const Profile_Screen = () => {
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
     const [birthday, setBirthDay] = useState('')
+    // placeholder hint
+    const [showHint, setShowHint] = useState(false)
     // country code if need localization
     const countryCode = '+38 0';
     const phoneNumberFormat = '+38 (000) 000 00 00';
@@ -56,33 +58,56 @@ const Profile_Screen = () => {
         }
         else return
     }
-    const genderFieldValidation = (prevGender: GenderType) => {
-        let validGender = prevGender
+    const genderFieldValidation = (previousGender: GenderType) => {
+        let validGender = previousGender
         // changes were not yet
-        if(gender.length < 4 && prevGender === 'not defined') { return }
+        if(gender.length < 4 && previousGender === 'not defined') { return }
         // were changes but input is empty
-        if(gender.length < 4 && prevGender === 'male') { validGender = 'male' }
-        if(gender.length < 4 && prevGender === 'female') { validGender = 'female' }
+        if(gender.length < 4 && previousGender === 'male') { validGender = 'male' }
+        if(gender.length < 4 && previousGender === 'female') { validGender = 'female' }
         // incorrect input value
-        if(gender.length > 3 && gender !== 'female' || 'male') { validGender = prevGender }
+        if(gender.length > 3 && gender !== 'female' || 'male') { validGender = previousGender }
         // correct input value
         if(gender === 'male') { validGender = 'male' }
         if(gender === 'female') { validGender = 'female' }
         return validGender;
     }
 
-    const phoneInputValidation = (previosPhone: string) => {
+    const phoneInputValidation = (previousPhone: string) => {
         // if country code = '+380' length = 13 if '+38 0' length = 13
-        let correctPhoneNumber = previosPhone
+        let correctPhoneNumber = previousPhone
         // changes were not yet
-        if(phone.length < 14 && previosPhone === 'not defined') { return }
+        if(phone.length < 14 && previousPhone === 'not defined') { return }
         // were changes but the input was not full
-        if(phone.length < 14 && previosPhone !== 'not defined') { correctPhoneNumber = previosPhone }
+        if(phone.length < 14 && previousPhone !== 'not defined') { correctPhoneNumber = previousPhone }
         // first input with correct value
         if(phone.length >= 14 && phone === 'not defined') { correctPhoneNumber = phone }
         // change old phone number
         if(phone.length >= 14 && phone !== 'not defined') { correctPhoneNumber = phone }
         return correctPhoneNumber;
+    }
+
+    const birthdayInputValidation = (previousBirthdayDate: string) => {
+        let correctDateOfBirthday = previousBirthdayDate
+        // changes were not yet
+        if(birthday.length < 8 && previousBirthdayDate === 'not defined') { return }
+        // were changes but the input was not full
+        if(birthday.length < 8 && previousBirthdayDate !== 'not defined') { correctDateOfBirthday = previousBirthdayDate }
+        // first input with correct value
+        if(birthday.length >= 8 && birthday === 'not defined') { 
+            let day = birthday.slice(0, 1)
+            let month = birthday.slice(2, 3)
+            let year = birthday.slice(5, 9)
+            correctDateOfBirthday = `${day}/${month}/${year}`
+        }
+        // change old birthday date
+        if(birthday.length >= 8 && birthday !== 'not defined') { 
+            let day = birthday.slice(0, 2)
+            let month = birthday.slice(2, 4)
+            let year = birthday.slice(4, 9)
+            correctDateOfBirthday = `${day}/${month}/${year}`
+        }
+        return correctDateOfBirthday;
     }
 
 
@@ -103,7 +128,7 @@ const Profile_Screen = () => {
                     uid: user.uid,
                     phoneNumber: phoneInputValidation(currentUser.phoneNumber),
                     gender: genderFieldValidation(currentUser.gender),
-                    dateOfBirth: birthday.length > 5 ? birthday : 'not defined'
+                    dateOfBirth: birthdayInputValidation(currentUser.dateOfBirth)
                 })
                 getCleanUpScreen()
                 restartAuthState()
@@ -189,8 +214,11 @@ const Profile_Screen = () => {
                             />
                         </RowWrapperWithLabel>
                         {/* date of birth field */}
-                        <RowWrapperWithLabel label='Date of Birth'>
+                        <RowWrapperWithLabel label='Date of Birth' hintLabel='format 01/03/1980' showHint={showHint}>
                             <TextInput
+                                keyboardType='numeric'
+                                onFocus={() => setShowHint(true)}
+                                onBlur={() => setShowHint(false)}
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={birthday}
                                 onChangeText={(value) => setBirthDay(value)}

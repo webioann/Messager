@@ -5,15 +5,18 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 type rowWrapperWithLabelType = {
     children: ReactNode[] | ReactNode
     label?: string
+    hintLabel?: string
+    showHint?: boolean
 }
 
-const RowWrapperWithLabel: React.FC<rowWrapperWithLabelType> = ({children, label}) => {
+const RowWrapperWithLabel: React.FC<rowWrapperWithLabelType> = ({children, label, hintLabel, showHint}) => {
     const { COLORS } = useColorSchemeContext()
 
     return (
         <View style={[styles.field, {borderBottomColor: COLORS.adorn}]}>
             {label && <Text style={[styles.label, {color: COLORS.adorn}]}>
-                { label }
+                { label } 
+                {showHint && <Text style={[styles.label, {color: COLORS.adorn}]}>{hintLabel}</Text>}
             </Text>}
             { children }
         </View>
