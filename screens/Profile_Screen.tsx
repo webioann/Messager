@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, Keyboard
 import React, { useState, useEffect, createRef } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
-// import ProfileFieldEditor from '../components/ProfileFieldEditor';
 import RowWrapperWithLabel from '../components/RowWrapperWithLabel';
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -24,7 +23,7 @@ const Profile_Screen = () => {
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
     const [birthday, setBirthDay] = useState('')
-    // placeholder hint
+    // placeholder hint visibility state
     const [showHint, setShowHint] = useState(false)
     // country code if need localization
     const countryCode = '+38 0';
@@ -109,8 +108,6 @@ const Profile_Screen = () => {
         }
         return correctDateOfBirthday;
     }
-
-
     
     const confirmChangesOnUserProfile = async() => {
         try{
