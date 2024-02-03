@@ -10,20 +10,6 @@ import { SIZES } from '../constants/SIZES';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 
-// type DrawerItemProps = {
-//     label: string;
-//     icon_name: string
-//     to: 'Chats' | 'Settings' | 'Contacts' | 'Profile'
-// }
-// type A = React.ComponentProps<typeof DrawerItemList>
-
-// const DrawerContentItemData: DrawerItemProps[] = [
-//     {label: 'Chats', icon_name: 'chat-outline', to: 'Chats'},
-//     {label: 'Settings', icon_name: 'cog-outline', to: 'Settings'},
-//     {label: 'Contacts', icon_name: 'account-outline', to: 'Contacts'},
-//     {label: 'Profile', icon_name: 'account-circle', to: 'Profile'},
-// ]
-
 const DrawerNavigatorContent = ({...props}) => {
     const { currentUser, restartAuthState } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();

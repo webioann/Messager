@@ -20,13 +20,17 @@ const Menu = () => {
                 <TouchableOpacity 
                     style={[styles.link, {backgroundColor: COLORS.main}]} 
                     onPress={() => navigation.navigate('Profile')}>
-                    <Icon2 name='account-circle-outline' size={30} color={COLORS.tint}/>
+                        <Icon2 name='account-circle-outline' size={30} color={COLORS.tint}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.link, {backgroundColor: COLORS.main}]}  onPress={() => navigation.navigate("Contacts")}>
-                    <Icon2 name='account-outline' size={30} color={COLORS.tint}/>
+                <TouchableOpacity 
+                    style={[styles.link, {backgroundColor: COLORS.main}]}  
+                    onPress={() => navigation.navigate("Contacts")}>
+                        <Icon2 name='account-outline' size={30} color={COLORS.tint}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.link, {backgroundColor: COLORS.main}]} onPress={() => navigation.navigate("Settings")}>
-                    <Icon2 name='cog-outline' size={30} color={COLORS.tint}/>
+                <TouchableOpacity 
+                    style={[styles.link, {backgroundColor: COLORS.main}]} 
+                    onPress={() => navigation.navigate("Settings")}>
+                        <Icon2 name='cog-outline' size={30} color={COLORS.tint}/>
                 </TouchableOpacity>
             </View>
         </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Chats_Screen from './screens/Chats_Screen';
+import Messager_Screen from './screens/Messager_Screen';
 import Chat_Screen from './screens/Chat_Screen';
 import Settings_Screen from './screens/Settings_Screen';
 import Welcome_Screen from './screens/Welcome_Screen';
@@ -41,10 +41,10 @@ const App: React.FC = () => {
       headerShadowVisible: false,
       headerShown: false,
     }
-  
-    const chatsDrawerOptions: DrawerItemOptions_Type = {
+    // COMPONENTS OF DRAWER MENU LIST
+    const messagerDrawerOptions: DrawerItemOptions_Type = {
       drawerIcon: ({focused, color, size}) => <Icon name='chat-outline' color={focused ? COLORS.accent : COLORS.color} size={24}/>,
-      drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Chats</Text>,
+      drawerLabel: ({focused, color}) => <Text style={{color: focused ? COLORS.accent : COLORS.color, fontSize: 20}}>Messager</Text>,
       drawerActiveBackgroundColor: COLORS.third,
       drawerInactiveBackgroundColor: COLORS.main,
     }
@@ -66,10 +66,11 @@ const App: React.FC = () => {
       drawerActiveBackgroundColor: COLORS.third,
       drawerInactiveBackgroundColor: COLORS.main,
     }
-    // TODO: , headerRight: () => { return ( <SearchInput/> )} --> add if this need on ChatsScreen
+    // TODO: , headerRight: () => { return ( <SearchInput/> )} --> add if this need on Messager_Screen
     return (
-      <Drawer.Navigator screenOptions={drawerScreenOptions} drawerContent={props => <DrawerNavigatorContent {...props}/>}>
-        <Drawer.Screen name="Telegram" component={Chats_Screen} options={{...chatsDrawerOptions}}/>
+      <Drawer.Navigator screenOptions={drawerScreenOptions} initialRouteName='Messager' drawerContent={props => <DrawerNavigatorContent {...props}/>}>
+        {/* <Drawer.Screen name="Messager" component={Messager_Screen} options={{...messagerDrawerOptions}}/> */}
+        <Drawer.Screen name="Messager" component={Messager_Screen} options={messagerDrawerOptions}/>
         <Drawer.Screen name="Settings" component={Settings_Screen} options={settingsDrawerOptions}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen} options={contactsDrawerOptions}/>
         <Drawer.Screen name="Profile" component={Profile_Screen} options={profileDrawerOptions}/>
@@ -81,6 +82,7 @@ const App: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Welcome'} screenOptions={StackNavigationOptions}>
         <Stack.Screen name="Welcome" component={ currentUser ? DrawerNavigator : Welcome_Screen}/>
+        {/* <Stack.Screen name="Messager" component={Messager_Screen}/> */}
         <Stack.Screen name="Chat" component={Chat_Screen}/>
         <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
         <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>

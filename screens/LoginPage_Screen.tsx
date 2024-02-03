@@ -34,9 +34,9 @@ const LoginPage_Screen = () => {
     const loginCurrentUser = async() => {
         if(email.length > 4 && password.length > 4){
             await auth().signInWithEmailAndPassword(email, password)
+            .then(() => navigation.navigate('Messager'))
             .then(() => restartAuthState())
             .then(() => getCleanUpScreen())
-            .then(() => navigation.navigate('Telegram'))
             .catch(error => {
                 console.log(`_LOG_IN_AUTH_ERROR_ --> ${error}`)
             })

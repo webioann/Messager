@@ -12,7 +12,7 @@ export type StackNavigatorParams = {
     avatar_url: string | null
     room: string
   }
-  Telegram: undefined
+  Messager: undefined
   Settings: undefined
   Welcome: undefined
   LoginPage: undefined

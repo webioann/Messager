@@ -60,9 +60,9 @@ const SignupPage_Screen = () => {
             gender: 'not defined',
             dateOfBirth: 'not defined'
         })
+        .then(() => navigation.navigate("Messager"))
         .then(() => restartAuthState())
         .then(() => getCleanUpScreen())
-        .then(() => navigation.navigate("Telegram"))
         .catch(error => {
             console.log(`_SIGN_UP_AUTH_ERROR_ --> ${error}`)
         })

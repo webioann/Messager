@@ -9,7 +9,7 @@ import { UserType } from '../Types/users_types';
 import ScreenWrapper from './ScreenWrapper';
 import { useUserContext } from '../context/UserContext';
 
-const Chats_Screen = () => {
+const Messager_Screen = () => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null)
   const [contactsList, setContactsList] = useState<UserType[]>([])
   const { currentUser } = useUserContext()
@@ -50,7 +50,7 @@ useEffect(() => {
 
   return (
     <ScreenWrapper>
-      <NavigationHeader type='drawer' screen='Telegram'>
+      <NavigationHeader type='drawer' screen='Messager'>
         <SearchInput getSearchQuery={setSearchQuery}/>
       </NavigationHeader>
       <FlatList 
@@ -62,7 +62,7 @@ useEffect(() => {
     </ScreenWrapper>
   )
 }
-export default Chats_Screen;
+export default Messager_Screen;
 
 const styles = StyleSheet.create({
   headerContainer: {

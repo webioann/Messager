@@ -37,6 +37,7 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
                 keyExtractor={item => item.createdAt.toString()}
             />
         }
+        {/* TODO: NEED CREATE MESSAGE ORDER LIST BY DATE */}
         {/* { isLoading 
             ? <ActivityIndicator/> 
             : <SectionList
