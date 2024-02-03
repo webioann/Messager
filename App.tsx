@@ -69,7 +69,6 @@ const App: React.FC = () => {
     // TODO: , headerRight: () => { return ( <SearchInput/> )} --> add if this need on Messager_Screen
     return (
       <Drawer.Navigator screenOptions={drawerScreenOptions} initialRouteName='Messager' drawerContent={props => <DrawerNavigatorContent {...props}/>}>
-        {/* <Drawer.Screen name="Messager" component={Messager_Screen} options={{...messagerDrawerOptions}}/> */}
         <Drawer.Screen name="Messager" component={Messager_Screen} options={messagerDrawerOptions}/>
         <Drawer.Screen name="Settings" component={Settings_Screen} options={settingsDrawerOptions}/>
         <Drawer.Screen name="Contacts" component={Contacts_Screen} options={contactsDrawerOptions}/>
@@ -82,7 +81,7 @@ const App: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Welcome'} screenOptions={StackNavigationOptions}>
         <Stack.Screen name="Welcome" component={ currentUser ? DrawerNavigator : Welcome_Screen}/>
-        {/* <Stack.Screen name="Messager" component={Messager_Screen}/> */}
+        <Stack.Screen name="Messager" component={DrawerNavigator}/>
         <Stack.Screen name="Chat" component={Chat_Screen}/>
         <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
         <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
