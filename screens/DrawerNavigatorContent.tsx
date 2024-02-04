@@ -25,7 +25,7 @@ const DrawerNavigatorContent = ({...props}) => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={[styles.drawer_header, {backgroundColor: COLORS.minor, borderBottomColor: COLORS.third}]}>
-                <UserAvatarImage pathToImage={currentUser?.photoURL ? currentUser.photoURL : ''} size={70}/>
+                <UserAvatarImage pathToImage={currentUser?.photoURL} size={70}/>
                 <View>
                     <Text style={[styles.user_name, {color: COLORS.color}]}>
                         {currentUser?.displayName ? currentUser.displayName : 'DEFAULT NAME'}

@@ -2,8 +2,7 @@
 import React from 'react'
 import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
-import { UserType } from './users_types';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
+// import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 export type StackNavigatorParams = {
   Chat: {
@@ -18,7 +17,6 @@ export type StackNavigatorParams = {
   LoginPage: undefined
   SignupPage: undefined
   Contacts: undefined
-  EditContact: { contact: UserType }
   Profile: undefined
   NotFoundPage: {
     transmittedTitle: string

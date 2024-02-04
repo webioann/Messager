@@ -6,7 +6,6 @@ import Welcome_Screen from './screens/Welcome_Screen';
 import LoginPage_Screen from './screens/LoginPage_Screen';
 import SignupPage_Screen from './screens/SignupPage_Screen';
 import Contacts_Screen from './screens/Contacts_Screen';
-import EditContact_Screen from './screens/EditContact_Screen';
 import Profile_Screen from './screens/Profile_Screen';
 import NotFoundPage_Screen from './screens/NotFoundPage_Screen';
 import SearchInput from './components/SearchInput';
@@ -86,7 +85,6 @@ const App: React.FC = () => {
         <Stack.Screen name="Chat" component={Chat_Screen}/>
         <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
         <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
-        <Stack.Screen name="EditContact" component={EditContact_Screen}/>
         <Stack.Screen name="NotFoundPage" component={NotFoundPage_Screen}/>
       </Stack.Navigator>  
     </NavigationContainer>
