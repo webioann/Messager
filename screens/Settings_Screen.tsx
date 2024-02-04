@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import React from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
@@ -14,12 +14,16 @@ const Settings_Screen = () => {
     const { COLORS } = useColorSchemeContext()
     const { restartAuthState } = useUserContext()
 
-    const signOutCurrentUser = async() => {
-        const navigation = useNavigation<UseNavigation_Type>();
-        auth().signOut()
-        .then(() => restartAuthState())
-        .then(() => navigation.navigate('Welcome'))
-        .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
+    const signOutWithAlert = () => {
+        Alert.alert('WARNING', 'Do you really want logout?', [
+            { text: 'YES', onPress : () => {
+                auth().signOut()
+                .then(() => restartAuthState())
+                .then(() => navigation.navigate('Welcome'))
+                .catch(error => console.log(`_AUTH_SIGN_OUT_ERROR_ --> ${error}`))
+            }},
+            { text: 'NOT', onPress : () => {return}, style: 'cancel'},
+        ])
     }
     
 
@@ -120,7 +124,7 @@ const Settings_Screen = () => {
                         title='Log out' 
                         iconName='logout' 
                         color={COLORS.orange}
-                        onPress={ signOutCurrentUser }/>
+                        onPress={ signOutWithAlert }/>
                 </View>
             </View>
         </ScreenWrapper>

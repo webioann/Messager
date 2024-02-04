@@ -15,13 +15,6 @@ const DrawerNavigatorContent = ({...props}) => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS, toggleColorScheme, appColorScheme } = useColorSchemeContext()
 
-    const signoutCurrentUser = () => {
-        auth().signOut()
-        .then(() => restartAuthState())
-        .then(() => navigation.navigate('Welcome'))
-        .catch(error => console.log(`_AUTH_SIGN_OUT_ERROR_ --> ${error}`))
-    }
-
     const signOutWithAlert = () => {
         Alert.alert('WARNING', 'Do you really want logout?', [
             { text: 'YES', onPress : () => {
