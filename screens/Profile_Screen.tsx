@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, Keyboard
 import React, { useState, useEffect, createRef } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
-import RowWrapperWithLabel from '../components/RowWrapperWithLabel';
+import WrapperWithLabel from '../components/WrapperWithLabel';
 import UserAvatarImage from '../components/UserAvatarImage'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import UploadImageInStorage from '../components/UploadImageInStorage'
@@ -166,7 +166,7 @@ const Profile_Screen = () => {
                     </View>
                     <View style={{flex: 1, paddingHorizontal: 26}}>
                         {/* name edit */}
-                        <RowWrapperWithLabel label='Username'>
+                        <WrapperWithLabel label='Username'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={name}
@@ -175,9 +175,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </RowWrapperWithLabel>
+                        </WrapperWithLabel>
                         {/* email edit */}
-                        <RowWrapperWithLabel label='Email'>
+                        <WrapperWithLabel label='Email'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={email}
@@ -186,9 +186,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </RowWrapperWithLabel>
+                        </WrapperWithLabel>
                         {/* phone number edit */}
-                        <RowWrapperWithLabel label='Phone'>
+                        <WrapperWithLabel label='Phone'>
                             <TextInput
                                 keyboardType='numeric'
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
@@ -199,9 +199,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </RowWrapperWithLabel>
+                        </WrapperWithLabel>
                         {/* gender field */}
-                        <RowWrapperWithLabel label='Gender'>
+                        <WrapperWithLabel label='Gender'>
                             <TextInput
                                 style={[styles.edit_input, {borderColor: COLORS.tint}]}
                                 value={gender}
@@ -210,9 +210,9 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </RowWrapperWithLabel>
+                        </WrapperWithLabel>
                         {/* date of birth field */}
-                        <RowWrapperWithLabel label='Date of Birth' hintLabel=' format 01/03/1980' showHint={showHint}>
+                        <WrapperWithLabel label='Date of Birth' hintLabel=' format 01/03/1980' showHint={showHint}>
                             <TextInput
                                 keyboardType='numeric'
                                 onFocus={() => setShowHint(true)}
@@ -224,7 +224,7 @@ const Profile_Screen = () => {
                                 cursorColor={COLORS.color}
                                 placeholderTextColor={COLORS.color}
                             />
-                        </RowWrapperWithLabel>
+                        </WrapperWithLabel>
                         <TouchableOpacity 
                             // onPress={onClick} 
                             onPress={confirmChangesOnUserProfile} 

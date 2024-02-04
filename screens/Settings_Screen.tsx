@@ -26,10 +26,10 @@ const Settings_Screen = () => {
     return (
         <ScreenWrapper>
             <NavigationHeader type='drawer' screen='Settings'/>
-            <View>
+            <View style={{paddingHorizontal: 26}}>
                 {/* Accoun section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Account</Text>
-                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                <View style={styles.section}>
                     <WrapperWithLinkAndIcon 
                         title='Edit profile' 
                         iconName='account-outline' 
@@ -49,7 +49,7 @@ const Settings_Screen = () => {
                 </View>
                 {/* support section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Support & About</Text>
-                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                <View style={styles.section}>
                     <WrapperWithLinkAndIcon 
                         title='My Subscribtion' 
                         iconName='credit-card-outline' 
@@ -65,7 +65,7 @@ const Settings_Screen = () => {
                 </View>
                 {/* cache section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Cache & cellular</Text>
-                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                <View style={styles.section}>
                     <WrapperWithLinkAndIcon 
                         title='Free up space' 
                         iconName='trash-can-outline' 
@@ -77,7 +77,7 @@ const Settings_Screen = () => {
                 </View>
                 {/* actions section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Actions</Text>
-                <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
+                <View style={styles.section}>
                     <WrapperWithLinkAndIcon 
                         title='Report a problem' 
                         iconName='flag-outline' 
@@ -89,6 +89,7 @@ const Settings_Screen = () => {
                     <WrapperWithLinkAndIcon 
                         title='Log out' 
                         iconName='logout' 
+                        color={COLORS.orange}
                         onPress={ signOutCurrentUser }/>
                 </View>
             </View>
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    settings: {
+    section: {
         padding: 8
     },
     block_title: {

@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { ReactNode } from 'react'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
-type rowWrapperWithLabelType = {
+type wrapperWithLabelType = {
     children: ReactNode[] | ReactNode
     label?: string
     hintLabel?: string
     showHint?: boolean
 }
 
-const RowWrapperWithLabel: React.FC<rowWrapperWithLabelType> = ({children, label, hintLabel, showHint}) => {
+const WrapperWithLabel: React.FC<wrapperWithLabelType> = ({children, label, hintLabel, showHint}) => {
     const { COLORS } = useColorSchemeContext()
 
     return (
@@ -23,7 +23,7 @@ const RowWrapperWithLabel: React.FC<rowWrapperWithLabelType> = ({children, label
     )
 }
 
-export default RowWrapperWithLabel
+export default WrapperWithLabel
 
 const styles = StyleSheet.create({
     field: {

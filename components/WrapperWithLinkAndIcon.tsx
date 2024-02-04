@@ -7,17 +7,18 @@ type wrapperPropsType = {
     onPress: () => void | Promise<void>
     iconName: string
     title: string
+    color?: string
 }
 
-const WrapperWithLinkAndIcon: React.FC<wrapperPropsType> = ({ onPress, iconName, title }) => {
+const WrapperWithLinkAndIcon: React.FC<wrapperPropsType> = ({ onPress, iconName, title, color }) => {
     const { COLORS } = useColorSchemeContext()
 
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-            <Icon name={ iconName } size={24} color={COLORS.color}/>
-            <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>
+            style={[styles.row, {borderBottomColor: COLORS.adorn}]}>
+            <Icon name={ iconName } size={24} color={color ? color : COLORS.color}/>
+            <Text style={[styles.title, {color : COLORS.color}]}>
                 { title }
             </Text>
         </TouchableOpacity>
@@ -26,4 +27,17 @@ const WrapperWithLinkAndIcon: React.FC<wrapperPropsType> = ({ onPress, iconName,
 
 export default WrapperWithLinkAndIcon;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        gap: 30, 
+        padding: 8,
+        borderBottomWidth: 1,
+
+    },
+    title: {
+        fontSize: 18, 
+        fontWeight: '700',
+    }
+})
