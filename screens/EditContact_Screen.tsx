@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import NavigationHeader from '../components/NavigationHeader';
+import UserAvatarImage from '../components/UserAvatarImage';
 import { SIZES } from '../constants/SIZES';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -33,14 +34,9 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
     return (
         <ScreenWrapper>
             <View style={styles.container}>
-                <NavigationHeader type='goBack' screen='Contacts'/>
+                <NavigationHeader type='goBack' screen='EditContact'/>
                 <View style={{alignItems: 'center', padding: SIZES.GAP}}>
-                    <Image 
-                        source={{uri: contact.photoURL ? contact.photoURL : defaultImage}}
-                        style={styles.contactAvatar}
-                        alt='contact avatar'
-                        resizeMode='contain'
-                    />
+                    <UserAvatarImage pathToImage={contact.photoURL} size={150}/>
                     <Text style={[styles.name, {color: COLORS.color}]}>{ contact.displayName }</Text>
                     <Text style={[styles.email, {color: COLORS.color}]}>{ contact.email }</Text>
                     { contact.phoneNumber
@@ -56,7 +52,7 @@ const EditContact_Screen: React.FC<StackProps> = ({ route }) => {
                         placeholderTextColor={COLORS.tint}
                         cursorColor={COLORS.color}
                     />
-                    <TouchableOpacity onPress={updatePhoneNumber}>
+                    <TouchableOpacity onPress={() => console.log('Number was updated')}>
                         <Icon name='beenhere' color={COLORS.color} size={34}/>
                     </TouchableOpacity>
                 </View>

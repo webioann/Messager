@@ -12,8 +12,6 @@ import firestore from '@react-native-firebase/firestore';
 const Contacts_Screen = () => {
     const { currentUser } = useUserContext()
     const [searchValue, setSearchValue] = useState<string | null>(null)
-    // TODO: remove console log
-    // console.log(searchValue)
     const [contactsList, setContactsList] = useState<UserType[]>([])
 
     const fetchAllContacts = async() => {
