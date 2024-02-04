@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Switch, SafeAreaView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Switch, SafeAreaView, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import { DrawerContentScrollView, DrawerItemList, DrawerItem} from '@react-navigation/drawer';
 import UserAvatarImage from '../components/UserAvatarImage';
@@ -21,6 +21,19 @@ const DrawerNavigatorContent = ({...props}) => {
         .then(() => navigation.navigate('Welcome'))
         .catch(error => console.log(`_AUTH_SIGN_OUT_ERROR_ --> ${error}`))
     }
+
+    const signOutWithAlert = () => {
+        Alert.alert('WARNING', 'Do you really want logout?', [
+            { text: 'YES', onPress : () => {
+                auth().signOut()
+                .then(() => restartAuthState())
+                .then(() => navigation.navigate('Welcome'))
+                .catch(error => console.log(`_AUTH_SIGN_OUT_ERROR_ --> ${error}`))
+            }},
+            { text: 'NOT', onPress : () => {return}, style: 'cancel'},
+        ])
+    }
+
 
     return (
         <SafeAreaView style={{flex: 1}}>
@@ -65,7 +78,7 @@ const DrawerNavigatorContent = ({...props}) => {
                     />
                 </View>
                 <TouchableOpacity
-                    onPress={signoutCurrentUser}
+                    onPress={signOutWithAlert}
                     style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
                     <Icon name='logout' size={24} color={COLORS.orange}/>
                     <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
