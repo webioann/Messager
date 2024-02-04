@@ -37,15 +37,15 @@ const Settings_Screen = () => {
                     <WrapperWithLinkAndIcon 
                         title='Security' 
                         iconName='shield-account-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                     <WrapperWithLinkAndIcon 
                         title='Notifications' 
                         iconName='bell-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                     <WrapperWithLinkAndIcon 
                         title='Privacy' 
                         iconName='lock-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                 </View>
                 {/* support section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Support & About</Text>
@@ -53,15 +53,15 @@ const Settings_Screen = () => {
                     <WrapperWithLinkAndIcon 
                         title='My Subscribtion' 
                         iconName='credit-card-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                     <WrapperWithLinkAndIcon 
                         title='Help and Supports' 
                         iconName='help-circle-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                     <WrapperWithLinkAndIcon 
                         title='Terms and Policies' 
                         iconName='police-badge-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                 </View>
                 {/* cache section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Cache & cellular</Text>
@@ -69,11 +69,11 @@ const Settings_Screen = () => {
                     <WrapperWithLinkAndIcon 
                         title='Free up space' 
                         iconName='trash-can-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                     <WrapperWithLinkAndIcon 
                         title='Data Server' 
                         iconName='database-arrow-up-outline' 
-                        onPress={() => navigation.navigate('Profile')}/>
+                        onPress={() => navigation.navigate('NotFoundPage')}/>
                 </View>
                 {/* actions section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Actions</Text>

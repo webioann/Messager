@@ -8,6 +8,7 @@ import SignupPage_Screen from './screens/SignupPage_Screen';
 import Contacts_Screen from './screens/Contacts_Screen';
 import EditContact_Screen from './screens/EditContact_Screen';
 import Profile_Screen from './screens/Profile_Screen';
+import NotFoundPage_Screen from './screens/NotFoundPage_Screen';
 import SearchInput from './components/SearchInput';
 import DrawerNavigatorContent from './screens/DrawerNavigatorContent';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
@@ -86,6 +87,7 @@ const App: React.FC = () => {
         <Stack.Screen name="LoginPage" component={LoginPage_Screen}/>
         <Stack.Screen name="SignupPage" component={SignupPage_Screen}/>
         <Stack.Screen name="EditContact" component={EditContact_Screen}/>
+        <Stack.Screen name="NotFoundPage" component={NotFoundPage_Screen}/>
       </Stack.Navigator>  
     </NavigationContainer>
   )

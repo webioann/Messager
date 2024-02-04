@@ -20,6 +20,7 @@ export type StackNavigatorParams = {
   Contacts: undefined
   EditContact: { contact: UserType }
   Profile: undefined
+  NotFoundPage: undefined
 };
 
 export type UseNavigation_Type = NativeStackNavigationProp<StackNavigatorParams>
