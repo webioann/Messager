@@ -1,25 +1,27 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
+import WrapperWithLinkAndIcon from '../components/WrapperWithLinkAndIcon';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth'
+import { useUserContext } from '../context/UserContext';
 
 const Settings_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useColorSchemeContext()
+    const { restartAuthState } = useUserContext()
 
-    const signoutCurrentUser = () => {
+    const signOutCurrentUser = async() => {
+        const navigation = useNavigation<UseNavigation_Type>();
         auth().signOut()
+        .then(() => restartAuthState())
         .then(() => navigation.navigate('Welcome'))
         .catch(error => console.log(`_AUTH_ERROR_ --> ${error}`))
     }
-
-    const defaultFunc = () => {console.log('THIS IS DEFAULT CLICK FUNCTION')}
+    
 
     return (
         <ScreenWrapper>
@@ -28,90 +30,66 @@ const Settings_Screen = () => {
                 {/* Accoun section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Account</Text>
                 <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Profile')}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='account-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Edit profile</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='shield-account-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Security</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='bell-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Notifications</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon name='lock-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Privacy</Text>
-                    </TouchableOpacity>
+                    <WrapperWithLinkAndIcon 
+                        title='Edit profile' 
+                        iconName='account-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Security' 
+                        iconName='shield-account-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Notifications' 
+                        iconName='bell-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Privacy' 
+                        iconName='lock-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
                 </View>
                 {/* support section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Support & About</Text>
                 <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='credit-card-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>My Subscribtion</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='help-circle-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Help and Supports</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='alert-circle-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Terms and Policies</Text>
-                    </TouchableOpacity>
+                    <WrapperWithLinkAndIcon 
+                        title='My Subscribtion' 
+                        iconName='credit-card-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Help and Supports' 
+                        iconName='help-circle-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Terms and Policies' 
+                        iconName='police-badge-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
                 </View>
                 {/* cache section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Cache & cellular</Text>
                 <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='trash-can-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Free up space</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon name='data-exploration' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Data Server</Text>
-                    </TouchableOpacity>
+                    <WrapperWithLinkAndIcon 
+                        title='Free up space' 
+                        iconName='trash-can-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Data Server' 
+                        iconName='database-arrow-up-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
                 </View>
                 {/* actions section */}
                 <Text style={[styles.block_title, {color: COLORS.color}]}>Actions</Text>
                 <View style={[styles.settings, {backgroundColor: COLORS.minor}]}>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='flag-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Report a problem</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={defaultFunc}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='account-multiple-outline' size={24} color={COLORS.color}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Add account</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={signoutCurrentUser}
-                        style={{flexDirection: 'row', alignItems: 'center', gap: 30, padding: 8}}>
-                        <Icon2 name='logout' size={24} color={COLORS.orange}/>
-                        <Text style={{color: COLORS.color, fontSize: 18, fontWeight: '700'}}>Log out</Text>
-                    </TouchableOpacity>
+                    <WrapperWithLinkAndIcon 
+                        title='Report a problem' 
+                        iconName='flag-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Add account' 
+                        iconName='account-multiple-outline' 
+                        onPress={() => navigation.navigate('Profile')}/>
+                    <WrapperWithLinkAndIcon 
+                        title='Log out' 
+                        iconName='logout' 
+                        onPress={ signOutCurrentUser }/>
                 </View>
             </View>
         </ScreenWrapper>
