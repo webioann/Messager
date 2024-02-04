@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TextInput, Pressable, Keyboard } from 'react-na
 import Animated, { useSharedValue,  withTiming, withDelay } from 'react-native-reanimated';
 import React, { useState } from 'react'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
-// import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type searchInputProps = {

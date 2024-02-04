@@ -46,36 +46,6 @@ const useFetchMessages = (chatRoomID: string) => {
         }
     }
 
-    // const groupMessagesByDate = (messagesArray: messageType[]) => {
-    //     let arrayOfDates: string[] = []
-    //     messagesArray.map((item) => {
-    //         let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
-    //         arrayOfDates.push(creatingDate)
-    //     })
-    //     let uniqueDates = new Set(arrayOfDates)
-    //     if(uniqueDates) {
-    //         let oneGroup = messagesArray.filter((item, index) => {
-    //             let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
-    //             if(uniqueDates.has(creatingDate)) {
-    //                 console.log('HEY')
-    //             }
-    //         })
-    //         console.log(oneGroup)
-    //     }
-    // }
-    // const groupMessagesByDate = (messagesArray: messageType[]) => {
-    //     let raw: groupedMessagesType[] = [] as groupedMessagesType[]
-    //     messagesArray.map((item) => {
-    //         let creatingDate = new Date(item.createdAt).toLocaleDateString("en-GB")
-    //         let temp: groupedMessagesType = {
-    //             sectionTittle: creatingDate,
-    //             groupedMessages: [item]
-    //         }
-    //         raw.push(temp)
-    //     })
-    //     setMessagesGroup([...new Set(raw)])
-    // }
-
     const fetchMessagesList = async() => {
         setIsLoading(true)
         try{

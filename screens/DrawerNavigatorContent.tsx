@@ -27,7 +27,6 @@ const DrawerNavigatorContent = ({...props}) => {
         ])
     }
 
-
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={[styles.drawer_header, {backgroundColor: COLORS.minor, borderBottomColor: COLORS.third}]}>
@@ -41,7 +40,6 @@ const DrawerNavigatorContent = ({...props}) => {
                     </Text>
                 </View>
             </View>
-
             <DrawerContentScrollView style={{backgroundColor: COLORS.main}}>
                 <DrawerItemList 
                     state={navigation.getParent()}
@@ -49,15 +47,6 @@ const DrawerNavigatorContent = ({...props}) => {
                     descriptors={navigation.getParent()}
                     {...props}
                 />
-                {/* { DrawerContentItemData.map((item) => (
-                    <DrawerItem 
-                        key={item.to}
-                        label={item.label}
-                        labelStyle={{fontSize: 16, color: COLORS.color}}
-                        icon={({focused}) => <Icon name={item.icon_name} size={34} color={focused ? COLORS.orange : COLORS.tint}/>}
-                        onPress={() => navigation.navigate(item.to)}
-                    />
-                )) } */}
             </DrawerContentScrollView> 
             {/* footer of menu hose to contained theme toggle button (Switch) and Logout user button*/}
             <View style={[styles.drawer_footer, {backgroundColor: COLORS.minor, borderTopColor: COLORS.third}]}>
@@ -104,5 +93,4 @@ const styles = StyleSheet.create({
         padding: 16,
         borderTopWidth: 1
     },
-
 })

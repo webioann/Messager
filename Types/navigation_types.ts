@@ -1,8 +1,6 @@
-// ===================================
 import React from 'react'
 import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
-// import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 export type StackNavigatorParams = {
   Chat: {
@@ -34,6 +32,7 @@ export type ScreenOptions_Type = {
   headerLeft?: () => React.ReactNode
   headerRight?: () => React.ReactNode
 }
+
 export type DrawerItemOptions_Type = {
   drawerLabel?: string | ((props: { focused: boolean; color: string }) => React.ReactNode);
   drawerIcon?: (props: { focused: boolean; color: string; size: number }) => React.ReactNode;

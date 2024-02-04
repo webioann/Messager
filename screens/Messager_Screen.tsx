@@ -64,30 +64,3 @@ useEffect(() => {
 }
 export default Messager_Screen;
 
-const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 10,
-  },
-  headerTitle: {
-    flex: 1,
-    paddingHorizontal: 16,
-    fontSize: 26,
-    fontWeight: '600'
-  },
-  headerAddButton: {
-    width: SIZES.SMALL,
-    height: SIZES.SMALL,
-    borderRadius: SIZES.SMALL / 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  searchInput: {
-    height: 40,
-    borderRadius: 20,
-    paddingHorizontal: 20,
-    marginVertical: 8,
-  },
-});

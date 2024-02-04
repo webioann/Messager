@@ -11,8 +11,6 @@ type loginFormProps = {
 }
 
 const LoginScreen_Form: React.FC<loginFormProps> = ({email, setEmail, password, setPassword}) => {
-    // const [passwordVisibility, setPasswordVisibility] = useState(false)
-    // console.log(passwordVisibility)
     const { COLORS } = useColorSchemeContext()
     
     return (

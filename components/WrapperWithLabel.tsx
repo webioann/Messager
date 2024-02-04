@@ -23,7 +23,7 @@ const WrapperWithLabel: React.FC<wrapperWithLabelType> = ({children, label, hint
     )
 }
 
-export default WrapperWithLabel
+export default WrapperWithLabel;
 
 const styles = StyleSheet.create({
     field: {

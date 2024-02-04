@@ -8,7 +8,6 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import firestore from '@react-native-firebase/firestore';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 type OneMessageProps = {
     message: messageType
     room: string
@@ -50,7 +49,7 @@ const MessageBubble: React.FC<OneMessageProps> = ({ message, room }) => {
                     backgroundColor: variants.backgroundColor
                 }]}
             >
-                <Icon name='delete-outline' size={24} color={COLORS.orange}/>
+            <Icon name='delete-outline' size={24} color={COLORS.orange}/>
             </Pressable>}
             { message.files.length < 1 
                 ? (

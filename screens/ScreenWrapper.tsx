@@ -1,6 +1,5 @@
 import { SafeAreaView, StatusBar, View } from 'react-native'
 import React from 'react'
-import { SIZES } from '../constants/SIZES';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type childrenType = {
@@ -9,6 +8,7 @@ type childrenType = {
 
 const ScreenWrapper: React.FC<childrenType> = ({ children }) => {
     const { COLORS, appColorScheme } = useColorSchemeContext()
+    
     return (
         <SafeAreaView style={{backgroundColor: COLORS.main, flex: 1}}>
             <StatusBar 

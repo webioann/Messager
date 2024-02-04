@@ -1,11 +1,10 @@
-import { StyleSheet, View, FlatList, TextInput } from 'react-native'
+import { StyleSheet, FlatList } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Contact from '../components/Contact';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
 import SearchInput from '../components/SearchInput';
 import { useUserContext } from '../context/UserContext';
-import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UserType } from '../Types/users_types';
 import firestore from '@react-native-firebase/firestore';
 
@@ -42,5 +41,3 @@ const Contacts_Screen = () => {
 
 export default Contacts_Screen;
 
-const styles = StyleSheet.create({
-});

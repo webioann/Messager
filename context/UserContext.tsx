@@ -56,15 +56,13 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
         else return
     }, [authStateIsChanged])
 
-    // TODO:
-    console.log(`AUTH_STATE_CONTEXT_USER --->`, currentUser)
-
     return (
         <UserContext.Provider value={{currentUser, restartAuthState}}>
             {children}
         </UserContext.Provider>
     );
 };
+
 export function useUserContext() { // <--- custom hook for current user context
     const context = useContext(UserContext)
     if (context === null) {

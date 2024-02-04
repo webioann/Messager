@@ -1,3 +1,4 @@
+import { Text } from 'react-native';
 import React from 'react';
 import Messager_Screen from './screens/Messager_Screen';
 import Chat_Screen from './screens/Chat_Screen';
@@ -8,17 +9,14 @@ import SignupPage_Screen from './screens/SignupPage_Screen';
 import Contacts_Screen from './screens/Contacts_Screen';
 import Profile_Screen from './screens/Profile_Screen';
 import NotFoundPage_Screen from './screens/NotFoundPage_Screen';
-import SearchInput from './components/SearchInput';
 import DrawerNavigatorContent from './screens/DrawerNavigatorContent';
-import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackNavigatorParams, ScreenOptions_Type, DrawerItemOptions_Type } from './Types/navigation_types';
 import useColorSchemeContext from './hooks/useColorSchemeContext';
 import { useUserContext } from './context/UserContext';
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 
 const App: React.FC = () => {
   const Stack = createNativeStackNavigator<StackNavigatorParams>();
@@ -66,7 +64,7 @@ const App: React.FC = () => {
       drawerActiveBackgroundColor: COLORS.third,
       drawerInactiveBackgroundColor: COLORS.main,
     }
-    // TODO: , headerRight: () => { return ( <SearchInput/> )} --> add if this need on Messager_Screen
+
     return (
       <Drawer.Navigator screenOptions={drawerScreenOptions} initialRouteName='Messager' drawerContent={props => <DrawerNavigatorContent {...props}/>}>
         <Drawer.Screen name="Messager" component={Messager_Screen} options={messagerDrawerOptions}/>
@@ -90,4 +88,5 @@ const App: React.FC = () => {
     </NavigationContainer>
   )
 }
+
 export default App;

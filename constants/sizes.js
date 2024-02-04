@@ -18,10 +18,6 @@ export const COLORS = {
     BG2: '#1F262E',
     BORDER: '#30373F',
 };
-export const emailRegExpPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-export const emailRegExpPatternSecond = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
-export const nameRegExpPattern = /^[a-zA-Z ]{3,10}$/;
-export const passwordRegExpPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{7,}$/gm;
 
 import { StyleSheet } from 'react-native';
 

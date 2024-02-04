@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native'
-import React, { useState, useEffect, createRef } from 'react'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
+import React, { useState } from 'react'
 import ScreenWrapper from './ScreenWrapper'
 import NavigationHeader from '../components/NavigationHeader';
 import WrapperWithLabel from '../components/WrapperWithLabel';
@@ -11,7 +11,6 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import firestore from '@react-native-firebase/firestore';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { GenderType } from '../Types/users_types';
-
 
 const Profile_Screen = () => {
     const { currentUser, restartAuthState } = useUserContext()
@@ -133,14 +132,6 @@ const Profile_Screen = () => {
         } 
         catch {(error: Error) => {console.log(`_ERROR_ON_TIME_USER_PROFILE_DATA_CHANGING --> ${error.message}`)}}
         finally {() => getCleanUpScreen()}
-    }
-
-    const onClick = () => {
-        // let message = `name: ${name.length}, email: ${email.length}, phone: ${phone.length}, gender: ${gender.length},birthday: ${birthday.length}`;
-        // Alert.alert('STATE',message,[],{cancelable: true})
-        // getCleanUpScreen()
-        let string = '1234567890'
-        console.log('PHONE  =', phone)
     }
 
     return (

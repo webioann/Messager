@@ -19,18 +19,16 @@ import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import auth from '@react-native-firebase/auth'
 import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
-import { UserType } from '../Types/users_types';
-// import { nameRegExpPattern, emailRegExpPattern, passwordRegExpPattern } from '../constants/SIZES';
 
 const SignupPage_Screen = () => {
     const navigation = useNavigation<UseNavigation_Type>();
     const { COLORS } = useColorSchemeContext()
     const { restartAuthState } = useUserContext()
+    
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
-    // const [validationResult, setValidationResult] = useState(false)
 
     const getCleanUpScreen = () => {
         Keyboard.dismiss()

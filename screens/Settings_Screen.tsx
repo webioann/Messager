@@ -25,7 +25,6 @@ const Settings_Screen = () => {
             { text: 'NOT', onPress : () => {return}, style: 'cancel'},
         ])
     }
-    
 
     return (
         <ScreenWrapper>
@@ -129,8 +128,8 @@ const Settings_Screen = () => {
             </View>
         </ScreenWrapper>
     )
-    
 }
+
 export default Settings_Screen;
 
 const styles = StyleSheet.create({
