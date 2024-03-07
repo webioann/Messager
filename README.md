@@ -11,13 +11,7 @@
 ![npm](https://img.shields.io/badge/NPM-%23323330.svg?style=flat&logo=npm&logoColor=white)&nbsp;
 ![markdown](https://img.shields.io/badge/markdown-%23E34F26.svg?style=flat&logo=markdown&logoColor=white)&nbsp;
 
-<img src='./assets/app_welcome.png' width='60px'/>
-<img src='./assets/app_chat.png' width='60px'/>
-<img src='./assets/app_draw_menu.png' width='60px'/>
-<img src='./assets/app_profile.png' width='60px'/>
-<img src='./assets/app_signup.png' width='60px'/>
-<img src='./assets/app_login.png' width='60px'/>
-<img src='./assets/app_settings.png' width='60px'/>
+<img src='./assets/app_welcome.png' width='60px'/>&nbsp;<img src='./assets/app_chat.png' width='60px'/>&nbsp;<img src='./assets/app_draw_menu.png' width='60px'/>&nbsp;<img src='./assets/app_profile.png' width='60px'/>&nbsp;<img src='./assets/app_signup.png' width='60px'/>&nbsp;<img src='./assets/app_login.png' width='60px'/>&nbsp;<img src='./assets/app_settings.png' width='60px'/>&nbsp;
 
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
