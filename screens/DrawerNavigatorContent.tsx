@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { SIZES } from '../constants/SIZES';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
-import auth from '@react-native-firebase/auth'
+import auth from '@react-native-firebase/auth';
 
 const DrawerNavigatorContent = ({...props}) => {
     const { currentUser, restartAuthState } = useUserContext()
