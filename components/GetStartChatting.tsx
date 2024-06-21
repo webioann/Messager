@@ -11,6 +11,7 @@ import useChatRoomIDCreator from '../hooks/useChatRoomIDCreator';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const GetStartChatting: React.FC<UserType> = (contact) => {
+    // when you click the chat icon created a chat room ID, and you can start chatting with this user
     const { currentUser } = useUserContext()
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
@@ -18,11 +19,13 @@ const GetStartChatting: React.FC<UserType> = (contact) => {
 
     const onStartChatting = async() => {
         let roomWasCreated = false
+        // this checks if the chat room exists in the 'CHAT_ROOM_DB' collection
         await firestore().collection('CHAT_ROOM_DB').doc(chatRoomID).get()
         .then((response) => {
             response.data() ? roomWasCreated = true : roomWasCreated = false
         })
         if( !roomWasCreated && currentUser) {
+            // if a chat room is created for the first time fill metadata object
             let rawMetadata: metadataType = {
                 startAt: Date.now(),
                 users: [currentUser?.uid, contact.uid]
@@ -40,6 +43,7 @@ const GetStartChatting: React.FC<UserType> = (contact) => {
             }))
         }
         if( roomWasCreated ) {
+            // navigate to screen "Chat" with  passing user data for chatting
             navigation.navigate('Chat', {
                 contact: contact.displayName,
                 avatar_url: contact.photoURL,

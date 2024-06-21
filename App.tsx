@@ -64,7 +64,7 @@ const App: React.FC = () => {
       drawerActiveBackgroundColor: COLORS.third,
       drawerInactiveBackgroundColor: COLORS.main,
     }
-
+    // DRAW NAVIGATOR ====
     return (
       <Drawer.Navigator screenOptions={drawerScreenOptions} initialRouteName='Messager' drawerContent={props => <DrawerNavigatorContent {...props}/>}>
         <Drawer.Screen name="Messager" component={Messager_Screen} options={messagerDrawerOptions}/>
@@ -74,7 +74,7 @@ const App: React.FC = () => {
       </Drawer.Navigator>  
     )
   }
-
+  // STACK NAVIGATOR ====
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Welcome'} screenOptions={StackNavigationOptions}>

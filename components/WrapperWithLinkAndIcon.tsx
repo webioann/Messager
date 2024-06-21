@@ -11,6 +11,7 @@ type wrapperPropsType = {
 }
 
 const WrapperWithLinkAndIcon: React.FC<wrapperPropsType> = ({ onPress, iconName, title, color }) => {
+    // this component use in Setting screen
     const { COLORS } = useColorSchemeContext()
 
     return (

@@ -10,6 +10,7 @@ type wrapperWithLabelType = {
 }
 
 const WrapperWithLabel: React.FC<wrapperWithLabelType> = ({children, label, hintLabel, showHint}) => {
+    // this component use on Profile screen
     const { COLORS } = useColorSchemeContext()
 
     return (
