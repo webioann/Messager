@@ -56,6 +56,7 @@ const Profile_Screen = () => {
         }
         else return
     }
+    
     const genderFieldValidation = (previousGender: GenderType) => {
         let validGender = previousGender
         // changes were not yet
