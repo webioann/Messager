@@ -28,7 +28,6 @@ export const G = StyleSheet.create({
         paddingHorizontal: SIZES.GAP,
         paddingTop:10
     },
-
     auth_buttons: {
         backgroundColor: COLORS.DARK,
         borderRadius: 8,

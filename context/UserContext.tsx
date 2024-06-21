@@ -62,8 +62,8 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
         </UserContext.Provider>
     );
 };
-
-export function useUserContext() { // <--- custom hook for current user context
+// --- custom hook for current user context ---
+export function useUserContext() { 
     const context = useContext(UserContext)
     if (context === null) {
         throw new Error('useUserContext is broken')

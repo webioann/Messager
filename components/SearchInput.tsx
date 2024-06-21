@@ -3,6 +3,7 @@ import Animated, { useSharedValue,  withTiming, withDelay } from 'react-native-r
 import React, { useState } from 'react'
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import { COLORS } from '../constants/SIZES';
 
 type searchInputProps = {
     getSearchQuery: React.Dispatch<React.SetStateAction<string | null>>
@@ -39,7 +40,7 @@ const SearchInput: React.FC<searchInputProps> = ({getSearchQuery}) => {
             <Animated.View style={[styles.animeView, {width: searchBarWidth, backgroundColor: bgColor}]}>
                 <TextInput 
                     onChangeText={setValue}
-                    style={styles.searchInput}
+                    style={[styles.searchInput, {color: COLORS.color}]}
                     placeholder={isActive ? 'Search' : ''}
                     placeholderTextColor={COLORS.color}
                     cursorColor={COLORS.color}
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         paddingHorizontal: 10,
         width: '100%',
-        height: 40
+        height: 40,
     },
     hidenSearchInput: {
         display: 'none'
