@@ -7,7 +7,7 @@ const useChatRoomIDCreator = (contactUID: string) => {
 
     const createChatRoomID = () => {
         if(currentUser?.uid) {
-            // set CHAT ROOM unique ID
+            // create a chat room unique ID from two user IDs
             if( contactUID > currentUser.uid ) {
                 setChatRoomID(contactUID.slice(0,8).concat('_@_', currentUser.uid.slice(0,8)))
             }

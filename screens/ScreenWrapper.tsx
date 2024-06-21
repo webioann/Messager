@@ -1,5 +1,5 @@
-import { SafeAreaView, StatusBar, View } from 'react-native'
-import React from 'react'
+import { SafeAreaView, StatusBar, View } from 'react-native';
+import React from 'react';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type childrenType = {

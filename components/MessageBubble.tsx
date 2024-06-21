@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import React, { useState } from 'react';
 import useTimeTransformer from '../hooks/useTimeTransformer';
 import { useUserContext } from '../context/UserContext';
 import { SIZES } from '../constants/SIZES';

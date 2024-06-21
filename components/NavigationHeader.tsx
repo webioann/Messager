@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
@@ -28,7 +28,9 @@ const CustomNavigationHeader: React.FC<NavHeaderProps> = ({ screen, type, childr
                         if(type === 'goBack') { navigation.goBack() }
                     }}
                 />
-                <Text style={[styles.screen_title, {color: COLORS.color}]}>{ screen }</Text>
+                <Text style={[styles.screen_title, {color: COLORS.color}]}>
+                    { screen }
+                </Text>
             </View>
             <View style={{position: 'absolute', right: 16}}>
                 { children }

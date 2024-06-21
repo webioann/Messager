@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, ActivityIndicator, SectionList, Text } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import React from 'react';
 import UserAvatarImage from '../components/UserAvatarImage';
 import MessageInput from '../components/MessageInput';
@@ -13,8 +13,9 @@ import useFetchMessages from '../hooks/useFetchMessages';
 type StackProps = NativeStackScreenProps<StackNavigatorParams, 'Chat'>
 
 const Chat_Screen: React.FC<StackProps> = ({ route }) => {
-    const {contact, avatar_url, room, contactId} = route.params;
-    const { messages, isLoading, isError, messagesGroup } = useFetchMessages(room)
+    // screen for chatting with the chosen user
+    const {avatar_url, room, contactId} = route.params;
+    const { messages, isLoading } = useFetchMessages(room)
 
     const safeBottomPadding = () => {
         return (
@@ -23,38 +24,37 @@ const Chat_Screen: React.FC<StackProps> = ({ route }) => {
     }
 
     return (
-    <ScreenWrapper>
-        <NavigationHeader type='goBack' screen='Chat'>
-            <UserAvatarImage pathToImage={avatar_url} size={SIZES.MEDIUM}/>
-        </NavigationHeader>
-        { isLoading 
-            ? <ActivityIndicator/> 
-            : <FlatList
-                style={{paddingBottom: 70, paddingHorizontal: 16}}
-                ListFooterComponent={safeBottomPadding}
-                data={messages}
-                renderItem={(message) => <MessageBubble message={message.item} room={room}/>}
-                keyExtractor={item => item.createdAt.toString()}
-            />
-        }
-        {/* TODO: NEED CREATE MESSAGE ORDER LIST BY DATE */}
-        {/* { isLoading 
-            ? <ActivityIndicator/> 
-            : <SectionList
-                style={{paddingBottom: 70, paddingHorizontal: 16}}
-                sections={messagesGroup}
-                renderItem={(message) => <MessageBubble message={message.item} room={room}/>}
-                keyExtractor={item => item.createdAt.toString()}
-                renderSectionHeader={({section: {sectionTittle}}) => (
-                    <Text>{sectionTittle}</Text>
-                )}
-            />
-        } */}
-
-        <View style={styles.bottomSection}>
-            <MessageInput room={room} senderID={contactId}/>
-        </View>
-    </ScreenWrapper>
+        <ScreenWrapper>
+            <NavigationHeader type='goBack' screen='Chat'>
+                <UserAvatarImage pathToImage={avatar_url} size={SIZES.MEDIUM}/>
+            </NavigationHeader>
+            { isLoading 
+                ? <ActivityIndicator/> 
+                : <FlatList
+                    style={{paddingBottom: 70, paddingHorizontal: 16}}
+                    ListFooterComponent={safeBottomPadding}
+                    data={messages}
+                    renderItem={(message) => <MessageBubble message={message.item} room={room}/>}
+                    keyExtractor={item => item.createdAt.toString()}
+                />
+            }
+            {/* TODO: NEED CREATE MESSAGE ORDER LIST BY DATE */}
+            {/* { isLoading 
+                ? <ActivityIndicator/> 
+                : <SectionList
+                    style={{paddingBottom: 70, paddingHorizontal: 16}}
+                    sections={messagesGroup}
+                    renderItem={(message) => <MessageBubble message={message.item} room={room}/>}
+                    keyExtractor={item => item.createdAt.toString()}
+                    renderSectionHeader={({section: {sectionTittle}}) => (
+                        <Text>{sectionTittle}</Text>
+                    )}
+                />
+            } */}
+            <View style={styles.bottomSection}>
+                <MessageInput room={room} senderID={contactId}/>
+            </View>
+        </ScreenWrapper>
     )
 }
 export default Chat_Screen;

@@ -6,7 +6,7 @@ import WrapperWithLinkAndIcon from '../components/WrapperWithLinkAndIcon';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import { UseNavigation_Type } from '../Types/navigation_types';
 import { useNavigation } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth'
+import auth from '@react-native-firebase/auth';
 import { useUserContext } from '../context/UserContext';
 
 const Settings_Screen = () => {

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Switch, SafeAreaView, TouchableOpacity, Alert } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Switch, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import React from 'react';
 import { DrawerContentScrollView, DrawerItemList, DrawerItem} from '@react-navigation/drawer';
 import UserAvatarImage from '../components/UserAvatarImage';
 import { useUserContext } from '../context/UserContext';

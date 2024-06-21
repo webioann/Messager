@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Pressable, Keyboard } from 'react-native';
 import Animated, { useSharedValue,  withTiming, withDelay } from 'react-native-reanimated';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import { COLORS } from '../constants/SIZES';
 
 type searchInputProps = {
     getSearchQuery: React.Dispatch<React.SetStateAction<string | null>>

@@ -1,5 +1,5 @@
-import { Text } from 'react-native'
-import React from 'react'
+import { Text } from 'react-native';
+import React from 'react';
 import ScreenWrapper from './ScreenWrapper';
 import NavigationHeader from '../components/NavigationHeader';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';

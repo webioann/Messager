@@ -21,7 +21,7 @@ import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
 
 const SignupPage_Screen = () => {
-    const navigation = useNavigation<UseNavigation_Type>();
+    const navigation = useNavigation<UseNavigation_Type>()
     const { COLORS } = useColorSchemeContext()
     const { restartAuthState } = useUserContext()
     
@@ -46,9 +46,9 @@ const SignupPage_Screen = () => {
             displayName: name,
             photoURL: filePath
         })
-        // create on Firestore USERS_DB and fill him in the user data
+        // create on Firestore USERS_DB document and fill him in the user data
         await firestore().collection('USERS_DB').doc(newUser.user.uid).set({
-            // data from Auth
+            // data from Auth object
             displayName: name,
             email: email, 
             uid: newUser.user.uid,
