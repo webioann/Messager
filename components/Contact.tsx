@@ -7,6 +7,7 @@ import { UserType } from '../Types/users_types';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const Contact: React.FC<UserType> = (contact) => {
+    // contact preview info with icon "GetStartChatting" for create new chat room 
     const { COLORS } = useColorSchemeContext()
 
     return (

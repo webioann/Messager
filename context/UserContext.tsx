@@ -21,7 +21,6 @@ export const USER_CONTEXT_PROVIDER: React.FC<childrenType> = ({ children }) => {
     const restartAuthState = () => {
         setAuthStateIsChanged(true)
     }
-
     // Function to read data from Firestore
     const updateCurrentUser = async (user: FirebaseAuthTypes.User) => {
         try {

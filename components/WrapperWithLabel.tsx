@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { ReactNode } from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { ReactNode } from 'react';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 type wrapperWithLabelType = {

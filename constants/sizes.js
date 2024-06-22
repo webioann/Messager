@@ -20,7 +20,7 @@ export const COLORS = {
 };
 
 import { StyleSheet } from 'react-native';
-
+// global classes
 export const G = StyleSheet.create({
     container: {
         flex: 1,

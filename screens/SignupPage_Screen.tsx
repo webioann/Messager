@@ -16,7 +16,7 @@ import ScreenWrapper from './ScreenWrapper';
 import ThemeModeToggle from '../components/ThemeModeToggle';
 import NavigationHeader from '../components/NavigationHeader';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
-import auth from '@react-native-firebase/auth'
+import auth from '@react-native-firebase/auth';
 import { useUserContext } from '../context/UserContext';
 import firestore from '@react-native-firebase/firestore';
 
@@ -28,6 +28,7 @@ const SignupPage_Screen = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    // path to avatar set when a user uploads an image in Firebase DB using func UploadImageInStorage
     const [filePath, setFilePath] = useState<string | undefined>(undefined)
 
     const getCleanUpScreen = () => {

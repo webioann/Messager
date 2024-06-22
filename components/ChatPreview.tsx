@@ -10,6 +10,7 @@ import useFetchMessages from '../hooks/useFetchMessages';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
 const ChatPreview: React.FC<UserType> = ({...contact}) => {
+    // chat preview with a short last message, not viewed messages counter, and timestamp 
     const navigation = useNavigation<UseNavigation_Type>();
     const chatRoomID = useChatRoomIDCreator(contact.uid)
     const { messages, lastMessage, lastTimeStamp } = useFetchMessages(chatRoomID)

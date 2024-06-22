@@ -17,7 +17,7 @@ const SignupScreen_Form: React.FC<signupFormProps> = ({name, setName, email, set
 
     return (
         <View style={styles.form}>
-            {/*  */}
+            {/* user name input */}
             <View style={[styles.inputs, {borderBottomColor: COLORS.tint}]}>
                 <Icon name='person' size={24} color={COLORS.tint}/>
                 <TextInput 

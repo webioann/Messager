@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, TouchableOpacity, TextInput, Keyboard } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, TouchableOpacity, TextInput, Keyboard } from 'react-native';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';

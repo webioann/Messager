@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native'
-import React, { SetStateAction } from 'react'
+import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import React, { SetStateAction } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import useColorSchemeContext from '../hooks/useColorSchemeContext';
 
